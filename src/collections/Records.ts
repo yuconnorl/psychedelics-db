@@ -2,37 +2,7 @@ import type { CollectionConfig } from 'payload/types'
 
 import formatSlug from '../utilities/formatSlug'
 
-
-const categoryOptions  = [
-  'psychedelics-fundamentals',
-  'online-media',
-  'research-centre',
-  'ngo-research-institute',
-  'private-research-institute',
-  'ngo/foundation',
-  'therapy-institue',
-  'health-n-safety',
-  'psychotherapy-training',
-  'decriminalize-policy',
-  'psychotherapists',
-  'press-n-journal',
-  'conference',
-  'podcast-speech',
-]
-
-const typeOptions = [
-  'video',
-  'instagram',
-  'facebook',
-  'podcast',
-  'article',
-  'website',
-  'thesis',
-  'pdf',
-  'book',
-]
-
-const languageOptions = ['zh-tw', 'en']
+import { CATEGORY_OPTIONS, LANGUAGE_OPTIONS, TYPE_OPTIONS } from '@/config/options'
 
 export const Records: CollectionConfig = {
   slug: 'records',
@@ -56,21 +26,21 @@ export const Records: CollectionConfig = {
           name: 'category',
           label: 'Category',
           type: 'select',
-          options: categoryOptions
+          options: [...CATEGORY_OPTIONS],
         },
         {
           name: 'type',
           label: 'Type of Content',
           type: 'select',
-          options: typeOptions
+          options: [...TYPE_OPTIONS],
         },
-      ]
+      ],
     },
     {
       name: 'language',
       label: 'Language',
       type: 'select',
-      options: languageOptions,
+      options: [...LANGUAGE_OPTIONS],
       required: true,
     },
     {

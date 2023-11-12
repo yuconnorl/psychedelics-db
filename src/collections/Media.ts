@@ -1,5 +1,4 @@
-import type { CollectionConfig } from 'payload/types'
-import { CollectionBeforeOperationHook } from 'payload/types'
+import type { CollectionBeforeOperationHook, CollectionConfig } from 'payload/types'
 
 const format = (val: string): string =>
   val
@@ -7,14 +6,13 @@ const format = (val: string): string =>
     .replace(/[^\w-/]+/g, '')
     .toLowerCase()
 
-const beforeOperationHook: CollectionBeforeOperationHook = async ({
-  args
-}) => {
-  const files = args.req?.files;
+const beforeOperationHook: CollectionBeforeOperationHook = async ({ args }) => {
+  const files = args.req?.files
+  // formate file name into kebab case
   if (files && files.file && files.file.name) {
-    const splitArray = files.file.name.split('.');
-    const fileExtension = splitArray.at(-1);
-    const rest = format(splitArray.splice(0, splitArray.length - 1).join('.'));
+    const splitArray = files.file.name.split('.')
+    const fileExtension = splitArray.at(-1)
+    const rest = format(splitArray.splice(0, splitArray.length - 1).join('.'))
     files.file.name = `${rest}.${fileExtension}`
   }
 }
@@ -26,9 +24,7 @@ export const Media: CollectionConfig = {
     staticDir: 'media',
   },
   hooks: {
-    beforeOperation: [
-      beforeOperationHook
-    ]
+    beforeOperation: [beforeOperationHook],
   },
   admin: {
     useAsTitle: 'title',

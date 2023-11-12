@@ -1,9 +1,12 @@
 module.exports = {
   root: true,
   extends: ['plugin:@next/next/recommended', '@payloadcms'],
-  ignorePatterns: ['**/payload-types.ts'],
+  ignorePatterns: ['**/payload-types.ts', 'src/components/ui'],
+  plugins: ['simple-import-sort'],
   rules: {
-    'import/extensions': 'never',
+    'import/extensions': 'off',
     'no-unused-vars': 'warn',
+    'simple-import-sort/imports': 'error', // sorting imports
+    'simple-import-sort/exports': 'error', // sorting exports
   },
 }
