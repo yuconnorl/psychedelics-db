@@ -19,7 +19,7 @@ interface SidebarItemProps {
 
 const SidebarItem = ({ category, itemList }) => {
   return (
-    <AccordionItem key={category} className="border-0" value={category}>
+    <AccordionItem className="border-0" value={category}>
       <AccordionTrigger className="text-left py-0">
         <Link href={`/database/${category}`}>{CATEGORY_OPTIONS_MAP[category]}</Link>
       </AccordionTrigger>
@@ -60,7 +60,7 @@ const Sidebar = async () => {
           type="multiple"
         >
           {Object.keys(recordsMap).map(category => (
-            <SidebarItem category={category} itemList={recordsMap[category]} />
+            <SidebarItem key={category} category={category} itemList={recordsMap[category]} />
           ))}
         </Accordion>
       </ScrollArea>

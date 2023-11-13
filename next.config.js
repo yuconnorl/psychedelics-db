@@ -12,7 +12,7 @@ module.exports = {
       },
       {
         protocol: 'http',
-        hostname: '**',
+        hostname: 'static1.squarespace.com',
       },
     ],
   },

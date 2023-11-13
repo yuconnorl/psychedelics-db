@@ -1,4 +1,7 @@
+import Image from 'next/image'
 import Link from 'next/link'
+
+import { AspectRatio } from './ui/aspect-ratio'
 
 import {
   Card,
@@ -9,7 +12,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 
-const LinkPreviewCard = ({ href, title, imgUrl, description }) => {
+const LinkPreviewCard = ({ href, title, imgUrl, description, iconUrl }) => {
   return (
     <Link href={href}>
       <Card className=" w-2/3">
@@ -18,11 +21,20 @@ const LinkPreviewCard = ({ href, title, imgUrl, description }) => {
           <CardDescription></CardDescription>
         </CardHeader>
         <CardContent>
-          {/* <AspectRatio ratio={16 / 9}>
-          <Image src={imgUrl} alt="Image" fill={true} className="rounded-md object-cover" />
-        </AspectRatio> */}
+          <AspectRatio ratio={21 / 9}>
+            <Image
+              src={imgUrl}
+              alt="Image"
+              fill={true}
+              className="rounded-md object-cover object-center"
+            />
+          </AspectRatio>
           <div className="">
             <p className="truncate">{description}</p>
+          </div>
+          <div className="relative flex gap-1.5 items-center">
+            <Image src={iconUrl} alt="Image" width={20} height={20} className="object-contain" />
+            {href}
           </div>
         </CardContent>
         {/* <CardFooter>

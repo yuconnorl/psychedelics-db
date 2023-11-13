@@ -28,6 +28,7 @@ const Seg = async ({ category, slug, title, url, id }) => {
         title={meta.title}
         imgUrl={meta.imgUrl}
         description={meta.description}
+        iconUrl={meta.iconUrl}
       />
     </div>
   )
@@ -50,7 +51,7 @@ const CategoryPage = async ({ params }) => {
           //   <Link href={`/database/${params.category}/${record.slug}`}>{record.title}</Link>
           // </div>
 
-          <Seg category={category} slug={slug} title={title} url={url} id={id} />
+          <Seg key={id} category={category} slug={slug} title={title} url={url} id={id} />
         ))}
       </div>
     </div>

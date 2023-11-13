@@ -10,22 +10,27 @@ export const resolveMetaTag = async url => {
   const headLink = rootElement.getElementsByTagName('head')[0].getElementsByTagName('link')
   const metaTags = rootElement.getElementsByTagName('meta')
 
-  // TODO: resolve relative path
-  const iconUrl = headLink
-    .filter(
-      meta =>
-        meta.attributes?.rel?.toLowerCase() === 'icon' ||
-        meta.attributes?.rel?.toLowerCase().includes('icon'),
-    )
-    .map(meta => meta.attributes)[0]
+  const resolveUrl = (baseUrl: string, targetUrl: string) => {
+    if (!targetUrl.startsWith('http') && !targetUrl.startsWith('https')) {
+      return `${baseUrl}${targetUrl}`
+    }
+    return targetUrl
+  }
 
-  const imgUrl = metaTags
-    .filter(
-      meta =>
-        meta.attributes?.name?.toLowerCase() === 'twitter:image' ||
-        meta.attributes?.property?.toLowerCase() === 'og:image',
-    )
-    .map(meta => meta.attributes.content)[0]
+  // icon
+  const iconAttrs = ['shortcut icon', 'icon']
+  const iconTag = headLink.find(meta => iconAttrs.includes(meta.attributes?.rel?.toLowerCase()))
+
+  const iconUrl = iconTag ? resolveUrl(url, iconTag.attributes.href) : '/psyche-icon.png'
+
+  // og image
+  const imageAttrs = ['og:image', 'twitter:image']
+  const imageTag = metaTags.find(
+    meta => imageAttrs.includes(meta.attributes?.property?.toLowerCase()),
+    // imageAttrs.includes(meta.attributes?.name?.toLowerCase()),
+  )
+
+  const imgUrl = imageTag ? resolveUrl(url, imageTag?.attributes.content) : '/psyche-icon.png'
 
   // title
   const titleAttrs = ['og:site_name', 'og:title', 'twitter:title']
@@ -46,5 +51,5 @@ export const resolveMetaTag = async url => {
       descriptionAttrs.includes(meta.attributes?.property?.toLowerCase()),
   )?.attributes.content
 
-  return { href: url, title: title, imgUrl, description }
+  return { href: url, title: title, imgUrl, description, iconUrl }
 }
