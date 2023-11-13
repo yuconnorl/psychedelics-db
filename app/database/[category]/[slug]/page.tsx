@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { getAllRecords } from '@/api/general'
+import Breadcrumbs from '@/components/Breadcrumbs'
+import { CATEGORY_OPTIONS_MAP } from '@/config/options'
 
 // export async function generateStaticParams() {
 //   const records = await getAllRecords()
@@ -29,8 +31,20 @@ const RecordPage = async ({ params }) => {
 
   return (
     <main className="">
+      <Breadcrumbs
+        items={[
+          { label: 'Database', url: '/database' },
+          {
+            label: `${CATEGORY_OPTIONS_MAP[filterRecord[0].category]}`,
+            url: `/database/${filterRecord[0].category}`,
+          },
+          {
+            label: filterRecord[0].title,
+            url: `/database/${filterRecord[0].category}/${filterRecord[0].slug}`,
+          },
+        ]}
+      />
       <div className="text-5xl font-semibold mb-6">{filterRecord[0].title}</div>
-      <div>Link</div>
       <Link href={filterRecord[0].url}>{filterRecord[0].title}</Link>
     </main>
   )

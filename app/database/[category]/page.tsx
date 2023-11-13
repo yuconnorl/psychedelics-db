@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { getAllRecords } from '@/api/general'
+import Breadcrumbs from '@/components/Breadcrumbs'
 import LinkPreviewCard from '@/components/LinkPreviewCard'
 import { badgeVariants } from '@/components/ui/badge'
 import { CATEGORY_OPTIONS_MAP } from '@/config/options'
@@ -53,6 +54,15 @@ const CategoryPage = async ({ params }) => {
 
   return (
     <div className="">
+      <Breadcrumbs
+        items={[
+          { label: 'Database', url: '/database' },
+          {
+            label: `${CATEGORY_OPTIONS_MAP[params.category]}`,
+            url: `/database/${params.category}`,
+          },
+        ]}
+      />
       <h2 className="text-5xl font-semibold mb-6">{CATEGORY_OPTIONS_MAP[params.category]}</h2>
       <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4">
         {filterRecord.map(({ category, slug, title, url, id, type }) => (
