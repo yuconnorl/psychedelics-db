@@ -56,7 +56,7 @@ const Sidebar = async () => {
     <aside className="fixed top-10 z-30 hidden w-full shrink-0 md:sticky md:block">
       <ScrollArea className="h-[calc(100vh-10rem)] max-h-[calc(100vh-10rem)]">
         <Accordion
-          className="relative overflow-hidden h-full py-6 pl-8 pr-6 lg:py-8 flex flex-col gap-4"
+          className="relative overflow-hidden h-full py-6 pl-6 pr-4 lg:py-8 flex flex-col gap-4"
           type="multiple"
         >
           {Object.keys(recordsMap).map(category => (

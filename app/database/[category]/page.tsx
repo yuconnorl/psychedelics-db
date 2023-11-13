@@ -1,9 +1,11 @@
+import clsx from 'clsx'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { getAllRecords } from '@/api/general'
 import LinkPreviewCard from '@/components/LinkPreviewCard'
+import { Badge, badgeVariants } from '@/components/ui/badge'
 import { CATEGORY_OPTIONS_MAP } from '@/config/options'
 import { resolveMetaTag } from '@/utilities/metaTag'
 
@@ -15,21 +17,32 @@ export async function generateStaticParams() {
   }))
 }
 
-const Seg = async ({ category, slug, title, url, id }) => {
+const Seg = async ({ category, slug, title, url, id, recordType }) => {
   const meta = await resolveMetaTag(url)
 
   return (
-    <div key={id} className="py-6">
-      <div className="text-xl mb-3 pl-1">
-        <Link href={`/database/${category}/${slug}`}>{title}</Link>
-      </div>
+    <div key={id} className="py-3 h-fit">
       <LinkPreviewCard
         href={meta.href}
         title={meta.title}
         imgUrl={meta.imgUrl}
         description={meta.description}
         iconUrl={meta.iconUrl}
+        recordType={recordType}
       />
+      <Link
+        href={`/database/${category}/${slug}`}
+        className={clsx(
+          badgeVariants({ variant: 'secondary' }),
+          'mt-2 hover:opacity-60 transition-opacity rounded-sm',
+        )}
+      >
+        {title}
+      </Link>
+      {/* 
+      <h2 className=" text-muted-foreground text-xl mt-3 pl-1.5">
+        <Link ></Link>
+      </h2> */}
     </div>
   )
 }
@@ -44,14 +57,18 @@ const CategoryPage = async ({ params }) => {
 
   return (
     <div className="">
-      <div className="text-5xl font-semibold mb-6">{CATEGORY_OPTIONS_MAP[params.category]}</div>
-      <div className="flex flex-col gap-4">
-        {filterRecord.map(({ category, slug, title, url, id }) => (
-          // <div key={record.id}>
-          //   <Link href={`/database/${params.category}/${record.slug}`}>{record.title}</Link>
-          // </div>
-
-          <Seg key={id} category={category} slug={slug} title={title} url={url} id={id} />
+      <h2 className="text-5xl font-semibold mb-6">{CATEGORY_OPTIONS_MAP[params.category]}</h2>
+      <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
+        {filterRecord.map(({ category, slug, title, url, id, type }) => (
+          <Seg
+            key={id}
+            category={category}
+            slug={slug}
+            title={title}
+            url={url}
+            id={id}
+            recordType={type}
+          />
         ))}
       </div>
     </div>
