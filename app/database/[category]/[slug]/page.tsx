@@ -1,7 +1,8 @@
-import { getAllRecords } from '@/api/general'
 import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
+
+import { getAllRecords } from '@/api/general'
 
 // export async function generateStaticParams() {
 //   const records = await getAllRecords()

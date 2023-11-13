@@ -7,7 +7,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion'
-import { CATEGORY_OPTIONS } from '@/config/options'
+import { ScrollArea } from '@/components/ui/scroll-area'
+import { CATEGORY_OPTIONS, CATEGORY_OPTIONS_MAP } from '@/config/options'
 
 type CategoryOptionsType = (typeof CATEGORY_OPTIONS)[number]
 
@@ -20,7 +21,7 @@ const SidebarItem = ({ category, itemList }) => {
   return (
     <AccordionItem key={category} className="border-0" value={category}>
       <AccordionTrigger className="text-left py-0">
-        <Link href={`/database/${category}`}>{category}</Link>
+        <Link href={`/database/${category}`}>{CATEGORY_OPTIONS_MAP[category]}</Link>
       </AccordionTrigger>
       <AccordionContent className="pl-2">
         <div className="pl-5 mt-5 border-l flex flex-col gap-4 text-base">
@@ -28,7 +29,7 @@ const SidebarItem = ({ category, itemList }) => {
             <Link
               key={item.slug}
               href={`/database/${category}/${item.slug}`}
-              className=" hover:opacity-40"
+              className="hover:opacity-40 hover:underline text-muted-foreground"
             >
               {item.title}
             </Link>
@@ -52,15 +53,17 @@ const Sidebar = async () => {
   })
 
   return (
-    <aside className="fixed top-14 z-30 -ml-2 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 md:sticky md:block">
-      <Accordion
-        className="relative overflow-hidden h-full py-6 pl-8 pr-6 lg:py-8 flex flex-col gap-4"
-        type="multiple"
-      >
-        {Object.keys(recordsMap).map(category => (
-          <SidebarItem category={category} itemList={recordsMap[category]} />
-        ))}
-      </Accordion>
+    <aside className="fixed top-10 z-30 hidden w-full shrink-0 md:sticky md:block">
+      <ScrollArea className="h-[calc(100vh-10rem)] max-h-[calc(100vh-10rem)]">
+        <Accordion
+          className="relative overflow-hidden h-full py-6 pl-8 pr-6 lg:py-8 flex flex-col gap-4"
+          type="multiple"
+        >
+          {Object.keys(recordsMap).map(category => (
+            <SidebarItem category={category} itemList={recordsMap[category]} />
+          ))}
+        </Accordion>
+      </ScrollArea>
     </aside>
   )
 }

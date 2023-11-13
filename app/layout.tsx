@@ -1,8 +1,7 @@
 import React from 'react'
-import Link from 'next/link'
 
 import './globals.css'
-import { Header } from '@/components/Header'
+import Header from '@/components/Header'
 import { ThemeProvider } from '@/components/ThemeProvider'
 
 export const metadata = {

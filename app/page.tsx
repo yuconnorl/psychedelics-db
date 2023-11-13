@@ -6,16 +6,6 @@ import { Page } from '../src/payload-types'
 
 export default async function Home() {
   const payload = await getPayloadClient()
-  const { docs } = await payload.find({
-    collection: 'pages',
-    where: {
-      slug: {
-        equals: 'home',
-      },
-    },
-  })
-
-  const home = docs?.[0] as Page
 
   // if (!home) {
   //   return notFound()

@@ -1,8 +1,7 @@
 import type { CollectionConfig } from 'payload/types'
 
+import { CATEGORY_OPTIONS, LANGUAGE_OPTIONS, TYPE_OPTIONS } from '../config/options'
 import formatSlug from '../utilities/formatSlug'
-
-import { CATEGORY_OPTIONS, LANGUAGE_OPTIONS, TYPE_OPTIONS } from '@/config/options'
 
 export const Records: CollectionConfig = {
   slug: 'records',

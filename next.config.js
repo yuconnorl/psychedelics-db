@@ -5,5 +5,15 @@ module.exports = {
   swcMinify: true,
   images: {
     domains: ['localhost', process.env.NEXT_PUBLIC_PAYLOAD_URL],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+      {
+        protocol: 'http',
+        hostname: '**',
+      },
+    ],
   },
 }
