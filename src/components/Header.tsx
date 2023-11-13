@@ -18,7 +18,7 @@ const Header = () => {
   const { setTheme } = useTheme()
 
   return (
-    <header className="px-10 py-4 sticky border-b top-0 w-full items-center bg-background/80 supports-[backdrop-filter]:bg-background/60 backdrop-blur z-50">
+    <header className="px-10 py-4 sticky border-b top-0 w-full items-center bg-background/90 supports-[backdrop-filter]:bg-background/60 backdrop-blur z-50">
       <div className="container flex items-center gap-3 w-full justify-between">
         <div className="">
           <Image src={'/psyche-icon.png'} alt="awe" width={60} height={60} />

@@ -1,7 +1,6 @@
 import { parse } from 'node-html-parser'
 
 // ref: https://ikartik.com/code/link-previews
-
 export const resolveMetaTag = async url => {
   const response = await fetch(url)
   const body = await response.text()

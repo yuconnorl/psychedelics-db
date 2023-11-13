@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation'
 
 import { getAllRecords } from '@/api/general'
 import LinkPreviewCard from '@/components/LinkPreviewCard'
-import { Badge, badgeVariants } from '@/components/ui/badge'
+import { badgeVariants } from '@/components/ui/badge'
 import { CATEGORY_OPTIONS_MAP } from '@/config/options'
 import { resolveMetaTag } from '@/utilities/metaTag'
 
@@ -39,10 +39,6 @@ const Seg = async ({ category, slug, title, url, id, recordType }) => {
       >
         {title}
       </Link>
-      {/* 
-      <h2 className=" text-muted-foreground text-xl mt-3 pl-1.5">
-        <Link ></Link>
-      </h2> */}
     </div>
   )
 }
@@ -58,7 +54,7 @@ const CategoryPage = async ({ params }) => {
   return (
     <div className="">
       <h2 className="text-5xl font-semibold mb-6">{CATEGORY_OPTIONS_MAP[params.category]}</h2>
-      <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
+      <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4">
         {filterRecord.map(({ category, slug, title, url, id, type }) => (
           <Seg
             key={id}
