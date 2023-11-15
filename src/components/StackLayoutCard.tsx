@@ -20,7 +20,7 @@ const StackLayoutCard = async ({ params }) => {
       {filterRecord.map(({ category, slug, title, url, id, type, language }) => (
         <div className="h-fit">
           <div className="relative group">
-            <Card className="relative overflow-hidden grid grid-cols-[minmax(0,1fr)_320px] sm:group-hover:-translate-x-2 sm:group-hover:-translate-y-2 lg:group-hover:-translate-x-3 lg:group-hover:-translate-y-3 transition-transform z-10">
+            <Card className="relative overflow-hidden grid grid-cols-[minmax(0,1fr)_300px] md:grid-cols-[minmax(0,1fr)_200px] xl:grid-cols-[minmax(0,1fr)_320px] sm:group-hover:-translate-x-2 sm:group-hover:-translate-y-2 lg:group-hover:-translate-x-3 lg:group-hover:-translate-y-3 transition-transform z-10">
               <div>
                 <CardHeader>
                   <CardTitle className="leading-normal mb-2">{title}</CardTitle>

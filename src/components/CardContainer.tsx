@@ -4,12 +4,13 @@ import clsx from 'clsx'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 import { Squares, Stacks } from './Icons'
+import TooltipButton from './TooltipButton'
 
 import { Button } from '@/components/ui/button'
+import { TooltipProvider } from '@/components/ui/tooltip'
 
 const CardContainer = ({ children }) => {
   const searchParams = useSearchParams()
-
   const router = useRouter()
 
   const layoutMap = {
@@ -21,28 +22,38 @@ const CardContainer = ({ children }) => {
   const isGrid = layout === 'grid'
 
   return (
-    <div>
-      <div className="flex gap-2 mb-4">
-        <Button
-          className="ml-auto"
-          variant="outline"
-          size="icon"
-          onClick={() => router.push(`?layout=grid`)}
-        >
-          <Squares />
-        </Button>
-        <Button variant="outline" size="icon" onClick={() => router.push(`?layout=stack`)}>
-          <Stacks />
-        </Button>
+    <>
+      <div className="hidden sm:flex gap-2 mb-4">
+        <TooltipProvider>
+          <TooltipButton content={'Grid Layout'}>
+            <Button
+              className="ml-auto"
+              variant={!isGrid ? 'outline' : 'default'}
+              size="icon"
+              onClick={() => router.push(`?layout=grid`)}
+            >
+              <Squares />
+            </Button>
+          </TooltipButton>
+          <TooltipButton content={'Stack Layout'}>
+            <Button
+              variant={isGrid ? 'outline' : 'default'}
+              size="icon"
+              onClick={() => router.push(`?layout=stack`)}
+            >
+              <Stacks />
+            </Button>
+          </TooltipButton>
+        </TooltipProvider>
       </div>
       <div
         className={clsx(
-          isGrid ? 'flex flex-col lg:grid lg:grid-cols-2 gap-4' : 'flex flex-col gap-4',
+          isGrid ? 'flex flex-col sm:grid sm:grid-cols-2 gap-2' : 'flex flex-col gap-4',
         )}
       >
         {layoutMap[layout]}
       </div>
-    </div>
+    </>
   )
 }
 

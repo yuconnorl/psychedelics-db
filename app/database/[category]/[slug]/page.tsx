@@ -23,7 +23,7 @@ import { CATEGORY_OPTIONS_MAP } from '@/config/options'
 
 const RecordPage = async ({ params }) => {
   const records = await getAllRecords()
-  const filterRecord = records.filter(record => record.slug === params.slug)
+  const filterRecord = records.filter((record) => record.slug === params.slug)
 
   if (!filterRecord.length) {
     notFound()
@@ -37,6 +37,7 @@ const RecordPage = async ({ params }) => {
           {
             label: `${CATEGORY_OPTIONS_MAP[filterRecord[0].category]}`,
             url: `/database/${filterRecord[0].category}`,
+            isCategory: true,
           },
           {
             label: filterRecord[0].title,

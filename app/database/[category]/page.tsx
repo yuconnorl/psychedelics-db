@@ -9,7 +9,6 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import CardContainer from '@/components/CardContainer'
 import Grid from '@/components/GridLayoutCard'
 import LinkPreviewCard from '@/components/LinkPreviewCard'
-import PreviewCard from '@/components/PreviewCard'
 import Stack from '@/components/StackLayoutCard'
 import { badgeVariants } from '@/components/ui/badge'
 import { CATEGORY_OPTIONS_MAP } from '@/config/options'
@@ -70,19 +69,7 @@ const CategoryPage = async ({ params }) => {
         ]}
       />
       <h2 className="text-5xl font-semibold mb-6">{CATEGORY_OPTIONS_MAP[params.category]}</h2>
-      {/* <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4"> */}
       <div className="flex flex-col gap-4">
-        {/* {filterRecord.map(({ category, slug, title, url, id, type, language }) => (
-          <PreviewCard
-            key={id}
-            language={language}
-            category={category}
-            slug={slug}
-            title={title}
-            url={url}
-            recordType={type}
-          />
-        ))} */}
         <Suspense fallback={<div>Loading...</div>}>
           <CardContainer>
             <Grid params={params} />

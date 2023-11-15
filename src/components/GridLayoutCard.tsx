@@ -14,7 +14,7 @@ const GridLayoutCard = async ({ params }) => {
   return (
     <>
       {filterRecord.map(({ category, slug, title, url, id, type, language }) => (
-        <div className="relative group">
+        <div className="relative group h-fit">
           <Card className="relative sm:group-hover:-translate-x-2 sm:group-hover:-translate-y-2 lg:group-hover:-translate-x-3 lg:group-hover:-translate-y-3 transition-transform z-10">
             <CardHeader>
               <CardTitle className="leading-normal mb-2">{title}</CardTitle>
@@ -43,21 +43,22 @@ const GridLayoutCard = async ({ params }) => {
               </div>
               <p className="line-clamp-2 text-muted-foreground text-base group-hover:text-foreground transition-colors">
                 {/* {description} */}
-                des
+                des iqwoej ijqweio jwqioej iowqjei wjeio jwqei jwioqje iowjeioqwjei ojwioe jqiojeio
+                ej
               </p>
             </CardContent>
             <CardFooter>
               <div className="relative flex gap-1.5 items-center text-muted-foreground">
                 {/* <Image
-                  src={iconUrl}
+                  src={'https://google.com'}
                   alt="Image"
                   width={20}
                   height={20}
                   className="object-contain"
-                />
-                <Link className="text-sm break-all" href={href}>
-                  {href}
-                </Link> */}
+                /> */}
+                <Link className="text-sm break-all" href={'https://google.com'}>
+                  {'https://google.com'}
+                </Link>
               </div>
             </CardFooter>
           </Card>
