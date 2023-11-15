@@ -22,6 +22,7 @@ const Sidebar = async () => {
         <Accordion
           className="relative overflow-hidden h-full py-6 pl-6 pr-4 lg:py-8 flex flex-col gap-4"
           type="multiple"
+          defaultValue={['ngo-foundation', 'private-research-institute']}
         >
           {Object.keys(recordsMap).map((category) => (
             <SidebarItem key={category} category={category} itemList={recordsMap[category]} />

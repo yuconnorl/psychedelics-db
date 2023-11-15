@@ -46,11 +46,7 @@ const CardContainer = ({ children }) => {
           </TooltipButton>
         </TooltipProvider>
       </div>
-      <div
-        className={clsx(
-          isGrid ? 'flex flex-col sm:grid sm:grid-cols-2 gap-2' : 'flex flex-col gap-4',
-        )}
-      >
+      <div className={clsx(isGrid ? 'columns-xs xl:columns-sm' : 'flex flex-col gap-4')}>
         {layoutMap[layout]}
       </div>
     </>

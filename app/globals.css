@@ -62,4 +62,8 @@
   .container {
     @apply 2xl:max-w-[1400px]
   }
+
+  .break-inside {
+    break-inside: avoid;
+  }
 }

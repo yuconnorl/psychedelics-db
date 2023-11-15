@@ -5,6 +5,7 @@ import { AspectRatio } from './ui/aspect-ratio'
 
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { LANGUAGE_MAP } from '@/config/general'
 
 const LinkPreviewCard = ({ href, title, imgUrl, description, iconUrl, recordType, language }) => {
   return (
@@ -17,7 +18,7 @@ const LinkPreviewCard = ({ href, title, imgUrl, description, iconUrl, recordType
               {recordType}
             </Badge>
             <Badge className="w-fit" variant="secondary">
-              {language}
+              {LANGUAGE_MAP[language]}
             </Badge>
           </div>
         </CardHeader>

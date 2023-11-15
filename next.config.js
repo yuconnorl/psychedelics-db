@@ -14,6 +14,10 @@ module.exports = {
         protocol: 'http',
         hostname: 'static1.squarespace.com',
       },
+      {
+        protocol: 'http',
+        hostname: 'neuroscape.ucsf.edu',
+      },
     ],
   },
 }
