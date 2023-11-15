@@ -6,13 +6,20 @@ import { AspectRatio } from './ui/aspect-ratio'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 
-const LinkPreviewCard = ({ href, title, imgUrl, description, iconUrl, recordType }) => {
+const LinkPreviewCard = ({ href, title, imgUrl, description, iconUrl, recordType, language }) => {
   return (
     <div className="relative group">
       <Card className="relative sm:group-hover:-translate-x-2 sm:group-hover:-translate-y-2 lg:group-hover:-translate-x-3 lg:group-hover:-translate-y-3 transition-transform z-10">
         <CardHeader>
-          <CardTitle className="leading-relaxed">{title}</CardTitle>
-          <Badge className="w-fit">{recordType}</Badge>
+          <CardTitle className="leading-normal mb-2">{title}</CardTitle>
+          <div className="flex gap-2">
+            <Badge className="w-fit" variant="secondary">
+              {recordType}
+            </Badge>
+            <Badge className="w-fit" variant="secondary">
+              {language}
+            </Badge>
+          </div>
         </CardHeader>
         <CardContent className="flex flex-col gap-2">
           <div className="saturate-[0.15] group-hover:saturate-100 transition-[filter]">
@@ -26,13 +33,16 @@ const LinkPreviewCard = ({ href, title, imgUrl, description, iconUrl, recordType
               />
             </AspectRatio>
           </div>
-
-          <p className="line-clamp-2 text-lg">{description}</p>
+          <p className="line-clamp-2 text-muted-foreground text-base group-hover:text-foreground transition-colors">
+            {description}
+          </p>
         </CardContent>
         <CardFooter>
           <div className="relative flex gap-1.5 items-center text-muted-foreground">
             <Image src={iconUrl} alt="Image" width={20} height={20} className="object-contain" />
-            <Link href={href}>{href}</Link>
+            <Link className="text-sm break-all" href={href}>
+              {href}
+            </Link>
           </div>
         </CardFooter>
       </Card>

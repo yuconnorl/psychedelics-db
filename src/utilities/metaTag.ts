@@ -1,8 +1,8 @@
 import { parse } from 'node-html-parser'
 
 // ref: https://ikartik.com/code/link-previews
-export const resolveMetaTag = async url => {
-  const response = await fetch(url)
+export const resolveMetaTag = async (url, slug) => {
+  const response = await fetch(url, { next: { tags: [`${slug}`] } })
   const body = await response.text()
 
   const rootElement = await parse(body)
@@ -18,14 +18,14 @@ export const resolveMetaTag = async url => {
 
   // icon
   const iconAttrs = ['shortcut icon', 'icon']
-  const iconTag = headLink.find(meta => iconAttrs.includes(meta.attributes?.rel?.toLowerCase()))
+  const iconTag = headLink.find((meta) => iconAttrs.includes(meta.attributes?.rel?.toLowerCase()))
 
   const iconUrl = iconTag ? resolveUrl(url, iconTag.attributes.href) : '/psyche-icon.png'
 
   // og image
   const imageAttrs = ['og:image', 'twitter:image']
   const imageTag = metaTags.find(
-    meta => imageAttrs.includes(meta.attributes?.property?.toLowerCase()),
+    (meta) => imageAttrs.includes(meta.attributes?.property?.toLowerCase()),
     // imageAttrs.includes(meta.attributes?.name?.toLowerCase()),
   )
 
@@ -35,9 +35,9 @@ export const resolveMetaTag = async url => {
   const titleAttrs = ['og:site_name', 'og:title', 'twitter:title']
   const directTitle = rootElement.getElementsByTagName('title')[0].textContent
   const titleTag = metaTags.find(
-    meta =>
-      titleAttrs.includes(meta.attributes?.name?.toLowerCase()) ||
-      titleAttrs.includes(meta.attributes?.property?.toLowerCase()),
+    (meta) =>
+      titleAttrs.includes(meta.attributes?.property?.toLowerCase()) ||
+      titleAttrs.includes(meta.attributes?.name?.toLowerCase()),
   )
 
   const title = titleTag ? titleTag.attributes.content : directTitle
@@ -45,7 +45,7 @@ export const resolveMetaTag = async url => {
   // description
   const descriptionAttrs = ['description', 'og:description']
   const description = metaTags.find(
-    meta =>
+    (meta) =>
       descriptionAttrs.includes(meta.attributes?.name?.toLowerCase()) ||
       descriptionAttrs.includes(meta.attributes?.property?.toLowerCase()),
   )?.attributes.content
