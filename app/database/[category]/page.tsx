@@ -8,14 +8,21 @@ import CardContainer from '@/components/CardContainer'
 import Grid from '@/components/GridLayoutCard'
 import Stack from '@/components/StackLayoutCard'
 import { CATEGORY_OPTIONS_MAP } from '@/config/options'
-import { CardParamsProps, RecordType } from '@/types'
+import { CardParamsProps, CategoryOptionsType, RecordType } from '@/types'
 
-export async function generateStaticParams(): Promise<CardParamsProps> {
+export async function generateStaticParams(): Promise<Record<'category', CategoryOptionsType>[]> {
   const records = await getAllRecords()
 
   return records.map((record: RecordType) => ({
     category: record.category,
   }))
+}
+
+export async function generateMetadata({ params }: CardParamsProps): Promise<Metadata> {
+  return {
+    title: CATEGORY_OPTIONS_MAP[params.category],
+    // description: `All Posts of ${params.category}`,
+  }
 }
 
 const CategoryPage = async ({ params }: CardParamsProps): Promise<JSX.Element> => {

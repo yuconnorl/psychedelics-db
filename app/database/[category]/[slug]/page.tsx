@@ -5,23 +5,33 @@ import { notFound } from 'next/navigation'
 import { getAllRecords } from '@/api/general'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { CATEGORY_OPTIONS_MAP } from '@/config/options'
+import { RecordType } from '@/types'
 
-// export async function generateStaticParams() {
-//   const records = await getAllRecords()
+type ParamsType = {
+  params: {
+    slug: string
+  }
+}
 
-//   return records.map(record => ({
-//     slug: record.category,
-//   }))
-// }
+export async function generateStaticParams(): Promise<Record<'slug', string>[]> {
+  const records = await getAllRecords()
 
-// export async function generateMetadata({ params }: Props): Promise<Metadata> {
-//   return {
-//     title: `Category: ${params.category}`,
-//     description: `All Posts of ${params.category}`,
-//   }
-// }
+  return records.map((record: RecordType) => ({
+    slug: record.slug,
+  }))
+}
 
-const RecordPage = async ({ params }): Promise<JSX.Element> => {
+export async function generateMetadata({ params }: ParamsType): Promise<Metadata> {
+  const records = await getAllRecords()
+  const record = records.find((record) => record.slug === params.slug)
+
+  return {
+    title: `${record.title}`,
+    // description: `${record.description}`,
+  }
+}
+
+const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
   const records = await getAllRecords()
   const filterRecord = records.filter((record) => record.slug === params.slug)
 
