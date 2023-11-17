@@ -11,7 +11,7 @@ import { resolveMetaTag } from '@/utilities/metaTag'
 
 const StackCard = async ({ category, slug, title, url, type, language }: InfoCard) => {
   const meta = await resolveMetaTag(url, slug)
-
+  // FIX: link nested in link
   return (
     <Link href={`/database/${category}/${slug}`}>
       <Card className="relative overflow-hidden grid grid-rows-[minmax(0,1fr)_200px] sm:grid-rows-none sm:grid-cols-[minmax(0,1fr)_240px] xl:grid-cols-[minmax(0,1fr)_320px] group-hover:-translate-x-2 group-hover:-translate-y-2 lg:group-hover:-translate-x-3 lg:group-hover:-translate-y-3 transition-transform z-10">
@@ -33,7 +33,7 @@ const StackCard = async ({ category, slug, title, url, type, language }: InfoCar
             </p>
           </CardContent>
           <CardFooter>
-            <div className="relative flex gap-1.5 items-center text-muted-foreground hover:opacity-40 transition-opacity">
+            <div className="relative flex gap-1.5 items-center text-muted-foreground">
               <Image
                 src={meta.iconUrl}
                 alt={`Icon of ${title}`}
@@ -41,9 +41,7 @@ const StackCard = async ({ category, slug, title, url, type, language }: InfoCar
                 height={20}
                 className="object-contain"
               />
-              <Link className="text-sm break-all" href={url}>
-                {url}
-              </Link>
+              <p className="text-sm break-all">{url}</p>
             </div>
           </CardFooter>
         </div>

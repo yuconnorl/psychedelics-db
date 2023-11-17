@@ -45,7 +45,7 @@ const GridCard = async ({ category, slug, title, url, type, language }: InfoCard
           </p>
         </CardContent>
         <CardFooter>
-          <div className="relative flex gap-1.5 items-center text-muted-foreground hover:opacity-40 transition-opacity">
+          <div className="relative flex gap-1.5 items-center text-muted-foreground">
             <Image
               src={meta.iconUrl}
               alt={`Icon of ${title}`}
@@ -53,9 +53,7 @@ const GridCard = async ({ category, slug, title, url, type, language }: InfoCard
               height={20}
               className="object-contain"
             />
-            <Link className="text-sm break-all" href={url}>
-              {url}
-            </Link>
+            <p className="text-sm break-all">{url}</p>
           </div>
         </CardFooter>
       </Card>
@@ -71,8 +69,8 @@ const GridLayoutCard = async ({ params }: CardParamsProps): Promise<JSX.Element>
 
   return (
     <>
-      {filterRecord.map(({ category, slug, title, url, type, language }) => (
-        <div className="relative group h-fit">
+      {filterRecord.map(({ id, category, slug, title, url, type, language }) => (
+        <div key={id} className="relative group h-fit">
           <GridCard
             category={category}
             slug={slug}

@@ -26,6 +26,6 @@ export type InfoCard = {
 
 export type CardParamsProps = {
   params: {
-    category: string
+    category: CategoryOptionsType
   }
 }

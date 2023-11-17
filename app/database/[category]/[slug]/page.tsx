@@ -21,7 +21,7 @@ import { CATEGORY_OPTIONS_MAP } from '@/config/options'
 //   }
 // }
 
-const RecordPage = async ({ params }) => {
+const RecordPage = async ({ params }): Promise<JSX.Element> => {
   const records = await getAllRecords()
   const filterRecord = records.filter((record) => record.slug === params.slug)
 

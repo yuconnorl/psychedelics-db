@@ -1,5 +1,5 @@
 'use client'
-
+import { Fragment } from 'react'
 import { CaretRightIcon } from '@radix-ui/react-icons'
 import clsx from 'clsx'
 import Link from 'next/link'
@@ -29,9 +29,9 @@ const Breadcrumbs = ({ items }: Props): JSX.Element => {
           const modifiedUrl = isCategory ? `${url}?layout=${layout}` : url
 
           return (
-            <>
+            <Fragment key={url}>
               {isLastItem ? (
-                <li key={index}>
+                <li>
                   <div
                     className={clsx(
                       pathname === url ? 'text-foreground' : 'text-muted-foreground',
@@ -59,7 +59,7 @@ const Breadcrumbs = ({ items }: Props): JSX.Element => {
                   <CaretRightIcon height={22} width={22} />
                 </span>
               )}
-            </>
+            </Fragment>
           )
         })}
       </ol>
