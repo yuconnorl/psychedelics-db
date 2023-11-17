@@ -6,16 +6,15 @@ import { usePathname, useSearchParams } from 'next/navigation'
 
 import { AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { DEFAULT_LAYOUT } from '@/config/general'
-import { CATEGORY_OPTIONS, CATEGORY_OPTIONS_MAP } from '@/config/options'
+import { CATEGORY_OPTIONS_MAP } from '@/config/options'
+import { CategoryOptionsType, RecordType } from '@/types'
 
-type CategoryOptionsType = (typeof CATEGORY_OPTIONS)[number]
-
-// TODO: itemList props type
 interface SidebarItemProps {
   category: CategoryOptionsType
+  records: RecordType[]
 }
 
-const SidebarItem = ({ category, itemList }) => {
+const SidebarItem = ({ category, records }: SidebarItemProps): JSX.Element => {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const layout = searchParams.get('layout') || DEFAULT_LAYOUT
@@ -29,7 +28,7 @@ const SidebarItem = ({ category, itemList }) => {
       </AccordionTrigger>
       <AccordionContent className="pl-2">
         <ol className="mt-5 flex flex-col gap-4 border-l text-base text-muted-foreground">
-          {itemList.map((item) => (
+          {records.map((item) => (
             <li key={item.id}>
               <Link
                 href={`/database/${category}/${item.slug}`}

@@ -7,7 +7,16 @@ import { usePathname, useSearchParams } from 'next/navigation'
 
 import { DEFAULT_LAYOUT } from '@/config/general'
 
-const Breadcrumbs = ({ items }) => {
+interface BreadcrumbsItem {
+  label: string
+  url: string
+  isCategory?: boolean
+}
+interface Props {
+  items: BreadcrumbsItem[]
+}
+
+const Breadcrumbs = ({ items }: Props): JSX.Element => {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const layout = searchParams.get('layout') || DEFAULT_LAYOUT

@@ -14,7 +14,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 
-const Header = () => {
+const Header = (): JSX.Element => {
   const { setTheme } = useTheme()
 
   return (
@@ -22,7 +22,6 @@ const Header = () => {
       <div className="container flex items-center gap-3 w-full justify-between">
         <div className="">
           <Image src={'/psyche-icon.png'} alt="awe" width={60} height={60} />
-          {/* <p className=" text-lg  text-slate-500">Psychedelics Database</p> */}
         </div>
         <div className="flex gap-5 items-center justify-around">
           <div className="flex gap-5 items-center">

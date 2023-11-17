@@ -5,11 +5,11 @@ module.exports = {
   plugins: ['simple-import-sort'],
   rules: {
     'import/extensions': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
     'no-unused-vars': 'warn',
     'simple-import-sort/imports': 'error', // sorting imports
     'simple-import-sort/exports': 'error', // sorting exports
     'no-console': 'warn',
     '@typescript-eslint/no-unused-vars': 'warn',
+    '@typescript-eslint/explicit-module-boundary-types': ['error'],
   },
 }

@@ -6,9 +6,10 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { LANGUAGE_MAP } from '@/config/general'
 import { capitalizeFirstLetter } from '@/lib/utils'
+import { CardParamsProps, InfoCard, RecordType } from '@/types'
 import { resolveMetaTag } from '@/utilities/metaTag'
 
-const StackCard = async ({ category, slug, title, url, type, language }) => {
+const StackCard = async ({ category, slug, title, url, type, language }: InfoCard) => {
   const meta = await resolveMetaTag(url, slug)
 
   return (
@@ -59,9 +60,11 @@ const StackCard = async ({ category, slug, title, url, type, language }) => {
   )
 }
 
-const StackLayoutCard = async ({ params }) => {
+const StackLayoutCard = async ({ params }: CardParamsProps): Promise<JSX.Element> => {
   const records = await getAllRecords()
-  const filterRecord = records.filter((record) => record.category === params.category)
+  const filterRecord: RecordType[] = records.filter(
+    (record: RecordType) => record.category === params.category,
+  )
 
   return (
     <>

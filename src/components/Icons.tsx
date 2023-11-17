@@ -1,4 +1,4 @@
-export const Stacks = () => {
+export const Stacks = (): JSX.Element => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -17,7 +17,7 @@ export const Stacks = () => {
   )
 }
 
-export const Squares = () => {
+export const Squares = (): JSX.Element => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

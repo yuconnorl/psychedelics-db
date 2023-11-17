@@ -1,7 +1,15 @@
 import { parse } from 'node-html-parser'
 
 // ref: https://ikartik.com/code/link-previews
-export const resolveMetaTag = async (url, slug) => {
+interface ReturnValue {
+  href: string
+  title: string
+  imgUrl: string
+  description: string
+  iconUrl: string
+}
+
+export const resolveMetaTag = async (url: string, slug: string): Promise<ReturnValue> => {
   const response = await fetch(url, { next: { tags: [`${slug}`] } })
   const body = await response.text()
 
@@ -9,7 +17,7 @@ export const resolveMetaTag = async (url, slug) => {
   const headLink = rootElement.getElementsByTagName('head')[0].getElementsByTagName('link')
   const metaTags = rootElement.getElementsByTagName('meta')
 
-  const resolveUrl = (baseUrl: string, targetUrl: string) => {
+  const resolveUrl = (baseUrl: string, targetUrl: string): string => {
     if (!targetUrl.startsWith('http') && !targetUrl.startsWith('https')) {
       return `${baseUrl}${targetUrl}`
     }

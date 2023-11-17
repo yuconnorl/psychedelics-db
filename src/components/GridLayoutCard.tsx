@@ -8,9 +8,10 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { LANGUAGE_MAP } from '@/config/general'
 import { capitalizeFirstLetter } from '@/lib/utils'
+import { CardParamsProps, InfoCard, RecordType } from '@/types'
 import { resolveMetaTag } from '@/utilities/metaTag'
 
-const GridCard = async ({ category, slug, title, url, type, language }) => {
+const GridCard = async ({ category, slug, title, url, type, language }: InfoCard) => {
   const meta = await resolveMetaTag(url, slug)
 
   return (
@@ -62,9 +63,11 @@ const GridCard = async ({ category, slug, title, url, type, language }) => {
   )
 }
 
-const GridLayoutCard = async ({ params }) => {
+const GridLayoutCard = async ({ params }: CardParamsProps): Promise<JSX.Element> => {
   const records = await getAllRecords()
-  const filterRecord = records.filter((record) => record.category === params.category)
+  const filterRecord: RecordType[] = records.filter(
+    (record: RecordType) => record.category === params.category,
+  )
 
   return (
     <>

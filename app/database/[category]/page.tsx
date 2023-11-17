@@ -1,55 +1,24 @@
 import { Suspense } from 'react'
-import clsx from 'clsx'
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { getAllRecords } from '@/api/general'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import CardContainer from '@/components/CardContainer'
 import Grid from '@/components/GridLayoutCard'
-import LinkPreviewCard from '@/components/LinkPreviewCard'
 import Stack from '@/components/StackLayoutCard'
-import { badgeVariants } from '@/components/ui/badge'
 import { CATEGORY_OPTIONS_MAP } from '@/config/options'
-import { resolveMetaTag } from '@/utilities/metaTag'
+import { CardParamsProps, RecordType } from '@/types'
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<CardParamsProps> {
   const records = await getAllRecords()
 
-  return records.map((record) => ({
+  return records.map((record: RecordType) => ({
     category: record.category,
   }))
 }
 
-const Seg = async ({ category, slug, title, url, recordType, language }) => {
-  const meta = await resolveMetaTag(url, slug)
-
-  return (
-    <div className="py-3 h-fit">
-      <LinkPreviewCard
-        href={meta.href}
-        title={meta.title}
-        imgUrl={meta.imgUrl}
-        description={meta.description}
-        iconUrl={meta.iconUrl}
-        recordType={recordType}
-        language={language}
-      />
-      <Link
-        href={`/database/${category}/${slug}`}
-        className={clsx(
-          badgeVariants({ variant: 'secondary' }),
-          'mt-2 hover:opacity-60 transition-opacity rounded-sm',
-        )}
-      >
-        {title}
-      </Link>
-    </div>
-  )
-}
-
-const CategoryPage = async ({ params }) => {
+const CategoryPage = async ({ params }: CardParamsProps): Promise<JSX.Element> => {
   const records = await getAllRecords()
   const filterRecord = records.filter((record) => record.category === params.category)
 

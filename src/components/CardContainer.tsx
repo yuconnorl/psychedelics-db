@@ -9,7 +9,11 @@ import TooltipButton from './TooltipButton'
 import { Button } from '@/components/ui/button'
 import { TooltipProvider } from '@/components/ui/tooltip'
 
-const CardContainer = ({ children }) => {
+interface Props {
+  children: React.ReactNode
+}
+
+const CardContainer = ({ children }: Props): JSX.Element => {
   const searchParams = useSearchParams()
   const router = useRouter()
 

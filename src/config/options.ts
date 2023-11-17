@@ -43,5 +43,5 @@ export const CATEGORY_OPTIONS_MAP = {
   psychotherapists: '臨床專家組織協會',
   'press-n-journal': '出版社與期刊',
   conference: '國際會議與研討會',
-  'podcast-speech': '研討會、線上演講影片與Podcast',
+  'podcast-speech': '研討會、線上演講影片與 Podcast',
 }

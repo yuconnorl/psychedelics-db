@@ -3,9 +3,12 @@ import SidebarItem from './SidebarItem'
 import { getAllRecords } from '@/api/general'
 import { Accordion } from '@/components/ui/accordion'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { CategoryOptionsType, RecordType } from '@/types'
 
-const Sidebar = async () => {
-  const recordsMap = {}
+type RecordMap = Record<CategoryOptionsType, RecordType[]>
+
+const Sidebar = async (): Promise<JSX.Element> => {
+  const recordsMap = {} as RecordMap
   const records = await getAllRecords()
 
   records.forEach((record) => {
@@ -24,8 +27,8 @@ const Sidebar = async () => {
           type="multiple"
           defaultValue={['ngo-foundation', 'private-research-institute']}
         >
-          {Object.keys(recordsMap).map((category) => (
-            <SidebarItem key={category} category={category} itemList={recordsMap[category]} />
+          {Object.keys(recordsMap).map((category: CategoryOptionsType) => (
+            <SidebarItem key={category} category={category} records={recordsMap[category]} />
           ))}
         </Accordion>
       </ScrollArea>
