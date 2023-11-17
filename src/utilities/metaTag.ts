@@ -1,7 +1,7 @@
 import { parse } from 'node-html-parser'
 
 // ref: https://ikartik.com/code/link-previews
-interface ReturnValue {
+interface MetaInfo {
   href: string
   title: string
   imgUrl: string
@@ -9,7 +9,7 @@ interface ReturnValue {
   iconUrl: string
 }
 
-export const resolveMetaTag = async (url: string, slug: string): Promise<ReturnValue> => {
+export const resolveMetaTag = async (url: string, slug: string): Promise<MetaInfo> => {
   const response = await fetch(url, { next: { tags: [`${slug}`] } })
   const body = await response.text()
 
