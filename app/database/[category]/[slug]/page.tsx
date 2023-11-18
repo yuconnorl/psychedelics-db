@@ -48,8 +48,6 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
   const { category, slug, title, url, language, type } = filterRecord
   const meta = await resolveMetaTag(url, slug)
 
-  console.log(meta.description)
-
   return (
     <main className="">
       <Breadcrumbs
@@ -83,7 +81,7 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
             src={meta.imgUrl}
             fill
             alt="Image"
-            sizes="(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 20vw"
+            sizes="(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 100vw"
             className="rounded-md object-cover object-center"
           />
         </AspectRatio>

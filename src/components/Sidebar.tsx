@@ -11,13 +11,15 @@ const Sidebar = async (): Promise<JSX.Element> => {
   const recordsMap = {} as RecordMap
   const records = await getAllRecords()
 
-  records.forEach((record) => {
-    if (recordsMap[record.category]) {
-      recordsMap[record.category].push(record)
-    } else {
-      recordsMap[record.category] = [record]
-    }
-  })
+  records
+    .sort((a, b) => a.title.localeCompare(b.title))
+    .forEach((record) => {
+      if (recordsMap[record.category]) {
+        recordsMap[record.category].push(record)
+      } else {
+        recordsMap[record.category] = [record]
+      }
+    })
 
   return (
     <aside className="fixed top-10 z-30 hidden w-full shrink-0 md:sticky md:block">
