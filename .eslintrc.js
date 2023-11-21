@@ -11,5 +11,6 @@ module.exports = {
     'no-console': 'warn',
     '@typescript-eslint/no-unused-vars': 'warn',
     '@typescript-eslint/explicit-module-boundary-types': ['error'],
+    'function-paren-newline': 'off',
   },
 }

@@ -1,11 +1,12 @@
 'use client'
-
+import { Suspense } from 'react'
 import clsx from 'clsx'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 import { Squares, Stacks } from './Icons'
 import TooltipButton from './TooltipButton'
 
+import SkeletonCard from '@/components/SkeletonCard'
 import { Button } from '@/components/ui/button'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { ChildrenProps } from '@/types'
@@ -47,9 +48,11 @@ const CardContainer = ({ children }: ChildrenProps): JSX.Element => {
           </TooltipButton>
         </TooltipProvider>
       </div>
-      <div className={clsx(isGrid ? 'columns-xs xl:columns-sm' : 'flex flex-col gap-4')}>
-        {layoutMap[layout]}
-      </div>
+      <Suspense fallback={<SkeletonCard isGrid={isGrid} />}>
+        <div className={clsx(isGrid ? 'columns-xs xl:columns-sm' : 'flex flex-col gap-4')}>
+          {layoutMap[layout]}
+        </div>
+      </Suspense>
     </>
   )
 }

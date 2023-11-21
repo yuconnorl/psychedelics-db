@@ -2,7 +2,6 @@
 
 import * as React from 'react'
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons'
-import Image from 'next/image'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 
@@ -21,9 +20,8 @@ const Header = (): JSX.Element => {
     <header className="md:px-2 py-4 sticky border-b top-0 w-full items-center bg-background/90 supports-[backdrop-filter]:bg-background/60 backdrop-blur z-50">
       <div className="container flex items-center gap-3 w-full justify-between">
         <div className="flex gap-2 items-center">
-          {/* <Image src={'/psyche-icon.png'} alt="awe" width={60} height={60} /> */}
           <Link className="hover:opacity-40 transition-opacity" href={'/'}>
-            <div className="font-garamond text-3xl">Psychedelic Database</div>
+            <div className="font-garamond text-2xl md:text-3xl">Psychedelic Database</div>
           </Link>
         </div>
         <div className="flex gap-3 md:gap-5 items-center justify-around">

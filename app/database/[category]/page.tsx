@@ -1,4 +1,3 @@
-import { Suspense } from 'react'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
@@ -46,12 +45,10 @@ const CategoryPage = async ({ params }: CardParamsProps): Promise<JSX.Element> =
       />
       <h2 className="text-5xl font-semibold mb-6">{CATEGORY_OPTIONS_MAP[params.category]}</h2>
       <div className="flex flex-col gap-4">
-        <Suspense fallback={<div>Loading...</div>}>
-          <CardContainer>
-            <Grid params={params} />
-            <Stack params={params} />
-          </CardContainer>
-        </Suspense>
+        <CardContainer>
+          <Grid params={params} />
+          <Stack params={params} />
+        </CardContainer>
       </div>
     </div>
   )
