@@ -14,11 +14,9 @@ const Sidebar = async (): Promise<JSX.Element> => {
   records
     .sort((a, b) => a.title.localeCompare(b.title))
     .forEach((record) => {
-      if (recordsMap[record.category]) {
-        recordsMap[record.category].push(record)
-      } else {
-        recordsMap[record.category] = [record]
-      }
+      recordsMap[record.category]
+        ? recordsMap[record.category].push(record)
+        : (recordsMap[record.category] = [record])
     })
 
   return (
