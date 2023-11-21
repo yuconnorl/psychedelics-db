@@ -18,15 +18,22 @@ const Header = (): JSX.Element => {
   const { setTheme } = useTheme()
 
   return (
-    <header className="px-10 py-4 sticky border-b top-0 w-full items-center bg-background/90 supports-[backdrop-filter]:bg-background/60 backdrop-blur z-50">
+    <header className="md:px-2 py-4 sticky border-b top-0 w-full items-center bg-background/90 supports-[backdrop-filter]:bg-background/60 backdrop-blur z-50">
       <div className="container flex items-center gap-3 w-full justify-between">
-        <div className="">
-          <Image src={'/psyche-icon.png'} alt="awe" width={60} height={60} />
+        <div className="flex gap-2 items-center">
+          {/* <Image src={'/psyche-icon.png'} alt="awe" width={60} height={60} /> */}
+          <Link className="hover:opacity-40 transition-opacity" href={'/'}>
+            <div className="font-garamond text-3xl">Psychedelic Database</div>
+          </Link>
         </div>
-        <div className="flex gap-5 items-center justify-around">
-          <div className="flex gap-5 items-center">
-            <Link href={'/database'}>Database</Link>
-            <Link href={'/about'}>About</Link>
+        <div className="flex gap-3 md:gap-5 items-center justify-around">
+          <div className="flex gap-3 md:gap-5 items-center">
+            <Link href={'/database'} className="hover:opacity-40 transition-opacity">
+              Database
+            </Link>
+            <Link href={'/about'} className="hover:opacity-40 transition-opacity">
+              About
+            </Link>
           </div>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

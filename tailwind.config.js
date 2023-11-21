@@ -73,7 +73,10 @@ module.exports = {
       screens: {
         mdp: '930px',
       },
+      fontFamily: {
+        garamond: ['var(--font-garamond)', 'sans'],
+      },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
 }

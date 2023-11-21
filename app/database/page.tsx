@@ -1,7 +1,9 @@
-const DatabasePage = async () => {
+// TODO: Add content to this page
+
+const DatabasePage = (): JSX.Element => {
   return (
     <main className="flex">
-      <div>This is psyche database</div>
+      <div>Welcome to Psychedelic Database</div>
     </main>
   )
 }

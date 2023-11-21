@@ -49,7 +49,7 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
   const meta = await resolveMetaTag(url, slug)
 
   return (
-    <main className="">
+    <article className="">
       <Breadcrumbs
         items={[
           { label: 'Database', url: '/database' },
@@ -97,7 +97,7 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
           <p className="text-sm break-all">{url}</p>
         </Link>
       </div>
-    </main>
+    </article>
   )
 }
 

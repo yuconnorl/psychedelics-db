@@ -1,5 +1,6 @@
-import React from 'react'
+import clsx from 'clsx'
 import type { Metadata } from 'next'
+import localFont from 'next/font/local'
 
 import './globals.css'
 import Header from '@/components/Header'
@@ -12,46 +13,22 @@ export const metadata: Metadata = {
     template: '%s - Psychedelic DB',
   },
   description: 'Welcome to Psychedelic DB',
-  // openGraph: {
-  //   title: 'Terminal 420',
-  //   description: 'Terminal 420, a place of cannabis and web tech',
-  //   url: 'https://terminal-420.space',
-  //   siteName: 'Terminal 420',
-  //   images: [
-  //     {
-  //       url: 'https://terminal-420.space/images/og.jpeg',
-  //       width: 1200,
-  //       height: 630,
-  //     },
-  //   ],
-  //   locale: 'zh-Tw',
-  //   type: 'website',
-  // },
-  // twitter: {
-  //   card: 'summary_large_image',
-  //   title: 'Terminal 420',
-  //   description: 'Terminal 420, a place of cannabis and web tech',
-  //   images: 'https://terminal-420.space/images/og.jpeg',
-  // },
-  // robots: {
-  //   index: true,
-  //   follow: true,
-  //   googleBot: {
-  //     index: true,
-  //     follow: true,
-  //     'max-video-preview': -1,
-  //     'max-image-preview': 'large',
-  //     'max-snippet': -1,
-  //   },
-  // },
-  // icons: {
-  //   shortcut: '/favicon.png',
-  // },
 }
+
+// loading local fonts
+const garamond = localFont({
+  src: [
+    {
+      path: '../public/fonts/cormorant-garamond-medium.woff2',
+      weight: '500',
+    },
+  ],
+  variable: '--font-garamond',
+})
 
 export default function RootLayout({ children }: { children: React.ReactNode }): React.JSX.Element {
   return (
-    <html lang="en">
+    <html lang="en" className={clsx(garamond.variable, 'antialiased')}>
       <body className="min-h-screen">
         <ThemeProvider
           attribute="class"
