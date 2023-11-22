@@ -64,7 +64,7 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
           },
         ]}
       />
-      <div className="text-5xl font-semibold mb-2">
+      <div className="text-4xl xl:text-5xl font-semibold mb-2 leading-tight">
         <p>{title}</p>
         <div className="flex gap-2 my-4">
           <Badge className="w-fit" variant="secondary">

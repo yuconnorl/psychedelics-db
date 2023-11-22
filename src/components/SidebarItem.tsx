@@ -9,7 +9,7 @@ import { DEFAULT_LAYOUT } from '@/config/general'
 import { CATEGORY_OPTIONS_MAP } from '@/config/options'
 import { CategoryOptionsType, RecordType } from '@/types'
 
-interface SidebarItemProps {
+type SidebarItemProps = {
   category: CategoryOptionsType
   records: RecordType[]
 }
@@ -27,7 +27,7 @@ const SidebarItem = ({ category, records }: SidebarItemProps): JSX.Element => {
         </Link>
       </AccordionTrigger>
       <AccordionContent className="pl-2">
-        <ol className="mt-5 flex flex-col gap-4 border-l text-base text-muted-foreground">
+        <ol className="mt-5 flex flex-col gap-3 xl:gap-4 border-l text-base text-muted-foreground">
           {records.map((item) => (
             <li key={item.id}>
               <Link

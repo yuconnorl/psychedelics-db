@@ -23,23 +23,22 @@ const Breadcrumbs = ({ items }: Props): JSX.Element => {
 
   return (
     <nav className="mb-10">
-      <ol className="list-reset flex">
+      <ol className="list-reset flex flex-wrap items-center">
         {items.map(({ url, label, isCategory }, index) => {
           const isLastItem = index === items.length - 1
           const modifiedUrl = isCategory ? `${url}?layout=${layout}` : url
-
           return (
             <Fragment key={url}>
               {isLastItem ? (
-                <li>
-                  <div
+                <li className="truncate w-[250px]">
+                  <span
                     className={clsx(
                       pathname === url ? 'text-foreground' : 'text-muted-foreground',
                       'truncate',
                     )}
                   >
                     {label}
-                  </div>
+                  </span>
                 </li>
               ) : (
                 <li key={index}>

@@ -5,6 +5,8 @@ import { MoonIcon, SunIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 
+import SlidingPanel from './SlidingPanel'
+
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -17,11 +19,11 @@ const Header = (): JSX.Element => {
   const { setTheme } = useTheme()
 
   return (
-    <header className="md:px-2 py-4 sticky border-b top-0 w-full items-center bg-background/90 supports-[backdrop-filter]:bg-background/60 backdrop-blur z-50">
-      <div className="container flex items-center gap-3 w-full justify-between">
+    <header className="py-4 sticky border-b top-0 w-full items-center bg-background/90 supports-[backdrop-filter]:bg-background/60 backdrop-blur z-50">
+      <div className="container px-6 lg:pr-8 lg:pl-10 flex items-center gap-3 w-full justify-between">
         <div className="flex gap-2 items-center">
           <Link className="hover:opacity-40 transition-opacity" href={'/'}>
-            <div className="font-garamond text-2xl md:text-3xl">Psychedelic Database</div>
+            <span className="font-garamond text-xl md:text-2xl">Psychedelic Database</span>
           </Link>
         </div>
         <div className="flex gap-3 md:gap-5 items-center justify-around">
@@ -48,6 +50,7 @@ const Header = (): JSX.Element => {
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
+        <SlidingPanel></SlidingPanel>
       </div>
     </header>
   )
