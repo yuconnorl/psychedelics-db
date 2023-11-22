@@ -63,6 +63,22 @@ export const Records: CollectionConfig = {
         beforeValidate: [formatSlug('title')],
       },
     },
+    {
+      label: 'Advanced Options',
+      type: 'collapsible',
+      admin: {
+        position: 'sidebar',
+      },
+      fields: [
+        {
+          name: 'isRecordShow',
+          type: 'checkbox',
+          label: 'Record visibility',
+          required: true,
+          defaultValue: true,
+        },
+      ],
+    },
   ],
 }
 

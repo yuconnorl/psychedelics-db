@@ -35,7 +35,7 @@ const SidebarItem = ({ category, records }: SidebarItemProps): JSX.Element => {
                 className={clsx(
                   pathname === `/database/${category}/${item.slug}` &&
                     'text-foreground border-l-[1.5px] border-foreground',
-                  'hover:opacity-40 hover:underline pl-5 -ml-px block',
+                  'hover:opacity-40 hover:underline pl-4 lg:pl-5 -ml-px block',
                 )}
               >
                 {item.title}

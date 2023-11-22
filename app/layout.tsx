@@ -29,7 +29,7 @@ const garamond = localFont({
 export default function RootLayout({ children }: { children: React.ReactNode }): React.JSX.Element {
   return (
     <html lang="en" className={clsx(garamond.variable, 'antialiased')}>
-      <body className="min-h-screen">
+      <body className="min-h-screen relative">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

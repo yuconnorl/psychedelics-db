@@ -54,8 +54,8 @@ const Breadcrumbs = ({ items }: Props): JSX.Element => {
                 </li>
               )}
               {index < items.length - 1 && (
-                <span className="mx-1.5 text-muted-foreground flex items-center">
-                  <CaretRightIcon height={22} width={22} />
+                <span className="mx-1 md:mx-1.5 text-muted-foreground flex items-center">
+                  <CaretRightIcon className="h-4 w-4 md:h-5 md:w-5" />
                 </span>
               )}
             </Fragment>
