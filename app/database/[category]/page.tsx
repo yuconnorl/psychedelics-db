@@ -9,7 +9,9 @@ import Stack from '@/components/StackLayoutCard'
 import { CATEGORY_OPTIONS_MAP } from '@/config/options'
 import { CardParamsProps, CategoryOptionsType, RecordType } from '@/types'
 
-export async function generateStaticParams(): Promise<Record<'category', CategoryOptionsType>[]> {
+export async function generateStaticParams(): Promise<
+  Record<'category', CategoryOptionsType>[]
+> {
   const records = await getAllRecords()
 
   return records.map((record: RecordType) => ({
@@ -17,23 +19,29 @@ export async function generateStaticParams(): Promise<Record<'category', Categor
   }))
 }
 
-export async function generateMetadata({ params }: CardParamsProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: CardParamsProps): Promise<Metadata> {
   return {
     title: CATEGORY_OPTIONS_MAP[params.category],
     // description: `All Posts of ${params.category}`,
   }
 }
 
-const CategoryPage = async ({ params }: CardParamsProps): Promise<JSX.Element> => {
+const CategoryPage = async ({
+  params,
+}: CardParamsProps): Promise<JSX.Element> => {
   const records = await getAllRecords()
-  const filterRecord = records.filter((record) => record.category === params.category)
+  const filterRecord = records.filter(
+    (record) => record.category === params.category,
+  )
 
   if (!filterRecord.length) {
     notFound()
   }
 
   return (
-    <div className="">
+    <div className=''>
       <Breadcrumbs
         items={[
           { label: 'Database', url: '/database' },
@@ -43,8 +51,10 @@ const CategoryPage = async ({ params }: CardParamsProps): Promise<JSX.Element> =
           },
         ]}
       />
-      <h2 className="text-5xl font-semibold mb-6">{CATEGORY_OPTIONS_MAP[params.category]}</h2>
-      <div className="flex flex-col gap-4">
+      <h2 className='text-3xl md:text-5xl font-semibold mb-6'>
+        {CATEGORY_OPTIONS_MAP[params.category]}
+      </h2>
+      <div className='flex flex-col gap-4'>
         <CardContainer>
           <Grid params={params} />
           <Stack params={params} />

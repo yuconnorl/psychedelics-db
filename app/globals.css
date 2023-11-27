@@ -65,4 +65,12 @@
   .break-inside {
     break-inside: avoid;
   }
+
+  .dark-before {
+    @apply before:transition-all before:duration-700 before:content-[''] before:top-[0.2rem] before:left-[0.3rem] before:absolute before:block before:w-[1.1rem] before:h-[1.1em] before:rounded-[24px] before:bg-muted-foreground before:data-[state=checked]:translate-x-[18px];
+  }
+
+  .dark-after {
+    @apply after:transition-all after:duration-700 after:content-[''] after:absolute after:block after:w-[30px] after:h-5 after:rounded-l-[24px] after:rounded-r-[24px] after:bg-foreground after:data-[state=checked]:bg-input after:right-0 after:data-[state=checked]:w-[1.5px] after:data-[state=checked]:h-[1.5px]; 
+  }
 }

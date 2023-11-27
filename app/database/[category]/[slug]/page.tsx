@@ -19,7 +19,9 @@ type ParamsType = {
   }
 }
 
-export async function generateStaticParams(): Promise<Record<'slug', string>[]> {
+export async function generateStaticParams(): Promise<
+  Record<'slug', string>[]
+> {
   const records = await getAllRecords()
 
   return records.map((record: RecordType) => ({
@@ -27,7 +29,9 @@ export async function generateStaticParams(): Promise<Record<'slug', string>[]> 
   }))
 }
 
-export async function generateMetadata({ params }: ParamsType): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: ParamsType): Promise<Metadata> {
   const records = await getAllRecords()
   const record = records.find((record) => record.slug === params.slug)
 
@@ -49,7 +53,7 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
   const meta = await resolveMetaTag(url, slug)
 
   return (
-    <article className="">
+    <article className=''>
       <Breadcrumbs
         items={[
           { label: 'Database', url: '/database' },
@@ -64,37 +68,43 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
           },
         ]}
       />
-      <div className="text-4xl xl:text-5xl font-semibold mb-2 leading-tight">
+      <div className='text-3xl sm:text-4xl xl:text-5xl font-semibold mb-2 leading-tight'>
         <p>{title}</p>
-        <div className="flex gap-2 my-4">
-          <Badge className="w-fit" variant="secondary">
+        <div className='flex gap-2 my-4'>
+          <Badge className='w-fit' variant='secondary'>
             {capitalizeFirstLetter(type)}
           </Badge>
-          <Badge className="w-fit" variant="secondary">
+          <Badge className='w-fit' variant='secondary'>
             {LANGUAGE_MAP[language]}
           </Badge>
         </div>
       </div>
-      <div className="flex flex-col gap-2 ">
-        <AspectRatio className="my-2 border-muted-foreground/20 border rounded-lg" ratio={21 / 9}>
+      <div className='flex flex-col gap-2 '>
+        <AspectRatio
+          className='my-2 border-muted-foreground/20 border rounded-lg'
+          ratio={21 / 9}
+        >
           <Image
             src={meta.imgUrl}
             fill
-            alt="Image"
-            sizes="(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 100vw"
-            className="rounded-md object-cover object-center"
+            alt='Image'
+            sizes='(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 100vw'
+            className='rounded-md object-cover object-center'
           />
         </AspectRatio>
         <div>{meta.description}</div>
-        <Link href={url} className="relative flex mt-4 gap-1.5 items-center text-muted-foreground">
+        <Link
+          href={url}
+          className='relative flex mt-4 gap-1.5 items-center text-muted-foreground'
+        >
           <Image
             src={meta.iconUrl}
             alt={`Icon of ${title}`}
             width={20}
             height={20}
-            className="object-contain"
+            className='object-contain'
           />
-          <p className="text-sm break-all">{url}</p>
+          <p className='text-sm break-all'>{url}</p>
         </Link>
       </div>
     </article>

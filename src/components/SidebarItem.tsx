@@ -4,7 +4,11 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
 
-import { AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
+import {
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion'
 import { DEFAULT_LAYOUT } from '@/config/general'
 import { CATEGORY_OPTIONS_MAP } from '@/config/options'
 import { CategoryOptionsType, RecordType } from '@/types'
@@ -12,24 +16,29 @@ import { CategoryOptionsType, RecordType } from '@/types'
 type SidebarItemProps = {
   category: CategoryOptionsType
   records: RecordType[]
+  onItemClicked: () => void
 }
 
-const SidebarItem = ({ category, records }: SidebarItemProps): JSX.Element => {
+const SidebarItem = ({
+  category,
+  records,
+  onItemClicked = () => {},
+}: SidebarItemProps): JSX.Element => {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const layout = searchParams.get('layout') || DEFAULT_LAYOUT
 
   return (
-    <AccordionItem className="border-0" value={category}>
-      <AccordionTrigger className="text-left py-0">
+    <AccordionItem className='border-0' value={category}>
+      <AccordionTrigger className='text-left py-0'>
         <Link href={`/database/${category}?layout=${layout}`}>
-          {CATEGORY_OPTIONS_MAP[category]}
+          <div onClick={onItemClicked}>{CATEGORY_OPTIONS_MAP[category]}</div>
         </Link>
       </AccordionTrigger>
-      <AccordionContent className="pl-2">
-        <ol className="mt-5 flex flex-col gap-3 xl:gap-4 border-l text-base text-muted-foreground">
+      <AccordionContent className='pl-2'>
+        <ol className='mt-5 flex flex-col gap-3 xl:gap-4 border-l text-base text-muted-foreground'>
           {records.map((item) => (
-            <li key={item.id}>
+            <li key={item.id} onClick={onItemClicked}>
               <Link
                 href={`/database/${category}/${item.slug}`}
                 className={clsx(

@@ -12,11 +12,19 @@ interface MetaInfo {
 export const resolveMetaTag = async (url: string, slug: string): Promise<MetaInfo> => {
   const response = await fetch(url, { next: { tags: [`${slug}`] } })
   const body = await response.text()
-
   const rootElement = await parse(body)
+
+  const iconFallback = '/psyche-icon.png'
+  const imageFallback = '/psyche-icon.png'
+
   const headLink = rootElement.getElementsByTagName('head')[0].getElementsByTagName('link')
   const metaTags = rootElement.getElementsByTagName('meta')
 
+  let iconUrl = iconFallback
+  let imgUrl = imageFallback
+  let title: string
+
+  // helper function to resolve relative urls to absolute urls
   const resolveUrl = (baseUrl: string, targetUrl: string): string => {
     if (!targetUrl.startsWith('http') && !targetUrl.startsWith('https')) {
       return `${baseUrl}${targetUrl}`
@@ -25,30 +33,44 @@ export const resolveMetaTag = async (url: string, slug: string): Promise<MetaInf
   }
 
   // icon
-  const iconAttrs = ['shortcut icon', 'icon']
-  const iconTag = headLink.find((meta) => iconAttrs.includes(meta.attributes?.rel?.toLowerCase()))
+  const iconAttrs = ['shortcut icon', 'apple-touch-icon', 'icon']
+  for (const el of iconAttrs) {
+    const iconTag = headLink.find((meta) => el === meta.attributes?.rel?.toLowerCase())
 
-  const iconUrl = iconTag ? resolveUrl(url, iconTag.attributes.href) : '/psyche-icon.png'
+    if (iconTag) {
+      iconUrl = resolveUrl(url, iconTag.attributes.href)
+      break
+    }
+  }
 
   // og image
   const imageAttrs = ['og:image', 'twitter:image']
-  const imageTag = metaTags.find(
-    (meta) => imageAttrs.includes(meta.attributes?.property?.toLowerCase()),
-    // imageAttrs.includes(meta.attributes?.name?.toLowerCase()),
-  )
+  for (const el of imageAttrs) {
+    const imageTag =
+      metaTags.find((meta) => el === meta.attributes?.property?.toLowerCase()) ||
+      metaTags.find((meta) => el === meta.attributes?.name?.toLowerCase())
 
-  const imgUrl = imageTag ? resolveUrl(url, imageTag?.attributes.content) : '/psyche-icon.png'
+    if (imageTag) {
+      if (el === 'og:image') imgUrl = resolveUrl(url, imageTag.attributes.content)
+      if (el === 'twitter:image') imgUrl = resolveUrl(url, imageTag.attributes.href)
+      break
+    }
+  }
 
   // title
-  const titleAttrs = ['og:site_name', 'og:title', 'twitter:title']
-  const directTitle = rootElement.getElementsByTagName('title')[0].textContent
-  const titleTag = metaTags.find(
-    (meta) =>
-      titleAttrs.includes(meta.attributes?.property?.toLowerCase()) ||
-      titleAttrs.includes(meta.attributes?.name?.toLowerCase()),
-  )
+  const titleAttrs = ['og:title', 'twitter:title', 'og:site_name']
+  for (const el of titleAttrs) {
+    const titleTag =
+      metaTags.find((meta) => el === meta.attributes?.property?.toLowerCase()) ||
+      metaTags.find((meta) => el === meta.attributes?.name?.toLowerCase())
 
-  const title = titleTag ? titleTag.attributes.content : directTitle
+    if (titleTag) {
+      title = titleTag.attributes.content
+      break
+    }
+  }
+
+  if (!title) title = rootElement.querySelector('title')?.textContent
 
   // description
   const descriptionAttrs = ['description', 'og:description']

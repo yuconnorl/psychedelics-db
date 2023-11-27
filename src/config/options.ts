@@ -9,7 +9,7 @@ export const CATEGORY_OPTIONS = [
   'mandarin-social-media',
   'mandarin-book',
   'translated-video',
-  'wating-for-translation-video',
+  'waiting-for-translate-video',
   'activity-log-n-data',
 
   'psychedelics-fundamentals',
@@ -39,7 +39,7 @@ export const CATEGORY_OPTIONS_MAP = {
   'mandarin-social-media': '中文社群媒體',
   'mandarin-book': '中文書籍',
   'translated-video': '已中文化影片',
-  'wating-for-translation-video': '待中文化影片',
+  'waiting-for-translate-video': '待中文化影片',
   'activity-log-n-data': '活動紀錄與資料',
 
   'psychedelics-fundamentals': '啟靈藥與精神活性物質基礎知識庫',
@@ -60,7 +60,9 @@ export const CATEGORY_OPTIONS_MAP = {
 
 export const TYPE_OPTIONS = [
   'video',
+  'youtube-channel',
   'instagram',
+  'twitter',
   'facebook',
   'podcast',
   'article',

@@ -22,18 +22,20 @@ const Breadcrumbs = ({ items }: Props): JSX.Element => {
   const layout = searchParams.get('layout') || DEFAULT_LAYOUT
 
   return (
-    <nav className="mb-10">
-      <ol className="list-reset flex flex-wrap items-center">
+    <nav className='mb-10'>
+      <ol className='list-reset flex flex-wrap items-center'>
         {items.map(({ url, label, isCategory }, index) => {
           const isLastItem = index === items.length - 1
           const modifiedUrl = isCategory ? `${url}?layout=${layout}` : url
           return (
             <Fragment key={url}>
               {isLastItem ? (
-                <li className="truncate w-[250px]">
+                <li className='truncate w-[250px]'>
                   <span
                     className={clsx(
-                      pathname === url ? 'text-foreground' : 'text-muted-foreground',
+                      pathname === url
+                        ? 'text-foreground'
+                        : 'text-muted-foreground',
                       'truncate',
                     )}
                   >
@@ -45,7 +47,9 @@ const Breadcrumbs = ({ items }: Props): JSX.Element => {
                   <Link
                     href={modifiedUrl}
                     className={clsx(
-                      pathname === url ? 'text-foreground' : 'text-muted-foreground',
+                      pathname === url
+                        ? 'text-foreground'
+                        : 'text-muted-foreground',
                       'truncate hover:opacity-50 transition-opacity',
                     )}
                   >
@@ -54,8 +58,8 @@ const Breadcrumbs = ({ items }: Props): JSX.Element => {
                 </li>
               )}
               {index < items.length - 1 && (
-                <span className="mx-1 md:mx-1.5 text-muted-foreground flex items-center">
-                  <CaretRightIcon className="h-4 w-4 md:h-5 md:w-5" />
+                <span className='mx-1 md:mx-1.5 text-muted-foreground flex items-center'>
+                  <CaretRightIcon className='h-4 w-4 md:h-5 md:w-5' />
                 </span>
               )}
             </Fragment>

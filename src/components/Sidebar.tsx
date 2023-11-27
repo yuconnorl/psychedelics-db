@@ -34,19 +34,27 @@ const Sidebar = async (): Promise<JSX.Element> => {
     })
 
   return (
-    <aside className="fixed top-10 z-30 hidden w-full shrink-0 md:sticky md:block">
-      <ScrollArea className="h-[calc(100vh-10rem)] max-h-[calc(100vh-10rem)]">
+    <aside className='fixed top-10 z-30 hidden w-full shrink-0 md:sticky md:block'>
+      <ScrollArea className='h-[calc(100vh-6rem)] max-h-[calc(100vh-6rem)]'>
         <Accordion
-          className="relative overflow-hidden h-full py-6 lg:pl-4 pr-4 lg:py-8 flex flex-col gap-3 xl:gap-4"
-          type="multiple"
+          className='relative overflow-hidden h-full py-6 lg:pl-4 pr-4 lg:py-8 flex flex-col gap-3 xl:gap-4'
+          type='multiple'
           defaultValue={defaultOpenItem}
         >
           {Object.keys(recordsMapZh).map((category: CategoryOptionsType) => (
-            <SidebarItem key={category} category={category} records={recordsMapZh[category]} />
+            <SidebarItem
+              key={category}
+              category={category}
+              records={recordsMapZh[category]}
+            />
           ))}
-          <Separator className="my-4 w-[90%] self-center" />
+          <Separator className='my-4 w-[90%] self-center' />
           {Object.keys(recordsMapEn).map((category: CategoryOptionsType) => (
-            <SidebarItem key={category} category={category} records={recordsMapEn[category]} />
+            <SidebarItem
+              key={category}
+              category={category}
+              records={recordsMapEn[category]}
+            />
           ))}
         </Accordion>
       </ScrollArea>

@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 
 import './globals.css'
-import Header from '@/components/Header'
+import CategoriedHeader from '@/components/CategoriedHeader'
 import { ThemeProvider } from '@/components/ThemeProvider'
 
 export const metadata: Metadata = {
@@ -26,17 +26,22 @@ const garamond = localFont({
   variable: '--font-garamond',
 })
 
-export default function RootLayout({ children }: { children: React.ReactNode }): React.JSX.Element {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}): React.JSX.Element {
   return (
-    <html lang="en" className={clsx(garamond.variable, 'antialiased')}>
-      <body className="min-h-screen relative">
+    <html lang='en' className={clsx(garamond.variable, 'antialiased')}>
+      <body className='min-h-screen relative'>
         <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
+          attribute='class'
+          defaultTheme='system'
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
+          {/* <Header /> */}
+          <CategoriedHeader />
           {children}
         </ThemeProvider>
       </body>
