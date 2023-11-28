@@ -7,6 +7,7 @@ import { Hamburger } from './Icons'
 import SidebarItem from './SidebarItem'
 import ThemeSwitch from './ThemeSwitch'
 
+import SearchButton from '@/components/SearchButton'
 import { Accordion } from '@/components/ui/accordion'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Separator } from '@/components/ui/separator'
@@ -34,6 +35,7 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
           </Link>
         </div>
         <div className='hidden md:flex gap-3 md:gap-5 items-center justify-around'>
+          <SearchButton></SearchButton>
           <div className='md:flex gap-3 md:gap-5 items-center'>
             <Link
               href={'/database'}

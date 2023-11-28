@@ -1,47 +1,107 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Highlight, Hits, SearchBox, useHits } from 'react-instantsearch'
+import {
+  Highlight,
+  Hits,
+  SearchBox,
+  useHits,
+  useInstantSearch,
+} from 'react-instantsearch'
 import { InstantSearchNext } from 'react-instantsearch-nextjs'
 import algoliasearch from 'algoliasearch/lite'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { Search } from './Icons'
+import {
+  ArticleIcon,
+  ChevronRightUp,
+  FacebookIcon,
+  PodcastIcon,
+  Search,
+  ThesisIcon,
+  TwitterIcon,
+  VideoIcon,
+  WebsiteIcon,
+  YoutubeIcon,
+} from './Icons'
 
-import { Dialog, DialogContent, DialogFooter } from '@/components/CustomDialog'
+import { Dialog, DialogContent } from '@/components/CustomDialog'
+import { capitalizeFirstLetter } from '@/lib/utils'
 
 // TODO: 1. close dialog on click items
+const HitItem = ({ hits, onHitClick }) => {
+  const iconMap = {
+    video: <VideoIcon className='text-primary/80' />,
+    'youtube-channel': <YoutubeIcon className='text-primary/80' />,
+    instagram: <ThesisIcon className='text-primary/80' />,
+    twitter: <TwitterIcon className='text-primary/80' />,
+    facebook: <FacebookIcon className='text-primary/80' />,
+    podcast: <PodcastIcon className='text-primary/80' />,
+    article: <ArticleIcon className='text-primary/80' />,
+    website: <WebsiteIcon className='text-primary/80' />,
+    thesis: <ThesisIcon className='text-primary/80' />,
+    pdf: <ThesisIcon className='text-primary/80' />,
+    book: <ThesisIcon className='text-primary/80' />,
+  }
 
-const transformItems = (items) => {
-  return items.sort((a, b) => a.type.localeCompare(b.type))
-}
-
-const Hit = ({ hit }) => {
   return (
     <div className=''>
-      <Link href={`/database/${hit.category}/${hit.slug}`}>
-        <Highlight hit={hit} attribute='name' className='Hit-label' />
-        <span className='Hit-price'>{hit.title}</span>
-      </Link>
+      {hits.map((hit) => (
+        <div onClick={() => onHitClick(false)}>
+          <Link
+            className='group my-2 sm:my-3 flex items-center px-2 sm:px-3 py-3 rounded-sm bg-muted-foreground/5 hover:bg-muted-foreground/30 transition-colors'
+            href={`/database/${hit.category}/${hit.slug}`}
+          >
+            <div className='p-1 flex items-center justify-center mr-1 sm:mr-2'>
+              {iconMap[hit.type]}
+            </div>
+            <Highlight
+              hit={hit}
+              attribute='title'
+              className='Hit-label block flex-[1_1_0]'
+              classNames={{
+                highlighted: 'bg-transparent text-primary font-semibold',
+                nonHighlighted: 'text-muted-foreground',
+                root: 'text-sm',
+              }}
+            />
+            <ChevronRightUp className='opacity-0 group-hover:opacity-100 transition-opacity' />
+          </Link>
+        </div>
+      ))}
     </div>
   )
 }
 
-const HitItem = ({ hits }) => {
+function NoResultsBoundary({ children, fallback }) {
+  const { results } = useInstantSearch()
+
+  // The `__isArtificial` flag makes sure not to display the No Results message
+  // when no hits have been returned.
+  if (!results.__isArtificial && results.nbHits === 0) {
+    return (
+      <>
+        {fallback}
+        <div hidden>{children}</div>
+      </>
+    )
+  }
+
+  return children
+}
+
+function NoResults() {
   return (
-    <div className=''>
-      {hits.map((hit) => (
-        <Link className='my-2' href={`/database/${hit.category}/${hit.slug}`}>
-          <Highlight hit={hit} attribute='title' className='Hit-label' />
-        </Link>
-      ))}
+    <div className='flex items-center justify-center'>
+      <p className=' text-muted-foreground'>Try searching for something cool</p>
     </div>
   )
 }
 
 function CustomHits(props) {
   const { hits, sendEvent } = useHits(props)
+
   const hitMap = {}
   const sortedHits = hits.sort((a, b) => a.type.localeCompare(b.type))
 
@@ -50,45 +110,20 @@ function CustomHits(props) {
   })
 
   return (
-    <div className='overflow-scroll flex-1 px-6 py-4'>
+    <div className='overflow-scroll flex-1 px-6 py-4 basis-60'>
       {Object.keys(hitMap).map((type) => (
-        <section key={type} className='my-4'>
-          {type}
-          <div>
-            <HitItem hits={hitMap[type]} />
+        <section key={type} className=''>
+          <div className='pt-4 mb-3 font-semibold'>
+            {capitalizeFirstLetter(type)}
           </div>
+          <HitItem hits={hitMap[type]} onHitClick={props.onHitClick} />
         </section>
       ))}
-      {/* {updatedHits.map((hit) => (
-        <section
-          key={hit.objectID}
-          onClick={() => sendEvent('click', hit, 'Hit Clicked')}
-          onAuxClick={() => sendEvent('click', hit, 'Hit Clicked')}
-        >
-          {!hit.isSameType && (
-            <div className='text-lg mb-4 mt-4'>{hit.type}</div>
-          )}
-          <Highlight
-            attribute='title'
-            hit={hit}
-            classNames={{
-              root: 'MyCustomHighlight',
-              highlighted: 'text-primary  font-semibold bg-transparent',
-              nonHighlighted: ' text-muted-foreground',
-            }}
-          />
-        </section>
-      ))} */}
     </div>
   )
 }
 
 const SearchButton = (): JSX.Element => {
-  const algoliaClient = algoliasearch(
-    process.env.ALGOLIA_APP_ID,
-    process.env.ALGOLIA_SEARCH_KEY,
-  )
-
   // return nothing if the user did not enter a search query
   const searchClient = {
     ...algoliaClient,
@@ -129,8 +164,9 @@ const SearchButton = (): JSX.Element => {
 
   return (
     <div>
+      <div>Search</div>
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className='h-[50vh]'>
+        <DialogContent className=''>
           <InstantSearchNext
             indexName='psychedelic_db'
             searchClient={searchClient}
@@ -150,17 +186,11 @@ const SearchButton = (): JSX.Element => {
                 resetIconComponent={() => <></>}
               />
             </div>
-            <CustomHits />
-            {/* <Hits
-              hitComponent={Hit}
-              transformItems={transformItems}
-              classNames={{
-                root: 'overflow-scroll flex-1 px-6 py-4',
-                list: 'MyCustomHitsList MyCustomHitsList--subclass',
-              }}
-            /> */}
+            <NoResultsBoundary fallback={<NoResults />}>
+              <CustomHits onHitClick={setOpen} />
+            </NoResultsBoundary>
           </InstantSearchNext>
-          <DialogFooter className='border-t items-center p-4'>
+          <div className='border-t items-center px-6 py-4 flex justify-end'>
             <Link
               href={'https://www.algolia.com/ref/docsearch'}
               className='flex items-center'
@@ -176,7 +206,7 @@ const SearchButton = (): JSX.Element => {
                 aria-label='Algolia'
               ></Image>
             </Link>
-          </DialogFooter>
+          </div>
         </DialogContent>
       </Dialog>
     </div>

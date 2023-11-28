@@ -4,7 +4,6 @@ import localFont from 'next/font/local'
 
 import './globals.css'
 import CategoriedHeader from '@/components/CategoriedHeader'
-import SearchButton from '@/components/SearchButton'
 import { ThemeProvider } from '@/components/ThemeProvider'
 
 export const metadata: Metadata = {
@@ -41,8 +40,6 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <SearchButton />
-
           <CategoriedHeader />
           {children}
         </ThemeProvider>
