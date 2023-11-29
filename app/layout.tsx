@@ -3,7 +3,6 @@ import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 
 import './globals.css'
-import CategoriedHeader from '@/components/CategoriedHeader'
 import { ThemeProvider } from '@/components/ThemeProvider'
 
 export const metadata: Metadata = {
@@ -32,15 +31,14 @@ export default function RootLayout({
   children: React.ReactNode
 }): React.JSX.Element {
   return (
-    <html lang='en' className={clsx(garamond.variable, 'antialiased')}>
-      <body className='min-h-screen relative'>
+    <html lang='en' className={clsx(garamond.variable, 'h-full')}>
+      <body className='relative antialiased'>
         <ThemeProvider
           attribute='class'
-          defaultTheme='system'
+          defaultTheme='light'
           enableSystem
           disableTransitionOnChange
         >
-          <CategoriedHeader />
           {children}
         </ThemeProvider>
       </body>

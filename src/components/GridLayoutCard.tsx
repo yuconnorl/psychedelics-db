@@ -5,55 +5,68 @@ import { AspectRatio } from './ui/aspect-ratio'
 
 import { getAllRecords } from '@/api/general'
 import { Badge } from '@/components/ui/badge'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 import { LANGUAGE_MAP } from '@/config/general'
 import { capitalizeFirstLetter } from '@/lib/utils'
 import { InfoCard, RecordType } from '@/types'
 import { resolveMetaTag } from '@/utilities/metaTag'
 
-const GridCard = async ({ category, slug, title, url, type, language }: InfoCard) => {
+const GridCard = async ({
+  category,
+  slug,
+  title,
+  url,
+  type,
+  language,
+}: InfoCard) => {
   const meta = await resolveMetaTag(url, slug)
 
   return (
     <Link href={`/database/${category}/${slug}`}>
-      <Card className="relative break-inside mb-4 sm:group-hover:-translate-x-2 sm:group-hover:-translate-y-2 lg:group-hover:-translate-x-3 lg:group-hover:-translate-y-3 transition-transform z-10">
+      <Card className='relative break-inside mb-4 sm:group-hover:-translate-x-2 sm:group-hover:-translate-y-2 lg:group-hover:-translate-x-3 lg:group-hover:-translate-y-3 transition-transform z-10'>
         <CardHeader>
-          <CardTitle className="leading-normal mb-2">{title}</CardTitle>
-          <div className="flex gap-2">
-            <Badge className="w-fit" variant="secondary">
+          <CardTitle className='leading-normal mb-2'>{title}</CardTitle>
+          <div className='flex gap-2'>
+            <Badge className='w-fit' variant='secondary'>
               {capitalizeFirstLetter(type)}
             </Badge>
-            <Badge className="w-fit" variant="secondary">
+            <Badge className='w-fit' variant='secondary'>
               {LANGUAGE_MAP[language]}
             </Badge>
           </div>
         </CardHeader>
-        <CardContent className="flex flex-col gap-2">
-          <div className="relative saturate-[0.15] group-hover:saturate-100 transition-[filter]">
+        <CardContent className='flex flex-col gap-2'>
+          <div className='relative saturate-[0.15] group-hover:saturate-100 transition-[filter]'>
             <AspectRatio ratio={21 / 9}>
               <Image
                 src={meta.imgUrl}
                 fill
-                alt="Image"
-                sizes="(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 20vw"
-                className="rounded-md object-cover object-center"
+                alt='Image'
+                sizes='(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 20vw'
+                className='rounded-md object-cover object-center'
               />
             </AspectRatio>
           </div>
-          <p className="line-clamp-2 text-muted-foreground text-base group-hover:text-foreground transition-colors">
+          <p className='line-clamp-2 text-muted-foreground text-base group-hover:text-foreground transition-colors'>
             {meta.description}
           </p>
         </CardContent>
         <CardFooter>
-          <div className="relative flex gap-1.5 items-center text-muted-foreground">
+          <div className='relative flex gap-1.5 items-center text-muted-foreground'>
             <Image
               src={meta.iconUrl}
               alt={`Icon of ${title}`}
               width={20}
               height={20}
-              className="object-contain"
+              className='object-contain'
             />
-            <p className="text-sm break-all">{url}</p>
+            <p className='text-sm break-all'>{url}</p>
           </div>
         </CardFooter>
       </Card>
@@ -73,19 +86,21 @@ const GridLayoutCard = async ({
 
   return (
     <>
-      {filterRecord.map(({ id, category, slug, title, url, type, language }) => (
-        <div key={id} className="relative group h-fit">
-          <GridCard
-            category={category}
-            slug={slug}
-            title={title}
-            url={url}
-            type={type}
-            language={language}
-          />
-          <div className="absolute bg-foreground w-[calc(100%-5px)] h-[calc(100%-5px)] top-1 left-1 rounded-lg -z-10" />
-        </div>
-      ))}
+      {filterRecord.map(
+        ({ id, category, slug, title, url, type, language }) => (
+          <div key={id} className='relative group h-fit'>
+            <GridCard
+              category={category}
+              slug={slug}
+              title={title}
+              url={url}
+              type={type}
+              language={language}
+            />
+            <div className='absolute bg-foreground w-[calc(100%-5px)] h-[calc(100%-5px)] top-1 left-1 rounded-lg -z-10' />
+          </div>
+        ),
+      )}
     </>
   )
 }

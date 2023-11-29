@@ -1,7 +1,0 @@
-.ais-Hits-item {
-  @apply bg-background;
-}
-
-.ais-Hits-list {
-  @apply flex gap-2 flex-col bg-background;
-}

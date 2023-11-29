@@ -10,6 +10,7 @@ import {
 } from 'react-instantsearch'
 import { InstantSearchNext } from 'react-instantsearch-nextjs'
 import algoliasearch from 'algoliasearch/lite'
+import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -19,6 +20,7 @@ import {
   FacebookIcon,
   InstagramIcon,
   PodcastIcon,
+  PsychedelicDBLogo,
   Search,
   ThesisIcon,
   TwitterIcon,
@@ -28,7 +30,29 @@ import {
 } from './Icons'
 
 import { Dialog, DialogContent } from '@/components/CustomDialog'
-import { capitalizeFirstLetter } from '@/lib/utils'
+import { capitalizeFirstLetter, cn } from '@/lib/utils'
+
+const SearchingBox = ({ onButtonClick, className }) => {
+  return (
+    <button
+      type='button'
+      className={cn(
+        'flex items-center ring-1 ring-muted bg-input px-4 h-10 rounded-md justify-between hover:bg-muted-foreground/30 transition-colors',
+        className,
+      )}
+      onClick={() => onButtonClick(true)}
+    >
+      <div className='flex items-center'>
+        <Search className='text-muted-foreground mr-2' />
+        <div className='text-sm text-muted-foreground'>Open the door...</div>
+      </div>
+      <kbd className='flex items-center gap-1 text-foreground/70'>
+        <abbr className='no-underline text-lg'>⌘</abbr>
+        <span className='text-sm'>K</span>
+      </kbd>
+    </button>
+  )
+}
 
 const HitItem = ({ hits, onHitClick }) => {
   const iconMap = {
@@ -74,7 +98,7 @@ const HitItem = ({ hits, onHitClick }) => {
   )
 }
 
-function NoResultsBoundary({ children, fallback }) {
+const NoResultsBoundary = ({ children, fallback }): JSX.Element => {
   const { results } = useInstantSearch()
 
   // The `__isArtificial` flag makes sure not to display the No Results message
@@ -91,16 +115,17 @@ function NoResultsBoundary({ children, fallback }) {
   return children
 }
 
-function NoResults() {
+const NoResults = (): JSX.Element => {
   return (
-    <div className='flex items-center justify-center'>
-      <p className=' text-muted-foreground'>Try searching for something cool</p>
+    <div className='flex items-center justify-center relative'>
+      <PsychedelicDBLogo className='absolute w-64 h-64 text-muted-foreground/5' />
+      <p className='text-muted-foreground'>Try searching for something cool</p>
     </div>
   )
 }
 
-function CustomHits(props) {
-  const { hits, sendEvent } = useHits(props)
+const CustomHits = (props): JSX.Element => {
+  const { hits } = useHits(props)
 
   const hitMap = {}
   const sortedHits = hits.sort((a, b) => a.type.localeCompare(b.type))
@@ -123,7 +148,7 @@ function CustomHits(props) {
   )
 }
 
-const SearchButton = (): JSX.Element => {
+const SearchButton = ({ className }): JSX.Element => {
   // return nothing if the user did not enter a search query
   const searchClient = {
     ...algoliaClient,
@@ -163,10 +188,10 @@ const SearchButton = (): JSX.Element => {
   }, [])
 
   return (
-    <div>
-      <div>Search</div>
+    <>
+      <SearchingBox className={className} onButtonClick={setOpen} />
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className=''>
+        <DialogContent>
           <InstantSearchNext
             indexName='psychedelic_db'
             searchClient={searchClient}
@@ -175,7 +200,7 @@ const SearchButton = (): JSX.Element => {
             <div className='flex items-center gap-3 p-6 border-b'>
               <Search className='text-muted-foreground' />
               <SearchBox
-                placeholder={'Search database'}
+                placeholder={'Open the door...'}
                 classNames={{
                   root: 'flex-1',
                   form: 'relative',
@@ -204,12 +229,12 @@ const SearchButton = (): JSX.Element => {
                 height={14}
                 alt='Algolia logo'
                 aria-label='Algolia'
-              ></Image>
+              />
             </Link>
           </div>
         </DialogContent>
       </Dialog>
-    </div>
+    </>
   )
 }
 

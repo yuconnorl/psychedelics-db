@@ -283,7 +283,7 @@ export const InstagramIcon = ({ className }: Props): JSX.Element => {
 export const PsychedelicDBLogo = ({ className }: Props): JSX.Element => {
   return (
     <svg
-      className={clsx('w-8 h-8', className)}
+      className={clsx('w-7 h-7', className)}
       viewBox='0 0 127 127'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
