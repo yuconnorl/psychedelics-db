@@ -17,6 +17,7 @@ import {
   ArticleIcon,
   ChevronRightUp,
   FacebookIcon,
+  InstagramIcon,
   PodcastIcon,
   Search,
   ThesisIcon,
@@ -29,12 +30,11 @@ import {
 import { Dialog, DialogContent } from '@/components/CustomDialog'
 import { capitalizeFirstLetter } from '@/lib/utils'
 
-// TODO: 1. close dialog on click items
 const HitItem = ({ hits, onHitClick }) => {
   const iconMap = {
     video: <VideoIcon className='text-primary/80' />,
     'youtube-channel': <YoutubeIcon className='text-primary/80' />,
-    instagram: <ThesisIcon className='text-primary/80' />,
+    instagram: <InstagramIcon className='text-primary/80' />,
     twitter: <TwitterIcon className='text-primary/80' />,
     facebook: <FacebookIcon className='text-primary/80' />,
     podcast: <PodcastIcon className='text-primary/80' />,

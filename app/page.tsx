@@ -12,7 +12,7 @@ const Home = async (): Promise<JSX.Element> => {
   // }
 
   return (
-    <main className="container">
+    <main className='container'>
       <div>main page</div>
     </main>
   )

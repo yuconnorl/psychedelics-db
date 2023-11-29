@@ -1,9 +1,10 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 
-import { Hamburger } from './Icons'
+import { Hamburger, PsychedelicDBLogo } from './Icons'
 import SidebarItem from './SidebarItem'
 import ThemeSwitch from './ThemeSwitch'
 
@@ -28,7 +29,11 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
     <header className='py-4 sticky border-b top-0 w-full items-center bg-background/90 supports-[backdrop-filter]:bg-background/60 backdrop-blur z-50'>
       <div className='container px-6 lg:pr-8 lg:pl-10 flex items-center gap-3 w-full justify-between'>
         <div className='flex gap-2 items-center'>
-          <Link className='hover:opacity-40 transition-opacity' href={'/'}>
+          <Link
+            className='hover:opacity-40 transition-opacity flex gap-1 items-center'
+            href={'/'}
+          >
+            <PsychedelicDBLogo />
             <span className='font-garamond text-xl md:text-2xl'>
               Psychedelic Database
             </span>
