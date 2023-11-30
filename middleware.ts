@@ -1,20 +1,22 @@
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
-// This function can be marked `async` if using `await` inside
-export function middleware(request: NextRequest) {
-  console.log('middleware fire')
+import { DEFAULT_LAYOUT } from '@/config/general'
 
-  // if (request.nextUrl.pathname.startsWith('/database')) {
-  //   return NextResponse.rewrite(
-  //     new URL('/database/psychedelics-fundamentals', request.url),
-  //   )
-  // }
+export const middleware = (req: NextRequest) => {
+  const { pathname } = req.nextUrl
+  const { search } = req.nextUrl
 
-  // return NextResponse.redirect(new URL('/home', request.url))
+  if (
+    pathname.startsWith('/database') &&
+    pathname.split('/').length === 3 &&
+    search === ''
+  ) {
+    req.nextUrl.search = `?layout=${DEFAULT_LAYOUT}`
+    return NextResponse.redirect(req.nextUrl)
+  }
 }
 
-// See "Matching Paths" below to learn more
 export const config = {
   matcher: '/database/:path*',
 }
