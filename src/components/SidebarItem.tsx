@@ -32,9 +32,22 @@ const SidebarItem = ({
   const searchParams = useSearchParams()
   const layout = searchParams.get('layout') || DEFAULT_LAYOUT
 
+  const onAccordionItemClicked = () => {
+    if (openedItems.includes(category)) {
+      if (pathname === `/database/${category}`) {
+        // close items
+        let newItems = openedItems.filter((item) => item !== category)
+        onCategoryClicked(newItems)
+      }
+    } else {
+      // open items
+      onCategoryClicked([...openedItems, category])
+    }
+  }
+
   return (
     <AccordionItem
-      onClick={() => onCategoryClicked([...openedItems, category])}
+      onClick={onAccordionItemClicked}
       className='border-0'
       value={category}
     >

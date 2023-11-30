@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation'
 import { getPayloadClient } from '../src/getPayload'
 import { Page } from '../src/payload-types'
 
-import SearchButton from '@/components/SearchButton'
+import AlgoliaSearchComponent from '@/components/algolia/AlgoliaSearchComponent'
 import { Button } from '@/components/ui/button'
 
 const Home = async (): Promise<JSX.Element> => {
@@ -30,7 +30,7 @@ const Home = async (): Promise<JSX.Element> => {
             <Button className='h-12' asChild>
               <Link href={'/database'}>Collections</Link>
             </Button>
-            <SearchButton className='w-[250px] sm:w-[300px] h-12  self-center' />
+            <AlgoliaSearchComponent className='w-[250px] sm:w-[300px] h-12  self-center' />
           </div>
         </div>
       </div>

@@ -4,11 +4,11 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { Hamburger, PsychedelicDBLogo } from './Icons'
+import { HamburgerIcon, PsychedelicDBIcon } from './Icons'
 import SidebarAccordion from './SidebarAccordion'
 import ThemeSwitch from './ThemeSwitch'
 
-import SearchButton from '@/components/SearchButton'
+import AlgoliaSearchComponent from '@/components/algolia/AlgoliaSearchComponent'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { cn } from '@/lib/utils'
@@ -40,12 +40,12 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
             className='hover:opacity-40 transition-opacity flex gap-1.5 items-center'
             href={'/'}
           >
-            <PsychedelicDBLogo />
+            <PsychedelicDBIcon />
             <span className='font-garamond text-xl'>Psychedelic Database</span>
           </Link>
         </div>
         <div className='hidden md:flex gap-3 md:gap-5 items-center justify-around'>
-          {!isRoot && <SearchButton className='w-60' />}
+          {!isRoot && <AlgoliaSearchComponent className='w-60' />}
           <div className='md:flex gap-3 md:gap-5 items-center text-foreground/70'>
             <Link
               href={'/database'}
@@ -65,12 +65,12 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
         <div className='md:hidden flex'>
           <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger>
-              <Hamburger />
+              <HamburgerIcon />
             </SheetTrigger>
             <SheetContent className='w-[85%] sm:w-[540px]'>
               <ScrollArea className='h-[calc(100vh-6rem)] max-h-[calc(100vh-6rem)]'>
                 <div className='text-muted-foreground mb-8'>
-                  <PsychedelicDBLogo className='w-9 h-9' />
+                  <PsychedelicDBIcon className='w-9 h-9' />
                 </div>
                 <div className='flex gap-2 sm:gap-3 flex-col text-base sm:text-lg mb-6 sm:mb-8'>
                   <Link

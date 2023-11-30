@@ -4,7 +4,7 @@ type Props = {
   className?: string
 }
 
-export const Stacks = ({ className }: Props): JSX.Element => {
+export const StacksIcon = ({ className }: Props): JSX.Element => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -23,7 +23,7 @@ export const Stacks = ({ className }: Props): JSX.Element => {
   )
 }
 
-export const Squares = ({ className }: Props): JSX.Element => {
+export const SquaresIcon = ({ className }: Props): JSX.Element => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -42,7 +42,7 @@ export const Squares = ({ className }: Props): JSX.Element => {
   )
 }
 
-export const Hamburger = ({ className }: Props): JSX.Element => {
+export const HamburgerIcon = ({ className }: Props): JSX.Element => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -61,7 +61,7 @@ export const Hamburger = ({ className }: Props): JSX.Element => {
   )
 }
 
-export const Search = ({ className }: Props): JSX.Element => {
+export const SearchIcon = ({ className }: Props): JSX.Element => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -80,7 +80,7 @@ export const Search = ({ className }: Props): JSX.Element => {
   )
 }
 
-export const ChevronRightUp = ({ className }: Props): JSX.Element => {
+export const ChevronRightUpIcon = ({ className }: Props): JSX.Element => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -280,7 +280,7 @@ export const InstagramIcon = ({ className }: Props): JSX.Element => {
   )
 }
 
-export const PsychedelicDBLogo = ({ className }: Props): JSX.Element => {
+export const PsychedelicDBIcon = ({ className }: Props): JSX.Element => {
   return (
     <svg
       className={cn('w-7 h-7', className)}
