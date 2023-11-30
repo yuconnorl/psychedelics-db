@@ -3,7 +3,7 @@ import { Suspense } from 'react'
 import clsx from 'clsx'
 import { useRouter, useSearchParams } from 'next/navigation'
 
-import { Squares, Stacks } from './Icons'
+import { SquaresIcon, StacksIcon } from './Icons'
 import TooltipButton from './TooltipButton'
 
 import SkeletonCard from '@/components/SkeletonCard'
@@ -34,7 +34,7 @@ const CardContainer = ({ children }: ChildrenProps): JSX.Element => {
               size='icon'
               onClick={() => router.push(`?layout=grid`)}
             >
-              <Squares />
+              <SquaresIcon />
             </Button>
           </TooltipButton>
           <TooltipButton content={'Stack Layout'}>
@@ -43,7 +43,7 @@ const CardContainer = ({ children }: ChildrenProps): JSX.Element => {
               size='icon'
               onClick={() => router.push(`?layout=stack`)}
             >
-              <Stacks />
+              <StacksIcon />
             </Button>
           </TooltipButton>
         </TooltipProvider>

@@ -1,6 +1,6 @@
 'use client'
+
 import { useEffect, useState } from 'react'
-import type { UseHitsProps } from 'react-instantsearch'
 import { InstantSearch, SearchBox, useInstantSearch } from 'react-instantsearch'
 import {
   createInstantSearchRouterNext,
