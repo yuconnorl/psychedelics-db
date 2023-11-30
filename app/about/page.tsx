@@ -1,19 +1,24 @@
+import Footer from '@/components/Footer'
+
 const AboutPage = (): JSX.Element => {
   return (
-    <main className='flex container prose'>
-      <div className=''>
-        Psychedelics have emerged as a subject of immense interest and research
-        within the scientific and medical communities due to their profound
-        effects on human consciousness and mental health. The expansive and
-        evolving database on psychedelics encompasses a wide array of
-        substances, including but not limited to psilocybin (found in certain
-        mushrooms), LSD (lysergic acid diethylamide), DMT (dimethyltryptamine),
-        and mescaline. This database houses a treasure trove of information
-        ranging from historical uses in indigenous cultures to contemporary
-        studies exploring their therapeutic potential. Researchers delve into
-        these compounds to understand their mechanisms of action on the brain,
-        particularly their interactions with serotonin receptors and their
-        ability to induce altered states of consciousness.
+    <main className='flex flex-col justify-between w-full'>
+      <div className='prose flex-1'>
+        <div>
+          Psychedelics have emerged as a subject of immense interest and
+          research within the scientific and medical communities due to their
+          profound effects on human consciousness and mental health. The
+          expansive and evolving database on psychedelics encompasses a wide
+          array of substances, including but not limited to psilocybin (found in
+          certain mushrooms), LSD (lysergic acid diethylamide), DMT
+          (dimethyltryptamine), and mescaline. This database houses a treasure
+          trove of information ranging from historical uses in indigenous
+          cultures to contemporary studies exploring their therapeutic
+          potential. Researchers delve into these compounds to understand their
+          mechanisms of action on the brain, particularly their interactions
+          with serotonin receptors and their ability to induce altered states of
+          consciousness.
+        </div>
         <div>
           Studies have shown promising results in utilizing psychedelics as
           adjuncts to psychotherapy, especially in treating conditions like
@@ -38,6 +43,7 @@ const AboutPage = (): JSX.Element => {
           human well-being.
         </div>
       </div>
+      <Footer />
     </main>
   )
 }

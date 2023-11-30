@@ -26,6 +26,15 @@ type Props = {
 const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
   const [sheetOpen, setSheetOpen] = useState(false)
   const pathname = usePathname()
+  const getCategoryName = () => {
+    const path = pathname.split('/')
+
+    if (path[1] !== 'database') return ''
+    if (path[1] === 'database' && path.length >= 2) return path[2]
+  }
+
+  const categoryName = getCategoryName()
+
   const isRoot = pathname === '/'
 
   return (
@@ -93,6 +102,7 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
                 <Accordion
                   className='relative overflow-hidden h-full py-6 lg:pl-4 pr-4 lg:py-8 flex flex-col gap-3 xl:gap-4'
                   type='multiple'
+                  defaultValue={[categoryName]}
                 >
                   {Object.keys(recordsMapZh).map(
                     (category: CategoryOptionsType) => (

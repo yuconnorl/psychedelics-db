@@ -67,8 +67,8 @@ module.exports = {
         },
       },
       animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
+        'accordion-down': 'accordion-down 400ms cubic-bezier(0.42, 0, 0, 1.00)',
+        'accordion-up': 'accordion-up 400ms cubic-bezier(0.42, 0, 0, 1.00)',
       },
       screens: {
         mdp: '930px',

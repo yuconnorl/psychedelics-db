@@ -23,13 +23,19 @@ const SidebarItem = ({
   category,
   records,
   onItemClicked = () => {},
+  onCategoryClicked,
+  currentState,
 }: SidebarItemProps): JSX.Element => {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const layout = searchParams.get('layout') || DEFAULT_LAYOUT
 
   return (
-    <AccordionItem className='border-0' value={category}>
+    <AccordionItem
+      onClick={() => onCategoryClicked([...currentState, category])}
+      className='border-0'
+      value={category}
+    >
       <AccordionTrigger className='text-left py-0'>
         <Link href={`/database/${category}?layout=${layout}`}>
           <div onClick={onItemClicked}>{CATEGORY_OPTIONS_MAP[category]}</div>
