@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { usePathname } from 'next/navigation'
 
 import { CollaspeIcon } from './Icons'
 import SidebarItem from './SidebarItem'
@@ -23,12 +22,15 @@ const SidebarAccordion = ({
   recordsMapEn,
   onCategoryClickedAndCloseSheet,
 }: Props): JSX.Element => {
-  const [openedItems, setOpenedItems] = useState([])
+  const [openedItems, setOpenedItems] = useState([
+    'mandarin-social-media',
+    'ngo-foundation',
+  ])
   return (
     <Accordion
       className='relative overflow-hidden h-full py-6 lg:pl-4 pr-4 lg:py-8 flex flex-col gap-3 xl:gap-4'
       type='multiple'
-      defaultValue={openedItems || ['']}
+      defaultValue={openedItems}
       value={openedItems}
       onValueChange={setOpenedItems}
     >

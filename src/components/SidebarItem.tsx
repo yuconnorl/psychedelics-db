@@ -16,9 +16,9 @@ import { CategoryOptionsType, RecordType } from '@/types'
 type SidebarItemProps = {
   category: CategoryOptionsType
   records: RecordType[]
-  openedItems: CategoryOptionsType[]
+  openedItems: string[]
   onItemClicked?: () => void
-  onCategoryClicked: (items: CategoryOptionsType[]) => void
+  onCategoryClicked: (items: string[]) => void
 }
 
 const SidebarItem = ({
