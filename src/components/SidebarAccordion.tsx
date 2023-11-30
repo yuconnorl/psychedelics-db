@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 import { CollaspeIcon } from './Icons'
 import SidebarItem from './SidebarItem'
@@ -14,7 +15,7 @@ type RecordMap = Record<CategoryOptionsType, RecordType[]>
 type Props = {
   recordsMapZh: RecordMap
   recordsMapEn: RecordMap
-  onCategoryClickedAndCloseSheet: () => void
+  onCategoryClickedAndCloseSheet?: () => void
 }
 
 const SidebarAccordion = ({
@@ -26,6 +27,22 @@ const SidebarAccordion = ({
     'mandarin-social-media',
     'ngo-foundation',
   ])
+  const pathname = usePathname()
+
+  useEffect(() => {
+    // when pathname changes, check if the current pathname is in the openedItems array
+    // if it is not, add it to the openedItems array
+    const currentCategory =
+      pathname.split('/')[1] === 'database' &&
+      pathname.split('/')[2] !== undefined
+        ? pathname.split('/')[2]
+        : ''
+
+    if (!openedItems.includes(currentCategory) && currentCategory !== '') {
+      setOpenedItems([...openedItems, currentCategory])
+    }
+  }, [pathname])
+
   return (
     <Accordion
       className='relative overflow-hidden h-full py-6 lg:pl-4 pr-4 lg:py-8 flex flex-col gap-3 xl:gap-4'
