@@ -54,7 +54,7 @@ const CategoryPage = async ({
       <h2 className='text-3xl md:text-5xl font-semibold mb-6'>
         {CATEGORY_OPTIONS_MAP[params.category]}
       </h2>
-      <div className='flex flex-col gap-4'>
+      <div className='flex flex-col gap-4 relative'>
         <CardContainer>
           <Grid params={params} />
           <Stack params={params} />

@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 import {
   Highlight,
-  Hits,
   SearchBox,
   useHits,
   useInstantSearch,
@@ -118,7 +117,7 @@ const NoResultsBoundary = ({ children, fallback }): JSX.Element => {
 const NoResults = (): JSX.Element => {
   return (
     <div className='flex items-center justify-center relative'>
-      <PsychedelicDBLogo className='absolute w-64 h-64 text-muted-foreground/5' />
+      <PsychedelicDBLogo className='absolute w-64 h-64 text-muted-foreground/10' />
       <p className='text-muted-foreground'>Try searching for something cool</p>
     </div>
   )
@@ -148,7 +147,17 @@ const CustomHits = (props): JSX.Element => {
   )
 }
 
+// const algoliaClient = algoliasearch(
+//   process.env.ALGOLIA_APP_ID,
+//   process.env.ALGOLIA_SEARCH_KEY,
+// )
+
 const SearchButton = ({ className }): JSX.Element => {
+  const algoliaClient = algoliasearch(
+    process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
+    process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY,
+  )
+
   // return nothing if the user did not enter a search query
   const searchClient = {
     ...algoliaClient,

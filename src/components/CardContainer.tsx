@@ -25,13 +25,13 @@ const CardContainer = ({ children }: ChildrenProps): JSX.Element => {
 
   return (
     <>
-      <div className="hidden sm:flex gap-2 mb-4">
+      <div className='hidden sm:flex gap-2 mb-4'>
         <TooltipProvider>
           <TooltipButton content={'Grid Layout'}>
             <Button
-              className="ml-auto"
+              className='ml-auto'
               variant={!isGrid ? 'outline' : 'default'}
-              size="icon"
+              size='icon'
               onClick={() => router.push(`?layout=grid`)}
             >
               <Squares />
@@ -40,7 +40,7 @@ const CardContainer = ({ children }: ChildrenProps): JSX.Element => {
           <TooltipButton content={'Stack Layout'}>
             <Button
               variant={isGrid ? 'outline' : 'default'}
-              size="icon"
+              size='icon'
               onClick={() => router.push(`?layout=stack`)}
             >
               <Stacks />
@@ -49,7 +49,11 @@ const CardContainer = ({ children }: ChildrenProps): JSX.Element => {
         </TooltipProvider>
       </div>
       <Suspense fallback={<SkeletonCard isGrid={isGrid} />}>
-        <div className={clsx(isGrid ? 'columns-xs xl:columns-sm' : 'flex flex-col gap-4')}>
+        <div
+          className={clsx(
+            isGrid ? 'columns-xs xl:columns-sm' : 'flex flex-col gap-4',
+          )}
+        >
           {layoutMap[layout]}
         </div>
       </Suspense>

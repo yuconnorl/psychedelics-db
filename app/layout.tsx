@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 
 import './globals.css'
+import CategoriedHeader from '@/components/CategoriedHeader'
 import { ThemeProvider } from '@/components/ThemeProvider'
 
 export const metadata: Metadata = {
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
     default: 'Psychedelic Database',
     template: '%s - Psychedelic DB',
   },
-  description: 'Welcome to Psychedelic DB',
+  description: 'Welcome to Psychedelic Database',
 }
 
 // loading local fonts
@@ -39,6 +40,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <CategoriedHeader />
           {children}
         </ThemeProvider>
       </body>

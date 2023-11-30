@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/lib/utils'
 
 type Props = {
   className?: string
@@ -12,7 +12,7 @@ export const Stacks = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.5}
       stroke='currentColor'
-      className={clsx('w-6 h-6', className)}
+      className={cn('w-6 h-6', className)}
     >
       <path
         strokeLinecap='round'
@@ -31,7 +31,7 @@ export const Squares = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.5}
       stroke='currentColor'
-      className={clsx('w-6 h-6', className)}
+      className={cn('w-6 h-6', className)}
     >
       <path
         strokeLinecap='round'
@@ -50,7 +50,7 @@ export const Hamburger = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.5}
       stroke='currentColor'
-      className={clsx('w-6 h-6 hover:opacity-40 transition-opacity', className)}
+      className={cn('w-6 h-6 hover:opacity-40 transition-opacity', className)}
     >
       <path
         strokeLinecap='round'
@@ -69,7 +69,7 @@ export const Search = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.5}
       stroke='currentColor'
-      className={clsx('w-5 h-5', className)}
+      className={cn('w-5 h-5', className)}
     >
       <path
         strokeLinecap='round'
@@ -88,7 +88,7 @@ export const ChevronRightUp = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.2}
       stroke='currentColor'
-      className={clsx('w-4 h-4', className)}
+      className={cn('w-4 h-4', className)}
     >
       <path
         strokeLinecap='round'
@@ -107,7 +107,7 @@ export const WebsiteIcon = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.2}
       stroke='currentColor'
-      className={clsx('w-5 h-5', className)}
+      className={cn('w-5 h-5', className)}
     >
       <path
         strokeLinecap='round'
@@ -126,7 +126,7 @@ export const ThesisIcon = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.2}
       stroke='currentColor'
-      className={clsx('w-5 h-5', className)}
+      className={cn('w-5 h-5', className)}
     >
       <path
         strokeLinecap='round'
@@ -145,7 +145,7 @@ export const VideoIcon = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.2}
       stroke='currentColor'
-      className={clsx('w-5 h-5', className)}
+      className={cn('w-5 h-5', className)}
     >
       <path
         strokeLinecap='round'
@@ -164,7 +164,7 @@ export const YoutubeIcon = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.2}
       stroke='currentColor'
-      className={clsx('w-5 h-5', className)}
+      className={cn('w-5 h-5', className)}
     >
       <path
         strokeLinecap='round'
@@ -188,7 +188,7 @@ export const ArticleIcon = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.2}
       stroke='currentColor'
-      className={clsx('w-5 h-5', className)}
+      className={cn('w-5 h-5', className)}
     >
       <path
         strokeLinecap='round'
@@ -207,7 +207,7 @@ export const PodcastIcon = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.2}
       stroke='currentColor'
-      className={clsx('w-5 h-5', className)}
+      className={cn('w-5 h-5', className)}
     >
       <path
         strokeLinecap='round'
@@ -226,7 +226,7 @@ export const FacebookIcon = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.2}
       stroke='currentColor'
-      className={clsx('w-5 h-5', className)}
+      className={cn('w-5 h-5', className)}
     >
       <path
         strokeLinecap='round'
@@ -245,7 +245,7 @@ export const TwitterIcon = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.2}
       stroke='currentColor'
-      className={clsx('w-5 h-5', className)}
+      className={cn('w-5 h-5', className)}
     >
       <path
         strokeLinecap='round'
@@ -264,7 +264,7 @@ export const InstagramIcon = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.2}
       stroke='currentColor'
-      className={clsx('w-5 h-5', className)}
+      className={cn('w-5 h-5', className)}
     >
       <path
         strokeLinecap='round'
@@ -283,7 +283,7 @@ export const InstagramIcon = ({ className }: Props): JSX.Element => {
 export const PsychedelicDBLogo = ({ className }: Props): JSX.Element => {
   return (
     <svg
-      className={clsx('w-7 h-7', className)}
+      className={cn('w-7 h-7', className)}
       viewBox='0 0 127 127'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'

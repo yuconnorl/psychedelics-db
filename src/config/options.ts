@@ -1,7 +1,6 @@
 export const CATEGORY_OPTIONS = [
   'mandarin-speech-video',
   'mandarin-video',
-
   'mandarin-thesis',
   'mandarin-article',
   'mandarin-file',
@@ -11,7 +10,6 @@ export const CATEGORY_OPTIONS = [
   'translated-video',
   'waiting-for-translate-video',
   'activity-log-n-data',
-
   'psychedelics-fundamentals',
   'online-media',
   'research-centre',
@@ -31,7 +29,6 @@ export const CATEGORY_OPTIONS = [
 export const CATEGORY_OPTIONS_MAP = {
   'mandarin-speech-video': '中文演講影片',
   'mandarin-video': '中文影片',
-
   'mandarin-thesis': '中文論文',
   'mandarin-article': '中文文章',
   'mandarin-file': '中文文件',
@@ -41,7 +38,6 @@ export const CATEGORY_OPTIONS_MAP = {
   'translated-video': '已中文化影片',
   'waiting-for-translate-video': '待中文化影片',
   'activity-log-n-data': '活動紀錄與資料',
-
   'psychedelics-fundamentals': '啟靈藥與精神活性物質基礎知識庫',
   'online-media': '線上媒體',
   'research-centre': '學術研究機構',

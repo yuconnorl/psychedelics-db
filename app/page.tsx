@@ -5,7 +5,6 @@ import { notFound } from 'next/navigation'
 import { getPayloadClient } from '../src/getPayload'
 import { Page } from '../src/payload-types'
 
-import CategoriedHeader from '@/components/CategoriedHeader'
 import SearchButton from '@/components/SearchButton'
 import { Button } from '@/components/ui/button'
 
@@ -18,7 +17,6 @@ const Home = async (): Promise<JSX.Element> => {
 
   return (
     <main className='flex flex-col h-full'>
-      <CategoriedHeader />
       <div className='flex-1 flex justify-center items-start mt-24'>
         <div className='flex flex-col w-[36rem] sm:w-[42rem] justify-center text-center'>
           <div className='font-bold text-5xl sm:text-6xl mb-6'>
