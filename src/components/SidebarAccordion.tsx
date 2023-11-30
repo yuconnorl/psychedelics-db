@@ -3,38 +3,52 @@
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 
+import { CollaspeIcon } from './Icons'
 import SidebarItem from './SidebarItem'
 
 import { Accordion } from '@/components/ui/accordion'
 import { Separator } from '@/components/ui/separator'
-import { CategoryOptionsType } from '@/types'
+import { CategoryOptionsType, RecordType } from '@/types'
 
-const SidebarAccordion = ({ recordsMapZh, recordsMapEn }) => {
-  const pathname = usePathname()
-  const [open, setOpen] = useState([])
+type RecordMap = Record<CategoryOptionsType, RecordType[]>
 
-  const getCategoryName = () => {
-    const path = pathname.split('/')
-    if (path[1] !== 'database') return ''
-    if (path[1] === 'database' && path.length >= 2) return path[2]
-  }
+type Props = {
+  recordsMapZh: RecordMap
+  recordsMapEn: RecordMap
+  onCategoryClickedAndCloseSheet: () => void
+}
 
-  const categoryName = getCategoryName()
+const SidebarAccordion = ({
+  recordsMapZh,
+  recordsMapEn,
+  onCategoryClickedAndCloseSheet,
+}: Props): JSX.Element => {
+  const [openedItems, setOpenedItems] = useState([])
   return (
     <Accordion
       className='relative overflow-hidden h-full py-6 lg:pl-4 pr-4 lg:py-8 flex flex-col gap-3 xl:gap-4'
       type='multiple'
-      defaultValue={[categoryName]}
-      value={open}
-      onValueChange={setOpen}
+      defaultValue={openedItems || ['']}
+      value={openedItems}
+      onValueChange={setOpenedItems}
     >
+      <div
+        role='button'
+        className='text-muted-foreground hover:text-muted-foreground/50 mb-2 items-center transition-colors flex self-start'
+        onClick={() => setOpenedItems([])}
+      >
+        <CollaspeIcon />
+        <span className='text-xs ml-1'>Collapse all</span>
+        <span className='sr-only'>Collapse all</span>
+      </div>
       {Object.keys(recordsMapZh).map((category: CategoryOptionsType) => (
         <SidebarItem
           key={category}
           category={category}
           records={recordsMapZh[category]}
-          onCategoryClicked={setOpen}
-          currentState={open}
+          onItemClicked={onCategoryClickedAndCloseSheet}
+          onCategoryClicked={setOpenedItems}
+          openedItems={openedItems}
         />
       ))}
       <Separator className='my-4 w-[90%] self-center' />
@@ -43,8 +57,9 @@ const SidebarAccordion = ({ recordsMapZh, recordsMapEn }) => {
           key={category}
           category={category}
           records={recordsMapEn[category]}
-          onCategoryClicked={setOpen}
-          currentState={open}
+          onItemClicked={onCategoryClickedAndCloseSheet}
+          onCategoryClicked={setOpenedItems}
+          openedItems={openedItems}
         />
       ))}
     </Accordion>

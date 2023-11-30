@@ -16,7 +16,9 @@ import { CategoryOptionsType, RecordType } from '@/types'
 type SidebarItemProps = {
   category: CategoryOptionsType
   records: RecordType[]
+  openedItems: CategoryOptionsType[]
   onItemClicked?: () => void
+  onCategoryClicked: (items: CategoryOptionsType[]) => void
 }
 
 const SidebarItem = ({
@@ -24,7 +26,7 @@ const SidebarItem = ({
   records,
   onItemClicked = () => {},
   onCategoryClicked,
-  currentState,
+  openedItems,
 }: SidebarItemProps): JSX.Element => {
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -32,13 +34,13 @@ const SidebarItem = ({
 
   return (
     <AccordionItem
-      onClick={() => onCategoryClicked([...currentState, category])}
+      onClick={() => onCategoryClicked([...openedItems, category])}
       className='border-0'
       value={category}
     >
       <AccordionTrigger className='text-left py-0'>
         <Link href={`/database/${category}?layout=${layout}`}>
-          <div onClick={onItemClicked}>{CATEGORY_OPTIONS_MAP[category]}</div>
+          <span>{CATEGORY_OPTIONS_MAP[category]}</span>
         </Link>
       </AccordionTrigger>
       <AccordionContent className='pl-2'>

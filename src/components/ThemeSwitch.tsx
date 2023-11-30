@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
 
+// ref: https://github.com/anatoliygatt/dark-mode-toggle/tree/master
 // unchecked: dark
 // checked: light
 const ThemeSwitch = (): JSX.Element => {

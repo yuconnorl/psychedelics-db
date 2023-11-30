@@ -5,13 +5,11 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { Hamburger, PsychedelicDBLogo } from './Icons'
-import SidebarItem from './SidebarItem'
+import SidebarAccordion from './SidebarAccordion'
 import ThemeSwitch from './ThemeSwitch'
 
 import SearchButton from '@/components/SearchButton'
-import { Accordion } from '@/components/ui/accordion'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { Separator } from '@/components/ui/separator'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { cn } from '@/lib/utils'
 import { CategoryOptionsType, RecordType } from '@/types'
@@ -26,14 +24,6 @@ type Props = {
 const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
   const [sheetOpen, setSheetOpen] = useState(false)
   const pathname = usePathname()
-  const getCategoryName = () => {
-    const path = pathname.split('/')
-
-    if (path[1] !== 'database') return ''
-    if (path[1] === 'database' && path.length >= 2) return path[2]
-  }
-
-  const categoryName = getCategoryName()
 
   const isRoot = pathname === '/'
 
@@ -96,36 +86,11 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
                     About
                   </Link>
                 </div>
-                <div className='text-muted-foreground text-base'>
-                  Categories
-                </div>
-                <Accordion
-                  className='relative overflow-hidden h-full py-6 lg:pl-4 pr-4 lg:py-8 flex flex-col gap-3 xl:gap-4'
-                  type='multiple'
-                  defaultValue={[categoryName]}
-                >
-                  {Object.keys(recordsMapZh).map(
-                    (category: CategoryOptionsType) => (
-                      <SidebarItem
-                        key={category}
-                        category={category}
-                        records={recordsMapZh[category]}
-                        onItemClicked={() => setSheetOpen(false)}
-                      />
-                    ),
-                  )}
-                  <Separator className='my-4 w-[90%] self-center' />
-                  {Object.keys(recordsMapEn).map(
-                    (category: CategoryOptionsType) => (
-                      <SidebarItem
-                        key={category}
-                        category={category}
-                        records={recordsMapEn[category]}
-                        onItemClicked={() => setSheetOpen(false)}
-                      />
-                    ),
-                  )}
-                </Accordion>
+                <SidebarAccordion
+                  recordsMapEn={recordsMapEn}
+                  recordsMapZh={recordsMapZh}
+                  onCategoryClickedAndCloseSheet={() => setSheetOpen(false)}
+                />
                 <div className='flex gap-4 mt-4 items-center'>
                   Switch Theme
                   <ThemeSwitch />
