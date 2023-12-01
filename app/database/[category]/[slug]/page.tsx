@@ -68,8 +68,10 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
           },
         ]}
       />
-      <div className='text-3xl sm:text-4xl xl:text-5xl font-semibold mb-2 leading-tight'>
-        <p>{title}</p>
+      <div>
+        <h2 className='text-3xl sm:text-4xl xl:text-5xl font-semibold mb-2 leading-tight md:mb-4'>
+          {title}
+        </h2>
         <div className='flex gap-2 my-4'>
           <Badge className='w-fit' variant='secondary'>
             {capitalizeFirstLetter(type)}

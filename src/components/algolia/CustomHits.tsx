@@ -63,6 +63,7 @@ const HitItem = ({ hits, onHitClick }) => {
   )
 }
 
+// For displaying result that match the query (hit!)
 const CustomHits = (props: UseHitsProps): JSX.Element => {
   const { hits } = useHits(props)
 

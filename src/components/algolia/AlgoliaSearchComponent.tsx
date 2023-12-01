@@ -1,15 +1,11 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { InstantSearch, SearchBox, useInstantSearch } from 'react-instantsearch'
-import {
-  createInstantSearchRouterNext,
-  InstantSearchNext,
-} from 'react-instantsearch-nextjs'
+import { SearchBox } from 'react-instantsearch'
+import { InstantSearchNext } from 'react-instantsearch-nextjs'
 import algoliasearch from 'algoliasearch/lite'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 
 import { SearchIcon } from '../Icons'
 import SearchButton from '../SearchButton'
@@ -30,8 +26,6 @@ const AlgoliaSearchComponent = ({
     process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
     process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY,
   )
-
-  const router = useRouter()
 
   // return nothing if the user did not enter a search query
   const searchClient = {
@@ -59,20 +53,6 @@ const AlgoliaSearchComponent = ({
 
   const [open, setOpen] = useState(false)
 
-  const routing = {
-    stateToRoute(uiState) {
-      return {
-        layout: 'grid',
-        query: uiState.query,
-      }
-    },
-    routeToState(routeState) {
-      return {
-        query: routeState.query,
-      }
-    },
-  }
-
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
@@ -93,11 +73,6 @@ const AlgoliaSearchComponent = ({
           <InstantSearchNext
             indexName='psychedelic_db'
             searchClient={searchClient}
-            // routing={{
-            //   router: createInstantSearchRouterNext({
-            //     router,
-            //   }),
-            // }}
           >
             <div className='flex items-center gap-3 p-6 border-b'>
               <SearchIcon className='text-muted-foreground' />

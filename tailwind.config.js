@@ -65,10 +65,17 @@ module.exports = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: 0 },
         },
+        'button-gradient': {
+          '0%': { backgroundPosition: '0% 0%' },
+          '50%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0% 100%' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 400ms cubic-bezier(0.42, 0, 0, 1.00)',
         'accordion-up': 'accordion-up 400ms cubic-bezier(0.42, 0, 0, 1.00)',
+        'button-gradient':
+          'button-gradient 10s cubic-bezier(0.42, 0, 0, 1.00) infinite alternate',
       },
       screens: {
         mdp: '930px',

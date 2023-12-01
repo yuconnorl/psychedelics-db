@@ -6,6 +6,7 @@ type NoResultsBoundaryProps = {
   children: JSX.Element
 }
 
+// catch the case where no results are returned
 const NoResultsBoundary = ({
   children,
   fallback,
