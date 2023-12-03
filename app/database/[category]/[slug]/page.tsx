@@ -5,8 +5,10 @@ import { notFound } from 'next/navigation'
 
 import { getAllRecords } from '@/api/general'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import { ChevronRightUpIcon } from '@/components/Icons'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 import { LANGUAGE_MAP } from '@/config/general'
 import { CATEGORY_OPTIONS_MAP } from '@/config/options'
 import { capitalizeFirstLetter } from '@/lib/utils'
@@ -52,8 +54,10 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
   const { category, slug, title, url, language, type } = filterRecord
   const meta = await resolveMetaTag(url, slug)
 
+  console.log(filterRecord)
+
   return (
-    <article className=''>
+    <article>
       <Breadcrumbs
         items={[
           { label: 'Database', url: '/database' },
@@ -81,7 +85,7 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
           </Badge>
         </div>
       </div>
-      <div className='flex flex-col gap-2 '>
+      <div className='flex flex-col gap-2'>
         <AspectRatio
           className='my-2 border-muted-foreground/20 border rounded-lg'
           ratio={21 / 9}
@@ -94,20 +98,20 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
             className='rounded-md object-cover object-center'
           />
         </AspectRatio>
-        <div>{meta.description}</div>
-        <Link
-          href={url}
-          className='relative flex mt-4 gap-1.5 items-center text-muted-foreground'
-        >
-          <Image
-            src={meta.iconUrl}
-            alt={`Icon of ${title}`}
-            width={20}
-            height={20}
-            className='object-contain'
-          />
-          <p className='text-sm break-all'>{url}</p>
-        </Link>
+        <div className='px-4   leading-relaxed'>{meta.description}</div>
+        <Button className='md:w-52 mt-28' asChild variant='secondary'>
+          <Link href={url} className='flex gap-2'>
+            <span className='mr-1'>Visit resource</span>
+            <Image
+              src={meta.iconUrl}
+              alt={`Icon of ${title}`}
+              width={20}
+              height={20}
+              className='object-contain'
+            />
+            <ChevronRightUpIcon />
+          </Link>
+        </Button>
       </div>
     </article>
   )

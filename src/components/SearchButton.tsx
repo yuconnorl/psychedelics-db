@@ -13,7 +13,7 @@ const SearchButton = ({ onButtonClick, className }: Props): JSX.Element => {
       type='button'
       className={cn(
         'flex items-center ring-1 ring-muted/50 bg-input px-4 h-9 rounded-md justify-between',
-        'bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-yellow-200/30 via-emerald-200/30 to-[#b65dee]/30 bg-[length:200%_200%] animate-button-gradient',
+        'bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-yellow-200/30 via-emerald-200/30 to-[#b65dee]/50 bg-[length:200%_200%] animate-button-gradient',
         'hover:ring-2 hover:ring-[#b65dee]/30 transition-shadow',
         className,
       )}

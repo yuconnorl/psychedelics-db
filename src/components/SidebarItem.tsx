@@ -46,14 +46,12 @@ const SidebarItem = ({
   }
 
   return (
-    <AccordionItem
-      onClick={onAccordionItemClicked}
-      className='border-0'
-      value={category}
-    >
+    <AccordionItem className='border-0' value={category}>
       <AccordionTrigger className='text-left py-0'>
         <Link href={`/database/${category}?layout=${layout}`}>
-          <span>{CATEGORY_OPTIONS_MAP[category]}</span>
+          <span onClick={onAccordionItemClicked}>
+            {CATEGORY_OPTIONS_MAP[category]}
+          </span>
         </Link>
       </AccordionTrigger>
       <AccordionContent className='pl-2'>

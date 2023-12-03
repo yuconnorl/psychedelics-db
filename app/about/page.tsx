@@ -1,4 +1,11 @@
+import type { Metadata } from 'next'
+
 import Footer from '@/components/Footer'
+
+export const metadata: Metadata = {
+  title: 'About',
+  description: 'About',
+}
 
 const AboutPage = (): JSX.Element => {
   return (

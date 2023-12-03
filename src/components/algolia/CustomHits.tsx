@@ -37,7 +37,7 @@ const HitItem = ({ hits, onHitClick }) => {
   return (
     <div className=''>
       {hits.map((hit) => (
-        <div onClick={() => onHitClick(false)}>
+        <div key={hit.objectID} onClick={() => onHitClick(false)}>
           <Link
             className='group my-2 sm:my-3 flex items-center px-2 sm:px-3 py-3 rounded-sm bg-muted-foreground/5 hover:bg-muted-foreground/30 transition-colors'
             href={`/database/${hit.category}/${hit.slug}`}

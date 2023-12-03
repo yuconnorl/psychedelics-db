@@ -21,7 +21,7 @@ type Props = {
 const SidebarAccordion = ({
   recordsMapZh,
   recordsMapEn,
-  onCategoryClickedAndCloseSheet,
+  onCategoryClickedAndCloseSheet = () => {},
 }: Props): JSX.Element => {
   const [openedItems, setOpenedItems] = useState([
     'mandarin-social-media',

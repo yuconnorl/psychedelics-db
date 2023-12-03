@@ -10,9 +10,9 @@ export const metadata: Metadata = {
   // metadataBase: new URL('https://terminal-420.space'),
   title: {
     default: 'Psychedelic Database',
-    template: '%s - Psychedelic DB',
+    template: '%s - Psychedelic Database',
   },
-  description: 'Welcome to Psychedelic Database',
+  description: 'Welcome to The Psychedelic Database',
 }
 
 // loading local fonts

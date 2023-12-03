@@ -1,9 +1,15 @@
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Card, CardHeader, CardTitle } from '@/components/ui/card'
 import { CATEGORY_OPTIONS_MAP } from '@/config/options'
+
+export const metadata: Metadata = {
+  title: 'Database',
+  description: 'Database',
+}
 
 const CategoriesCard = ({ categoryTitle, category }) => {
   return (
