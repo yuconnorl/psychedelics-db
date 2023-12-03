@@ -98,8 +98,8 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
             className='rounded-md object-cover object-center'
           />
         </AspectRatio>
-        <div className='px-4   leading-relaxed'>{meta.description}</div>
-        <Button className='md:w-52 mt-28' asChild variant='secondary'>
+        <div className='px-4 leading-relaxed'>{meta.description}</div>
+        <Button className='md:w-52 mt-20 h-11' asChild variant='secondary'>
           <Link href={url} className='flex gap-2'>
             <span className='mr-1'>Visit resource</span>
             <Image

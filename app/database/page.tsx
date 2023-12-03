@@ -17,7 +17,9 @@ const CategoriesCard = ({ categoryTitle, category }) => {
       <Link href={`/database/${category}`}>
         <Card className='break-inside sm:group-hover:-translate-x-2 sm:group-hover:-translate-y-2 transition-transform z-10'>
           <CardHeader>
-            <CardTitle className=' text-lg'>{categoryTitle}</CardTitle>
+            <CardTitle className='font-normal text-lg'>
+              {categoryTitle}
+            </CardTitle>
           </CardHeader>
         </Card>
       </Link>

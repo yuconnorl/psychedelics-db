@@ -33,7 +33,7 @@ export default function RootLayout({
 }): React.JSX.Element {
   return (
     <html lang='en' className={clsx(garamond.variable, 'h-full')}>
-      <body className='relative antialiased'>
+      <body className='relative antialiased flex flex-col min-h-[100dvh]'>
         <ThemeProvider
           attribute='class'
           defaultTheme='light'
