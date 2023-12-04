@@ -21,7 +21,10 @@ interface Args {
   seed?: boolean
 }
 
-export const getPayloadClient = async ({ initOptions, seed }: Args = {}): Promise<Payload> => {
+export const getPayloadClient = async ({
+  initOptions,
+  seed,
+}: Args = {}): Promise<Payload> => {
   if (!process.env.PAYLOAD_SECRET) {
     throw new Error('PAYLOAD_SECRET environment variable is missing')
   }

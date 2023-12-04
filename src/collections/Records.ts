@@ -1,9 +1,13 @@
 import type { CollectionConfig } from 'payload/types'
 
-import { CATEGORY_OPTIONS, LANGUAGE_OPTIONS, TYPE_OPTIONS } from '../config/options'
+import {
+  CATEGORY_OPTIONS,
+  LANGUAGE_OPTIONS,
+  TYPE_OPTIONS,
+} from '../config/options'
 import formatSlug from '../utilities/formatSlug'
 
-export const Records: CollectionConfig = {
+const Records: CollectionConfig = {
   slug: 'records',
   admin: {
     useAsTitle: 'title',

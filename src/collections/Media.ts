@@ -1,4 +1,7 @@
-import type { CollectionBeforeOperationHook, CollectionConfig } from 'payload/types'
+import type {
+  CollectionBeforeOperationHook,
+  CollectionConfig,
+} from 'payload/types'
 
 const format = (val: string): string =>
   val
@@ -17,7 +20,7 @@ const beforeOperationHook: CollectionBeforeOperationHook = async ({ args }) => {
   }
 }
 
-export const Media: CollectionConfig = {
+const Media: CollectionConfig = {
   slug: 'media',
   upload: {
     staticURL: '/media',
