@@ -6,6 +6,7 @@ import { getPayloadClient } from '../src/getPayload'
 import { Page } from '../src/payload-types'
 
 import AlgoliaSearchComponent from '@/components/algolia/AlgoliaSearchComponent'
+import SplineComponent from '@/components/SplineComponent'
 import { Button } from '@/components/ui/button'
 
 const Home = async (): Promise<JSX.Element> => {
@@ -16,22 +17,25 @@ const Home = async (): Promise<JSX.Element> => {
   // }
 
   return (
-    <main className='flex flex-col h-full'>
-      <div className='flex-1 flex justify-center items-start mt-24'>
-        <div className='flex flex-col w-[36rem] sm:w-[42rem] justify-center text-center'>
-          <div className='font-bold text-5xl sm:text-6xl mb-6'>
-            The Doors of Perception
-          </div>
-          <div className='text-lg sm:text-xl text-muted-foreground'>
+    <main className='flex flex-col flex-1 px-3'>
+      <div className='flex-1 flex justify-start items-center mt-14 sm:mt-24 flex-col relative'>
+        <div className='flex flex-col w-full sm:w-[42rem] justify-center text-center'>
+          <h1 className='font-bold text-4xl text-center sm:text-6xl mb-6'>
+            <span>The Doors of Perception</span>
+          </h1>
+          <p className='text-lg sm:text-xl lg:text-2xl text-muted-foreground'>
             Welcome to The Psychedelic Database, a comprehensive resource for
             all things about psychedelics.
-          </div>
+          </p>
           <div className='flex gap-4 sm:gap-6 items-center justify-center mt-6 sm:mt-12'>
             <Button className='h-12' asChild>
               <Link href={'/database'}>Collections</Link>
             </Button>
-            <AlgoliaSearchComponent className='w-[250px] sm:w-[300px] h-12  self-center' />
+            <AlgoliaSearchComponent className='w-[250px] sm:w-[300px] h-12 self-center' />
           </div>
+        </div>
+        <div className='fixed w-full h-2/3 bottom-0 left-0 -z-10'>
+          <SplineComponent />
         </div>
       </div>
     </main>

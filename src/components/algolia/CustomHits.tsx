@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 'use client'
 
 import type { UseHitsProps } from 'react-instantsearch'
@@ -63,15 +64,22 @@ const HitItem = ({ hits, onHitClick }) => {
   )
 }
 
+type HitProps = UseHitsProps & {
+  onHitClick: (isSearchBoxOpen: boolean) => void
+}
+
+// FIX: TypeScript Any
 // For displaying result that match the query (hit!)
-const CustomHits = (props: UseHitsProps): JSX.Element => {
+const CustomHits = (props: HitProps): JSX.Element => {
   const { hits } = useHits(props)
+  const hitMap: { [key: string]: any[] } = {}
 
-  const hitMap = {}
-  const sortedHits = hits.sort((a, b) => a.type.localeCompare(b.type))
-
-  sortedHits.forEach((hit) => {
-    hitMap[hit.type] ? hitMap[hit.type].push(hit) : (hitMap[hit.type] = [hit])
+  hits.forEach((hit: any) => {
+    if (hitMap[hit.type]) {
+      hitMap[hit.type].push(hit)
+    } else {
+      hitMap[hit.type] = [hit]
+    }
   })
 
   return (
