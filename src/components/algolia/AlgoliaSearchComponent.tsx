@@ -49,7 +49,7 @@ const AlgoliaSearchComponent = ({
 
       return algoliaClient.search(requests)
     },
-  }
+  } as any
 
   const [open, setOpen] = useState(false)
 

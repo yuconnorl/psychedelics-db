@@ -52,9 +52,7 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
   }
 
   const { category, slug, title, url, language, type } = filterRecord
-  const meta = await resolveMetaTag(url, slug)
-
-  console.log(filterRecord)
+  const meta = await resolveMetaTag(url, slug, title)
 
   return (
     <article>

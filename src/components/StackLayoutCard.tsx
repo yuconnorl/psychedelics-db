@@ -23,7 +23,7 @@ const StackCard = async ({
   type,
   language,
 }: InfoCard) => {
-  const meta = await resolveMetaTag(url, slug)
+  const meta = await resolveMetaTag(url, slug, title)
   // FIX: link nested in link
   return (
     <Link href={`/database/${category}/${slug}`}>

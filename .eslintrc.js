@@ -12,5 +12,9 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'warn',
     '@typescript-eslint/explicit-module-boundary-types': ['error'],
     'function-paren-newline': 'off',
+    '@typescript-eslint/no-implicit-any-catch': [
+      'warn',
+      { allowExplicitAny: true },
+    ],
   },
 }

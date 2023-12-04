@@ -25,7 +25,7 @@ const GridCard = async ({
   type,
   language,
 }: InfoCard) => {
-  const meta = await resolveMetaTag(url, slug)
+  const meta = await resolveMetaTag(url, slug, title)
 
   return (
     <Link href={`/database/${category}/${slug}`}>
