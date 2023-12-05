@@ -1,10 +1,11 @@
+import { Suspense } from 'react'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { getAllRecords } from '@/api/general'
-import Breadcrumbs from '@/components/Breadcrumbs'
+// import Breadcrumbs from '@/components/Breadcrumbs'
 import { ChevronRightUpIcon } from '@/components/Icons'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Badge } from '@/components/ui/badge'
@@ -18,6 +19,7 @@ import { resolveMetaTag } from '@/utilities/metaTag'
 type ParamsType = {
   params: {
     slug: string
+    category: string
   }
 }
 
@@ -28,6 +30,7 @@ export async function generateStaticParams(): Promise<
 
   return records.map((record: RecordType) => ({
     slug: record.slug,
+    category: record.category,
   }))
 }
 
@@ -38,7 +41,7 @@ export async function generateMetadata({
   const record = records.find((record) => record.slug === params.slug)
 
   return {
-    title: `${record.title}`,
+    title: record.title,
     // description: `${record.description}`,
   }
 }
@@ -56,20 +59,22 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
 
   return (
     <article>
-      <Breadcrumbs
-        items={[
-          { label: 'Database', url: '/database' },
-          {
-            label: `${CATEGORY_OPTIONS_MAP[category]}`,
-            url: `/database/${category}`,
-            isCategory: true,
-          },
-          {
-            label: title,
-            url: `/database/${category}/${slug}`,
-          },
-        ]}
-      />
+      {/* <Suspense fallback={<div>Breadcrumbs</div>}>
+        <Breadcrumbs
+          items={[
+            { label: 'Database', url: '/database' },
+            {
+              label: `${CATEGORY_OPTIONS_MAP[category]}`,
+              url: `/database/${category}`,
+              isCategory: true,
+            },
+            {
+              label: title,
+              url: `/database/${category}/${slug}`,
+            },
+          ]}
+        />
+      </Suspense> */}
       <div>
         <h2 className='text-3xl sm:text-4xl xl:text-5xl font-semibold mb-2 leading-tight md:mb-4'>
           {title}

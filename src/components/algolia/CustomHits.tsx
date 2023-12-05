@@ -36,7 +36,7 @@ const HitItem = ({ hits, onHitClick }) => {
   }
 
   return (
-    <div className=''>
+    <>
       {hits.map((hit) => (
         <div key={hit.objectID} onClick={() => onHitClick(false)}>
           <Link
@@ -60,7 +60,7 @@ const HitItem = ({ hits, onHitClick }) => {
           </Link>
         </div>
       ))}
-    </div>
+    </>
   )
 }
 

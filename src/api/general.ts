@@ -3,22 +3,52 @@ import qs from 'qs'
 import { getPayloadClient } from '@/getPayload'
 import type { RecordType } from '@/types'
 
+// export const getAllRecords = async (limit = 300): Promise<RecordType[]> => {
+//   const stringifiedQuery = qs.stringify(
+//     {
+//       where: {
+//         isRecordShow: {
+//           equals: true,
+//         },
+//       },
+//     },
+//     { addQueryPrefix: true },
+//   )
+
+//   const response = await fetch(
+//     `http://localhost:3000/api/records${stringifiedQuery}&limit=${limit}`,
+//   )
+//   const data = await response.json()
+
+//   return data?.docs
+// }
+
 export const getAllRecords = async (limit = 300): Promise<RecordType[]> => {
-  const stringifiedQuery = qs.stringify(
-    {
-      where: {
-        isRecordShow: {
-          equals: true,
+  try {
+    const stringifiedQuery = qs.stringify(
+      {
+        where: {
+          isRecordShow: {
+            equals: true,
+          },
         },
       },
-    },
-    { addQueryPrefix: true },
-  )
+      { addQueryPrefix: true },
+    )
 
-  const response = await fetch(
-    `http://localhost:3000/api/records${stringifiedQuery}&limit=${limit}`,
-  )
-  const data = await response.json()
+    const response = await fetch(
+      `http://localhost:3000/api/records${stringifiedQuery}&limit=${limit}`,
+    )
 
-  return data?.docs
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+
+    const data = await response.json()
+
+    return data?.docs
+  } catch (error: unknown) {
+    console.error('An error occurred:', error)
+    return []
+  }
 }

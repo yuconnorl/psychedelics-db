@@ -2,7 +2,7 @@
 
 import clsx from 'clsx'
 import Link from 'next/link'
-import { usePathname, useSearchParams } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 
 import {
   AccordionContent,
@@ -29,8 +29,9 @@ const SidebarItem = ({
   openedItems,
 }: SidebarItemProps): JSX.Element => {
   const pathname = usePathname()
-  const searchParams = useSearchParams()
-  const layout = searchParams.get('layout') || DEFAULT_LAYOUT
+  // const searchParams = useSearchParams()
+  // const layout = searchParams.get('layout') || DEFAULT_LAYOUT
+  const layout = DEFAULT_LAYOUT
 
   const onAccordionItemClicked = () => {
     if (openedItems.includes(category)) {

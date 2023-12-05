@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import psychedelicDatabaseIntro from 'public/psychedelic-database-intro.jpeg'
 
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Card, CardHeader, CardTitle } from '@/components/ui/card'
@@ -39,8 +40,10 @@ const DatabasePage = (): JSX.Element => {
       >
         <Image
           fill
-          src={'/psychedelic-database-intro.jpg'}
-          alt='Image'
+          src={psychedelicDatabaseIntro}
+          alt='Psychedelic database'
+          priority
+          placeholder='blur'
           sizes='(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 100vw'
           className='rounded-md object-cover object-center'
         />
