@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const AboutPage = (): JSX.Element => {
   return (
     <main className='flex flex-col justify-between w-full flex-1'>
-      <div className='font-garamond flex flex-col items-center justify-center flex-1 gap-2 md:gap-3 text-lg sm:text-2xl relative'>
+      <div className='px-4 font-garamond flex flex-col items-center justify-center flex-wrap flex-1 gap-2 md:gap-3 text-lg sm:text-2xl relative'>
         <span className='z-10'>Nothing good, nothing bad.</span>
         <span className='z-10'>Nothing left, and nothing right.</span>
         <span className='z-10 text-center'>

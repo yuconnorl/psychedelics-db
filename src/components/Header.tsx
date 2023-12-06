@@ -42,7 +42,9 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
             href={'/'}
           >
             <PsychedelicDBIcon />
-            <span className='font-garamond text-xl'>{SITE_NAME}</span>
+            <span className='font-garamond text-lg sm:text-xl'>
+              {SITE_NAME}
+            </span>
           </Link>
         </div>
         <div className='hidden md:flex gap-3 md:gap-5 items-center justify-around'>

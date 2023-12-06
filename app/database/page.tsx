@@ -17,7 +17,7 @@ const CategoriesCard = ({ categoryTitle, category }) => {
     <div className='relative group h-fit'>
       <Link href={`/database/${category}`}>
         <Card className='break-inside sm:group-hover:-translate-x-2 sm:group-hover:-translate-y-2 transition-transform z-10'>
-          <CardHeader>
+          <CardHeader className='p-4 md:p-6'>
             <CardTitle className='font-normal text-lg'>
               {categoryTitle}
             </CardTitle>
@@ -50,7 +50,7 @@ const DatabasePage = (): JSX.Element => {
       </AspectRatio>
       <div className='text-4xl font-semibold text-primary my-6'>Intro</div>
       <div className='text-secondary-foreground text-base sm:text-lg'>
-        <div>
+        <span>
           The psychedelic database aims to serve as the leading information hub
           around therapeutic and recreational usage of psychedelic compounds.
           Containing data on over 100 psychedelic substances, it details
@@ -59,25 +59,27 @@ const DatabasePage = (): JSX.Element => {
           examine the wealth of aggregated data to identify relationships
           between dose taken, subjective effects, physiological changes and
           psychological impacts.
-        </div>
+        </span>
         <div className='mt-4'>
-          Alongside supporting scientific research, the database also houses
-          resources for public education around responsible psychedelic use. It
-          contains over 300 educational articles and 100 podcast episodes and
-          videos that provide balanced perspectives on benefits and risks. Users
-          can also find a directory of psychedelic researchers, therapists,
-          retreat centers and decriminalization advocates. With rigorous
-          protocols ensuring high data quality, the psychedelic database
-          facilitates scientific understanding and social awareness of these
-          profoundly consciousness-altering compounds through a multifaceted,
-          evidence-based approach.
+          <span>
+            Alongside supporting scientific research, the database also houses
+            resources for public education around responsible psychedelic use.
+            It contains over 300 educational articles and 100 podcast episodes
+            and videos that provide balanced perspectives on benefits and risks.
+            Users can also find a directory of psychedelic researchers,
+            therapists, retreat centers and decriminalization advocates. With
+            rigorous protocols ensuring high data quality, the psychedelic
+            database facilitates scientific understanding and social awareness
+            of these profoundly consciousness-altering compounds through a
+            multifaceted, evidence-based approach.
+          </span>
         </div>
       </div>
-      <div>
-        <div className='text-4xl font-semibold text-primary my-6'>
+      <>
+        <div className='text-4xl font-semibold text-primary mt-8 mb-6'>
           Categories
         </div>
-        <div className='mb-4 text-secondary-foreground text-base sm:text-lg'>
+        <div className='mb-6 text-secondary-foreground text-base sm:text-lg'>
           The Psychedelic Database is organized into {categoriesNumber} main
           categories:
         </div>
@@ -92,7 +94,7 @@ const DatabasePage = (): JSX.Element => {
             ),
           )}
         </div>
-      </div>
+      </>
     </div>
   )
 }

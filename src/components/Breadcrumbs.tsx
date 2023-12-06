@@ -23,7 +23,7 @@ const Breadcrumbs = ({ items }: Props): JSX.Element => {
 
   return (
     <nav className='mb-10'>
-      <ol className='list-reset flex flex-wrap items-center'>
+      <ol className='list-reset flex items-center'>
         {items.map(({ url, label, isCategory }, index) => {
           const isLastItem = index === items.length - 1
           const modifiedUrl = isCategory ? `${url}?layout=${layout}` : url
@@ -58,7 +58,7 @@ const Breadcrumbs = ({ items }: Props): JSX.Element => {
                 </li>
               )}
               {index < items.length - 1 && (
-                <span className='mx-1 md:mx-1.5 text-muted-foreground flex items-center'>
+                <span className='mx-[0.1rem] md:mx-1.5 text-muted-foreground flex items-center'>
                   <CaretRightIcon className='h-4 w-4 md:h-5 md:w-5' />
                 </span>
               )}

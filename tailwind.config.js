@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   darkMode: ['class'],
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
@@ -81,7 +86,8 @@ module.exports = {
         mdp: '930px',
       },
       fontFamily: {
-        garamond: ['var(--font-garamond)', 'sans'],
+        garamond: ['var(--font-garamond)', ...defaultTheme.fontFamily.serif],
+        noto: ['var(--font-noto)', ...defaultTheme.fontFamily.sans],
       },
     },
   },

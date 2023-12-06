@@ -42,7 +42,7 @@ export const resolveMetaTag = async (
     }
 
     // icon
-    const iconAttrs = ['shortcut icon', 'apple-touch-icon', 'icon']
+    const iconAttrs = ['mask-icon', 'shortcut icon', 'apple-touch-icon', 'icon']
     for (const el of iconAttrs) {
       const iconTag = headLink.find(
         (meta) => el === meta.attributes?.rel?.toLowerCase(),
