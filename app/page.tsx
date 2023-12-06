@@ -6,7 +6,7 @@ import { getPayloadClient } from '../src/getPayload'
 import { Page } from '../src/payload-types'
 
 import AlgoliaSearchComponent from '@/components/algolia/AlgoliaSearchComponent'
-import SplineComponent from '@/components/SplineComponent'
+// import SplineComponent from '@/components/SplineComponent'
 import { Button } from '@/components/ui/button'
 
 const Home = async (): Promise<JSX.Element> => {
@@ -30,9 +30,9 @@ const Home = async (): Promise<JSX.Element> => {
             <AlgoliaSearchComponent className='w-[250px] sm:w-[300px] h-12 self-center' />
           </div>
         </div>
-        <div className='fixed w-full h-2/3 bottom-0 left-0 -z-10'>
+        {/* <div className='fixed w-full h-2/3 bottom-0 left-0 -z-10'>
           <SplineComponent />
-        </div>
+        </div> */}
       </div>
     </main>
   )

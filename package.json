@@ -1,6 +1,6 @@
 {
-  "name": "psychedelic-database",
-  "description": "Psychedelic database",
+  "name": "psychedelics-database",
+  "description": "Psychedelics database",
   "version": "1.0.0",
   "main": "dist/server.js",
   "license": "MIT",
