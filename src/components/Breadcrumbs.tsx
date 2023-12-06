@@ -3,7 +3,7 @@ import { Fragment } from 'react'
 import { CaretRightIcon } from '@radix-ui/react-icons'
 import clsx from 'clsx'
 import Link from 'next/link'
-import { usePathname, useSearchParams } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 
 import { DEFAULT_LAYOUT } from '@/config/general'
 
@@ -18,8 +18,7 @@ interface Props {
 
 const Breadcrumbs = ({ items }: Props): JSX.Element => {
   const pathname = usePathname()
-  const searchParams = useSearchParams()
-  const layout = searchParams.get('layout') || DEFAULT_LAYOUT
+  const layout = DEFAULT_LAYOUT
 
   return (
     <nav className='mb-10'>
