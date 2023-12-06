@@ -52,7 +52,9 @@ const RandomSubstance = () => {
   return (
     <div className='absolute opacity-10 flex flex-col items-center pointer-events-none'>
       <Formula />
-      <span className='mt-4 font-bold font-garamond'>{description}</span>
+      <span className='mt-2 sm:mt-4 font-semibold font-garamond'>
+        {description}
+      </span>
     </div>
   )
 }

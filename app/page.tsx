@@ -23,11 +23,11 @@ const Home = async (): Promise<JSX.Element> => {
             Welcome to The Psychedelic Database, a comprehensive resource for
             all things about psychedelics.
           </p>
-          <div className='flex gap-4 sm:gap-6 items-center justify-center mt-6 sm:mt-12'>
+          <div className='flex gap-3 flex-wrap sm:gap-5 items-center justify-center mt-6 sm:mt-12'>
             <Button className='h-12' asChild>
               <Link href={'/database'}>Collections</Link>
             </Button>
-            <AlgoliaSearchComponent className='w-[250px] sm:w-[300px] h-12 self-center' />
+            <AlgoliaSearchComponent className='w-[200px] sm:w-[300px] h-12 self-center' />
           </div>
         </div>
         {/* <div className='fixed w-full h-2/3 bottom-0 left-0 -z-10'>

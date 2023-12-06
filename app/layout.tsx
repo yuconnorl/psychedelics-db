@@ -82,6 +82,9 @@ export default function RootLayout({
         >
           <CategoriedHeader />
           {children}
+          <div id='sheet-portal-container'>
+            <div></div>
+          </div>
         </ThemeProvider>
       </body>
     </html>

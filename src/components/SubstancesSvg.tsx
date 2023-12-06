@@ -7,11 +7,10 @@ type Props = {
 export const Dmt = ({ className }: Props): JSX.Element => {
   return (
     <svg
-      width='236'
-      height='139'
+      viewBox='0 0 236 139'
       version='1.1'
       xmlns='http://www.w3.org/2000/svg'
-      className={cn('', className)}
+      className={cn('w-48 h-32', className)}
     >
       <path
         d='M74.7 46.8 50.1 73.2 14.7 65 4.2 30.6 28.9 4.1 64 12.2 74.7 46.8 107.4 62l31.8-17.5 30.7 18.6 18.5-10.2m13.2-19.4.4-24m12.7 43.9 17.8 10.9M19.9 59.7 11.7 32.2M31 11.2l27.9 6.5m8.4 27.4L47.7 65.9M97.2 92.4l3.1-26.5m7.1-3.9L103 97.8l-23.7 4.6M60.6 91.7 50.1 73.2'
@@ -37,12 +36,11 @@ export const Dmt = ({ className }: Props): JSX.Element => {
 export const Lsd = ({ className }: Props): JSX.Element => {
   return (
     <svg
-      width='240'
-      height='347'
+      viewBox='0 0 240 347'
       xmlns='http://www.w3.org/2000/svg'
       stroke='currentColor'
       fill='currentColor'
-      className={cn('', className)}
+      className={cn('w-48 h-48', className)}
     >
       <path d='m89.131 274.84 1.701.98v44.48l-1.701.98v-46.44ZM94.603 278.49h1.7v39.14h-1.7v-39.14Z' />
       <path d='m89.131 321.28 1.701-.98 38.528 22.25v1.965L89.131 321.28ZM129.36 344.515v-1.965l38.54-22.25.83.48.17.87-39.54 22.865ZM129.785 337.945l-.85-1.47 33.915-19.58.85 1.47-33.915 19.58ZM169.555 320.075l-.825.705-.83-.48v-44.48l.83-.48.83.48-.005 44.255Z' />
@@ -102,6 +100,7 @@ export const Mdma = ({ className }: Props): JSX.Element => {
       width='256'
       height='113'
       viewBox='0 0 205 90'
+      className={cn('w-48 sm:w-60 h-32', className)}
       version='1.1'
       xmlns='http://www.w3.org/2000/svg'
       stroke='currentColor'
@@ -137,6 +136,7 @@ export const Mescaline = ({ className }: Props): JSX.Element => {
       xmlns='http://www.w3.org/2000/svg'
       version='1.1'
       viewBox='0 0 131.81 72.082'
+      className={cn('w-48 h-32 sm:w-60', className)}
       width='262'
       height='144'
     >
@@ -200,10 +200,9 @@ export const Mescaline = ({ className }: Props): JSX.Element => {
 export const Psilocybin = ({ className }: Props): JSX.Element => {
   return (
     <svg
-      width='274'
       xmlns='http://www.w3.org/2000/svg'
-      height='211'
       viewBox='0 0 274 211'
+      className={cn('w-48 h-32 sm:w-60 sm:h-48', className)}
       stroke='none'
       fill='currentColor'
       strokeWidth={1.2}
