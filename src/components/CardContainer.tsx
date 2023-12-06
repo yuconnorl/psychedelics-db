@@ -18,9 +18,7 @@ const CardContainer = ({ children }: ChildrenProps): JSX.Element => {
     grid: children[0],
     stack: children[1],
   }
-
-  const isGrid = layout === 'grid'
-
+  const isGrid = true
   return (
     <>
       {/* <div className='hidden sm:flex gap-2 mb-4'>
