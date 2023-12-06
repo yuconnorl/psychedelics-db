@@ -11,6 +11,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { LANGUAGE_MAP } from '@/config/general'
+import { IMAGE_PLACEHOLDER } from '@/constants/constants'
 import { capitalizeFirstLetter } from '@/lib/utils'
 import { CardParamsProps, InfoCard, RecordType } from '@/types'
 import { resolveMetaTag } from '@/utilities/metaTag'
@@ -24,7 +25,7 @@ const StackCard = async ({
   language,
 }: InfoCard) => {
   const meta = await resolveMetaTag(url, slug, title)
-  // FIX: link nested in link
+
   return (
     <Link href={`/database/${category}/${slug}`}>
       <Card className='relative overflow-hidden grid grid-rows-[minmax(0,1fr)_200px] sm:grid-rows-none sm:grid-cols-[minmax(0,1fr)_240px] xl:grid-cols-[minmax(0,1fr)_320px] group-hover:-translate-x-2 group-hover:-translate-y-2 lg:group-hover:-translate-x-3 lg:group-hover:-translate-y-3 transition-transform z-10'>
@@ -63,6 +64,8 @@ const StackCard = async ({
             src={meta.imgUrl}
             alt={`OG Image of ${url}`}
             fill
+            placeholder='blur'
+            blurDataURL={IMAGE_PLACEHOLDER}
             className='object-cover object-center'
           />
         </div>

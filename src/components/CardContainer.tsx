@@ -1,8 +1,7 @@
 'use client'
 import { Suspense } from 'react'
 import clsx from 'clsx'
-// import { useRouter, useSearchParams } from 'next/navigation'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 import { SquaresIcon, StacksIcon } from './Icons'
 import TooltipButton from './TooltipButton'
@@ -13,7 +12,7 @@ import { TooltipProvider } from '@/components/ui/tooltip'
 import { ChildrenProps } from '@/types'
 
 const CardContainer = ({ children }: ChildrenProps): JSX.Element => {
-  // const searchParams = useSearchParams()
+  const searchParams = useSearchParams()
   const router = useRouter()
 
   const layoutMap = {
@@ -21,12 +20,12 @@ const CardContainer = ({ children }: ChildrenProps): JSX.Element => {
     stack: children[1],
   }
 
-  // const layout = searchParams.get('layout')
-  // const isGrid = layout === 'grid'
+  const layout = searchParams.get('layout')
+  const isGrid = layout === 'grid'
 
   return (
     <>
-      {/* <div className='hidden sm:flex gap-2 mb-4'>
+      <div className='hidden sm:flex gap-2 mb-4'>
         <TooltipProvider>
           <TooltipButton content={'Grid Layout'}>
             <Button
@@ -57,8 +56,7 @@ const CardContainer = ({ children }: ChildrenProps): JSX.Element => {
         >
           {layoutMap[layout]}
         </div>
-      </Suspense> */}
-      {children[0]}
+      </Suspense>
     </>
   )
 }

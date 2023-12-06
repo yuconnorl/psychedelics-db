@@ -5,14 +5,38 @@ import localFont from 'next/font/local'
 import './globals.css'
 import CategoriedHeader from '@/components/CategoriedHeader'
 import { ThemeProvider } from '@/components/ThemeProvider'
+import { SITE_NAME } from '@/constants/constants'
 
 export const metadata: Metadata = {
-  // metadataBase: new URL('https://terminal-420.space'),
+  metadataBase: new URL('https://psychedelics-database.vercel.app/'),
   title: {
-    default: 'Psychedelic Database',
-    template: '%s - Psychedelic Database',
+    default: `${SITE_NAME} - The leading information hub around therapeutic and recreational usage of psychedelic compounds`,
+    template: `%s - ${SITE_NAME}`,
   },
-  description: 'Welcome to The Psychedelic Database',
+  description: '',
+  openGraph: {
+    title: `${SITE_NAME} - The leading information hub around therapeutic and recreational usage of psychedelic compounds`,
+    description:
+      'The leading information hub around therapeutic and recreational usage of psychedelic compounds',
+    url: 'https://psychedelics-database.vercel.app',
+    siteName: SITE_NAME,
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: 'zh-Tw',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${SITE_NAME} - The leading information hub around therapeutic and recreational usage of psychedelic compounds`,
+    description:
+      'The leading information hub around therapeutic and recreational usage of psychedelic compounds',
+    images: '/og-image.png',
+  },
 }
 
 // loading local fonts
@@ -37,7 +61,6 @@ export default function RootLayout({
         <ThemeProvider
           attribute='class'
           defaultTheme='light'
-          enableSystem
           disableTransitionOnChange
         >
           <CategoriedHeader />

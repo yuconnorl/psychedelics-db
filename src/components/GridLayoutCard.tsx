@@ -13,6 +13,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { LANGUAGE_MAP } from '@/config/general'
+import { IMAGE_PLACEHOLDER } from '@/constants/constants'
 import { capitalizeFirstLetter } from '@/lib/utils'
 import { InfoCard, RecordType } from '@/types'
 import { resolveMetaTag } from '@/utilities/metaTag'
@@ -48,6 +49,8 @@ const GridCard = async ({
                 src={meta.imgUrl}
                 fill
                 alt='Image'
+                placeholder='blur'
+                blurDataURL={IMAGE_PLACEHOLDER}
                 sizes='(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 20vw'
                 className='rounded-md object-cover object-center'
               />

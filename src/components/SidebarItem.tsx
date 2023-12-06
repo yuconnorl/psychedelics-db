@@ -29,8 +29,6 @@ const SidebarItem = ({
   openedItems,
 }: SidebarItemProps): JSX.Element => {
   const pathname = usePathname()
-  // const searchParams = useSearchParams()
-  // const layout = searchParams.get('layout') || DEFAULT_LAYOUT
   const layout = DEFAULT_LAYOUT
 
   const onAccordionItemClicked = () => {

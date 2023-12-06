@@ -11,6 +11,7 @@ import ThemeSwitch from './ThemeSwitch'
 import AlgoliaSearchComponent from '@/components/algolia/AlgoliaSearchComponent'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+import { SITE_NAME } from '@/constants/constants'
 import { cn } from '@/lib/utils'
 import { CategoryOptionsType, RecordType } from '@/types'
 
@@ -41,7 +42,7 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
             href={'/'}
           >
             <PsychedelicDBIcon />
-            <span className='font-garamond text-xl'>Psychedelic Database</span>
+            <span className='font-garamond text-xl'>{SITE_NAME}</span>
           </Link>
         </div>
         <div className='hidden md:flex gap-3 md:gap-5 items-center justify-around'>

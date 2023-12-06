@@ -1,10 +1,6 @@
 /* eslint-disable import/named */
 import React, { useEffect, useRef, useState } from 'react'
-import {
-  useInstantSearch,
-  useSearchBox,
-  UseSearchBoxProps,
-} from 'react-instantsearch'
+import { useSearchBox, UseSearchBoxProps } from 'react-instantsearch'
 
 import { SearchIcon } from '../Icons'
 
@@ -14,8 +10,6 @@ const CustomSearchBox = (props: UseSearchBoxProps): JSX.Element => {
   const inputRef = useRef(null)
   const timerRef = useRef(null)
 
-  const au = useInstantSearch()
-
   function debounce(fn, delay = 500) {
     return (...args) => {
       clearTimeout(timerRef.current)
@@ -24,9 +18,6 @@ const CustomSearchBox = (props: UseSearchBoxProps): JSX.Element => {
       }, delay)
     }
   }
-
-  console.log(inputValue)
-  console.log(au)
 
   const setQuery = debounce((newQuery: string) => {
     if (newQuery !== '') refine(newQuery)

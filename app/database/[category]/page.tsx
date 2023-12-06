@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { getAllRecords } from '@/api/general'
-// import Breadcrumbs from '@/components/Breadcrumbs'
+import Breadcrumbs from '@/components/Breadcrumbs'
 import CardContainer from '@/components/CardContainer'
 import Grid from '@/components/GridLayoutCard'
 import Stack from '@/components/StackLayoutCard'
@@ -43,7 +43,7 @@ const CategoryPage = async ({
 
   return (
     <div className=''>
-      {/* <Suspense fallback={<div>Breadcrumbs</div>}>
+      <Suspense fallback={<div>Breadcrumbs</div>}>
         <Breadcrumbs
           items={[
             { label: 'Database', url: '/database' },
@@ -53,7 +53,7 @@ const CategoryPage = async ({
             },
           ]}
         />
-      </Suspense> */}
+      </Suspense>
       <h2 className='text-3xl md:text-5xl font-semibold mb-6'>
         {CATEGORY_OPTIONS_MAP[params.category]}
       </h2>

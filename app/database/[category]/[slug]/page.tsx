@@ -5,13 +5,14 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { getAllRecords } from '@/api/general'
-// import Breadcrumbs from '@/components/Breadcrumbs'
+import Breadcrumbs from '@/components/Breadcrumbs'
 import { ChevronRightUpIcon } from '@/components/Icons'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { LANGUAGE_MAP } from '@/config/general'
 import { CATEGORY_OPTIONS_MAP } from '@/config/options'
+import { IMAGE_PLACEHOLDER } from '@/constants/constants'
 import { capitalizeFirstLetter } from '@/lib/utils'
 import { RecordType } from '@/types'
 import { resolveMetaTag } from '@/utilities/metaTag'
@@ -59,7 +60,7 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
 
   return (
     <article>
-      {/* <Suspense fallback={<div>Breadcrumbs</div>}>
+      <Suspense fallback={<div>Breadcrumbs</div>}>
         <Breadcrumbs
           items={[
             { label: 'Database', url: '/database' },
@@ -74,7 +75,7 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
             },
           ]}
         />
-      </Suspense> */}
+      </Suspense>
       <div>
         <h2 className='text-3xl sm:text-4xl xl:text-5xl font-semibold mb-2 leading-tight md:mb-4'>
           {title}
@@ -96,6 +97,9 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
           <Image
             src={meta.imgUrl}
             fill
+            blurDataURL={IMAGE_PLACEHOLDER}
+            priority
+            placeholder='blur'
             alt='Image'
             sizes='(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 100vw'
             className='rounded-md object-cover object-center'
@@ -103,7 +107,7 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
         </AspectRatio>
         <div className='px-4 leading-relaxed'>{meta.description}</div>
         <Button className='md:w-52 mt-20 h-11' asChild variant='secondary'>
-          <Link href={url} className='flex gap-2'>
+          <Link href={url} className='flex gap-2' target='_blank'>
             <span className='mr-1'>Visit resource</span>
             <Image
               src={meta.iconUrl}
