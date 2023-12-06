@@ -50,19 +50,19 @@ const garamond = localFont({
   variable: '--font-garamond',
 })
 
-const notoTc = localFont({
-  src: [
-    {
-      path: '../public/fonts/noto-sans-tc-regular.woff2',
-      weight: '400',
-    },
-    {
-      path: '../public/fonts/noto-sans-tc-semi-bold.woff2',
-      weight: '600',
-    },
-  ],
-  variable: '--font-noto',
-})
+// const notoTc = localFont({
+//   src: [
+//     {
+//       path: '../public/fonts/noto-sans-tc-regular.woff2',
+//       weight: '400',
+//     },
+//     {
+//       path: '../public/fonts/noto-sans-tc-semi-bold.woff2',
+//       weight: '600',
+//     },
+//   ],
+//   variable: '--font-noto',
+// })
 
 export default function RootLayout({
   children,
@@ -70,10 +70,7 @@ export default function RootLayout({
   children: React.ReactNode
 }): React.JSX.Element {
   return (
-    <html
-      lang='en'
-      className={clsx(garamond.variable, notoTc.variable, 'h-full')}
-    >
+    <html lang='en' className={clsx(garamond.variable, 'h-full')}>
       <body className='relative antialiased flex flex-col min-h-[100dvh] font-noto'>
         <ThemeProvider
           attribute='class'
