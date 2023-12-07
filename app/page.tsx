@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
@@ -6,7 +6,7 @@ import { getPayloadClient } from '../src/getPayload'
 import { Page } from '../src/payload-types'
 
 import AlgoliaSearchComponent from '@/components/algolia/AlgoliaSearchComponent'
-// import SplineComponent from '@/components/SplineComponent'
+import SplineComponent from '@/components/SplineComponent'
 import { Button } from '@/components/ui/button'
 
 const Home = async (): Promise<JSX.Element> => {
@@ -15,7 +15,7 @@ const Home = async (): Promise<JSX.Element> => {
   return (
     <main className='flex flex-col flex-1 px-3'>
       <div className='flex-1 flex justify-start items-center mt-14 sm:mt-24 flex-col relative'>
-        <div className='flex flex-col w-full justify-center items-center text-center'>
+        <div className='flex flex-col w-full justify-center items-center text-center lg:w-3/4'>
           <h1 className='font-semibold text-5xl sm:text-6xl mb-6'>
             <span>The Doors of Perception</span>
           </h1>
@@ -30,9 +30,9 @@ const Home = async (): Promise<JSX.Element> => {
             <AlgoliaSearchComponent className='w-[200px] sm:w-[300px] h-12 self-center' />
           </div>
         </div>
-        {/* <div className='fixed w-full h-2/3 bottom-0 left-0 -z-10'>
+        <div className='fixed w-full h-2/3 bottom-0 left-0 -z-10'>
           <SplineComponent />
-        </div> */}
+        </div>
       </div>
     </main>
   )
