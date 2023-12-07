@@ -40,7 +40,12 @@ const AlgoliaSearchComponent = ({
   return (
     <>
       <SearchButton className={className} onButtonClick={setOpen} />
-      <Button variant='ghost' size='icon' className='mr-2'>
+      <Button
+        variant='ghost'
+        size='icon'
+        className='mr-2 md:hidden'
+        onClick={() => setOpen(true)}
+      >
         <SearchIcon className='h-[1.35rem] w-[1.35rem] text-primary' />
       </Button>
       <Dialog open={open} onOpenChange={setOpen}>

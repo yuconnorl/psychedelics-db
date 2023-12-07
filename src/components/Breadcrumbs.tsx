@@ -25,11 +25,12 @@ const Breadcrumbs = ({ items }: Props): JSX.Element => {
       <ol className='list-reset flex items-center'>
         {items.map(({ url, label, isCategory }, index) => {
           const isLastItem = index === items.length - 1
+          const isMiddleItem = index > 0 && index < items.length - 1
           const modifiedUrl = isCategory ? `${url}?layout=${layout}` : url
           return (
             <Fragment key={url}>
               {isLastItem ? (
-                <li className='w-[250px]'>
+                <li className='w-[250px] truncate'>
                   <span
                     className={clsx(
                       pathname === url
@@ -42,14 +43,17 @@ const Breadcrumbs = ({ items }: Props): JSX.Element => {
                   </span>
                 </li>
               ) : (
-                <li key={index}>
+                <li
+                  key={index}
+                  className={clsx(isMiddleItem && 'w-32 truncate')}
+                >
                   <Link
                     href={modifiedUrl}
                     className={clsx(
                       pathname === url
                         ? 'text-foreground'
                         : 'text-muted-foreground',
-                      'truncate hover:opacity-50 transition-opacity',
+                      'truncate hover:opacity-50 transition-opacity block',
                     )}
                   >
                     {label}

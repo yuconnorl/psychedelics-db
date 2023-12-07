@@ -136,7 +136,7 @@ export const Mescaline = ({ className }: Props): JSX.Element => {
       xmlns='http://www.w3.org/2000/svg'
       version='1.1'
       viewBox='0 0 131.81 72.082'
-      className={cn('w-48 h-32 sm:w-60', className)}
+      className={cn('w-36 h-28 sm:w-60 sm:h-32', className)}
       width='262'
       height='144'
     >
