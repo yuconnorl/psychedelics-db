@@ -100,9 +100,9 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
             blurDataURL={IMAGE_PLACEHOLDER}
             priority
             placeholder='blur'
-            alt='Image'
+            alt={`OG Image of ${title}`}
             sizes='(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 100vw'
-            className='rounded-md object-cover object-center'
+            className='rounded-md object-cover object-center w-auto h-auto'
           />
         </AspectRatio>
         <div className='px-2 md:px-3 leading-relaxed'>{meta.description}</div>
