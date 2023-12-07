@@ -47,15 +47,15 @@ const StackCard = async ({
             </p>
           </CardContent>
           <CardFooter>
-            <div className='relative flex gap-1.5 items-center text-muted-foreground'>
+            <div className='relative flex gap-1.5 items-center text-muted-foreground truncate'>
               <Image
                 src={meta.iconUrl}
                 alt={`Icon of ${title}`}
-                width={20}
-                height={20}
-                className='object-contain'
+                width={16}
+                height={16}
+                className='object-contain w-4 h-4'
               />
-              <p className='text-sm break-all'>{url}</p>
+              <p className='text-sm break-all truncate'>{url}</p>
             </div>
           </CardFooter>
         </div>

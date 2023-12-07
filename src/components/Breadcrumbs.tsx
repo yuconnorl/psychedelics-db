@@ -45,7 +45,7 @@ const Breadcrumbs = ({ items }: Props): JSX.Element => {
               ) : (
                 <li
                   key={index}
-                  className={clsx(isMiddleItem && 'w-32 truncate')}
+                  className={clsx(isMiddleItem && 'max-w-[8rem] truncate')}
                 >
                   <Link
                     href={modifiedUrl}
