@@ -15,7 +15,7 @@ import {
 const subArr = [
   {
     name: 'LSD',
-    description: 'Lysergic acid diethylamide, LSD',
+    description: 'LSD',
     formula: Lsd,
   },
   {
@@ -25,17 +25,17 @@ const subArr = [
   },
   {
     name: 'Mescaline',
-    description: '3,4,5-trimethoxyphenethylamine, Mescaline',
+    description: 'Mescaline',
     formula: Mescaline,
   },
   {
     name: 'DMT',
-    description: 'N,N-Dimethyltryptamine, DMT',
+    description: 'DMT',
     formula: Dmt,
   },
   {
     name: 'MDMA',
-    description: '3,4-Methyl​enedioxy​methamphetamine, MDMA',
+    description: 'MDMA',
     formula: Mdma,
   },
 ]
@@ -51,8 +51,8 @@ const RandomSubstance = () => {
 
   return (
     <div className='absolute opacity-10 flex flex-col items-center pointer-events-none'>
-      <Formula />
-      <span className='mt-2 sm:mt-4 font-semibold font-garamond'>
+      <Formula className='opacity-[0.5]' />
+      <span className='mt-2 sm:mt-4 font-semibold font-garamond font-sm sm:font-base'>
         {description}
       </span>
     </div>

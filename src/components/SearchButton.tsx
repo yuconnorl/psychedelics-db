@@ -9,7 +9,7 @@ type Props = {
 
 const SearchButton = ({ onButtonClick, className }: Props): JSX.Element => {
   return (
-    <div className='relative group'>
+    <div className='hidden md:block relative group'>
       <div className='absolute search-button-bg -inset-0.5 rounded-lg blur group-hover:blur-md transition -z-10 opacity-60' />
       <button
         type='button'

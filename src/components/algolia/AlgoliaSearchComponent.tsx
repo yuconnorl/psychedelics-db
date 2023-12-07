@@ -5,6 +5,7 @@ import { InstantSearchNext } from 'react-instantsearch-nextjs'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { SearchIcon } from '../Icons'
 import SearchButton from '../SearchButton'
 import searchClient from './algoliaSearchClient'
 import CustomHits from './CustomHits'
@@ -13,6 +14,7 @@ import NoResultsBoundary from './NoResultsBoundary'
 import NoResultsFallback from './NoResultsFallback'
 
 import { Dialog, DialogContent } from '@/components/CustomDialog'
+import { Button } from '@/components/ui/button'
 
 type SearchButtonProps = {
   className?: string
@@ -38,6 +40,9 @@ const AlgoliaSearchComponent = ({
   return (
     <>
       <SearchButton className={className} onButtonClick={setOpen} />
+      <Button variant='ghost' size='icon' className='mr-2'>
+        <SearchIcon className='h-[1.35rem] w-[1.35rem] text-primary' />
+      </Button>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent>
           <InstantSearchNext

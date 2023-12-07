@@ -12,7 +12,7 @@ type SkeletonCardProps = {
 
 const GridSkeletonCard = () => {
   return (
-    <Card className='relative break-inside mb-4 sm:group-hover:-translate-x-2 sm:group-hover:-translate-y-2 lg:group-hover:-translate-x-3 lg:group-hover:-translate-y-3 transition-transform z-10'>
+    <Card className='relative break-inside mb-4 z-10'>
       <CardHeader>
         <div className='flex gap-4 flex-col'>
           <Skeleton className='w-[230px] h-5 rounded-full' />
@@ -20,7 +20,7 @@ const GridSkeletonCard = () => {
         </div>
       </CardHeader>
       <CardContent className='flex flex-col gap-4'>
-        <div className='relative saturate-[0.15] group-hover:saturate-100 transition-[filter]'>
+        <div className='relative saturate-[0.15] transition-[filter]'>
           <AspectRatio ratio={21 / 9}>
             <Skeleton className='w-full h-full rounded-md' />
           </AspectRatio>
@@ -39,7 +39,7 @@ const GridSkeletonCard = () => {
 
 const StackSkeletonCard = () => {
   return (
-    <Card className='relative overflow-hidden grid grid-rows-[minmax(0,1fr)_200px] sm:grid-rows-none sm:grid-cols-[minmax(0,1fr)_240px] xl:grid-cols-[minmax(0,1fr)_320px] group-hover:-translate-x-2 group-hover:-translate-y-2 lg:group-hover:-translate-x-3 lg:group-hover:-translate-y-3 transition-transform z-10'>
+    <Card className='relative overflow-hidden grid grid-rows-[minmax(0,1fr)_200px] sm:grid-rows-none sm:grid-cols-[minmax(0,1fr)_240px] xl:grid-cols-[minmax(0,1fr)_320px] z-10'>
       <div>
         <CardHeader>
           <div className='flex gap-4 flex-col'>

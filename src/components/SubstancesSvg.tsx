@@ -40,7 +40,7 @@ export const Lsd = ({ className }: Props): JSX.Element => {
       xmlns='http://www.w3.org/2000/svg'
       stroke='currentColor'
       fill='currentColor'
-      className={cn('w-48 h-48', className)}
+      className={cn('w-32 h-32 sm:w-48 sm:h-48', className)}
     >
       <path d='m89.131 274.84 1.701.98v44.48l-1.701.98v-46.44ZM94.603 278.49h1.7v39.14h-1.7v-39.14Z' />
       <path d='m89.131 321.28 1.701-.98 38.528 22.25v1.965L89.131 321.28ZM129.36 344.515v-1.965l38.54-22.25.83.48.17.87-39.54 22.865ZM129.785 337.945l-.85-1.47 33.915-19.58.85 1.47-33.915 19.58ZM169.555 320.075l-.825.705-.83-.48v-44.48l.83-.48.83.48-.005 44.255Z' />
@@ -100,7 +100,7 @@ export const Mdma = ({ className }: Props): JSX.Element => {
       width='256'
       height='113'
       viewBox='0 0 205 90'
-      className={cn('w-48 sm:w-60 h-32', className)}
+      className={cn('w-32 h-24 sm:w-60 h-32', className)}
       version='1.1'
       xmlns='http://www.w3.org/2000/svg'
       stroke='currentColor'

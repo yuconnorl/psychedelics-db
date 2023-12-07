@@ -31,7 +31,6 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
   const [sheetOpen, setSheetOpen] = useState(false)
   const pathname = usePathname()
   const sheetPortalRef = useRef(null)
-
   const isRoot = pathname === '/'
 
   useEffect(() => {
@@ -45,7 +44,7 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
     <header
       className={cn(
         'pt-[1.85rem] pb-6 sticky top-0 w-full items-center bg-background/90 supports-[backdrop-filter]:bg-background/60 backdrop-blur z-50',
-        !isRoot && 'border-b py-6',
+        !isRoot && 'border-b py-4 sm:py-6',
       )}
     >
       <div className='container px-6 lg:pr-8 lg:pl-10 flex items-center gap-3 w-full justify-between'>
@@ -79,6 +78,7 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
           <ThemeSwitch />
         </div>
         <div className='md:hidden block'>
+          <AlgoliaSearchComponent className='w-60' />
           <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger>
               <HamburgerIcon />
