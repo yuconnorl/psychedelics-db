@@ -80,14 +80,14 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
         <h2 className='text-3xl sm:text-4xl xl:text-5xl font-semibold mb-2 leading-tight md:mb-4'>
           {title}
         </h2>
-        <div className='flex gap-2 my-4'>
+        <section className='flex gap-2 my-4'>
           <Badge className='w-fit' variant='secondary'>
             {capitalizeFirstLetter(type)}
           </Badge>
           <Badge className='w-fit' variant='secondary'>
             {LANGUAGE_MAP[language]}
           </Badge>
-        </div>
+        </section>
       </div>
       <div className='flex flex-col gap-2'>
         <AspectRatio

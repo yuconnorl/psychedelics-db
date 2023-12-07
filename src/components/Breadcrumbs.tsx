@@ -29,7 +29,7 @@ const Breadcrumbs = ({ items }: Props): JSX.Element => {
           return (
             <Fragment key={url}>
               {isLastItem ? (
-                <li className='truncate w-[250px]'>
+                <li className='w-[250px]'>
                   <span
                     className={clsx(
                       pathname === url
@@ -57,7 +57,7 @@ const Breadcrumbs = ({ items }: Props): JSX.Element => {
                 </li>
               )}
               {index < items.length - 1 && (
-                <span className='mx-[0.1rem] md:mx-1.5 text-muted-foreground flex items-center'>
+                <span className='mx-[0.05rem] md:mx-1.5 text-muted-foreground flex items-center'>
                   <CaretRightIcon className='h-4 w-4 md:h-5 md:w-5' />
                 </span>
               )}

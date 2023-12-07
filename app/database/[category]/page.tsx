@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
@@ -55,10 +56,12 @@ const CategoryPage = async ({
         {CATEGORY_OPTIONS_MAP[params.category]}
       </h2>
       <div className='flex flex-col gap-4 relative'>
-        <CardContainer>
-          <Grid params={params} />
-          <Stack params={params} />
-        </CardContainer>
+        <Suspense fallback={<div>Cardcontainer</div>}>
+          <CardContainer>
+            <Grid params={params} />
+            <Stack params={params} />
+          </CardContainer>
+        </Suspense>
       </div>
     </div>
   )

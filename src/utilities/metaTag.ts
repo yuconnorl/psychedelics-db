@@ -20,7 +20,7 @@ export const resolveMetaTag = async (
     const rootElement = await parse(body)
 
     const iconFallback = '/fallback-icon.png'
-    const imageFallback = '/psyche-icon.png'
+    const imageFallback = '/psychedelic-database-intro.jpeg'
 
     const headLink = rootElement
       .getElementsByTagName('head')[0]

@@ -30,7 +30,7 @@ const GridCard = async ({
 
   return (
     <Link href={`/database/${category}/${slug}`}>
-      <Card className='relative break-inside mb-4 sm:group-hover:-translate-x-2 sm:group-hover:-translate-y-2 lg:group-hover:-translate-x-3 lg:group-hover:-translate-y-3 transition-transform z-10'>
+      <Card className='relative break-inside sm:group-hover:-translate-x-2 sm:group-hover:-translate-y-2 lg:group-hover:-translate-x-3 lg:group-hover:-translate-y-3 transition-transform z-10'>
         <CardHeader>
           <CardTitle className='leading-normal mb-2'>{title}</CardTitle>
           <div className='flex gap-2'>
@@ -91,7 +91,7 @@ const GridLayoutCard = async ({
     <>
       {filterRecord.map(
         ({ id, category, slug, title, url, type, language }) => (
-          <div key={id} className='relative group h-fit'>
+          <article key={id} className='relative group h-fit mb-2 sm:mb-4'>
             <GridCard
               category={category}
               slug={slug}
@@ -101,7 +101,7 @@ const GridLayoutCard = async ({
               language={language}
             />
             <div className='absolute bg-foreground w-[calc(100%-5px)] h-[calc(100%-5px)] top-1 left-1 rounded-lg -z-10' />
-          </div>
+          </article>
         ),
       )}
     </>

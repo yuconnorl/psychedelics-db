@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 const CategoriesCard = ({ categoryTitle, category }) => {
   return (
-    <div className='relative group h-fit'>
+    <article className='relative group h-fit'>
       <Link href={`/database/${category}`}>
         <Card className='break-inside sm:group-hover:-translate-x-2 sm:group-hover:-translate-y-2 transition-transform z-10'>
           <CardHeader className='p-4 md:p-6'>
@@ -25,7 +25,7 @@ const CategoriesCard = ({ categoryTitle, category }) => {
         </Card>
       </Link>
       <div className='absolute bg-foreground w-[calc(100%-5px)] h-[calc(100%-5px)] top-1 left-1 rounded-lg -z-10' />
-    </div>
+    </article>
   )
 }
 
