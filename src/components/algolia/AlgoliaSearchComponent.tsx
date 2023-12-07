@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { InstantSearchNext } from 'react-instantsearch-nextjs'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 import { SearchIcon } from '../Icons'
 import SearchButton from '../SearchButton'
@@ -15,6 +16,7 @@ import NoResultsFallback from './NoResultsFallback'
 
 import { Dialog, DialogContent } from '@/components/CustomDialog'
 import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 
 type SearchButtonProps = {
   className?: string
@@ -24,6 +26,8 @@ const AlgoliaSearchComponent = ({
   className,
 }: SearchButtonProps): JSX.Element => {
   const [open, setOpen] = useState(false)
+  const pathname = usePathname()
+  const isRoot = pathname === '/'
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -43,7 +47,7 @@ const AlgoliaSearchComponent = ({
       <Button
         variant='ghost'
         size='icon'
-        className='mr-2 md:hidden'
+        className={cn('mr-1.5 md:hidden', isRoot && 'hidden')}
         onClick={() => setOpen(true)}
       >
         <SearchIcon className='h-[1.35rem] w-[1.35rem] text-primary' />

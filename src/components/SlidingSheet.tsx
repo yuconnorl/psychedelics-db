@@ -28,7 +28,7 @@ const SlidingSheet = ({ recordsMapEn, recordsMapZh }: Props): JSX.Element => {
   const sheetPortal = document.getElementById('sheet-portal')
 
   return (
-    <div className='md:hidden block'>
+    <div className='block md:hidden'>
       <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
         <SheetTrigger>
           <HamburgerIcon />

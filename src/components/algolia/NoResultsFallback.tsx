@@ -63,7 +63,7 @@ const NoResultsFallback = (): JSX.Element => {
   const { indexUiState, status } = useInstantSearch()
 
   return (
-    <div className='flex items-center justify-center relative'>
+    <div className='flex items-center justify-center relative px-2'>
       {indexUiState.query && status !== 'loading' ? (
         <div className='text-muted-foreground pointer-events-none'>
           <span className='mr-1 text-primary'>"{indexUiState.query}"</span>
@@ -72,7 +72,7 @@ const NoResultsFallback = (): JSX.Element => {
       ) : (
         <>
           <RandomSubstance />
-          <p className='text-muted-foreground pointer-events-none'>
+          <p className='text-muted-foreground pointer-events-none text-center'>
             Try searching for something cool
           </p>
         </>

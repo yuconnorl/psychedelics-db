@@ -77,8 +77,8 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
           </div>
           <ThemeSwitch />
         </div>
-        <div className='md:hidden block'>
-          <AlgoliaSearchComponent className='w-60' />
+        <div className='block md:hidden'>
+          <AlgoliaSearchComponent className='hidden' />
           <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger>
               <HamburgerIcon />
