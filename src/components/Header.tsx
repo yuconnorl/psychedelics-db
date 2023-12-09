@@ -9,7 +9,6 @@ import SidebarAccordion from './SidebarAccordion'
 import ThemeSwitch from './ThemeSwitch'
 
 import AlgoliaSearchComponent from '@/components/algolia/AlgoliaSearchComponent'
-import { Button } from '@/components/ui/button'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Separator } from '@/components/ui/separator'
 import {
@@ -62,7 +61,7 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
           </Link>
         </div>
         <div className='hidden md:flex gap-3 md:gap-5 items-center justify-around'>
-          {!isRoot && <AlgoliaSearchComponent className='w-52 lg:w-60' />}
+          {!isRoot && <AlgoliaSearchComponent className='w-60' />}
           <div className='md:flex gap-3 md:gap-5 items-center text-foreground/70'>
             <Link
               href={'/database'}
@@ -80,7 +79,11 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
           <Separator orientation='vertical' className='h-6 w-[1.6px]' />
           <div className='flex gap-3 md:gap-5 items-center'>
             <ThemeSwitch />
-            <Link href={''} target='_blank' className='group'>
+            <Link
+              href={'https://tinyurl.com/3fr2ddu7'}
+              target='_blank'
+              className='group block'
+            >
               <TelegramIcon className='text-primary group-hover:text-primary/50 transition-colors' />
             </Link>
           </div>
