@@ -11,24 +11,23 @@ const Sidebar = async (): Promise<JSX.Element> => {
   const recordsMapZh = {} as RecordMap
   const records = await getAllRecords()
 
-  const mandarinData = records.filter((record) => record.language === 'zh-tw')
-  const englishData = records.filter((record) => record.language === 'en')
+  const processRecords = (data, map) => {
+    data
+      .sort((a, b) => a.title.localeCompare(b.title))
+      .forEach((record) => {
+        map[record.category] = map[record.category] || []
+        map[record.category].push(record)
+      })
+  }
 
-  mandarinData
-    .sort((a, b) => a.title.localeCompare(b.title))
-    .forEach((record) => {
-      recordsMapZh[record.category]
-        ? recordsMapZh[record.category].push(record)
-        : (recordsMapZh[record.category] = [record])
-    })
-
-  englishData
-    .sort((a, b) => a.title.localeCompare(b.title))
-    .forEach((record) => {
-      recordsMapEn[record.category]
-        ? recordsMapEn[record.category].push(record)
-        : (recordsMapEn[record.category] = [record])
-    })
+  processRecords(
+    records.filter((record) => record.language === 'zh-tw'),
+    recordsMapZh,
+  )
+  processRecords(
+    records.filter((record) => record.language === 'en'),
+    recordsMapEn,
+  )
 
   return (
     <aside className='fixed top-10 z-30 hidden w-full shrink-0 md:sticky md:block'>

@@ -61,7 +61,7 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
           </Link>
         </div>
         <div className='hidden md:flex gap-3 md:gap-5 items-center justify-around'>
-          {!isRoot && <AlgoliaSearchComponent className='w-60' />}
+          {!isRoot && <AlgoliaSearchComponent className='w-52 lg:w-60' />}
           <div className='md:flex gap-3 md:gap-5 items-center text-foreground/70'>
             <Link
               href={'/database'}

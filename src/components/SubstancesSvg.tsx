@@ -100,7 +100,7 @@ export const Mdma = ({ className }: Props): JSX.Element => {
       width='256'
       height='113'
       viewBox='0 0 205 90'
-      className={cn('w-32 h-24 sm:w-60 h-32', className)}
+      className={cn('w-32 h-24 sm:w-60 sm:h-32', className)}
       version='1.1'
       xmlns='http://www.w3.org/2000/svg'
       stroke='currentColor'

@@ -71,7 +71,7 @@
   }
 
   .dark-before {
-    @apply before:transition-all before:duration-500 before:content-[''] before:top-[0.2rem] before:left-[0.3rem] before:absolute before:block before:w-[1.1rem] before:h-[1.1em] before:rounded-[24px] before:bg-muted-foreground before:data-[state=checked]:bg-background before:data-[state=checked]:translate-x-[18px];
+    @apply before:transition-all before:duration-500 before:content-[''] before:left-[0.3rem] before:absolute before:block before:w-[1.1rem] before:h-[1.1em] before:rounded-[24px] before:bg-muted-foreground before:data-[state=checked]:bg-background before:data-[state=checked]:translate-x-[18px];
   }
 
   .dark-after {

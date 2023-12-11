@@ -55,7 +55,7 @@ const AlgoliaSearchComponent = ({
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent>
           <InstantSearchNext
-            indexName='psychedelic_db'
+            indexName='psychedelics_db'
             searchClient={searchClient}
           >
             <CustomSearchBox />
