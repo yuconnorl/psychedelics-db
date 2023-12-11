@@ -52,7 +52,7 @@ const CardContainer = ({ children }: ChildrenProps): JSX.Element => {
       <Suspense fallback={<SkeletonCard isGrid={isGrid} />}>
         <div
           className={clsx(
-            isGrid ? 'columns-xs xl:columns-sm' : 'flex flex-col gap-4',
+            isGrid ? 'columns-3xs lg:columns-xs' : 'flex flex-col gap-4',
           )}
         >
           {layoutMap[layout]}

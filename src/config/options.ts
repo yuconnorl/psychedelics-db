@@ -24,6 +24,8 @@ export const CATEGORY_OPTIONS = [
   'press-n-journal',
   'conference',
   'podcast-speech',
+  'research-topics',
+  'influential-people',
 ] as const
 
 export const CATEGORY_OPTIONS_MAP = {
@@ -52,6 +54,8 @@ export const CATEGORY_OPTIONS_MAP = {
   'press-n-journal': '出版社與期刊',
   conference: '國際會議與研討會',
   'podcast-speech': '研討會、線上演講影片與 Podcast',
+  'research-topics': '專題文章',
+  'influential-people': '全球啟靈藥社群重要人物',
 }
 
 export const TYPE_OPTIONS = [
