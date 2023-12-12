@@ -10,8 +10,6 @@ import SplineComponent from '@/components/SplineComponent'
 import { Button } from '@/components/ui/button'
 
 const Home = async (): Promise<JSX.Element> => {
-  const payload = await getPayloadClient()
-
   return (
     <>
       <main className='flex flex-col flex-1 px-3'>
@@ -28,7 +26,10 @@ const Home = async (): Promise<JSX.Element> => {
               <Button className='h-12' asChild>
                 <Link href={'/database'}>Collections</Link>
               </Button>
-              <AlgoliaSearchComponent className='w-[200px] sm:w-[300px] h-12 self-center' />
+              <AlgoliaSearchComponent
+                searchBarClassName='w-[200px] sm:w-[300px] h-12 self-center flex'
+                searchIconClassName='hidden'
+              />
             </div>
           </div>
           <div className='fixed w-full h-2/3 bottom-0 left-0 -z-10'>

@@ -19,11 +19,13 @@ import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
 type SearchButtonProps = {
-  className?: string
+  searchBarClassName?: string
+  searchIconClassName?: string
 }
 
 const AlgoliaSearchComponent = ({
-  className,
+  searchBarClassName,
+  searchIconClassName,
 }: SearchButtonProps): JSX.Element => {
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
@@ -43,11 +45,14 @@ const AlgoliaSearchComponent = ({
 
   return (
     <>
-      <SearchButton className={className} onButtonClick={setOpen} />
+      <SearchButton
+        className={cn('hidden md:flex', searchBarClassName)}
+        onButtonClick={setOpen}
+      />
       <Button
         variant='ghost'
         size='icon'
-        className={cn('mr-1.5 md:hidden', isRoot && 'hidden')}
+        className={cn('md:hidden', searchIconClassName)}
         onClick={() => setOpen(true)}
       >
         <SearchIcon className='h-[1.35rem] w-[1.35rem] text-primary' />

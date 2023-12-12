@@ -60,76 +60,79 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
             </span>
           </Link>
         </div>
-        <div className='hidden md:flex gap-3 md:gap-5 items-center justify-around'>
-          {!isRoot && <AlgoliaSearchComponent className='w-52 lg:w-60' />}
-          <div className='md:flex gap-3 md:gap-5 items-center text-foreground/70'>
-            <Link
-              href={'/database'}
-              className='hover:opacity-40 transition-opacity'
-            >
-              Database
-            </Link>
-            <Link
-              href={'/about'}
-              className='hover:opacity-40 transition-opacity'
-            >
-              About
-            </Link>
+        <div className='flex items-center gap-3 md:gap-5'>
+          {!isRoot && (
+            <AlgoliaSearchComponent searchBarClassName='w-52 lg:w-60' />
+          )}
+          <div className='hidden md:flex gap-3 md:gap-5 items-center justify-around'>
+            <div className='md:flex gap-3 md:gap-5 items-center text-foreground/70'>
+              <Link
+                href={'/database'}
+                className='hover:opacity-40 transition-opacity'
+              >
+                Database
+              </Link>
+              <Link
+                href={'/about'}
+                className='hover:opacity-40 transition-opacity'
+              >
+                About
+              </Link>
+            </div>
+            <Separator orientation='vertical' className='h-6 w-[1.6px]' />
+            <div className='flex gap-3 md:gap-5 items-center'>
+              <ThemeSwitch />
+              <Link
+                href={'https://tinyurl.com/3fr2ddu7'}
+                target='_blank'
+                className='group block'
+              >
+                <TelegramIcon className='text-primary group-hover:text-primary/50 transition-colors' />
+              </Link>
+            </div>
           </div>
-          <Separator orientation='vertical' className='h-6 w-[1.6px]' />
-          <div className='flex gap-3 md:gap-5 items-center'>
-            <ThemeSwitch />
-            <Link
-              href={'https://tinyurl.com/3fr2ddu7'}
-              target='_blank'
-              className='group block'
-            >
-              <TelegramIcon className='text-primary group-hover:text-primary/50 transition-colors' />
-            </Link>
+          <div className='flex md:hidden'>
+            <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
+              <SheetTrigger>
+                <HamburgerIcon />
+              </SheetTrigger>
+              <SheetPortal container={sheetPortalRef.current}>
+                <SheetContent className='w-[85%] sm:w-[540px]'>
+                  <ScrollArea className='h-[calc(100vh-6rem)] max-h-[calc(100vh-6rem)]'>
+                    <div className='text-muted-foreground mb-8'>
+                      <PsychedelicDBIcon className='w-9 h-9' />
+                    </div>
+                    <div className='flex gap-3 sm:gap-3 flex-col text-base sm:text-lg mb-4 sm:mb-6'>
+                      <Link
+                        href={'/database'}
+                        className='hover:opacity-40 transition-opacity'
+                      >
+                        Database
+                      </Link>
+                      <Link
+                        href={'/about'}
+                        className='hover:opacity-40 transition-opacity'
+                      >
+                        About
+                      </Link>
+                    </div>
+                    <SidebarAccordion
+                      recordsMapEn={recordsMapEn}
+                      recordsMapZh={recordsMapZh}
+                      onCategoryClickedAndCloseSheet={() => setSheetOpen(false)}
+                    />
+                    <div className='flex gap-4 mt-4 items-center'>
+                      Switch Theme
+                      <ThemeSwitch />
+                    </div>
+                  </ScrollArea>
+                  <div className='h-16 flex justify-center items-center text-muted-foreground font-garamond'>
+                    Psychedelics Database
+                  </div>
+                </SheetContent>
+              </SheetPortal>
+            </Sheet>
           </div>
-        </div>
-        <div className='block md:hidden'>
-          <AlgoliaSearchComponent className='hidden' />
-          <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
-            <SheetTrigger>
-              <HamburgerIcon />
-            </SheetTrigger>
-            <SheetPortal container={sheetPortalRef.current}>
-              <SheetContent className='w-[85%] sm:w-[540px]'>
-                <ScrollArea className='h-[calc(100vh-6rem)] max-h-[calc(100vh-6rem)]'>
-                  <div className='text-muted-foreground mb-8'>
-                    <PsychedelicDBIcon className='w-9 h-9' />
-                  </div>
-                  <div className='flex gap-3 sm:gap-3 flex-col text-base sm:text-lg mb-4 sm:mb-6'>
-                    <Link
-                      href={'/database'}
-                      className='hover:opacity-40 transition-opacity'
-                    >
-                      Database
-                    </Link>
-                    <Link
-                      href={'/about'}
-                      className='hover:opacity-40 transition-opacity'
-                    >
-                      About
-                    </Link>
-                  </div>
-                  <SidebarAccordion
-                    recordsMapEn={recordsMapEn}
-                    recordsMapZh={recordsMapZh}
-                    onCategoryClickedAndCloseSheet={() => setSheetOpen(false)}
-                  />
-                  <div className='flex gap-4 mt-4 items-center'>
-                    Switch Theme
-                    <ThemeSwitch />
-                  </div>
-                </ScrollArea>
-                <div className='h-16 flex justify-center items-center text-muted-foreground font-garamond'>
-                  Psychedelic Database
-                </div>
-              </SheetContent>
-            </SheetPortal>
-          </Sheet>
         </div>
       </div>
     </header>
