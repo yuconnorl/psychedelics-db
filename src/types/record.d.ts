@@ -1,19 +1,11 @@
 /* eslint-disable @typescript-eslint/consistent-type-definitions */
+import type { Record } from '../payload-types'
+
 import type { CATEGORY_OPTIONS } from '@/config/options'
 
 export type CategoryOptionsType = (typeof CATEGORY_OPTIONS)[number]
 
-export type RecordType = {
-  id: string
-  title: string
-  language: string
-  url: string
-  createdAt: string
-  updatedAt: string
-  category: CategoryOptionsType
-  slug: string
-  type: string
-}
+export type RecordType = Record
 
 export type InfoCard = {
   category: string

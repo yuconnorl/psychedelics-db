@@ -4,6 +4,18 @@
   "version": "1.0.0",
   "main": "dist/server.js",
   "license": "MIT",
+  "author": {
+    "email": "yuconnorl@gmail.com",
+    "name": "yuc",
+    "url": "https://terminal-420.space"
+  },
+  "maintainers": [
+    {
+      "name": "yuc",
+      "email": "yuconnorl@gmail.com",
+      "url": "https://terminal-420.space"
+    }
+  ],
   "scripts": {
     "dev": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts nodemon",
     "seed": "rm -rf media && cross-env PAYLOAD_PUBLIC_SEED=true PAYLOAD_DROP_DATABASE=true PAYLOAD_CONFIG_PATH=src/payload.config.ts ts-node src/server.ts",
@@ -23,7 +35,6 @@
   "dependencies": {
     "@payloadcms/bundler-webpack": "latest",
     "@payloadcms/db-mongodb": "latest",
-    "@payloadcms/db-postgres": "^0.1.12",
     "@payloadcms/next-payload": "^0.1.9",
     "@payloadcms/richtext-slate": "latest",
     "@radix-ui/react-accordion": "^1.1.2",
@@ -49,10 +60,10 @@
     "express": "^4.17.1",
     "instantsearch.css": "^8.1.0",
     "lucide-react": "^0.292.0",
-    "next": "^14.0.2",
+    "next": "^13.4.0",
     "next-themes": "^0.2.1",
     "node-html-parser": "^6.1.11",
-    "payload": "^2.0.15",
+    "payload": "^2.0.4",
     "qs": "^6.11.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

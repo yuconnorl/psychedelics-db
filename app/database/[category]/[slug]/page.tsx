@@ -49,6 +49,7 @@ export async function generateMetadata({
 
 const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
   const records = await getAllRecords()
+
   const filterRecord = records.find((record) => record.slug === params.slug)
 
   if (!filterRecord) {

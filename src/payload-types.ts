@@ -8,70 +8,128 @@
 
 export interface Config {
   collections: {
-    pages: Page
-    users: User
-    'payload-preferences': PayloadPreference
-    'payload-migrations': PayloadMigration
-  }
-  globals: {}
+    records: Record;
+    media: Media;
+    users: User;
+    'payload-preferences': PayloadPreference;
+    'payload-migrations': PayloadMigration;
+  };
+  globals: {};
 }
-export interface Page {
-  id: string
-  title: string
-  richText?: {
-    [k: string]: unknown
-  }[]
-  slug?: string
-  updatedAt: string
-  createdAt: string
+export interface Record {
+  id: string;
+  title: string;
+  category?:
+    | (
+        | 'mandarin-speech-video'
+        | 'mandarin-video'
+        | 'mandarin-thesis'
+        | 'mandarin-article'
+        | 'mandarin-file'
+        | 'mandarin-website'
+        | 'mandarin-social-media'
+        | 'mandarin-book'
+        | 'translated-video'
+        | 'waiting-for-translate-video'
+        | 'activity-log-n-data'
+        | 'psychedelics-fundamentals'
+        | 'online-media'
+        | 'research-centre'
+        | 'ngo-research-institute'
+        | 'private-research-institute'
+        | 'ngo-foundation'
+        | 'therapy-institue'
+        | 'health-n-safety'
+        | 'psychotherapy-training'
+        | 'decriminalize-policy'
+        | 'psychotherapists'
+        | 'press-n-journal'
+        | 'conference'
+        | 'podcast-speech'
+        | 'research-topics'
+        | 'influential-people'
+      )
+    | null;
+  type?:
+    | (
+        | 'video'
+        | 'youtube-channel'
+        | 'instagram'
+        | 'twitter'
+        | 'facebook'
+        | 'podcast'
+        | 'article'
+        | 'website'
+        | 'thesis'
+        | 'pdf'
+        | 'book'
+      )
+    | null;
+  language: 'zh-tw' | 'en';
+  url?: string | null;
+  richText?:
+    | {
+        [k: string]: unknown;
+      }[]
+    | null;
+  slug?: string | null;
+  isRecordShow: boolean;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Media {
+  id: string;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  filename: string;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
 }
 export interface User {
-  id: string
-  updatedAt: string
-  createdAt: string
-  email: string
-  resetPasswordToken?: string
-  resetPasswordExpiration?: string
-  salt?: string
-  hash?: string
-  loginAttempts?: number
-  lockUntil?: string
-  password?: string
+  id: string;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password: string | null;
 }
 export interface PayloadPreference {
-  id: string
+  id: string;
   user: {
-    relationTo: 'users'
-    value: string | User
-  }
-  key?: string
+    relationTo: 'users';
+    value: string | User;
+  };
+  key?: string | null;
   value?:
     | {
-        [k: string]: unknown
+        [k: string]: unknown;
       }
     | unknown[]
     | string
     | number
     | boolean
-    | null
-  updatedAt: string
-  createdAt: string
+    | null;
+  updatedAt: string;
+  createdAt: string;
 }
 export interface PayloadMigration {
-  id: string
-  name?: string
-  batch?: number
-  updatedAt: string
-  createdAt: string
+  id: string;
+  name?: string | null;
+  batch?: number | null;
+  updatedAt: string;
+  createdAt: string;
 }
 
+
 declare module 'payload' {
-  export interface GeneratedTypes {
-    collections: {
-      pages: Page
-      users: User
-      'payload-preferences': PayloadPreference
-      'payload-migrations': PayloadMigration
-    }
-  }
+  export interface GeneratedTypes extends Config {}
 }
