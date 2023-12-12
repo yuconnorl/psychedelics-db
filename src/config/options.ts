@@ -1,33 +1,3 @@
-export const CATEGORY_OPTIONS = [
-  'mandarin-speech-video',
-  'mandarin-video',
-  'mandarin-thesis',
-  'mandarin-article',
-  'mandarin-file',
-  'mandarin-website',
-  'mandarin-social-media',
-  'mandarin-book',
-  'translated-video',
-  'waiting-for-translate-video',
-  'activity-log-n-data',
-  'psychedelics-fundamentals',
-  'online-media',
-  'research-centre',
-  'ngo-research-institute',
-  'private-research-institute',
-  'ngo-foundation',
-  'therapy-institue',
-  'health-n-safety',
-  'psychotherapy-training',
-  'decriminalize-policy',
-  'psychotherapists',
-  'press-n-journal',
-  'conference',
-  'podcast-speech',
-  'research-topics',
-  'influential-people',
-] as const
-
 export const CATEGORY_OPTIONS_MAP = {
   'mandarin-speech-video': '中文演講影片',
   'mandarin-video': '中文影片',
@@ -57,6 +27,14 @@ export const CATEGORY_OPTIONS_MAP = {
   'research-topics': '專題文章',
   'influential-people': '全球啟靈藥社群重要人物',
 }
+
+export const CATEGORY_OPTIONS = Object.keys(CATEGORY_OPTIONS_MAP) as Array<
+  keyof typeof CATEGORY_OPTIONS_MAP
+>
+
+export const PAYLOAD_CATEGORY_OPTIONS = Object.entries(
+  CATEGORY_OPTIONS_MAP,
+).map(([value, label]) => ({ value, label }))
 
 export const TYPE_OPTIONS = [
   'video',

@@ -1,8 +1,8 @@
 import type { CollectionConfig } from 'payload/types'
 
 import {
-  CATEGORY_OPTIONS,
   LANGUAGE_OPTIONS,
+  PAYLOAD_CATEGORY_OPTIONS,
   TYPE_OPTIONS,
 } from '../config/options'
 import formatSlug from '../utilities/formatSlug'
@@ -29,13 +29,14 @@ const Records: CollectionConfig = {
           name: 'category',
           label: 'Category',
           type: 'select',
-          options: [...CATEGORY_OPTIONS],
+          options: [...PAYLOAD_CATEGORY_OPTIONS],
         },
         {
           name: 'type',
           label: 'Type of Content',
           type: 'select',
           options: [...TYPE_OPTIONS],
+          defaultValue: 'website',
         },
       ],
     },
@@ -45,6 +46,7 @@ const Records: CollectionConfig = {
       type: 'select',
       options: [...LANGUAGE_OPTIONS],
       required: true,
+      defaultValue: 'en',
     },
     {
       name: 'url',
@@ -62,6 +64,8 @@ const Records: CollectionConfig = {
       type: 'text',
       admin: {
         position: 'sidebar',
+        description:
+          'Slug should format into kebab case and delete any extra hyphen, e.g. "some-slug"',
       },
       hooks: {
         beforeValidate: [formatSlug('title')],
