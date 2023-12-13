@@ -31,7 +31,7 @@ type Props = {
 const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
   const [sheetOpen, setSheetOpen] = useState(false)
   const pathname = usePathname()
-  const sheetPortalRef = useRef(null)
+  const sheetPortalRef = useRef<HTMLElement | null>(null)
   const isRoot = pathname === '/'
 
   useEffect(() => {

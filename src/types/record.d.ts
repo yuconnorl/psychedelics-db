@@ -9,7 +9,7 @@ export type RecordType = Record
 
 export type InfoCard = {
   category: string
-  slug: string
+  slug: string | null | undefined
   title: string
   url: string
   type: string

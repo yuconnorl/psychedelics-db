@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Suspense } from 'react'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
-import { getAllRecords, getAllRecords2 } from '@/api/general'
+import { getAllRecords } from '@/api/general'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import CardContainer from '@/components/CardContainer'
 import Grid from '@/components/GridLayoutCard'
@@ -10,9 +11,7 @@ import Stack from '@/components/StackLayoutCard'
 import { CATEGORY_OPTIONS_MAP } from '@/config/options'
 import { CardParamsProps, CategoryOptionsType, RecordType } from '@/types'
 
-export async function generateStaticParams(): Promise<
-  Record<'category', CategoryOptionsType>[]
-> {
+export async function generateStaticParams() {
   const records = await getAllRecords()
 
   return records.map((record: RecordType) => ({
@@ -32,8 +31,7 @@ export async function generateMetadata({
 const CategoryPage = async ({
   params,
 }: CardParamsProps): Promise<JSX.Element> => {
-  // const records = await getAllRecords()
-  const records = await getAllRecords2()
+  const records = await getAllRecords()
 
   const filterRecord = records.filter(
     (record) => record.category === params.category,

@@ -30,15 +30,17 @@ const UpdateSection = (): JSX.Element => {
   const client = useMemo(
     () =>
       algoliasearch(
-        process.env.PAYLOAD_PUBLIC_ALGOLIA_APP_ID,
-        process.env.PAYLOAD_PUBLIC_ALGOLIA_ADMIN_KEY,
+        process.env.PAYLOAD_PUBLIC_ALGOLIA_APP_ID || '',
+        process.env.PAYLOAD_PUBLIC_ALGOLIA_ADMIN_KEY || '',
       ),
     [],
   )
 
   const triggerRebuild = async (): Promise<void> => {
     try {
-      const rebuildRes = await fetch(process.env.PAYLOAD_PUBLIC_TRIGGER_URL)
+      const rebuildRes = await fetch(
+        process.env.PAYLOAD_PUBLIC_TRIGGER_URL || '',
+      )
       const jobResponse: TriggerResponse = await rebuildRes.json()
 
       if (jobResponse?.job.state === 'PENDING') {

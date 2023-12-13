@@ -33,6 +33,7 @@ const SidebarAccordion = ({
     // when pathname changes, check if the current pathname is in the openedItems array
     // if it is not, add it to the openedItems array
     const currentCategory =
+      pathname &&
       pathname.split('/')[1] === 'database' &&
       pathname.split('/')[2] !== undefined
         ? pathname.split('/')[2]

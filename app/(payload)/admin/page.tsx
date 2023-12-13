@@ -3,7 +3,7 @@
 import React from 'react'
 import Root from 'payload/dist/admin/Root'
 
-const PayloadAdmin = (): React.JSX.Element => {
+const PayloadAdmin = (): React.JSX.Element | null => {
   const [mounted, setMounted] = React.useState(false)
 
   React.useEffect(() => {

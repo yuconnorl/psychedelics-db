@@ -17,11 +17,11 @@ const CardContainer = ({ children }: ChildrenProps): JSX.Element => {
   const searchParams = useSearchParams()
 
   const layoutMap = {
-    grid: children[0],
-    stack: children[1],
+    grid: children![0],
+    stack: children![1],
   }
 
-  const layout = searchParams.get('layout') || DEFAULT_LAYOUT
+  const layout = searchParams?.get('layout') || DEFAULT_LAYOUT
   const isGrid = layout === 'grid'
 
   return (

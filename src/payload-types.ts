@@ -19,54 +19,48 @@ export interface Config {
 export interface Record {
   id: string;
   title: string;
-  category?:
-    | (
-        | 'mandarin-speech-video'
-        | 'mandarin-video'
-        | 'mandarin-thesis'
-        | 'mandarin-article'
-        | 'mandarin-file'
-        | 'mandarin-website'
-        | 'mandarin-social-media'
-        | 'mandarin-book'
-        | 'translated-video'
-        | 'waiting-for-translate-video'
-        | 'activity-log-n-data'
-        | 'psychedelics-fundamentals'
-        | 'online-media'
-        | 'research-centre'
-        | 'ngo-research-institute'
-        | 'private-research-institute'
-        | 'ngo-foundation'
-        | 'therapy-institue'
-        | 'health-n-safety'
-        | 'psychotherapy-training'
-        | 'decriminalize-policy'
-        | 'psychotherapists'
-        | 'press-n-journal'
-        | 'conference'
-        | 'podcast-speech'
-        | 'research-topics'
-        | 'influential-people'
-      )
-    | null;
-  type?:
-    | (
-        | 'video'
-        | 'youtube-channel'
-        | 'instagram'
-        | 'twitter'
-        | 'facebook'
-        | 'podcast'
-        | 'article'
-        | 'website'
-        | 'thesis'
-        | 'pdf'
-        | 'book'
-      )
-    | null;
+  category:
+    | 'mandarin-speech-video'
+    | 'mandarin-video'
+    | 'mandarin-thesis'
+    | 'mandarin-article'
+    | 'mandarin-file'
+    | 'mandarin-website'
+    | 'mandarin-social-media'
+    | 'mandarin-book'
+    | 'translated-video'
+    | 'waiting-for-translate-video'
+    | 'activity-log-n-data'
+    | 'psychedelics-fundamentals'
+    | 'online-media'
+    | 'research-centre'
+    | 'ngo-research-institute'
+    | 'private-research-institute'
+    | 'ngo-foundation'
+    | 'therapy-institue'
+    | 'health-n-safety'
+    | 'psychotherapy-training'
+    | 'decriminalize-policy'
+    | 'psychotherapists'
+    | 'press-n-journal'
+    | 'conference'
+    | 'podcast-speech'
+    | 'research-topics'
+    | 'influential-people';
+  type:
+    | 'video'
+    | 'youtube-channel'
+    | 'instagram'
+    | 'twitter'
+    | 'facebook'
+    | 'podcast'
+    | 'article'
+    | 'website'
+    | 'thesis'
+    | 'pdf'
+    | 'book';
   language: 'zh-tw' | 'en';
-  url?: string | null;
+  url: string;
   richText?:
     | {
         [k: string]: unknown;

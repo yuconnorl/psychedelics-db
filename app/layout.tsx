@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
+import posthog from 'posthog-js'
 
 import './globals.css'
 import CategoriedHeader from '@/components/CategoriedHeader'
@@ -63,6 +64,12 @@ const garamond = localFont({
 //   ],
 //   variable: '--font-noto',
 // })
+
+posthog.init('phc_eIFnnh27iT9kbOJXVsQL6ZNTsy6QBp5JOfdSmnQ4Ux7', {
+  api_host: 'https://app.posthog.com',
+})
+
+posthog.capture('my event', { property: 'value' })
 
 export default function RootLayout({
   children,

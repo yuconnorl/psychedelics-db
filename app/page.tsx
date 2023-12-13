@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { getPayloadClient } from '../src/getPayload'
-import { Page } from '../src/payload-types'
 
 import AlgoliaSearchComponent from '@/components/algolia/AlgoliaSearchComponent'
 import SplineComponent from '@/components/SplineComponent'

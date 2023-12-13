@@ -6,16 +6,16 @@ settings:
 
 dependencies:
   '@payloadcms/bundler-webpack':
-    specifier: latest
+    specifier: ^1.0.5
     version: 1.0.5(@swc/core@1.3.96)(payload@2.0.15)
   '@payloadcms/db-mongodb':
-    specifier: latest
+    specifier: ^1.0.6
     version: 1.0.6(payload@2.0.15)
   '@payloadcms/next-payload':
     specifier: ^0.1.9
     version: 0.1.9(@payloadcms/bundler-webpack@1.0.5)(payload@2.0.15)(webpack@5.89.0)
   '@payloadcms/richtext-slate':
-    specifier: latest
+    specifier: ^1.1.0
     version: 1.1.0(payload@2.0.15)(react-dom@18.2.0)
   '@radix-ui/react-accordion':
     specifier: ^1.1.2
@@ -71,9 +71,6 @@ dependencies:
   cmdk:
     specifier: ^0.2.0
     version: 0.2.0(@types/react@18.2.36)(react-dom@18.2.0)(react@18.2.0)
-  dotenv:
-    specifier: ^8.2.0
-    version: 8.6.0
   escape-html:
     specifier: ^1.0.3
     version: 1.0.3
@@ -96,8 +93,11 @@ dependencies:
     specifier: ^6.1.11
     version: 6.1.11
   payload:
-    specifier: ^2.0.4
+    specifier: ^2.0.15
     version: 2.0.15(@types/react@18.2.36)(typescript@5.3.2)(webpack@5.89.0)
+  posthog-js:
+    specifier: ^1.95.0
+    version: 1.95.0
   qs:
     specifier: ^6.11.2
     version: 6.11.2
@@ -160,6 +160,9 @@ devDependencies:
   cross-env:
     specifier: ^7.0.3
     version: 7.0.3
+  dotenv:
+    specifier: ^8.6.0
+    version: 8.6.0
   eslint:
     specifier: ^8.19.0
     version: 8.53.0
@@ -5420,7 +5423,6 @@ packages:
   /dotenv@8.6.0:
     resolution: {integrity: sha512-IrPdXQsk2BbzvCBGBOTmmSH5SodmqZNt4ERAZDmW4CT+tL8VtvinqywuANaFu4bOMWki16nqf0e4oC0QIaDr/g==}
     engines: {node: '>=10'}
-    dev: false
 
   /duplexer@0.1.2:
     resolution: {integrity: sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg==}
@@ -6007,6 +6009,10 @@ packages:
     resolution: {integrity: sha512-wBrocU2LCXXa+lWBt8RoIRD89Fi8OdABODa/kEnyeyjS5aZO5/GNvI5sEINADqP/h8M29UHTHUb53sUu5Ihqdw==}
     dependencies:
       reusify: 1.0.4
+
+  /fflate@0.4.8:
+    resolution: {integrity: sha512-FJqqoDBR00Mdj9ppamLa/Y7vxm+PRmNWA67N846RvsoYVMKB4q3y/de5PA7gUmRMYK/8CMz2GDZQmCRN1wBcWA==}
+    dev: false
 
   /file-entry-cache@6.0.1:
     resolution: {integrity: sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==}
@@ -8904,6 +8910,12 @@ packages:
       nanoid: 3.3.7
       picocolors: 1.0.0
       source-map-js: 1.0.2
+
+  /posthog-js@1.95.0:
+    resolution: {integrity: sha512-HpepQBEPVi7Al97wBKLYW9Xs525TJTffc5ZwbFMj46l3CuJgkmPlfeTLhtC7hSXEgpNuzrJkzXC+/YeE/Ri2Aw==}
+    dependencies:
+      fflate: 0.4.8
+    dev: false
 
   /preact@10.19.2:
     resolution: {integrity: sha512-UA9DX/OJwv6YwP9Vn7Ti/vF80XL+YA5H2l7BpCtUr3ya8LWHFzpiO5R+N7dN16ujpIxhekRFuOOF82bXX7K/lg==}

@@ -24,9 +24,14 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "src/*": ["./src/*"],
-    }
+      "@/*": [
+        "./src/*"
+      ],
+      "src/*": [
+        "./src/*"
+      ]
+    },
+    "strictNullChecks": true
   },
   "include": [
     "**/*.ts",

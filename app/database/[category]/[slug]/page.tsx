@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 import { Suspense } from 'react'
 import type { Metadata } from 'next'
 import Image from 'next/image'
@@ -19,14 +21,12 @@ import { resolveMetaTag } from '@/utilities/metaTag'
 
 type ParamsType = {
   params: {
-    slug: string
+    slug: string | null | undefined
     category: string
   }
 }
 
-export async function generateStaticParams(): Promise<
-  Record<'slug', string>[]
-> {
+export async function generateStaticParams() {
   const records = await getAllRecords()
 
   return records.map((record: RecordType) => ({
@@ -42,7 +42,7 @@ export async function generateMetadata({
   const record = records.find((record) => record.slug === params.slug)
 
   return {
-    title: record.title,
+    title: record?.title,
     // description: `${record.description}`,
   }
 }
@@ -50,7 +50,7 @@ export async function generateMetadata({
 const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
   const records = await getAllRecords()
 
-  const filterRecord = records.find((record) => record.slug === params.slug)
+  const filterRecord = records.find((record) => record.slug === params.slug)!
 
   if (!filterRecord) {
     notFound()

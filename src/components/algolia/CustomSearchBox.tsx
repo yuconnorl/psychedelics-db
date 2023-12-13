@@ -8,11 +8,13 @@ const CustomSearchBox = (props: UseSearchBoxProps): JSX.Element => {
   const { query, refine, clear } = useSearchBox(props)
   const [inputValue, setInputValue] = useState(query)
   const inputRef = useRef(null)
-  const timerRef = useRef(null)
+  const timerRef = useRef<NodeJS.Timeout | null>(null)
 
   function debounce(fn, delay = 500) {
     return (...args) => {
-      clearTimeout(timerRef.current)
+      if (timerRef.current) {
+        clearTimeout(timerRef.current)
+      }
       timerRef.current = setTimeout(() => {
         fn(...args)
       }, delay)
@@ -39,18 +41,18 @@ const CustomSearchBox = (props: UseSearchBoxProps): JSX.Element => {
           event.preventDefault()
           event.stopPropagation()
 
-          if (inputRef.current) {
-            inputRef.current.blur()
-          }
+          // if (inputRef.current) {
+          //   inputRef.current.blur()
+          // }
         }}
         onReset={(event) => {
           event.preventDefault()
           event.stopPropagation()
           setQuery('')
 
-          if (inputRef.current) {
-            inputRef.current.focus()
-          }
+          // if (inputRef.current) {
+          //   inputRef.current.focus()
+          // }
         }}
       >
         <input

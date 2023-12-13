@@ -29,12 +29,14 @@ const Records: CollectionConfig = {
           name: 'category',
           label: 'Category',
           type: 'select',
+          required: true,
           options: [...PAYLOAD_CATEGORY_OPTIONS],
         },
         {
           name: 'type',
           label: 'Type of Content',
           type: 'select',
+          required: true,
           options: [...TYPE_OPTIONS],
           defaultValue: 'website',
         },
@@ -51,6 +53,7 @@ const Records: CollectionConfig = {
     {
       name: 'url',
       label: 'URL',
+      required: true,
       type: 'text',
     },
     {
