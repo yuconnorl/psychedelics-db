@@ -3,6 +3,7 @@
 
 import type { UseHitsProps } from 'react-instantsearch'
 import { Highlight, useHits } from 'react-instantsearch'
+import { capitalizeFirstLetter } from '@lib/utils'
 import Link from 'next/link'
 
 import {
@@ -17,8 +18,6 @@ import {
   WebsiteIcon,
   YoutubeIcon,
 } from '../Icons'
-
-import { capitalizeFirstLetter } from '@lib/utils'
 
 const HitItem = ({ hits, onHitClick }) => {
   const iconMap = {

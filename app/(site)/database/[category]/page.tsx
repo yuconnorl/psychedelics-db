@@ -1,14 +1,14 @@
 import { Suspense } from 'react'
+import { getAllRecords } from '@api/general'
+import { CATEGORY_OPTIONS_MAP } from '@configs/options'
+import { CardParamsProps, CategoryOptionsType, RecordType } from '@types'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
-import { getAllRecords } from '@api/general'
 import Breadcrumbs from '@components/Breadcrumbs'
 import CardContainer from '@components/CardContainer'
 import Grid from '@components/GridLayoutCard'
 import Stack from '@components/StackLayoutCard'
-import { CATEGORY_OPTIONS_MAP } from '@configs/options'
-import { CardParamsProps, CategoryOptionsType, RecordType } from '@types'
 
 export async function generateStaticParams(): Promise<
   Record<'category', CategoryOptionsType>[]

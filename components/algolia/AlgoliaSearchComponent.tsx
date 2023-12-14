@@ -2,10 +2,13 @@
 
 import { useEffect, useState } from 'react'
 import { InstantSearchNext } from 'react-instantsearch-nextjs'
+import { cn } from '@lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
+import { Dialog, DialogContent } from '@components/CustomDialog'
+import { Button } from '@components/ui/button'
 import { SearchIcon } from '../Icons'
 import SearchButton from '../SearchButton'
 import searchClient from './algoliaSearchClient'
@@ -13,10 +16,6 @@ import CustomHits from './CustomHits'
 import CustomSearchBox from './CustomSearchBox'
 import NoResultsBoundary from './NoResultsBoundary'
 import NoResultsFallback from './NoResultsFallback'
-
-import { Dialog, DialogContent } from '@components/CustomDialog'
-import { Button } from '@components/ui/button'
-import { cn } from '@lib/utils'
 
 type SearchButtonProps = {
   searchBarClassName?: string
