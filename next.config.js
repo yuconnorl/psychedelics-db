@@ -1,42 +1,52 @@
-require('dotenv').config()
-const path = require('path')
-const { withPayload } = require('@payloadcms/next-payload')
+const { withPayload } = require("@payloadcms/next-payload");
+const path = require("path");
 
-module.exports = withPayload(
+/** @type {import('next').NextConfig} */
+const nextConfig = withPayload(
   {
-    reactStrictMode: true,
-    swcMinify: true,
+    eslint: {
+      ignoreDuringBuilds: true,
+    },
+    transpilePackages: [
+      "@payloadcms/plugin-seo",
+      "payload/components/forms",
+      "payload/components",
+    ],
     images: {
+      domains: [
+        "localhost",
+        "nextjs-vercel.payloadcms.com",
+        process.env.NEXT_PUBLIC_APP_URL,
+        `${process.env.NEXT_PUBLIC_S3_ENDPOINT}`.replace("https://", ""),
+      ],
       remotePatterns: [
         {
-          protocol: 'https',
-          hostname: '**',
+          protocol: "https",
+          hostname: "**",
         },
         {
-          protocol: 'http',
-          hostname: '**',
+          protocol: "http",
+          hostname: "**",
         },
       ],
     },
-    // webpack(config) {
-    //   config.resolve.fallback = {
-    //     ...config.resolve.fallback,
-    //     fs: false,
-    //   }
+    webpack: (config, options) => {
+      config.module.rules.push(
+        // { test: /\.ts$/, loader: "ts-loader" },
+        { test: /\.node$/, use: "node-loader" }
+      );
 
-    //   return config
-    // },
+      return config;
+    },
   },
   {
-    // The second argument to `withPayload`
-    // allows you to specify paths to your Payload dependencies
-    // and configure the admin route to your Payload CMS.
+    configPath: path.resolve(__dirname, "./payload/payload.config"),
+  }
+);
 
-    // Point to your Payload config (required)
-    configPath: path.resolve(__dirname, './src/payload.config.ts'),
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: true,
+});
 
-    // Set a custom Payload admin route (optional, default is `/admin`)
-    // NOTE: Read the "Set a custom admin route" section in the payload/next-payload README.
-    adminRoute: '/admin',
-  },
-)
+module.exports =
+  process.env.ANALYZE === "true" ? withBundleAnalyzer(nextConfig) : nextConfig;
