@@ -5,7 +5,7 @@ import localFont from 'next/font/local'
 import './globals.css'
 import CategoriedHeader from '@components/CategoriedHeader'
 import { ThemeProvider } from '@components/ThemeProvider'
-import { SITE_NAME } from '@/constants/constants'
+import { SITE_NAME } from '@constants/constants'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://psychedelics-database.vercel.app/'),
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
 const garamond = localFont({
   src: [
     {
-      path: '../public/fonts/cormorant-garamond-medium.woff2',
+      path: '../../public/fonts/cormorant-garamond-medium.woff2',
       weight: '500',
     },
   ],

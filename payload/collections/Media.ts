@@ -20,7 +20,7 @@ const beforeOperationHook: CollectionBeforeOperationHook = async ({ args }) => {
   }
 }
 
-const Media: CollectionConfig = {
+export const Media: CollectionConfig = {
   slug: 'media',
   upload: {
     staticURL: '/media',
@@ -50,5 +50,3 @@ const Media: CollectionConfig = {
     },
   ],
 }
-
-export default Media

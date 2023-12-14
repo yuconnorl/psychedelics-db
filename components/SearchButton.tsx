@@ -1,6 +1,6 @@
 import { SearchIcon } from './Icons'
 
-import { cn } from '@/lib/utils'
+import { cn } from '@lib/utils'
 
 type Props = {
   onButtonClick: (open: boolean) => void

@@ -18,7 +18,7 @@ import {
   YoutubeIcon,
 } from '../Icons'
 
-import { capitalizeFirstLetter } from '@/lib/utils'
+import { capitalizeFirstLetter } from '@lib/utils'
 
 const HitItem = ({ hits, onHitClick }) => {
   const iconMap = {

@@ -16,7 +16,7 @@ import NoResultsFallback from './NoResultsFallback'
 
 import { Dialog, DialogContent } from '@components/CustomDialog'
 import { Button } from '@components/ui/button'
-import { cn } from '@/lib/utils'
+import { cn } from '@lib/utils'
 
 type SearchButtonProps = {
   searchBarClassName?: string

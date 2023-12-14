@@ -2,7 +2,7 @@
 import pkg from '../../package.json'
 
 import { IS_DEV } from '@configs/general'
-import { SITE_NAME } from '@/constants/constants'
+import { SITE_NAME } from '@constants/constants'
 
 const versionLogger = (bgColor: string): void => {
   const version = IS_DEV

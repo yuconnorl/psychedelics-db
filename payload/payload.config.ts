@@ -2,10 +2,12 @@ import { buildConfig } from 'payload/config';
 import path from 'path';
 import { Users } from './collections/Users';
 import { Pages } from './collections/Pages';
+import { Media } from './collections/Media';
+import { Records } from './collections/Records';
+
 import { MainMenu } from './globals/MainMenu';
 import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
 import { s3Adapter } from '@payloadcms/plugin-cloud-storage/s3';
-import { Media } from './collections/Media';
 import seo from '@payloadcms/plugin-seo';
 import { webpackBundler } from '@payloadcms/bundler-webpack';
 // import { postgresAdapter } from '@payloadcms/db-postgres';
@@ -57,15 +59,7 @@ export default buildConfig({
     Pages,
     Users,
     Media,
-    {
-      slug: 'examples',
-      fields: [
-        {
-          name: 'title',
-          type: 'text',
-        }
-      ]
-    }
+    Records
   ],
   globals: [
     MainMenu,

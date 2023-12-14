@@ -7,7 +7,7 @@ import {
 } from '@configs/options'
 import formatSlug from '../utilities/formatSlug'
 
-const Records: CollectionConfig = {
+export const Records: CollectionConfig = {
   slug: 'records',
   admin: {
     useAsTitle: 'title',
@@ -89,5 +89,3 @@ const Records: CollectionConfig = {
     },
   ],
 }
-
-export default Records
