@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 
-import versionLogger from '@/utilities/versionLogger'
+import versionLogger from '@utilities/versionLogger'
 
 const VersionLogger = (): null => {
   useEffect(() => {

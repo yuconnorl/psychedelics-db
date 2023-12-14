@@ -1,6 +1,6 @@
-import Footer from '@/components/Footer'
-import Sidebar from '@/components/Sidebar'
-import { ChildrenProps } from '@/types'
+import Footer from '@components/Footer'
+import Sidebar from '@components/Sidebar'
+import { ChildrenProps } from '@types'
 
 const DatabaseLayout = ({ children }: ChildrenProps): JSX.Element => {
   return (

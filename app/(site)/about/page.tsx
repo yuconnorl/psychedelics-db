@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
-import Footer from '@/components/Footer'
-import { PsychedelicDBIcon } from '@/components/Icons'
+import Footer from '@components/Footer'
+import { PsychedelicDBIcon } from '@components/Icons'
 
 export const metadata: Metadata = {
   title: 'About',

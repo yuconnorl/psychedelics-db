@@ -2,7 +2,7 @@ import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from '@/components/ui/tooltip'
+} from '@components/ui/tooltip'
 
 type TooltipButtonProps = {
   content: string

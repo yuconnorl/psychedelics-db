@@ -23,7 +23,8 @@
       "@utilities/*": ["./utilities/*"],
       "@components/*": ["./components/*"],
       "@configs/*": ["./configs/*"],
-      "@constants/*": ["./constants/*"]
+      "@constants/*": ["./constants/*"],
+      "@payload/*": ["./payload/*"]
     },
     "noEmit": true,
     "plugins": [

@@ -1,4 +1,4 @@
-import algoliaClient from '@/utilities/algoliaClient'
+import algoliaClient from '@utilities/algoliaClient'
 
 // return nothing if the user did not enter a search query
 const searchClient = {

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/consistent-type-definitions */
 import type { Record } from '../payload-types'
 
-import type { CATEGORY_OPTIONS } from '@/config/options'
+import type { CATEGORY_OPTIONS } from '@configs/options'
 
 export type CategoryOptionsType = (typeof CATEGORY_OPTIONS)[number]
 

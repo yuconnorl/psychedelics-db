@@ -2,8 +2,8 @@ import clsx from 'clsx'
 
 import { AspectRatio } from './ui/aspect-ratio'
 
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
-import { Skeleton } from '@/components/ui/skeleton'
+import { Card, CardContent, CardFooter, CardHeader } from '@components/ui/card'
+import { Skeleton } from '@components/ui/skeleton'
 
 type SkeletonCardProps = {
   isGrid: boolean

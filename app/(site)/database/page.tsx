@@ -3,9 +3,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import psychedelicDatabaseIntro from 'public/psychedelic-database-intro.jpeg'
 
-import { AspectRatio } from '@/components/ui/aspect-ratio'
-import { Card, CardHeader, CardTitle } from '@/components/ui/card'
-import { CATEGORY_OPTIONS_MAP } from '@/config/options'
+import { AspectRatio } from '@components/ui/aspect-ratio'
+import { Card, CardHeader, CardTitle } from '@components/ui/card'
+import { CATEGORY_OPTIONS_MAP } from '@configs/options'
 
 export const metadata: Metadata = {
   title: 'Database',

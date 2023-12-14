@@ -14,8 +14,8 @@ import CustomSearchBox from './CustomSearchBox'
 import NoResultsBoundary from './NoResultsBoundary'
 import NoResultsFallback from './NoResultsFallback'
 
-import { Dialog, DialogContent } from '@/components/CustomDialog'
-import { Button } from '@/components/ui/button'
+import { Dialog, DialogContent } from '@components/CustomDialog'
+import { Button } from '@components/ui/button'
 import { cn } from '@/lib/utils'
 
 type SearchButtonProps = {

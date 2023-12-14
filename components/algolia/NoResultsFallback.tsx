@@ -10,7 +10,7 @@ import {
   Mdma,
   Mescaline,
   Psilocybin,
-} from '@/components/SubstancesSvg'
+} from '@components/SubstancesSvg'
 
 const subArr = [
   {

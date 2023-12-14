@@ -1,21 +1,54 @@
-import type { CollectionConfig } from 'payload/types';
+import type {
+  CollectionBeforeOperationHook,
+  CollectionConfig,
+} from 'payload/types'
 
-export const Media: CollectionConfig = {
+const format = (val: string): string =>
+  val
+    .replace(/ /g, '-')
+    .replace(/[^\w-/]+/g, '')
+    .toLowerCase()
+
+const beforeOperationHook: CollectionBeforeOperationHook = async ({ args }) => {
+  const files = args.req?.files
+  // formate file name into kebab case
+  if (files && files.file && files.file.name) {
+    const splitArray = files.file.name.split('.')
+    const fileExtension = splitArray.at(-1)
+    const rest = format(splitArray.splice(0, splitArray.length - 1).join('.'))
+    files.file.name = `${rest}.${fileExtension}`
+  }
+}
+
+const Media: CollectionConfig = {
   slug: 'media',
   upload: {
-    staticDir: '/tmp',
-    formatOptions: {
-      format: 'jpeg',
-    },
+    staticURL: '/media',
+    staticDir: 'media',
+  },
+  hooks: {
+    beforeOperation: [beforeOperationHook],
+  },
+  admin: {
+    useAsTitle: 'title',
   },
   access: {
     read: () => true,
   },
   fields: [
     {
-      name: 'alt',
+      name: 'filename',
+      label: 'File name',
       type: 'text',
       required: true,
     },
-  ]
+    {
+      name: 'alt',
+      label: 'Alt text',
+      type: 'text',
+      required: true,
+    },
+  ],
 }
+
+export default Media
