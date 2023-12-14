@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { getPayloadClient } from '../src/getPayload'
-import { Page } from '../src/payload-types'
 
 import AlgoliaSearchComponent from '@/components/algolia/AlgoliaSearchComponent'
 import SplineComponent from '@/components/SplineComponent'
@@ -22,7 +21,7 @@ const Home = async (): Promise<JSX.Element> => {
               Welcome to The Psychedelic Database, a comprehensive resource for
               all things about psychedelics.
             </p>
-            <div className='flex gap-3 flex-wrap sm:gap-5 items-center justify-center mt-3 sm:mt-6 sm:mt-12'>
+            <div className='flex gap-3 flex-wrap sm:gap-5 items-center justify-center mt-3 sm:mt-6'>
               <Button className='h-12' asChild>
                 <Link href={'/database'}>Collections</Link>
               </Button>

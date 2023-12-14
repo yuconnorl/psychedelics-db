@@ -18,6 +18,14 @@ module.exports = withPayload(
         },
       ],
     },
+    // webpack(config) {
+    //   config.resolve.fallback = {
+    //     ...config.resolve.fallback,
+    //     fs: false,
+    //   }
+
+    //   return config
+    // },
   },
   {
     // The second argument to `withPayload`

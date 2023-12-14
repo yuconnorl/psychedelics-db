@@ -72,8 +72,11 @@ dependencies:
     specifier: ^0.2.0
     version: 0.2.0(@types/react@18.2.36)(react-dom@18.2.0)(react@18.2.0)
   dotenv:
-    specifier: ^8.2.0
-    version: 8.6.0
+    specifier: ^16.3.1
+    version: 16.3.1
+  dotenv-webpack:
+    specifier: ^8.0.1
+    version: 8.0.1(webpack@5.89.0)
   escape-html:
     specifier: ^1.0.3
     version: 1.0.3
@@ -5415,6 +5418,27 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       is-obj: 2.0.0
+    dev: false
+
+  /dotenv-defaults@2.0.2:
+    resolution: {integrity: sha512-iOIzovWfsUHU91L5i8bJce3NYK5JXeAwH50Jh6+ARUdLiiGlYWfGw6UkzsYqaXZH/hjE/eCd/PlfM/qqyK0AMg==}
+    dependencies:
+      dotenv: 8.6.0
+    dev: false
+
+  /dotenv-webpack@8.0.1(webpack@5.89.0):
+    resolution: {integrity: sha512-CdrgfhZOnx4uB18SgaoP9XHRN2v48BbjuXQsZY5ixs5A8579NxQkmMxRtI7aTwSiSQcM2ao12Fdu+L3ZS3bG4w==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      webpack: ^4 || ^5
+    dependencies:
+      dotenv-defaults: 2.0.2
+      webpack: 5.89.0(@swc/core@1.3.96)(webpack-cli@4.10.0)
+    dev: false
+
+  /dotenv@16.3.1:
+    resolution: {integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==}
+    engines: {node: '>=12'}
     dev: false
 
   /dotenv@8.6.0:
