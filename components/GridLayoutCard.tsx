@@ -1,9 +1,12 @@
+import { getAllRecords } from '@api/general'
+import { LANGUAGE_MAP } from '@configs/general'
+import { IMAGE_PLACEHOLDER } from '@constants/constants'
+import { capitalizeFirstLetter } from '@lib/utils'
+import { InfoCard, RecordType } from '@types'
+import { resolveMetaTag } from '@utilities/metaTag'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { AspectRatio } from './ui/aspect-ratio'
-
-import { getAllRecords } from '@api/general'
 import { Badge } from '@components/ui/badge'
 import {
   Card,
@@ -12,11 +15,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@components/ui/card'
-import { LANGUAGE_MAP } from '@configs/general'
-import { IMAGE_PLACEHOLDER } from '@constants/constants'
-import { capitalizeFirstLetter } from '@lib/utils'
-import { InfoCard, RecordType } from '@types'
-import { resolveMetaTag } from '@utilities/metaTag'
+import { AspectRatio } from './ui/aspect-ratio'
 
 const GridCard = async ({
   category,

@@ -1,10 +1,12 @@
-import React from 'react';
-import { Grid, Cell } from '@faceless-ui/css-grid'
-import { Page } from '../../../payload-types';
-import RichText from '../../RichText';
-import { Gutter } from '../../Gutter';
-import { CMSLink } from '../../Link';
-import classes from './index.module.scss';
+import React from 'react'
+import { Cell, Grid } from '@faceless-ui/css-grid'
+
+import { Page } from '../../../payload-types'
+import { Gutter } from '../../Gutter'
+import { CMSLink } from '../../Link'
+import RichText from '../../RichText'
+
+import classes from './index.module.scss'
 
 type Props = Extract<Page['layout'][0], { blockType: 'content' }>
 
@@ -14,7 +16,6 @@ const Columns: React.FC<Props> = ({
   columnTwo,
   columnThree,
 }) => {
-
   switch (layout) {
     case 'oneColumn': {
       return (
@@ -29,12 +30,12 @@ const Columns: React.FC<Props> = ({
 
     case 'halfAndHalf':
     case 'twoThirdsOneThird': {
-      let col1Cols = 6;
-      let col2Cols = 6;
+      let col1Cols = 6
+      let col2Cols = 6
 
       if (layout === 'twoThirdsOneThird') {
-        col1Cols = 8;
-        col2Cols = 4;
+        col1Cols = 8
+        col2Cols = 4
       }
 
       return (
@@ -80,7 +81,7 @@ const Columns: React.FC<Props> = ({
       )
     }
   }
-  
+
   return null
 }
 

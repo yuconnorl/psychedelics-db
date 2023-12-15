@@ -1,14 +1,13 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { CategoryOptionsType, RecordType } from '@types'
 import { usePathname } from 'next/navigation'
-
-import { CollaspeIcon } from './Icons'
-import SidebarItem from './SidebarItem'
 
 import { Accordion } from '@components/ui/accordion'
 import { Separator } from '@components/ui/separator'
-import { CategoryOptionsType, RecordType } from '@types'
+import { CollaspeIcon } from './Icons'
+import SidebarItem from './SidebarItem'
 
 type RecordMap = Record<CategoryOptionsType, RecordType[]>
 
@@ -21,7 +20,7 @@ type Props = {
 const SidebarAccordion = ({
   recordsMapZh,
   recordsMapEn,
-  onCategoryClickedAndCloseSheet = () => {},
+  onCategoryClickedAndCloseSheet = (): void => void 0,
 }: Props): JSX.Element => {
   const [openedItems, setOpenedItems] = useState([
     'mandarin-social-media',
@@ -32,7 +31,8 @@ const SidebarAccordion = ({
   useEffect(() => {
     // when pathname changes, check if the current pathname is in the openedItems array
     // if it is not, add it to the openedItems array
-    const currentCategory = pathname && 
+    const currentCategory =
+      pathname &&
       pathname.split('/')[1] === 'database' &&
       pathname.split('/')[2] !== undefined
         ? pathname.split('/')[2]

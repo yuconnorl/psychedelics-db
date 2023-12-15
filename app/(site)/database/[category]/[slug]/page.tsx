@@ -1,21 +1,21 @@
 import { Suspense } from 'react'
-import type { Metadata } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
-import { notFound } from 'next/navigation'
-
 import { getAllRecords } from '@api/general'
-import Breadcrumbs from '@components/Breadcrumbs'
-import { ChevronRightUpIcon } from '@components/Icons'
-import { AspectRatio } from '@components/ui/aspect-ratio'
-import { Badge } from '@components/ui/badge'
-import { Button } from '@components/ui/button'
 import { LANGUAGE_MAP } from '@configs/general'
 import { CATEGORY_OPTIONS_MAP } from '@configs/options'
 import { IMAGE_PLACEHOLDER } from '@constants/constants'
 import { capitalizeFirstLetter } from '@lib/utils'
 import { RecordType } from '@types'
 import { resolveMetaTag } from '@utilities/metaTag'
+import type { Metadata } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
+import { notFound } from 'next/navigation'
+
+import Breadcrumbs from '@components/Breadcrumbs'
+import { ChevronRightUpIcon } from '@components/Icons'
+import { AspectRatio } from '@components/ui/aspect-ratio'
+import { Badge } from '@components/ui/badge'
+import { Button } from '@components/ui/button'
 
 type ParamsType = {
   params: {

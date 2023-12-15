@@ -1,12 +1,13 @@
-import React from 'react';
+import React from 'react'
 import { notFound } from 'next/navigation'
-import { getPayloadClient } from '../../../payload/payloadClient';
-import Blocks from '../../../components/Blocks';
-import { Hero } from '../../../components/Hero';
-import { AdminBar } from '../../../components/AdminBar';
+
+import { AdminBar } from '../../../components/AdminBar'
+import Blocks from '../../../components/Blocks'
+import { Hero } from '../../../components/Hero'
+import { getPayloadClient } from '../../../payload/payloadClient'
 
 const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
-  const payload = await getPayloadClient();
+  const payload = await getPayloadClient()
 
   const pages = await payload.find({
     collection: 'pages',
@@ -14,10 +15,10 @@ const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
       slug: {
         equals: slug || 'home',
       },
-    }
-  });
+    },
+  })
 
-  const page = pages.docs[0];
+  const page = pages.docs[0]
 
   if (!page) return notFound()
 
@@ -31,7 +32,7 @@ const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
 }
 
 export async function generateStaticParams() {
-  const payload = await getPayloadClient();
+  const payload = await getPayloadClient()
 
   const pages = await payload.find({
     collection: 'pages',
@@ -41,4 +42,4 @@ export async function generateStaticParams() {
   return pages.docs.map(({ slug }: { slug: string }) => ({ slug }))
 }
 
-export default Page;
+export default Page

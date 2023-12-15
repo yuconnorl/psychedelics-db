@@ -1,12 +1,11 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { SITE_NAME } from '@constants/constants'
+import { cn } from '@lib/utils'
+import { CategoryOptionsType, RecordType } from '@types'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-
-import { HamburgerIcon, PsychedelicDBIcon, TelegramIcon } from './Icons'
-import SidebarAccordion from './SidebarAccordion'
-import ThemeSwitch from './ThemeSwitch'
 
 import AlgoliaSearchComponent from '@components/algolia/AlgoliaSearchComponent'
 import { ScrollArea } from '@components/ui/scroll-area'
@@ -17,9 +16,9 @@ import {
   SheetPortal,
   SheetTrigger,
 } from '@components/ui/sheet'
-import { SITE_NAME } from '@constants/constants'
-import { cn } from '@lib/utils'
-import { CategoryOptionsType, RecordType } from '@types'
+import { HamburgerIcon, PsychedelicDBIcon, TelegramIcon } from './Icons'
+import SidebarAccordion from './SidebarAccordion'
+import ThemeSwitch from './ThemeSwitch'
 
 type RecordMap = Record<CategoryOptionsType, RecordType[]>
 
@@ -28,7 +27,7 @@ type Props = {
   recordsMapEn: RecordMap
 }
 
-const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
+const HeaderNav = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
   const [sheetOpen, setSheetOpen] = useState(false)
   const pathname = usePathname()
   const sheetPortalRef = useRef<HTMLElement | null>(null)
@@ -139,4 +138,4 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
   )
 }
 
-export default Header
+export default HeaderNav

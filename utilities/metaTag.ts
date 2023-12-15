@@ -29,8 +29,8 @@ export const resolveMetaTag = async (
 
     let iconUrl = iconFallback
     let imgUrl = imageFallback
-    let description: string
-    let title: string
+    let description = ''
+    let title = ''
 
     // helper function to resolve relative urls to absolute urls
     const resolveUrl = (baseUrl: string, targetUrl: string): string => {
@@ -87,7 +87,7 @@ export const resolveMetaTag = async (
       }
     }
 
-    if (!title) title = rootElement.querySelector('title')?.textContent
+    if (!title) title = rootElement.querySelector('title')?.textContent || ''
 
     // description
     const descriptionAttrs = ['og:description', 'description']

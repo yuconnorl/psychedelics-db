@@ -1,10 +1,11 @@
 'use client'
 
-import React from 'react';
-import { Page } from '../../payload-types';
-import { HighImpactHero } from './HighImpact';
-import { MediumImpactHero } from './MediumImpact';
-import { LowImpactHero } from './LowImpact';
+import React from 'react'
+
+import { Page } from '../../payload-types'
+import { HighImpactHero } from './HighImpact'
+import { LowImpactHero } from './LowImpact'
+import { MediumImpactHero } from './MediumImpact'
 
 const heroes = {
   highImpact: HighImpactHero,
@@ -13,9 +14,9 @@ const heroes = {
 }
 
 export const Hero: React.FC<Page['hero']> = (props) => {
-  const { type } = props;
-  const HeroToRender = heroes[type];
+  const { type } = props
+  const HeroToRender = heroes[type]
 
-  if (!HeroToRender) return null;
+  if (!HeroToRender) return null
   return <HeroToRender {...props} />
 }

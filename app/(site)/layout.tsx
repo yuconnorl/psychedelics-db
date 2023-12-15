@@ -1,11 +1,12 @@
+import { SITE_NAME } from '@constants/constants'
 import clsx from 'clsx'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 
-import './globals.css'
 import CategoriedHeader from '@components/CategoriedHeader'
 import { ThemeProvider } from '@components/ThemeProvider'
-import { SITE_NAME } from '@constants/constants'
+
+import './globals.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://psychedelics-database.vercel.app/'),

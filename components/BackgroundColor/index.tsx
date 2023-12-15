@@ -1,15 +1,17 @@
-'use client';
+'use client'
 
-import React, { useContext, createContext } from 'react';
-import { VerticalPadding, VerticalPaddingOptions } from '../VerticalPadding';
-import classes from './index.module.scss';
+import React, { createContext, useContext } from 'react'
+
+import { VerticalPadding, VerticalPaddingOptions } from '../VerticalPadding'
+
+import classes from './index.module.scss'
 
 export type BackgroundColor = 'white' | 'black'
 
-export const BackgroundColorContext = createContext<BackgroundColor>('white');
+export const BackgroundColorContext = createContext<BackgroundColor>('white')
 
-export const useBackgroundColor = (): BackgroundColor => useContext(BackgroundColorContext);
-
+export const useBackgroundColor = (): BackgroundColor =>
+  useContext(BackgroundColorContext)
 
 type Props = {
   color?: BackgroundColor
@@ -28,24 +30,18 @@ export const BackgroundColor: React.FC<Props> = (props) => {
     paddingTop,
     paddingBottom,
     color = 'white',
-  } = props;
+  } = props
 
   return (
     <div
       id={id}
-      className={[
-        classes[color],
-        className,
-      ].filter(Boolean).join(' ')}
+      className={[classes[color], className].filter(Boolean).join(' ')}
     >
       <BackgroundColorContext.Provider value={color}>
-        <VerticalPadding
-          top={paddingTop}
-          bottom={paddingBottom}
-        >
+        <VerticalPadding top={paddingTop} bottom={paddingBottom}>
           {children}
         </VerticalPadding>
       </BackgroundColorContext.Provider>
     </div>
-  );
+  )
 }

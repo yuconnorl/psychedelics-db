@@ -1,5 +1,8 @@
 'use client'
 
+import { DEFAULT_LAYOUT } from '@configs/general'
+import { CATEGORY_OPTIONS_MAP } from '@configs/options'
+import { CategoryOptionsType, RecordType } from '@types'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -9,9 +12,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@components/ui/accordion'
-import { DEFAULT_LAYOUT } from '@configs/general'
-import { CATEGORY_OPTIONS_MAP } from '@configs/options'
-import { CategoryOptionsType, RecordType } from '@types'
 
 type SidebarItemProps = {
   category: CategoryOptionsType
@@ -24,7 +24,7 @@ type SidebarItemProps = {
 const SidebarItem = ({
   category,
   records,
-  onItemClicked = () => {},
+  onItemClicked = (): void => void 0,
   onCategoryClicked,
   openedItems,
 }: SidebarItemProps): JSX.Element => {
@@ -35,7 +35,7 @@ const SidebarItem = ({
     if (openedItems.includes(category)) {
       if (pathname === `/database/${category}`) {
         // close items
-        let newItems = openedItems.filter((item) => item !== category)
+        const newItems = openedItems.filter((item) => item !== category)
         onCategoryClicked(newItems)
       }
     } else {

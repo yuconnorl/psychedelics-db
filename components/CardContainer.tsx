@@ -1,16 +1,15 @@
 'use client'
 import { Suspense } from 'react'
+import { DEFAULT_LAYOUT } from '@configs/general'
+import { ChildrenProps } from '@types'
 import clsx from 'clsx'
 import { useRouter, useSearchParams } from 'next/navigation'
-
-import { SquaresIcon, StacksIcon } from './Icons'
-import TooltipButton from './TooltipButton'
 
 import SkeletonCard from '@components/SkeletonCard'
 import { Button } from '@components/ui/button'
 import { TooltipProvider } from '@components/ui/tooltip'
-import { DEFAULT_LAYOUT } from '@configs/general'
-import { ChildrenProps } from '@types'
+import { SquaresIcon, StacksIcon } from './Icons'
+import TooltipButton from './TooltipButton'
 
 const CardContainer = ({ children }: ChildrenProps): JSX.Element => {
   const router = useRouter()

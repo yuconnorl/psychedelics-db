@@ -1,8 +1,8 @@
-import SidebarAccordion from './SidebarAccordion'
-
 import { getAllRecords } from '@api/general'
-import { ScrollArea } from '@components/ui/scroll-area'
 import { CategoryOptionsType, RecordType } from '@types'
+
+import { ScrollArea } from '@components/ui/scroll-area'
+import SidebarAccordion from './SidebarAccordion'
 
 type RecordMap = Record<CategoryOptionsType, RecordType[]>
 

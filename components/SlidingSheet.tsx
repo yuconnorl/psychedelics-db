@@ -1,11 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import { CategoryOptionsType, RecordType } from '@types'
 import Link from 'next/link'
-
-import { HamburgerIcon, PsychedelicDBIcon } from './Icons'
-import SidebarAccordion from './SidebarAccordion'
-import ThemeSwitch from './ThemeSwitch'
 
 import { ScrollArea } from '@components/ui/scroll-area'
 import {
@@ -14,7 +11,9 @@ import {
   SheetPortal,
   SheetTrigger,
 } from '@components/ui/sheet'
-import { CategoryOptionsType, RecordType } from '@types'
+import { HamburgerIcon, PsychedelicDBIcon } from './Icons'
+import SidebarAccordion from './SidebarAccordion'
+import ThemeSwitch from './ThemeSwitch'
 
 type RecordMap = Record<CategoryOptionsType, RecordType[]>
 

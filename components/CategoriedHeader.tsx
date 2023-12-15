@@ -3,7 +3,7 @@ import { CategoryOptionsType, RecordType } from '@types'
 
 type RecordMap = Record<CategoryOptionsType, RecordType[]>
 
-import Header from './Header'
+import HeaderNav from './HeaderNav'
 
 // Get all records and sort them into a map, then pass the map to the Header component
 const CategoriedHeader = async (): Promise<JSX.Element> => {
@@ -29,7 +29,7 @@ const CategoriedHeader = async (): Promise<JSX.Element> => {
     recordsMapEn,
   )
 
-  return <Header recordsMapZh={recordsMapZh} recordsMapEn={recordsMapEn} />
+  return <HeaderNav recordsMapZh={recordsMapZh} recordsMapEn={recordsMapEn} />
 }
 
 export default CategoriedHeader
