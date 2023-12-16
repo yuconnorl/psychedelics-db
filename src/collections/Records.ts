@@ -5,7 +5,12 @@ import {
   PAYLOAD_CATEGORY_OPTIONS,
   TYPE_OPTIONS,
 } from '../config/options'
-import formatSlug from '../utilities/formatSlug'
+
+import CustomSlugField from '@/components/CustomSlugField'
+
+export const validateSlug = (value: string) => {
+  return (value !== undefined && value !== '') || `${value} should not be empty`
+}
 
 const Records: CollectionConfig = {
   slug: 'records',
@@ -30,6 +35,7 @@ const Records: CollectionConfig = {
           label: 'Category',
           type: 'select',
           options: [...PAYLOAD_CATEGORY_OPTIONS],
+          required: true,
         },
         {
           name: 'type',
@@ -37,6 +43,7 @@ const Records: CollectionConfig = {
           type: 'select',
           options: [...TYPE_OPTIONS],
           defaultValue: 'website',
+          required: true,
         },
       ],
     },
@@ -45,13 +52,15 @@ const Records: CollectionConfig = {
       label: 'Language',
       type: 'select',
       options: [...LANGUAGE_OPTIONS],
-      required: true,
       defaultValue: 'en',
+      required: true,
     },
     {
       name: 'url',
       label: 'URL',
       type: 'text',
+      defaultValue: ' ',
+      required: true,
     },
     {
       name: 'richText',
@@ -62,14 +71,16 @@ const Records: CollectionConfig = {
       name: 'slug',
       label: 'Slug',
       type: 'text',
+      validate: validateSlug,
       admin: {
         position: 'sidebar',
         description:
           'Slug should format into kebab case and delete any extra hyphen, e.g. "some-slug"',
+        components: {
+          Field: CustomSlugField,
+        },
       },
-      hooks: {
-        beforeValidate: [formatSlug('title')],
-      },
+      required: true,
     },
     {
       label: 'Advanced Options',

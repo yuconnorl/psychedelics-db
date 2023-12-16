@@ -12,7 +12,7 @@ const Home = async (): Promise<JSX.Element> => {
   return (
     <>
       <main className='flex flex-col flex-1 px-3'>
-        <div className='flex-1 flex justify-start items-center mt-10 sm:mt-24 flex-col relative'>
+        <div className='flex-1 flex justify-start items-center mt-10 sm:mt-20 flex-col relative'>
           <div className='flex flex-col w-full justify-center items-center text-center lg:w-3/4'>
             <h1 className='font-semibold text-5xl sm:text-6xl mb-3 sm:mb-6'>
               <span>The Doors of Perception</span>

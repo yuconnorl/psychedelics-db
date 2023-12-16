@@ -60,7 +60,7 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
             </span>
           </Link>
         </div>
-        <div className='flex items-center gap-3 md:gap-5'>
+        <div className='flex items-center gap-2 md:gap-5'>
           {!isRoot && (
             <AlgoliaSearchComponent searchBarClassName='w-52 lg:w-60' />
           )}
@@ -91,6 +91,13 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
               </Link>
             </div>
           </div>
+          <Link
+            href={'https://tinyurl.com/3fr2ddu7'}
+            target='_blank'
+            className='block mr-2 sm:hidden'
+          >
+            <TelegramIcon className='text-primary' />
+          </Link>
           <div className='flex md:hidden'>
             <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
               <SheetTrigger>
