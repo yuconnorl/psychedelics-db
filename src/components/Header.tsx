@@ -55,7 +55,7 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
             className='hover:opacity-40 transition-opacity flex gap-1 md:gap-1.5 items-center'
             href={'/'}
           >
-            <PsychedelicDBIcon />
+            <PsychedelicDBIcon className='w-6 h-6 md:w-7 md:h-7' />
             <span className='font-garamond text-base sm:text-lg md:text-xl'>
               {SITE_NAME}
             </span>
