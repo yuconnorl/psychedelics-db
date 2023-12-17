@@ -51,11 +51,11 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
       <div className='container px-6 lg:pr-8 lg:pl-10 flex items-center gap-3 w-full justify-between'>
         <div className='flex gap-2 items-center'>
           <Link
-            className='hover:opacity-40 transition-opacity flex gap-1.5 items-center'
+            className='hover:opacity-40 transition-opacity flex gap-1 md:gap-1.5 items-center'
             href={'/'}
           >
             <PsychedelicDBIcon />
-            <span className='font-garamond text-lg sm:text-xl'>
+            <span className='font-garamond text-base sm:text-lg md:text-xl'>
               {SITE_NAME}
             </span>
           </Link>
@@ -94,7 +94,7 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
           <Link
             href={'https://tinyurl.com/3fr2ddu7'}
             target='_blank'
-            className='block mr-2 sm:hidden'
+            className='block mr-2 md:hidden'
           >
             <TelegramIcon className='text-primary' />
           </Link>

@@ -23,10 +23,7 @@ const SidebarAccordion = ({
   recordsMapEn,
   onCategoryClickedAndCloseSheet = () => {},
 }: Props): JSX.Element => {
-  const [openedItems, setOpenedItems] = useState([
-    'mandarin-social-media',
-    'ngo-foundation',
-  ])
+  const [openedItems, setOpenedItems] = useState(['ngo-foundation'])
   const pathname = usePathname()
 
   useEffect(() => {

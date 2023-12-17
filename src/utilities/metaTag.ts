@@ -111,7 +111,7 @@ export const resolveMetaTag = async (
     return {
       href: url,
       title: defaultTitle,
-      imgUrl: '/psyche-icon.png',
+      imgUrl: '/psychedelic-database-intro.png',
       description: `No description for ${defaultTitle}`,
       iconUrl: '/fallback-icon.png',
     }

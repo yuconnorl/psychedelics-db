@@ -1,12 +1,11 @@
 import type { CollectionConfig } from 'payload/types'
 
+import CustomSlugField from '../components/CustomSlugField'
 import {
   LANGUAGE_OPTIONS,
   PAYLOAD_CATEGORY_OPTIONS,
   TYPE_OPTIONS,
 } from '../config/options'
-
-import CustomSlugField from '@/components/CustomSlugField'
 
 export const validateSlug = (value: string) => {
   return (value !== undefined && value !== '') || `${value} should not be empty`

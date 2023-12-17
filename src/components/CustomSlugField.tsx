@@ -1,3 +1,4 @@
+import React from 'react'
 import { Button } from 'payload/components'
 import { Label, useField, useFormFields } from 'payload/components/forms'
 
@@ -7,7 +8,7 @@ type Props = {
   required?: boolean
 }
 
-const CustomSlugField = ({ path, label, required }: Props) => {
+const CustomSlugField = ({ path, label, required }: Props): JSX.Element => {
   const formatTitle = (val: any): string => {
     if (!val) return ''
     return val
@@ -19,7 +20,7 @@ const CustomSlugField = ({ path, label, required }: Props) => {
   const title = useFormFields(([fields]) => fields.title)
 
   const formattedTitle = title?.value ? formatTitle(title.value) : ''
-  const { value, setValue } = useField<string | undefined>({ path })
+  const { value, setValue } = useField<string>({ path })
 
   const handleTitleCovert = (): void => {
     if (!title?.value) return

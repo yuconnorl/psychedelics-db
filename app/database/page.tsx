@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import psychedelicDatabaseIntro from 'public/psychedelic-database-intro.jpeg'
 
+import psychedelicDatabaseIntro from '@/assets/psychedelic-database-intro.jpeg'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Card, CardHeader, CardTitle } from '@/components/ui/card'
 import { CATEGORY_OPTIONS_MAP } from '@/config/options'
