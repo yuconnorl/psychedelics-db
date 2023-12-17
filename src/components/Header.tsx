@@ -33,6 +33,7 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
   const pathname = usePathname()
   const sheetPortalRef = useRef(null)
   const isRoot = pathname === '/'
+  const currentCategory = pathname?.split('/')[1]
 
   useEffect(() => {
     const sheetPortalContainer = document.getElementById(
@@ -60,7 +61,7 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
             </span>
           </Link>
         </div>
-        <div className='flex items-center gap-2 md:gap-5'>
+        <div className='flex items-center gap-1.5 md:gap-5'>
           {!isRoot && (
             <AlgoliaSearchComponent searchBarClassName='w-52 lg:w-60' />
           )}
@@ -94,9 +95,9 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
           <Link
             href={'https://tinyurl.com/3fr2ddu7'}
             target='_blank'
-            className='block mr-2 md:hidden'
+            className='block mr-3 md:hidden'
           >
-            <TelegramIcon className='text-primary' />
+            <TelegramIcon className='text-primary w-5 h-5' />
           </Link>
           <div className='flex md:hidden'>
             <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
@@ -114,13 +115,29 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
                         href={'/database'}
                         className='hover:opacity-40 transition-opacity'
                       >
-                        Database
+                        <span
+                          onClick={(): void => setSheetOpen(false)}
+                          className={cn(
+                            currentCategory === 'database' &&
+                              'underline underline-offset-4',
+                          )}
+                        >
+                          Database
+                        </span>
                       </Link>
                       <Link
                         href={'/about'}
                         className='hover:opacity-40 transition-opacity'
                       >
-                        About
+                        <span
+                          onClick={(): void => setSheetOpen(false)}
+                          className={cn(
+                            currentCategory === 'about' &&
+                              'underline underline-offset-4',
+                          )}
+                        >
+                          About
+                        </span>
                       </Link>
                     </div>
                     <SidebarAccordion
