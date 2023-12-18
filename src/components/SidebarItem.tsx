@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/accordion'
 import { DEFAULT_LAYOUT } from '@/config/general'
 import { CATEGORY_OPTIONS_MAP } from '@/config/options'
+import { cn } from '@/lib/utils'
 import { CategoryOptionsType, RecordType } from '@/types'
 
 type SidebarItemProps = {
@@ -24,14 +25,15 @@ type SidebarItemProps = {
 const SidebarItem = ({
   category,
   records,
-  onItemClicked = () => {},
+  onItemClicked = (): void => {},
   onCategoryClicked,
   openedItems,
 }: SidebarItemProps): JSX.Element => {
   const pathname = usePathname()
   const layout = DEFAULT_LAYOUT
+  const currentCategory = pathname?.split('/')[2]
 
-  const onAccordionItemClicked = () => {
+  const onAccordionItemClicked = (): void => {
     if (openedItems.includes(category)) {
       if (pathname === `/database/${category}`) {
         // close items
@@ -47,7 +49,13 @@ const SidebarItem = ({
   return (
     <AccordionItem className='border-0' value={category}>
       <AccordionTrigger className='text-left py-0'>
-        <Link href={`/database/${category}?layout=${layout}`}>
+        <Link
+          href={`/database/${category}?layout=${layout}`}
+          className={cn(
+            'hover:opacity-40 transition-opacity',
+            currentCategory === category && 'underline underline-offset-[6px]',
+          )}
+        >
           <span onClick={onAccordionItemClicked}>
             {CATEGORY_OPTIONS_MAP[category]}
           </span>
@@ -62,7 +70,7 @@ const SidebarItem = ({
                 className={clsx(
                   pathname === `/database/${category}/${item.slug}` &&
                     'text-foreground border-l-[1.5px] border-foreground',
-                  'hover:opacity-40 hover:underline pl-4 lg:pl-5 -ml-px block',
+                  'hover:opacity-40 pl-4 lg:pl-5 -ml-px block transition-opacity',
                 )}
               >
                 {item.title}

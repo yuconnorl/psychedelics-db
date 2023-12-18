@@ -47,6 +47,16 @@ const Records: CollectionConfig = {
       ],
     },
     {
+      name: 'metaDescription',
+      label: 'Description',
+      type: 'textarea',
+      defaultValue: () => '',
+      admin: {
+        placeholder:
+          'Optional. If provided, will be used in meta description and overwrites the default description from record resource, like website.',
+      },
+    },
+    {
       name: 'language',
       label: 'Language',
       type: 'select',

@@ -25,7 +25,8 @@ const GridCard = async ({
   url,
   type,
   language,
-}: InfoCard) => {
+  metaDescription,
+}: InfoCard): Promise<JSX.Element> => {
   const meta = await resolveMetaTag(url, slug, title)
 
   return (
@@ -56,9 +57,15 @@ const GridCard = async ({
               />
             </AspectRatio>
           </div>
-          <p className='line-clamp-2 text-muted-foreground text-base group-hover:text-foreground transition-colors'>
-            {meta.description}
-          </p>
+          {metaDescription ? (
+            <p className='line-clamp-2 text-muted-foreground text-base group-hover:text-foreground transition-colors'>
+              {metaDescription}
+            </p>
+          ) : (
+            <p className='line-clamp-2 text-muted-foreground text-base group-hover:text-foreground transition-colors'>
+              {meta.description}
+            </p>
+          )}
         </CardContent>
         <CardFooter>
           <div className='relative flex gap-1.5 items-center text-muted-foreground truncate'>
@@ -90,7 +97,16 @@ const GridLayoutCard = async ({
   return (
     <>
       {filterRecord.map(
-        ({ id, category, slug, title, url, type, language }) => (
+        ({
+          id,
+          category,
+          slug,
+          title,
+          url,
+          type,
+          language,
+          metaDescription,
+        }) => (
           <article key={id} className='relative group h-fit mb-2 sm:mb-4'>
             <GridCard
               category={category}
@@ -99,6 +115,7 @@ const GridLayoutCard = async ({
               url={url}
               type={type}
               language={language}
+              metaDescription={metaDescription}
             />
             <div className='absolute bg-foreground w-[calc(100%-5px)] h-[calc(100%-5px)] top-1 left-1 rounded-lg -z-10' />
           </article>

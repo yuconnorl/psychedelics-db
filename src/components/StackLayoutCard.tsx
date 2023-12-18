@@ -23,7 +23,8 @@ const StackCard = async ({
   url,
   type,
   language,
-}: InfoCard) => {
+  metaDescription,
+}: InfoCard): Promise<JSX.Element> => {
   const meta = await resolveMetaTag(url, slug, title)
 
   return (
@@ -42,9 +43,15 @@ const StackCard = async ({
             </div>
           </CardHeader>
           <CardContent className='gap-2'>
-            <p className='line-clamp-2 text-muted-foreground text-base group-hover:text-foreground transition-colors'>
-              {meta.description}
-            </p>
+            {metaDescription ? (
+              <p className='line-clamp-2 text-muted-foreground text-base group-hover:text-foreground transition-colors'>
+                {metaDescription}
+              </p>
+            ) : (
+              <p className='line-clamp-2 text-muted-foreground text-base group-hover:text-foreground transition-colors'>
+                {meta.description}
+              </p>
+            )}
           </CardContent>
           <CardFooter>
             <div className='relative flex gap-1.5 items-center text-muted-foreground truncate'>
@@ -85,7 +92,16 @@ const StackLayoutCard = async ({
   return (
     <>
       {filterRecord.map(
-        ({ category, slug, title, url, id, type, language }) => (
+        ({
+          category,
+          slug,
+          title,
+          url,
+          id,
+          type,
+          language,
+          metaDescription,
+        }) => (
           <div key={id} className='h-fit relative group'>
             <StackCard
               category={category}
@@ -94,6 +110,7 @@ const StackLayoutCard = async ({
               url={url}
               type={type}
               language={language}
+              metaDescription={metaDescription}
             />
             <div className='absolute bg-foreground w-[calc(100%-5px)] h-[calc(100%-5px)] top-1 left-1 rounded-lg -z-10' />
           </div>

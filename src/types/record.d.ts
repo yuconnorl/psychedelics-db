@@ -14,6 +14,7 @@ export type InfoCard = {
   url: string
   type: string
   language: string
+  metaDescription: string
 }
 
 export type CardParamsProps = {
