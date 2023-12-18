@@ -1,6 +1,6 @@
-# Psychedelic Database
+# Psychedelics Database
 
-Welcome to the Psychedelic Database, a comprehensive resource for all things about psychedelics. This project is powered by Payload CMS, a powerful, self-hosted tool that allows developers to build complex data structures with ease.
+Welcome to the Psychedelics Database, a comprehensive resource for all things about psychedelics. This project is powered by Payload CMS, a powerful, self-hosted tool that allows developers to build complex data structures with ease.
 
 ## Tech Stack
 
