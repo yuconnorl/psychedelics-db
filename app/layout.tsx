@@ -13,29 +13,28 @@ export const metadata: Metadata = {
     default: `${SITE_NAME} - The leading information hub around therapeutic and recreational usage of psychedelic compounds`,
     template: `%s - ${SITE_NAME}`,
   },
-  description: '',
+  description:
+    'Psychedelics database is the leading information hub around therapeutic and recreational usage of psychedelic compounds, managed by the Taiwan Psychedelic Collective',
   openGraph: {
-    title: `${SITE_NAME} - The leading information hub around therapeutic and recreational usage of psychedelic compounds`,
+    title: {
+      default: `${SITE_NAME} - The leading information hub around therapeutic and recreational usage of psychedelic compounds`,
+      template: `%s - ${SITE_NAME}`,
+    },
     description:
       'The leading information hub around therapeutic and recreational usage of psychedelic compounds',
     url: 'https://psychedelics-database.vercel.app',
     siteName: SITE_NAME,
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-      },
-    ],
-    locale: 'zh-Tw',
+    locale: 'zh_TW',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${SITE_NAME} - The leading information hub around therapeutic and recreational usage of psychedelic compounds`,
+    title: {
+      default: `${SITE_NAME} - The leading information hub around therapeutic and recreational usage of psychedelic compounds`,
+      template: `%s - ${SITE_NAME}`,
+    },
     description:
       'The leading information hub around therapeutic and recreational usage of psychedelic compounds',
-    images: '/og-image.png',
   },
 }
 

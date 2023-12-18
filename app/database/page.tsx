@@ -9,7 +9,6 @@ import { CATEGORY_OPTIONS_MAP } from '@/config/options'
 
 export const metadata: Metadata = {
   title: 'Database',
-  description: 'Database',
 }
 
 const CategoriesCard = ({ categoryTitle, category }) => {
@@ -51,7 +50,7 @@ const DatabasePage = (): JSX.Element => {
       <div className='text-4xl font-semibold text-primary my-6'>Intro</div>
       <div className='text-secondary-foreground text-base sm:text-lg'>
         <span>
-          The psychedelic database aims to serve as the leading information hub
+          The psychedelics database aims to serve as the leading information hub
           around therapeutic and recreational usage of psychedelic compounds.
           Containing data on over 100 psychedelic substances, it details
           quantitative information on dosing, effects, safety as well as

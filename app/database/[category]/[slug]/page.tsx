@@ -1,5 +1,5 @@
 import { Suspense } from 'react'
-import type { Metadata } from 'next'
+import { Metadata, ResolvingMetadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -35,15 +35,28 @@ export async function generateStaticParams(): Promise<
   }))
 }
 
-export async function generateMetadata({
-  params,
-}: ParamsType): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: ParamsType,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
   const records = await getAllRecords()
   const record = records.find((record) => record.slug === params.slug)
 
+  const parentData = (await parent) as Metadata
+  const parentOpenGraph = parentData.openGraph
+  const parentTwitter = parentData.twitter
+
   return {
     title: record.title,
-    // description: `${record.description}`,
+    openGraph: {
+      title: record.title,
+      images: parentOpenGraph.images,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: record.title,
+      images: parentTwitter.images,
+    },
   }
 }
 

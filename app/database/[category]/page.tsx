@@ -1,5 +1,5 @@
 import { Suspense } from 'react'
-import type { Metadata } from 'next'
+import { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { getAllRecords } from '@/api/general'
@@ -20,12 +20,25 @@ export async function generateStaticParams(): Promise<
   }))
 }
 
-export async function generateMetadata({
-  params,
-}: CardParamsProps): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: CardParamsProps,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const parentData = (await parent) as Metadata
+  const parentOpenGraph = parentData.openGraph
+  const parentTwitter = parentData.twitter
+
   return {
     title: CATEGORY_OPTIONS_MAP[params.category],
-    // description: `All Posts of ${params.category}`,
+    openGraph: {
+      title: CATEGORY_OPTIONS_MAP[params.category],
+      images: parentOpenGraph.images,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: CATEGORY_OPTIONS_MAP[params.category],
+      images: parentTwitter.images,
+    },
   }
 }
 

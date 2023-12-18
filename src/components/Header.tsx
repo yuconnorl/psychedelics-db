@@ -46,7 +46,7 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
     <header
       className={cn(
         'pt-[1.85rem] pb-6 sticky top-0 w-full items-center bg-background/90 supports-[backdrop-filter]:bg-background/60 backdrop-blur z-50',
-        !isRoot && 'border-b py-4 sm:py-6',
+        !isRoot && 'border-b py-3 sm:py-6',
       )}
     >
       <div className='container px-6 lg:pr-8 lg:pl-10 flex items-center gap-3 w-full justify-between'>

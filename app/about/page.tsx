@@ -1,11 +1,27 @@
-import type { Metadata } from 'next'
+import { Metadata, ResolvingMetadata } from 'next'
 
 import Footer from '@/components/Footer'
 import { PsychedelicDBIcon } from '@/components/Icons'
 
-export const metadata: Metadata = {
-  title: 'About',
-  description: 'About',
+export async function generateMetadata(
+  { params },
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const parentData = (await parent) as Metadata
+  const parentOpenGraph = parentData.openGraph
+  const parentTwitter = parentData.twitter
+
+  return {
+    title: 'About',
+    openGraph: {
+      title: 'About',
+      images: parentOpenGraph.images,
+    },
+    twitter: {
+      title: 'About',
+      images: parentTwitter.images,
+    },
+  }
 }
 
 const AboutPage = (): JSX.Element => {
