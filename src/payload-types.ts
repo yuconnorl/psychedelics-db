@@ -28,7 +28,7 @@ export interface Record {
     | 'mandarin-website'
     | 'mandarin-social-media'
     | 'mandarin-book'
-    | 'translated-video'
+    | 'psychedelics-research-article'
     | 'waiting-for-translate-video'
     | 'activity-log-n-data'
     | 'psychedelics-fundamentals'
@@ -59,7 +59,7 @@ export interface Record {
     | 'thesis'
     | 'pdf'
     | 'book';
-  metaDescription: string;
+  metaDescription?: string | null;
   language: 'zh-tw' | 'en';
   url: string;
   richText?:
