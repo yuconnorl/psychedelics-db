@@ -7,7 +7,6 @@ export const CATEGORY_OPTIONS_MAP = {
   'mandarin-website': '中文網站',
   'mandarin-social-media': '中文社群媒體',
   'mandarin-book': '中文書籍',
-  'translated-video': '已中文化影片',
   'psychedelics-research-article': '啟靈藥文獻資料庫',
   'waiting-for-translate-video': '待中文化影片',
   'activity-log-n-data': '活動紀錄與資料',
