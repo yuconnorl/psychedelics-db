@@ -103,7 +103,7 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
         />
       </Suspense>
       <div>
-        <h2 className='text-3xl sm:text-4xl xl:text-5xl font-semibold mb-2 leading-tight xl:leading-tight md:mb-4'>
+        <h2 className='text-3xl sm:text-4xl xl:text-5xl font-semibold mb-2 leading-tight sm:leading-tight xl:leading-tight md:mb-4'>
           {title}
         </h2>
         <section className='flex gap-2 my-4'>

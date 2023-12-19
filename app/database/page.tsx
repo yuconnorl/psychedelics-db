@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import { Metadata, ResolvingMetadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -7,10 +7,26 @@ import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Card, CardHeader, CardTitle } from '@/components/ui/card'
 import { CATEGORY_OPTIONS_MAP } from '@/config/options'
 
-export const metadata: Metadata = {
-  title: 'Database',
-}
+export async function generateMetadata(
+  { params },
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const parentData = (await parent) as Metadata
+  const parentOpenGraph = parentData.openGraph
+  const parentTwitter = parentData.twitter
 
+  return {
+    title: 'Database',
+    openGraph: {
+      title: 'Database',
+      images: parentOpenGraph.images,
+    },
+    twitter: {
+      title: 'Database',
+      images: parentTwitter.images,
+    },
+  }
+}
 const CategoriesCard = ({ categoryTitle, category }) => {
   return (
     <article className='relative group h-fit'>
@@ -20,6 +36,9 @@ const CategoriesCard = ({ categoryTitle, category }) => {
             <CardTitle className='font-normal text-base md:text-lg'>
               {categoryTitle}
             </CardTitle>
+            <div className='mt-0 text-xs sm:text-sm text-muted-foreground/80'>
+              {category}
+            </div>
           </CardHeader>
         </Card>
       </Link>
@@ -79,8 +98,8 @@ const DatabasePage = (): JSX.Element => {
           Categories
         </div>
         <div className='mb-6 text-secondary-foreground text-base sm:text-lg'>
-          The Psychedelic Database is organized into {categoriesNumber} main
-          categories:
+          The Psychedelics Database is organized into {categoriesNumber} main
+          categories, including:
         </div>
         <div className='grid grid-cols-[1fr_1fr] gap-3'>
           {Object.entries(CATEGORY_OPTIONS_MAP).map(
