@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-import { getAllRecords } from '@/api/general'
+import { getAllRecords, getCategories } from '@/api/general'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { ChevronRightUpIcon } from '@/components/Icons'
 import SerializeSlate from '@/components/SerializeSlate'
@@ -13,9 +13,8 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { LANGUAGE_MAP } from '@/config/general'
-import { CATEGORY_OPTIONS_MAP } from '@/config/options'
 import { IMAGE_PLACEHOLDER } from '@/constants/constants'
-import { capitalizeFirstLetter, cn } from '@/lib/utils'
+import { capitalizeFirstLetter } from '@/lib/utils'
 import { RecordType } from '@/types'
 import { resolveMetaTag } from '@/utilities/metaTag'
 
@@ -64,7 +63,11 @@ export async function generateMetadata(
 
 const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
   const records = await getAllRecords()
+  const categories = await getCategories()
 
+  const currentCategory = categories.find(
+    (category) => category.value === params.category,
+  )
   const filterRecord = records.find((record) => record.slug === params.slug)
 
   if (!filterRecord) {
@@ -91,7 +94,7 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
           items={[
             { label: 'Database', url: '/database' },
             {
-              label: `${CATEGORY_OPTIONS_MAP[category]}`,
+              label: `${currentCategory.displayName}`,
               url: `/database/${category}`,
               isCategory: true,
             },

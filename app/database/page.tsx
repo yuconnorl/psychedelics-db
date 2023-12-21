@@ -2,10 +2,10 @@ import { Metadata, ResolvingMetadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { getCategories } from '@/api/general'
 import psychedelicDatabaseIntro from '@/assets/psychedelic-database-intro.jpeg'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Card, CardHeader, CardTitle } from '@/components/ui/card'
-import { CATEGORY_OPTIONS_MAP } from '@/config/options'
 
 export async function generateMetadata(
   { params },
@@ -27,7 +27,7 @@ export async function generateMetadata(
     },
   }
 }
-const CategoriesCard = ({ categoryTitle, category }) => {
+const CategoriesCard = ({ categoryTitle, category }): JSX.Element => {
   return (
     <article className='relative group h-fit'>
       <Link href={`/database/${category}`}>
@@ -47,8 +47,9 @@ const CategoriesCard = ({ categoryTitle, category }) => {
   )
 }
 
-const DatabasePage = (): JSX.Element => {
-  const categoriesNumber = Object.keys(CATEGORY_OPTIONS_MAP).length
+const DatabasePage = async (): Promise<JSX.Element> => {
+  const categories = await getCategories()
+  const categoriesNumber = categories.length
 
   return (
     <div className=''>
@@ -102,15 +103,13 @@ const DatabasePage = (): JSX.Element => {
           categories, including:
         </div>
         <div className='grid grid-cols-[1fr_1fr] gap-3'>
-          {Object.entries(CATEGORY_OPTIONS_MAP).map(
-            ([category, categoryTitle]) => (
-              <CategoriesCard
-                key={category}
-                categoryTitle={categoryTitle}
-                category={category}
-              />
-            ),
-          )}
+          {categories.map(({ displayName, value }) => (
+            <CategoriesCard
+              key={value}
+              categoryTitle={displayName}
+              category={value}
+            />
+          ))}
         </div>
       </>
     </div>

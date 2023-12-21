@@ -20,6 +20,7 @@ type SidebarItemProps = {
   openedItems: string[]
   onItemClicked?: () => void
   onCategoryClicked: (items: string[]) => void
+  categoryTitle: string
 }
 
 const SidebarItem = ({
@@ -28,6 +29,7 @@ const SidebarItem = ({
   onItemClicked = (): void => {},
   onCategoryClicked,
   openedItems,
+  categoryTitle,
 }: SidebarItemProps): JSX.Element => {
   const pathname = usePathname()
   const layout = DEFAULT_LAYOUT
@@ -56,9 +58,7 @@ const SidebarItem = ({
             currentCategory === category && 'underline underline-offset-[6px]',
           )}
         >
-          <span onClick={onAccordionItemClicked}>
-            {CATEGORY_OPTIONS_MAP[category]}
-          </span>
+          <span onClick={onAccordionItemClicked}>{categoryTitle}</span>
         </Link>
       </AccordionTrigger>
       <AccordionContent className='pl-2'>

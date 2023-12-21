@@ -1,11 +1,9 @@
 import type { CollectionConfig } from 'payload/types'
 
+import CategoriesSelectField from '../components/CategoriesSelectField'
 import CustomSlugField from '../components/CustomSlugField'
-import {
-  LANGUAGE_OPTIONS,
-  PAYLOAD_CATEGORY_OPTIONS,
-  TYPE_OPTIONS,
-} from '../config/options'
+import TypesSelectField from '../components/TypesSelectField'
+import { LANGUAGE_OPTIONS } from '../config/options'
 
 export const validateSlug = (value: string) => {
   return (value !== undefined && value !== '') || `${value} should not be empty`
@@ -32,16 +30,23 @@ const Records: CollectionConfig = {
         {
           name: 'category',
           label: 'Category',
-          type: 'select',
-          options: [...PAYLOAD_CATEGORY_OPTIONS],
+          type: 'text',
+          admin: {
+            components: {
+              Field: CategoriesSelectField,
+            },
+          },
           required: true,
         },
         {
           name: 'type',
           label: 'Type of Content',
-          type: 'select',
-          options: [...TYPE_OPTIONS],
-          defaultValue: 'website',
+          type: 'text',
+          admin: {
+            components: {
+              Field: TypesSelectField,
+            },
+          },
           required: true,
         },
       ],

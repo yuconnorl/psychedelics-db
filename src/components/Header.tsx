@@ -26,9 +26,14 @@ type RecordMap = Record<CategoryOptionsType, RecordType[]>
 type Props = {
   recordsMapZh: RecordMap
   recordsMapEn: RecordMap
+  categoriesMap: Object
 }
 
-const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
+const Header = ({
+  recordsMapZh,
+  recordsMapEn,
+  categoriesMap,
+}: Props): JSX.Element => {
   const [sheetOpen, setSheetOpen] = useState(false)
   const pathname = usePathname()
   const sheetPortalRef = useRef(null)
@@ -143,6 +148,7 @@ const Header = ({ recordsMapZh, recordsMapEn }: Props): JSX.Element => {
                     <SidebarAccordion
                       recordsMapEn={recordsMapEn}
                       recordsMapZh={recordsMapZh}
+                      categoriesMap={categoriesMap}
                       onCategoryClickedAndCloseSheet={() => setSheetOpen(false)}
                     />
                     <div className='flex gap-4 mt-4 items-center'>

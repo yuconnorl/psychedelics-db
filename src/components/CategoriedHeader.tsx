@@ -1,4 +1,4 @@
-import { getAllRecords } from '@/api/general'
+import { getAllRecords, getCategories } from '@/api/general'
 import { CategoryOptionsType, RecordType } from '@/types'
 
 type RecordMap = Record<CategoryOptionsType, RecordType[]>
@@ -10,6 +10,12 @@ const CategoriedHeader = async (): Promise<JSX.Element> => {
   const recordsMapEn = {} as RecordMap
   const recordsMapZh = {} as RecordMap
   const records = await getAllRecords()
+  const categories = await getCategories()
+
+  const categoriesMap = categories.reduce((acc, category) => {
+    acc[category.value] = category.displayName
+    return acc
+  }, {})
 
   const processRecords = (data, map) => {
     data
@@ -29,7 +35,13 @@ const CategoriedHeader = async (): Promise<JSX.Element> => {
     recordsMapEn,
   )
 
-  return <Header recordsMapZh={recordsMapZh} recordsMapEn={recordsMapEn} />
+  return (
+    <Header
+      recordsMapZh={recordsMapZh}
+      recordsMapEn={recordsMapEn}
+      categoriesMap={categoriesMap}
+    />
+  )
 }
 
 export default CategoriedHeader

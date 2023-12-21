@@ -58,3 +58,55 @@ export const getAllRecords = async (limit = 300): Promise<RecordType[]> => {
 //     return []
 //   }
 // }
+
+// export const getCategories = async (limit = 500) => {
+//   const payload = await getPayloadClient()
+
+//   try {
+//     const records = await payload.find({
+//       collection: 'categories',
+//       limit,
+//     })
+
+//     return records?.docs
+//   } catch (error: unknown) {
+//     console.error('An error occurred:', error)
+//     return []
+//   }
+// }
+
+export const getCategories = async (limit = 300) => {
+  try {
+    const fetchUrl = `http://localhost:3000/api/categories?limit=${limit}`
+
+    const response = await fetch(fetchUrl)
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+
+    const data = await response.json()
+    return data?.docs
+  } catch (error: unknown) {
+    console.error('Fetch categories error:', error)
+    return []
+  }
+}
+
+export const getTypes = async (limit = 300) => {
+  try {
+    const fetchUrl = `http://localhost:3000/api/types?limit=${limit}`
+
+    const response = await fetch(fetchUrl)
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+
+    const data = await response.json()
+    return data?.docs
+  } catch (error: unknown) {
+    console.error('Fetch types error:', error)
+    return []
+  }
+}

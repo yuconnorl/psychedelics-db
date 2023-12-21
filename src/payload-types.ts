@@ -10,6 +10,8 @@ export interface Config {
   collections: {
     records: Record;
     media: Media;
+    categories: Category;
+    types: Type;
     users: User;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -19,46 +21,8 @@ export interface Config {
 export interface Record {
   id: string;
   title: string;
-  category:
-    | 'mandarin-speech-video'
-    | 'mandarin-video'
-    | 'mandarin-thesis'
-    | 'mandarin-article'
-    | 'mandarin-file'
-    | 'mandarin-website'
-    | 'mandarin-social-media'
-    | 'mandarin-book'
-    | 'psychedelics-research-article'
-    | 'waiting-for-translate-video'
-    | 'activity-log-n-data'
-    | 'psychedelics-fundamentals'
-    | 'online-media'
-    | 'research-centre'
-    | 'ngo-research-institute'
-    | 'private-research-institute'
-    | 'ngo-foundation'
-    | 'therapy-institue'
-    | 'health-n-safety'
-    | 'psychotherapy-training'
-    | 'decriminalize-policy'
-    | 'psychotherapists'
-    | 'press-n-journal'
-    | 'conference'
-    | 'podcast-speech'
-    | 'research-topics'
-    | 'influential-people';
-  type:
-    | 'video'
-    | 'youtube-channel'
-    | 'instagram'
-    | 'twitter'
-    | 'facebook'
-    | 'podcast'
-    | 'article'
-    | 'website'
-    | 'thesis'
-    | 'pdf'
-    | 'book';
+  category: string;
+  type: string;
   metaDescription?: string | null;
   language: 'zh-tw' | 'en';
   url: string;
@@ -83,6 +47,20 @@ export interface Media {
   filesize?: number | null;
   width?: number | null;
   height?: number | null;
+}
+export interface Category {
+  id: string;
+  displayName: string;
+  value: string;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Type {
+  id: string;
+  displayName: string;
+  value: string;
+  updatedAt: string;
+  createdAt: string;
 }
 export interface User {
   id: string;

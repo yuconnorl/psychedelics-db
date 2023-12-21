@@ -1,6 +1,6 @@
 import SidebarAccordion from './SidebarAccordion'
 
-import { getAllRecords } from '@/api/general'
+import { getAllRecords, getCategories } from '@/api/general'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { CategoryOptionsType, RecordType } from '@/types'
 
@@ -10,7 +10,7 @@ const Sidebar = async (): Promise<JSX.Element> => {
   const recordsMapEn = {} as RecordMap
   const recordsMapZh = {} as RecordMap
   const records = await getAllRecords()
-
+  const categories = await getCategories()
   const processRecords = (data, map) => {
     data
       .sort((a, b) => a.title.localeCompare(b.title))
@@ -19,6 +19,11 @@ const Sidebar = async (): Promise<JSX.Element> => {
         map[record.category].push(record)
       })
   }
+
+  const categoriesMap = categories.reduce((acc, category) => {
+    acc[category.value] = category.displayName
+    return acc
+  }, {})
 
   processRecords(
     records.filter((record) => record.language === 'zh-tw'),
@@ -35,6 +40,7 @@ const Sidebar = async (): Promise<JSX.Element> => {
         <SidebarAccordion
           recordsMapEn={recordsMapEn}
           recordsMapZh={recordsMapZh}
+          categoriesMap={categoriesMap}
         />
       </ScrollArea>
     </aside>
