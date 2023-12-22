@@ -28,7 +28,7 @@ const Home = async (): Promise<JSX.Element> => {
               />
             </div>
           </div>
-          <div className='fixed w-full h-2/3 -bottom-12 md:bottom-0 left-0 -z-10'>
+          <div className='fixed w-full h-[80%] -bottom-12 md:bottom-0 left-0 -z-10'>
             <SplineComponent />
           </div>
         </div>
