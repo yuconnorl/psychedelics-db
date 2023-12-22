@@ -110,8 +110,8 @@ const Header = ({
                 <HamburgerIcon />
               </SheetTrigger>
               <SheetPortal container={sheetPortalRef.current}>
-                <SheetContent className='w-[85%] sm:w-[540px]'>
-                  <ScrollArea className='h-[calc(100vh-6rem)] max-h-[calc(100vh-6rem)]'>
+                <SheetContent className='w-[85%] sm:w-[540px] grid grid-rows-[calc(100dvh-6rem)_1fr]'>
+                  <ScrollArea className='h-full'>
                     <div className='text-muted-foreground mb-8'>
                       <PsychedelicDBIcon className='w-9 h-9' />
                     </div>
@@ -151,12 +151,12 @@ const Header = ({
                       categoriesMap={categoriesMap}
                       onCategoryClickedAndCloseSheet={() => setSheetOpen(false)}
                     />
-                    <div className='flex gap-4 mt-4 items-center'>
+                    <div className='flex gap-4 my-4 items-center'>
                       Switch Theme
                       <ThemeSwitch />
                     </div>
                   </ScrollArea>
-                  <div className='h-16 flex justify-center items-center text-muted-foreground font-garamond'>
+                  <div className='flex justify-center items-center text-muted-foreground font-garamond'>
                     Psychedelics Database
                   </div>
                 </SheetContent>
