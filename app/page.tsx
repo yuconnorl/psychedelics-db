@@ -15,8 +15,8 @@ const Home = async (): Promise<JSX.Element> => {
               <span>The Doors of Perception</span>
             </h1>
             <p className='text-lg sm:text-xl text-muted-foreground w-full sm:w-[80%] max-w-xl'>
-              Welcome to The Psychedelic Database, a comprehensive resource for
-              all things about psychedelics.
+              Welcome to Psychedelics Database, a comprehensive resource for all
+              things about psychedelics.
             </p>
             <div className='flex gap-3 flex-wrap sm:gap-5 items-center justify-center mt-3 sm:mt-6'>
               <Button className='h-12' asChild>
