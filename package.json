@@ -57,6 +57,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "cmdk": "^0.2.0",
+    "dayjs": "^1.11.13",
     "dotenv": "^16.3.1",
     "dotenv-webpack": "^8.0.1",
     "escape-html": "^1.0.3",

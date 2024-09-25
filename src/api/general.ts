@@ -110,3 +110,34 @@ export const getTypes = async (limit = 300) => {
     return []
   }
 }
+
+export const getPapers = async (limit = 300) => {
+  try {
+    const fetchUrl = `http://localhost:3000/api/papers?limit=${limit}`
+
+    const response = await fetch(fetchUrl)
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+
+    const data = await response.json()
+
+    const papers = data?.docs.map((paper) => {
+      return {
+        id: paper.id,
+        title: paper.title,
+        abstract: paper.abstract,
+        authors: paper.authorsField.map((author) => author.author),
+        keywords: paper.keywordsField.map((keyword) => keyword.keyword),
+        doi: paper.doi,
+        url: paper.url,
+        publishedAt: paper.publishedAt,
+      }
+    })
+    return papers
+  } catch (error: unknown) {
+    console.error('Fetch papers error:', error)
+    return []
+  }
+}

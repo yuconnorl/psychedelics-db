@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { getCategories } from '@/api/general'
-import psychedelicDatabaseIntro from '@/assets/psychedelic-database-intro.jpeg'
+import imgPsychedelicDatabaseIntro from '@/assets/psychedelic-database-intro.jpeg'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Card, CardHeader, CardTitle } from '@/components/ui/card'
 
@@ -59,7 +59,7 @@ const DatabasePage = async (): Promise<JSX.Element> => {
       >
         <Image
           fill
-          src={psychedelicDatabaseIntro}
+          src={imgPsychedelicDatabaseIntro}
           alt='Psychedelic database'
           priority
           placeholder='blur'

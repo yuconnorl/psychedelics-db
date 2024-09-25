@@ -29,3 +29,8 @@
 .failure {
   background-color: red;
 }
+
+.btn-wrapper {
+  display: flex;
+  gap: 0.5rem;
+}

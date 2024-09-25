@@ -14,7 +14,7 @@ const SearchButton = ({ onButtonClick, className }: Props): JSX.Element => {
       <button
         type='button'
         className={cn(
-          'flex items-center ring-1 ring-muted/50 bg-input px-4 h-9 rounded-md justify-between',
+          'flex items-center ring-1 ring-muted/50 bg-input px-4 h-9 rounded-sm justify-between',
           'search-button-bg bg-[length:200%_200%] animate-button-gradient',
           'transition-shadow',
           className,
