@@ -1,9 +1,9 @@
-import dayjs from 'dayjs'
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
 
-import { getPapers } from '@/api/general'
+import HoverRevealImage from './HoverRevealImage'
+import PaperSection from './PaperSection'
+
 import imgTheEyes from '@/assets/the-eyes.png'
 
 export const metadata: Metadata = {
@@ -12,51 +12,36 @@ export const metadata: Metadata = {
 }
 
 const ResearchPage = async (): Promise<JSX.Element> => {
-  const papers = await getPapers()
-  // console.log(papers)
-
   return (
     <div className='container mt-16'>
-      <div className=''>
-        <h2 className='text-5xl md:text-6xl mb-12 md:leading-tight'>
-          Researches across all <br /> aspects of{' '}
-          <span className='italic font-garamond'>Psychedelics</span>
+      <div className='relative'>
+        <h2 className='text-5xl md:text-6xl mb-12 md:mb-32 md:leading-tight'>
+          Researches across all <br /> aspects of <HoverRevealImage />
         </h2>
-        <div className='w-full'>
-          <Image
-            src={imgTheEyes}
-            alt='Psychedelic Database'
-            className='rounded-lg w-full'
-            quality={75}
-          />
+        <div className='text-secondary-foreground text-base sm:text-lg md:ml-auto md:w-[45%]'>
+          <p>
+            The psychedelics database's research page offers a comprehensive,
+            curated collection of peer-reviewed studies on psychedelics. It
+            covers pharmacology, therapeutic applications, neuroscience,
+            psychology, and cultural significance of substances like psilocybin,
+            LSD, MDMA, and DMT. Exploring their effects on mental health,
+            consciousness, and potential medical treatments, this organized
+            platform serves researchers, clinicians, and enthusiasts seeking
+            in-depth psychedelics research. Users can easily navigate studies on
+            various compounds, their applications, and broader implications in
+            an accessible,
+          </p>
         </div>
       </div>
-      <div className='flex flex-col gap-5'>
-        {papers.map(
-          ({ id, title, authors, keywords, doi, url, publishedAt }) => {
-            return (
-              <div key={id}>
-                <h3>{title}</h3>
-                <div>
-                  <h4>Authors: {authors.join(', ')}</h4>
-                </div>
-                <div>
-                  <h4>Keywords: {keywords.join(', ')}</h4>
-                </div>
-                <div>
-                  <h3>Source: {doi}</h3>
-                </div>
-                <Link href={url}>Link</Link>
-                <div>
-                  <h4>
-                    Published At: {dayjs(publishedAt).format('MMM, YYYY')}
-                  </h4>
-                </div>
-              </div>
-            )
-          },
-        )}
+      <div className='w-full my-8 md:my-16'>
+        <Image
+          src={imgTheEyes}
+          alt='The eyes'
+          className='rounded-lg w-full'
+          quality={75}
+        />
       </div>
+      <PaperSection />
     </div>
   )
 }

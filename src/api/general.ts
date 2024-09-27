@@ -126,12 +126,15 @@ export const getPapers = async (limit = 300) => {
     const papers = data?.docs.map((paper) => {
       return {
         id: paper.id,
+        slug: paper.slug,
         title: paper.title,
-        abstract: paper.abstract,
         authors: paper.authorsField.map((author) => author.author),
+        journal: paper.journal,
+        abstract: paper.abstract,
         keywords: paper.keywordsField.map((keyword) => keyword.keyword),
         doi: paper.doi,
         url: paper.url,
+        substance: paper.substance,
         publishedAt: paper.publishedAt,
       }
     })

@@ -3,8 +3,14 @@ import type {
   CollectionConfig,
 } from 'payload/types'
 
+import CustomSlugField from '../components/CustomSlugField'
+import { PAYLOAD_SUBSTANCE_OPTIONS } from '../config/options'
 import { AuthorManager } from '../fields/AuthorManager/AuthorManager'
 import { KeywordManager } from '../fields/KeywordManager/KeywordManager'
+
+export const validateSlug = (value: string) => {
+  return (value !== undefined && value !== '') || `${value} should not be empty`
+}
 
 const checkDuplicateDOI: CollectionBeforeChangeHook = async ({
   data, // original arguments passed into the operation
@@ -45,6 +51,9 @@ const Papers: CollectionConfig = {
       name: 'authorsField',
       type: 'array',
       label: 'Authors',
+      admin: {
+        initCollapsed: true,
+      },
       fields: [
         {
           name: 'author',
@@ -55,6 +64,7 @@ const Papers: CollectionConfig = {
     {
       name: 'publishedAt',
       type: 'date',
+      required: true,
       admin: {
         date: {
           pickerAppearance: 'dayOnly',
@@ -63,9 +73,35 @@ const Papers: CollectionConfig = {
       },
     },
     {
+      name: 'substance',
+      type: 'select',
+      hasMany: true,
+      required: true,
+      admin: {
+        isClearable: true,
+        isSortable: true,
+      },
+      options: PAYLOAD_SUBSTANCE_OPTIONS,
+    },
+    {
       name: 'abstract',
       type: 'richText',
       label: 'Abstract',
+      required: true,
+    },
+    {
+      name: 'slug',
+      label: 'Slug',
+      type: 'text',
+      validate: validateSlug,
+      admin: {
+        position: 'sidebar',
+        description:
+          'Slug should format into kebab case and delete any extra hyphen, e.g. "some-slug"',
+        components: {
+          Field: CustomSlugField,
+        },
+      },
       required: true,
     },
     {
@@ -81,12 +117,24 @@ const Papers: CollectionConfig = {
       name: 'keywordsField',
       type: 'array',
       label: 'Keywords',
+      admin: {
+        initCollapsed: true,
+      },
       fields: [
         {
           name: 'keyword',
           type: 'text',
         },
       ],
+    },
+    {
+      name: 'journal',
+      label: 'Journal',
+      type: 'text',
+      required: true,
+      admin: {
+        description: 'Journal to the paper. Leave - if not applicable',
+      },
     },
     {
       name: 'doi',
@@ -105,6 +153,15 @@ const Papers: CollectionConfig = {
       required: true,
       admin: {
         description: 'URL to the paper',
+      },
+    },
+    {
+      name: 'isVectorized',
+      type: 'checkbox', // required
+      label: 'Vectorized',
+      defaultValue: false,
+      admin: {
+        readOnly: true,
       },
     },
   ],
