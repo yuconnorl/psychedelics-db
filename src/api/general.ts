@@ -3,7 +3,7 @@ import qs from 'qs'
 import { getPayloadClient } from '../getPayload'
 
 import { IS_DEV } from '@/config/general'
-import type { RecordType } from '@/types'
+import type { PaperData, PaperType, RecordType } from '@/types'
 
 export const getAllRecords = async (limit = 300): Promise<RecordType[]> => {
   try {
@@ -111,7 +111,7 @@ export const getTypes = async (limit = 300) => {
   }
 }
 
-export const getPapers = async (limit = 300) => {
+export const getPapers = async (limit = 300): Promise<PaperData[] | []> => {
   try {
     const fetchUrl = `http://localhost:3000/api/papers?limit=${limit}`
 
@@ -121,9 +121,8 @@ export const getPapers = async (limit = 300) => {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
 
-    const data = await response.json()
-
-    const papers = data?.docs.map((paper) => {
+    const data: { docs: PaperType[] } = await response.json()
+    const papers: PaperData[] = data?.docs.map((paper) => {
       return {
         id: paper.id,
         slug: paper.slug,

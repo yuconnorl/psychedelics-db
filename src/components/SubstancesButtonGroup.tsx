@@ -1,7 +1,8 @@
 'use client'
 
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import Image from 'next/image'
+import { useQueryState } from 'nuqs'
 
 import imgURSociopath from '../assets/u-r-sociopath.gif'
 
@@ -16,11 +17,7 @@ import { cn } from '@/lib/utils'
 
 const SubstancesButtonGroup = (): JSX.Element => {
   const [activeSubstance, setActiveSubstance] = useState([])
-
-  const imgUrl = useMemo(() => {
-    const imgUrls = [imgPsyBg1, imgPsyBg2, imgPsyBg3]
-    return imgUrls[Math.floor(Math.random() * imgUrls.length)]
-  }, [])
+  const [substance, setSubstance] = useQueryState('substance')
 
   const substancesGroupMap = {
     group1: [
@@ -56,12 +53,15 @@ const SubstancesButtonGroup = (): JSX.Element => {
         return groupToImgMap[group]
       }
     }
-    return '' // Default or fallback image URL
+    return ''
   }
 
-  const isSociopathShow = useMemo(() => {
-    return activeSubstance.length > 3 + Math.floor(Math.random() * 3)
-  }, [activeSubstance])
+  const randomThreshold = useMemo(() => Math.floor(Math.random() * 3) + 1, [])
+
+  const isSociopathShow = useMemo(
+    () => activeSubstance.length > randomThreshold,
+    [activeSubstance, randomThreshold],
+  )
 
   const onDeselectAllClick = (): void => {
     setActiveSubstance([])
@@ -80,8 +80,15 @@ const SubstancesButtonGroup = (): JSX.Element => {
     [activeSubstance, setActiveSubstance],
   )
 
+  useEffect(() => {
+    if (substance === null) {
+    }
+
+    setSubstance(activeSubstance.join('%2c'))
+  }, [activeSubstance, setSubstance])
+
   return (
-    <div className='top-24 md:sticky h-max pr-4'>
+    <div className='md:top-24 md:sticky h-max md:pr-4'>
       <h3 className='mb-4 pl-2 font-semibold'>Substances</h3>
       <div className='flex gap-2 flex-wrap items-start'>
         {Object.entries(substanceOptions).map(([value, substanceName]) => {
@@ -107,7 +114,7 @@ const SubstancesButtonGroup = (): JSX.Element => {
                 <div className='relative w-full h-full overflow-hidden rounded-lg border border-foreground'>
                   <Image
                     src={imgUrl}
-                    alt='Trippy Homer'
+                    alt='Psychedelic-ish background'
                     className='w-full left-0 top-0 opacity-75'
                     quality={10}
                   />
@@ -118,22 +125,25 @@ const SubstancesButtonGroup = (): JSX.Element => {
         })}
       </div>
       <Separator className='my-4 w-5/6' />
-      {isSociopathShow && (
+      <div className=''>
+        <Button
+          onClick={onDeselectAllClick}
+          variant='outline'
+          className='text-xs md:mb-4'
+        >
+          <DeselectAllIcon className='mr-1' />
+          Deselect
+        </Button>
         <Image
           src={imgURSociopath}
           alt='Hoo. You are a sociopath.'
-          className='w-5/6 mb-4'
-          quality={70}
+          className={cn(
+            'invisible w-full md:w-5/6',
+            isSociopathShow && 'visible',
+          )}
+          quality={50}
         />
-      )}
-      <Button
-        onClick={onDeselectAllClick}
-        variant='outline'
-        className='text-xs'
-      >
-        <DeselectAllIcon className='mr-1' />
-        Deselect
-      </Button>
+      </div>
     </div>
   )
 }

@@ -29,7 +29,7 @@ const ResearchPage = async (): Promise<JSX.Element> => {
             platform serves researchers, clinicians, and enthusiasts seeking
             in-depth psychedelics research. Users can easily navigate studies on
             various compounds, their applications, and broader implications in
-            an accessible,
+            an accessible.
           </p>
         </div>
       </div>

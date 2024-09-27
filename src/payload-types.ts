@@ -12,6 +12,7 @@ export interface Config {
     media: Media;
     categories: Category;
     types: Type;
+    papers: Paper;
     users: User;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -59,6 +60,54 @@ export interface Type {
   id: string;
   displayName: string;
   value: string;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Paper {
+  id: string;
+  title: string;
+  authorsField?:
+    | {
+        author?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  publishedAt: string;
+  substance: (
+    | '5-meo-dmt'
+    | 'amanita-muscaria'
+    | 'ayahuasca'
+    | 'cannabis'
+    | 'dmt'
+    | 'doi'
+    | 'ghb'
+    | 'ibogaine'
+    | 'ketamine'
+    | 'lsa'
+    | 'lsd'
+    | 'lsd-analogs'
+    | 'mdma'
+    | 'mescaline'
+    | 'peyote'
+    | 'pcp'
+    | 'psilocybin'
+    | 'salvia'
+    | 'unspecified'
+  )[];
+  abstract: {
+    [k: string]: unknown;
+  }[];
+  slug: string;
+  keywordsField?:
+    | {
+        keyword?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  journal: string;
+  doi: string;
+  url: string;
+  isVectorized?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
