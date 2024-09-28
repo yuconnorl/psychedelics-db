@@ -1,6 +1,3 @@
-import dayjs from 'dayjs'
-import Link from 'next/link'
-
 import { getPapers } from '@/api/general'
 import PapersTable from '@/components/PapersTable'
 import SubstancesButtonGroup from '@/components/SubstancesButtonGroup'

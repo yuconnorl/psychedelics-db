@@ -87,7 +87,7 @@ const SubstancesButtonGroup = (): JSX.Element => {
     if (querySubstance) {
       setActiveSubstance(querySubstance)
     }
-  }, [])
+  }, [querySubstance])
 
   useEffect(() => {
     setQuerySubstance(activeSubstance)
