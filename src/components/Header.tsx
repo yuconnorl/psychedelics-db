@@ -148,7 +148,7 @@ const Header = ({
                         </span>
                       </Link>
                       <Link
-                        href={'/about'}
+                        href={'/research'}
                         className='hover:opacity-40 transition-opacity'
                       >
                         <span

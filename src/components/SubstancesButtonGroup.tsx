@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import Image from 'next/image'
-import { useQueryState } from 'nuqs'
+import { parseAsArrayOf, parseAsString, useQueryState } from 'nuqs'
 
 import imgURSociopath from '../assets/u-r-sociopath.gif'
 
@@ -17,7 +17,10 @@ import { cn } from '@/lib/utils'
 
 const SubstancesButtonGroup = (): JSX.Element => {
   const [activeSubstance, setActiveSubstance] = useState([])
-  const [substance, setSubstance] = useQueryState('substance')
+  const [querySubstance, setQuerySubstance] = useQueryState(
+    'substance',
+    parseAsArrayOf(parseAsString),
+  )
 
   const substancesGroupMap = {
     group1: [
@@ -81,11 +84,14 @@ const SubstancesButtonGroup = (): JSX.Element => {
   )
 
   useEffect(() => {
-    if (substance === null) {
+    if (querySubstance) {
+      setActiveSubstance(querySubstance)
     }
+  }, [])
 
-    setSubstance(activeSubstance.join('%2c'))
-  }, [activeSubstance, setSubstance])
+  useEffect(() => {
+    setQuerySubstance(activeSubstance)
+  }, [activeSubstance, setQuerySubstance])
 
   return (
     <div className='md:top-24 md:sticky h-max md:pr-4'>
@@ -129,7 +135,7 @@ const SubstancesButtonGroup = (): JSX.Element => {
         <Button
           onClick={onDeselectAllClick}
           variant='outline'
-          className='text-xs md:mb-4'
+          className='text-xs mb-2 md:mb-4'
         >
           <DeselectAllIcon className='mr-1' />
           Deselect
@@ -137,10 +143,7 @@ const SubstancesButtonGroup = (): JSX.Element => {
         <Image
           src={imgURSociopath}
           alt='Hoo. You are a sociopath.'
-          className={cn(
-            'invisible w-full md:w-5/6',
-            isSociopathShow && 'visible',
-          )}
+          className={cn('w-full md:w-5/6 hidden', isSociopathShow && 'block')}
           quality={50}
         />
       </div>
