@@ -30,7 +30,7 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
   const totalPaperNumber = papers?.length || 0
 
   const filteredPapers =
-    querySubstance.length === 0 || !querySubstance
+    querySubstance?.length === 0 || !querySubstance
       ? papers
       : papers.filter((paper) =>
           paper.substance.some((substance) =>
@@ -83,7 +83,7 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
                   </Link>
                   <div className='flex gap-1.5'>
                     {authors.map((author) => (
-                      <TooltipProvider>
+                      <TooltipProvider key={author}>
                         <Tooltip>
                           <TooltipTrigger>
                             <Avatar className='h-7 w-7' key={author}>

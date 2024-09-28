@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import Image from 'next/image'
 import { parseAsArrayOf, parseAsString, useQueryState } from 'nuqs'
 
@@ -16,7 +16,6 @@ import { substanceOptions } from '@/config/options'
 import { cn } from '@/lib/utils'
 
 const SubstancesButtonGroup = (): JSX.Element => {
-  const [activeSubstance, setActiveSubstance] = useState([])
   const [querySubstance, setQuerySubstance] = useQueryState(
     'substance',
     parseAsArrayOf(parseAsString),
@@ -62,43 +61,30 @@ const SubstancesButtonGroup = (): JSX.Element => {
   const randomThreshold = useMemo(() => Math.floor(Math.random() * 3) + 1, [])
 
   const isSociopathShow = useMemo(
-    () => activeSubstance.length > randomThreshold,
-    [activeSubstance, randomThreshold],
+    () => querySubstance.length > randomThreshold,
+    [querySubstance, randomThreshold],
   )
 
   const onDeselectAllClick = (): void => {
-    setActiveSubstance([])
+    setQuerySubstance([])
   }
 
-  const onSubstanceClick = useCallback(
-    (substanceName: string) => {
-      if (activeSubstance.includes(substanceName)) {
-        setActiveSubstance(
-          activeSubstance.filter((name) => name !== substanceName),
-        )
+  const onSubstanceBadgeClick = (substance: string): void => {
+    setQuerySubstance((prev) => {
+      if (prev.includes(substance)) {
+        return prev.filter((item) => item !== substance)
       } else {
-        setActiveSubstance([...activeSubstance, substanceName])
+        return [...prev, substance]
       }
-    },
-    [activeSubstance, setActiveSubstance],
-  )
-
-  useEffect(() => {
-    if (querySubstance) {
-      setActiveSubstance(querySubstance)
-    }
-  }, [querySubstance])
-
-  useEffect(() => {
-    setQuerySubstance(activeSubstance)
-  }, [activeSubstance, setQuerySubstance])
+    })
+  }
 
   return (
     <div className='md:top-24 md:sticky h-max md:pr-4'>
       <h3 className='mb-4 pl-2 font-semibold'>Substances</h3>
       <div className='flex gap-2 flex-wrap items-start'>
         {Object.entries(substanceOptions).map(([value, substanceName]) => {
-          const isActive = activeSubstance.includes(value)
+          const isActive = querySubstance.includes(value)
           const imgUrl = getImageForSubstance(value)
 
           return (
@@ -108,7 +94,7 @@ const SubstancesButtonGroup = (): JSX.Element => {
                   isActive && '-translate-x-2 -translate-y-2 border-foreground',
                   'relative rounded-lg border bg-card text-card-foreground shadow-sm break-inside active:translate-y-1 active:translate-x-1 transition-all will-change-transform z-20',
                 )}
-                onClick={(): void => onSubstanceClick(value)}
+                onClick={(): void => onSubstanceBadgeClick(value)}
               >
                 <div className='flex flex-col p-6 px-4 py-2 space-y-0'>
                   <h3 className='font-normal text-base z-10 group-hover:opacity-50 transition-opacity'>
