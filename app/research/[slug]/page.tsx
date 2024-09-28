@@ -1,4 +1,4 @@
-import { Suspense } from 'react'
+import { Fragment, Suspense } from 'react'
 import { Metadata, ResolvingMetadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -6,12 +6,13 @@ import { notFound } from 'next/navigation'
 
 import { getAllRecords, getCategories, getPapers } from '@/api/general'
 import Breadcrumbs from '@/components/Breadcrumbs'
-import { ChevronRightUpIcon } from '@/components/Icons'
+import { LinkIcon } from '@/components/Icons'
 import SerializeSlate from '@/components/SerializeSlate'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+import { substanceOptions } from '@/config/options'
 import { IMAGE_PLACEHOLDER } from '@/constants/constants'
 import { capitalizeFirstLetter } from '@/lib/utils'
 import { RecordType } from '@/types'
@@ -85,12 +86,83 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
   } = filterPaper
 
   return (
-    <article>
-      <div>{title}</div>
-      <div>{slug}</div>
-      <div>{authors.join(', ')}</div>
-      <div>{journal}</div>
-      <div>{keywords.join(', ')}</div>
+    <article className='py-6'>
+      <Breadcrumbs
+        items={[
+          { label: 'Research', url: '/research' },
+          {
+            label: `${title}`,
+            url: `/research/${params.slug}`,
+          },
+        ]}
+      />
+      <div className='grid grid-cols-[1fr_0.5fr] gap-5 divide-x'>
+        <div className='px-3'>
+          <h1 className='text-5xl mb-16 font-medium font-garamond'>{title}</h1>
+          <div></div>
+          <div className='font-medium mb-3'>Abstract</div>
+          {abstract && (
+            <>
+              <div className='text-primary prose-lg'>
+                <SerializeSlate value={abstract} />
+              </div>
+            </>
+          )}
+        </div>
+        <div className='pl-6 pr-5 pt-28 flex flex-col gap-5'>
+          <div>
+            <div className='font-medium mb-3'>Journal</div>
+            <div className='text-primary/80'>{journal}</div>
+          </div>
+          <div>
+            <div className='font-medium mb-3'>Authors</div>
+            <div className='text-primary/80'>
+              {authors.map((author) => (
+                <Fragment key={author}>
+                  <span className='whitespace-nowrap'>{`${author}`}</span>
+                  {', '}
+                </Fragment>
+              ))}
+            </div>
+          </div>
+          <div>
+            <div className='font-medium mb-3'>Keywords</div>
+            <div className='text-primary/80'>
+              {keywords.map((keyword) => (
+                <Fragment key={keyword}>
+                  <span className='whitespace-nowrap'>{`${keyword}`}</span>
+                  {', '}
+                </Fragment>
+              ))}
+            </div>
+          </div>
+          <div>
+            <div className='font-medium mb-3'>DOI</div>
+            <div className='text-primary/80'>{doi}</div>
+          </div>
+          <div>
+            <div className='font-medium mb-3'>Link</div>
+            <Link
+              href={url}
+              prefetch={false}
+              target='_blank'
+              className='flex items-center text-primary/80 hover:opacity-50 transition-opacity'
+            >
+              <>
+                <LinkIcon className='inline mr-1' />
+                Link to the paper
+              </>
+            </Link>
+          </div>
+          <div>
+            {substance.map((sub) => (
+              <Badge key={sub} className='mr-1'>
+                {substanceOptions[sub]}
+              </Badge>
+            ))}
+          </div>
+        </div>
+      </div>
     </article>
   )
 }

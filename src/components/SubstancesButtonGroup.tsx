@@ -61,7 +61,7 @@ const SubstancesButtonGroup = (): JSX.Element => {
   const randomThreshold = useMemo(() => Math.floor(Math.random() * 3) + 1, [])
 
   const isSociopathShow = useMemo(
-    () => querySubstance.length > randomThreshold,
+    () => querySubstance?.length > randomThreshold,
     [querySubstance, randomThreshold],
   )
 
@@ -71,7 +71,9 @@ const SubstancesButtonGroup = (): JSX.Element => {
 
   const onSubstanceBadgeClick = (substance: string): void => {
     setQuerySubstance((prev) => {
-      if (prev.includes(substance)) {
+      if (prev === null) {
+        return [substance]
+      } else if (prev.includes(substance)) {
         return prev.filter((item) => item !== substance)
       } else {
         return [...prev, substance]
@@ -84,7 +86,7 @@ const SubstancesButtonGroup = (): JSX.Element => {
       <h3 className='mb-4 pl-2 font-semibold'>Substances</h3>
       <div className='flex gap-2 flex-wrap items-start'>
         {Object.entries(substanceOptions).map(([value, substanceName]) => {
-          const isActive = querySubstance.includes(value)
+          const isActive = querySubstance?.includes(value)
           const imgUrl = getImageForSubstance(value)
 
           return (

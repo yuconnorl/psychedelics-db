@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 const ResearchPage = async (): Promise<JSX.Element> => {
   return (
-    <div className='container mt-16'>
+    <div className='mt-16'>
       <div className='relative'>
         <h2 className='text-5xl md:text-6xl mb-12 md:mb-32 md:leading-tight'>
           Researches across all <br /> aspects of <HoverRevealImage />
