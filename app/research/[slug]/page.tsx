@@ -1,21 +1,16 @@
-import { Fragment, Suspense } from 'react'
+import { Fragment } from 'react'
 import dayjs from 'dayjs'
 import { Metadata, ResolvingMetadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-import { getAllRecords, getCategories, getPapers } from '@/api/general'
+import { getPapers } from '@/api/general'
 import Breadcrumbs from '@/components/Breadcrumbs'
-import { LinkIcon } from '@/components/Icons'
+import IconsWithSprite from '@/components/IconsWithSprite'
 import SerializeSlate from '@/components/SerializeSlate'
 import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Separator } from '@/components/ui/separator'
 import { substanceOptions } from '@/config/options'
-import { IMAGE_PLACEHOLDER } from '@/constants/constants'
-import { capitalizeFirstLetter } from '@/lib/utils'
-import { RecordType } from '@/types'
+import { PaperData } from '@/types'
 
 type ParamsType = {
   params: {
@@ -38,7 +33,9 @@ export async function generateMetadata(
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const papers = await getPapers()
-  const filterPaper = papers.find((paper) => paper.slug === params.slug)
+  const filterPaper = papers.find(
+    (paper: PaperData) => paper.slug === params.slug,
+  )
 
   const parentData = (await parent) as Metadata
   const parentOpenGraph = parentData.openGraph
@@ -60,11 +57,13 @@ export async function generateMetadata(
 
 const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
   const papers = await getPapers()
-  const filterPaper = papers.find((paper) => paper.slug === params.slug)
+  const filterPaper = papers.find(
+    (paper: PaperData) => paper.slug === params.slug,
+  )
 
-  // if (!filterPaper) {
-  //   notFound()
-  // }
+  if (!filterPaper) {
+    notFound()
+  }
 
   const {
     title,
@@ -79,7 +78,7 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
   } = filterPaper
 
   return (
-    <article className='py-6'>
+    <div className='py-6'>
       <Breadcrumbs
         items={[
           { label: 'Research', url: '/research' },
@@ -89,10 +88,9 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
           },
         ]}
       />
-      <div className='grid grid-cols-[1fr_0.5fr] gap-5 divide-x'>
+      <article className='grid grid-cols-[1fr_0.5fr] gap-5 divide-x'>
         <div className='px-3'>
           <h1 className='text-5xl mb-16 font-medium font-garamond'>{title}</h1>
-          <div></div>
           <div className='font-medium mb-3'>Abstract</div>
           {abstract && (
             <>
@@ -102,13 +100,13 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
             </>
           )}
         </div>
-        <div className='pl-6 pr-5 pt-28 flex flex-col gap-5'>
-          <div>
-            <div className='font-medium mb-3'>Journal</div>
+        <aside className='pl-6 pr-5 pt-28 flex flex-col gap-5'>
+          <section>
+            <h3 className='font-medium mb-3'>Journal</h3>
             <div className='text-primary/80'>{journal}</div>
-          </div>
-          <div>
-            <div className='font-medium mb-3'>Authors</div>
+          </section>
+          <section>
+            <h3 className='font-medium mb-3'>Authors</h3>
             <div className='text-primary/80'>
               {authors.length > 1
                 ? authors.map((author) => (
@@ -119,9 +117,9 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
                   ))
                 : authors[0]}
             </div>
-          </div>
-          <div>
-            <div className='font-medium mb-3'>Keywords</div>
+          </section>
+          <section>
+            <h3 className='font-medium mb-3'>Keywords</h3>
             <div className='text-primary/80'>
               {keywords.map((keyword) => (
                 <Fragment key={keyword}>
@@ -130,13 +128,13 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
                 </Fragment>
               ))}
             </div>
-          </div>
-          <div>
-            <div className='font-medium mb-3'>DOI</div>
+          </section>
+          <section>
+            <h3 className='font-medium mb-3'>DOI</h3>
             <div className='text-primary/80'>{doi}</div>
-          </div>
-          <div>
-            <div className='font-medium mb-3'>Link</div>
+          </section>
+          <section>
+            <h3 className='font-medium mb-3'>Link</h3>
             <Link
               href={url}
               prefetch={false}
@@ -144,27 +142,27 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
               className='flex items-center text-primary/80 hover:opacity-50 transition-opacity'
             >
               <>
-                <LinkIcon className='inline mr-1' />
-                Link to the paper
+                <IconsWithSprite id={'link'} class='size-4 mr-1 inline' />
+                Link to paper
               </>
             </Link>
-          </div>
-          <div>
-            <div className='font-medium mb-3'>Published</div>
-            <div className='text-primary/80'>
+          </section>
+          <section>
+            <h3 className='font-medium mb-3'>Published</h3>
+            <time className='text-primary/80'>
               {dayjs(publishedAt).format('MMMM YYYY')}
-            </div>
-          </div>
-          <div>
+            </time>
+          </section>
+          <section>
             {substance.map((sub) => (
               <Badge key={sub} className='mr-1'>
                 {substanceOptions[sub]}
               </Badge>
             ))}
-          </div>
-        </div>
-      </div>
-    </article>
+          </section>
+        </aside>
+      </article>
+    </div>
   )
 }
 

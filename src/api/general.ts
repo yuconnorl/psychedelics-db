@@ -135,6 +135,7 @@ export const getPapers = async (limit = 300): Promise<PaperData[] | []> => {
         url: paper.url,
         substance: paper.substance,
         publishedAt: paper.publishedAt,
+        viewCount: paper.viewCount,
       }
     })
     return papers

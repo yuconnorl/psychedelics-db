@@ -164,6 +164,16 @@ const Papers: CollectionConfig = {
         readOnly: true,
       },
     },
+    {
+      name: 'viewCount',
+      type: 'number',
+      defaultValue: 0,
+      required: true,
+      admin: {
+        readOnly: true,
+        hidden: true,
+      },
+    },
   ],
   hooks: {
     beforeChange: [checkDuplicateDOI],

@@ -9,7 +9,7 @@ import imgURSociopath from '../assets/u-r-sociopath.gif'
 import imgPsyBg1 from '@/assets/psy-bg-1.webp'
 import imgPsyBg2 from '@/assets/psy-bg-2.webp'
 import imgPsyBg3 from '@/assets/psy-bg-3.webp'
-import { DeselectAllIcon } from '@/components/Icons'
+import IconsWithSprite from '@/components/IconsWithSprite'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { substanceOptions } from '@/config/options'
@@ -125,7 +125,7 @@ const SubstancesButtonGroup = (): JSX.Element => {
           variant='outline'
           className='text-xs mb-2 md:mb-4'
         >
-          <DeselectAllIcon className='mr-1' />
+          <IconsWithSprite id={'x-circle'} class='mr-1 size-4' />
           Deselect
         </Button>
         <Image

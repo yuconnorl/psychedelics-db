@@ -4,11 +4,12 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { HamburgerIcon, PsychedelicDBIcon, TelegramIcon } from './Icons'
+import { HamburgerIcon, PsychedelicDBIcon } from './Icons'
 import SidebarAccordion from './SidebarAccordion'
 import ThemeSwitch from './ThemeSwitch'
 
 import AlgoliaSearchComponent from '@/components/algolia/AlgoliaSearchComponent'
+import IconsWithSprite from '@/components/IconsWithSprite'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Separator } from '@/components/ui/separator'
 import {
@@ -110,7 +111,12 @@ const Header = ({
                 target='_blank'
                 className='group block'
               >
-                <TelegramIcon className='text-primary group-hover:text-primary/50 transition-colors' />
+                <IconsWithSprite
+                  id={'telegram'}
+                  viewBox='0 0 71 59'
+                  class='text-primary group-hover:text-primary/50 transition-colors w-6 h-6'
+                />
+                {/* <TelegramIcon className='text-primary group-hover:text-primary/50 transition-colors' /> */}
               </Link>
             </div>
           </div>
@@ -119,7 +125,11 @@ const Header = ({
             target='_blank'
             className='block mr-3 md:hidden'
           >
-            <TelegramIcon className='text-primary w-5 h-5' />
+            <IconsWithSprite
+              id={'telegram'}
+              viewBox='0 0 71 59'
+              class='text-primary w-5 h-5'
+            />
           </Link>
           <div className='flex md:hidden'>
             <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>

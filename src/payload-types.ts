@@ -108,6 +108,7 @@ export interface Paper {
   doi: string;
   url: string;
   isVectorized?: boolean | null;
+  viewCount: number;
   updatedAt: string;
   createdAt: string;
 }
