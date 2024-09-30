@@ -1,4 +1,5 @@
 import { Fragment, Suspense } from 'react'
+import dayjs from 'dayjs'
 import { Metadata, ResolvingMetadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -8,7 +9,6 @@ import { getAllRecords, getCategories, getPapers } from '@/api/general'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { LinkIcon } from '@/components/Icons'
 import SerializeSlate from '@/components/SerializeSlate'
-import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
@@ -33,47 +33,40 @@ export async function generateStaticParams(): Promise<
   }))
 }
 
-// export async function generateMetadata(
-//   { params }: ParamsType,
-//   parent: ResolvingMetadata,
-// ): Promise<Metadata> {
-//   const records = await getAllRecords()
-//   const record = records.find((record) => record.slug === params.slug)
+export async function generateMetadata(
+  { params }: ParamsType,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const papers = await getPapers()
+  const filterPaper = papers.find((paper) => paper.slug === params.slug)
 
-//   const parentData = (await parent) as Metadata
-//   const parentOpenGraph = parentData.openGraph
-//   const parentTwitter = parentData.twitter
+  const parentData = (await parent) as Metadata
+  const parentOpenGraph = parentData.openGraph
+  const parentTwitter = parentData.twitter
 
-//   return {
-//     title: record.title,
-//     openGraph: {
-//       title: record.title,
-//       images: parentOpenGraph.images,
-//     },
-//     twitter: {
-//       card: 'summary_large_image',
-//       title: record.title,
-//       images: parentTwitter.images,
-//     },
-//   }
-// }
+  return {
+    title: filterPaper.title,
+    openGraph: {
+      title: filterPaper.title,
+      images: parentOpenGraph.images,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: filterPaper.title,
+      images: parentTwitter.images,
+    },
+  }
+}
 
 const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
   const papers = await getPapers()
-
   const filterPaper = papers.find((paper) => paper.slug === params.slug)
 
   // if (!filterPaper) {
   //   notFound()
   // }
 
-  console.log('fiqwlek')
-
-  console.log(filterPaper)
-
   const {
-    id,
-    slug,
     title,
     authors,
     journal,
@@ -117,12 +110,14 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
           <div>
             <div className='font-medium mb-3'>Authors</div>
             <div className='text-primary/80'>
-              {authors.map((author) => (
-                <Fragment key={author}>
-                  <span className='whitespace-nowrap'>{`${author}`}</span>
-                  {', '}
-                </Fragment>
-              ))}
+              {authors.length > 1
+                ? authors.map((author) => (
+                    <Fragment key={author}>
+                      <span className='whitespace-nowrap'>{`${author}`}</span>
+                      {', '}
+                    </Fragment>
+                  ))
+                : authors[0]}
             </div>
           </div>
           <div>
@@ -153,6 +148,12 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
                 Link to the paper
               </>
             </Link>
+          </div>
+          <div>
+            <div className='font-medium mb-3'>Published</div>
+            <div className='text-primary/80'>
+              {dayjs(publishedAt).format('MMMM YYYY')}
+            </div>
           </div>
           <div>
             {substance.map((sub) => (

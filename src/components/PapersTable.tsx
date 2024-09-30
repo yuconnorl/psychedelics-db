@@ -1,13 +1,26 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useMemo } from 'react'
 import dayjs from 'dayjs'
 import Link from 'next/link'
 import { parseAsArrayOf, parseAsString, useQueryState } from 'nuqs'
 
-import { BookOpenIcon, SlashIcon, UserCircleIcon } from '@/components/Icons'
+import {
+  BarArrowDown,
+  BarArrowUp,
+  BookOpenIcon,
+  SlashIcon,
+  UserCircleIcon,
+} from '@/components/Icons'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import {
   Tooltip,
   TooltipContent,
@@ -27,6 +40,10 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
     parseAsArrayOf(parseAsString),
   )
 
+  const [querySort, setQuerySort] = useQueryState(
+    'sort',
+    parseAsString.withDefault(''),
+  )
   const totalPaperNumber = papers?.length || 0
 
   const filteredPapers =
@@ -37,6 +54,22 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
             querySubstance.includes(substance),
           ),
         )
+
+  const sortedPapers = useMemo(
+    () =>
+      !querySort
+        ? filteredPapers
+        : querySort === 'ascending'
+        ? filteredPapers.sort(
+            (a, b) =>
+              dayjs(a.publishedAt).valueOf() - dayjs(b.publishedAt).valueOf(),
+          )
+        : filteredPapers.sort(
+            (a, b) =>
+              dayjs(b.publishedAt).valueOf() - dayjs(a.publishedAt).valueOf(),
+          ),
+    [querySort, filteredPapers],
+  )
 
   const onSubstanceBadgeClick = (substance: string) => {
     setQuerySubstance((prev) => {
@@ -50,25 +83,32 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
 
   return (
     <div>
-      <div className='flex items-center justify-end mb-6 text-primary/70'>
-        <span className=''>{filteredPapers.length}</span>
-        <SlashIcon />
-        <span className='mr-1.5'>{totalPaperNumber}</span>
-        <BookOpenIcon />
+      <div className='flex items-center justify-between mb-6'>
+        <Select value={querySort} onValueChange={setQuerySort}>
+          <SelectTrigger className='w-40 md:w-48'>
+            <SelectValue aria-label={querySort} placeholder='Sort' />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value='desending'>
+              <BarArrowDown className='inline mr-1' />
+              <span>Newest First</span>
+            </SelectItem>
+            <SelectItem value='ascending'>
+              <BarArrowUp className='inline mr-1' />
+              <span>Oldest First</span>
+            </SelectItem>
+          </SelectContent>
+        </Select>
+        <div className='flex items-center text-primary/70 pr-2'>
+          <span className=''>{sortedPapers.length}</span>
+          <SlashIcon />
+          <span className='mr-1.5'>{totalPaperNumber}</span>
+          <BookOpenIcon />
+        </div>
       </div>
       <div className='flex flex-col gap-7 md:gap-10'>
-        {filteredPapers.map(
-          ({
-            id,
-            title,
-            authors,
-            keywords,
-            doi,
-            url,
-            publishedAt,
-            substance,
-            slug,
-          }) => {
+        {sortedPapers.map(
+          ({ id, title, authors, publishedAt, substance, slug }) => {
             return (
               <div key={id}>
                 <div className='flex flex-col gap-1.5'>
@@ -103,13 +143,13 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
                     ))}
                   </div>
                   <div className='mt-2'>
-                    {substance.map((substance) => (
+                    {substance.map((sub) => (
                       <Badge
-                        onClick={(): void => onSubstanceBadgeClick(substance)}
-                        key={substance}
+                        onClick={(): void => onSubstanceBadgeClick(sub)}
+                        key={sub}
                         className='mr-1 cursor-pointer'
                       >
-                        {substanceOptions[substance]}
+                        {substanceOptions[sub]}
                       </Badge>
                     ))}
                   </div>
@@ -122,4 +162,5 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
     </div>
   )
 }
+
 export default PapersTable
