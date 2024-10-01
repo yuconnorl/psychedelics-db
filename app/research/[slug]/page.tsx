@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation'
 
 import { getPapers } from '@/api/general'
 import Breadcrumbs from '@/components/Breadcrumbs'
-import IconsWithSprite from '@/components/IconsWithSprite'
+import { LinkIcon } from '@/components/Icons'
 import SerializeSlate from '@/components/SerializeSlate'
 import { Badge } from '@/components/ui/badge'
 import { substanceOptions } from '@/config/options'
@@ -142,7 +142,7 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
               className='flex items-center text-primary/80 hover:opacity-50 transition-opacity'
             >
               <>
-                <IconsWithSprite id={'link'} class='size-4 mr-1 inline' />
+                <LinkIcon className='size-4 mr-1 inline' />
                 Link to paper
               </>
             </Link>

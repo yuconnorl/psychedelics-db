@@ -5,7 +5,13 @@ import dayjs from 'dayjs'
 import Link from 'next/link'
 import { parseAsArrayOf, parseAsString, useQueryState } from 'nuqs'
 
-import IconsWithSprite from '@/components/IconsWithSprite'
+import {
+  BarArrowDownIcon,
+  BarArrowUpIcon,
+  BookOpenIcon,
+  SlashIcon,
+  UserCircleIcon,
+} from '@/components/Icons'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import {
@@ -84,29 +90,23 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value='desending'>
-              <IconsWithSprite
-                id={'bar-arrow-down'}
-                class='inline mr-1 w-4 h-4'
-              />
+              <BarArrowDownIcon className='inline mr-1 size-4' />
               <span>Newest First</span>
             </SelectItem>
             <SelectItem value='ascending'>
-              <IconsWithSprite
-                id={'bar-arrow-up'}
-                class='inline mr-1 w-4 h-4'
-              />
+              <BarArrowUpIcon className='inline mr-1 size-4' />
               <span>Oldest First</span>
             </SelectItem>
           </SelectContent>
         </Select>
         <div className='flex items-center text-primary/70 pr-2'>
           <span className=''>{sortedPapers.length}</span>
-          <IconsWithSprite id={'slash'} class='size-4' />
-          <span className='mr-1.5'>{totalPaperNumber}</span>
-          <IconsWithSprite id={'book-open'} class='inline mr-1 w-5 h-5' />
+          <SlashIcon className='size-4' />
+          <span className='mr-2'>{totalPaperNumber}</span>
+          <BookOpenIcon className='inline mr-1 w-5 h-5' />
         </div>
       </div>
-      <div className='flex flex-col gap-7 md:gap-10'>
+      <div className='flex flex-col gap-7 md:gap-10 px-1'>
         {sortedPapers.map(
           ({ id, title, authors, publishedAt, substance, slug }) => {
             return (
@@ -134,10 +134,7 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
                           </TooltipTrigger>
                           <TooltipContent>
                             <div className='flex items-center'>
-                              <IconsWithSprite
-                                id={'user-circle'}
-                                class='inline mr-1 size-4'
-                              />
+                              <UserCircleIcon className='inline mr-1 size-4' />
                               <span className='pr-0.5'>{author}</span>
                             </div>
                           </TooltipContent>
