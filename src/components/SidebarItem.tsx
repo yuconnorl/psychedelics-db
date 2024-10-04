@@ -1,6 +1,5 @@
 'use client'
 
-import clsx from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -67,7 +66,7 @@ const SidebarItem = ({
             <li key={item.id} onClick={onItemClicked}>
               <Link
                 href={`/database/${category}/${item.slug}`}
-                className={clsx(
+                className={cn(
                   pathname === `/database/${category}/${item.slug}` &&
                     'text-foreground border-l-[1.5px] border-foreground',
                   'hover:opacity-40 pl-4 lg:pl-5 -ml-px block transition-opacity',

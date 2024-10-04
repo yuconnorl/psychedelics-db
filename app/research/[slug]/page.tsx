@@ -5,17 +5,15 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { getPapers } from '@/api/general'
-import Breadcrumbs from '@/components/Breadcrumbs'
-import { LinkIcon } from '@/components/Icons'
+import { ArrowLeftIcon, LinkIcon } from '@/components/Icons'
 import SerializeSlate from '@/components/SerializeSlate'
 import { Badge } from '@/components/ui/badge'
 import { substanceOptions } from '@/config/options'
 import { PaperData } from '@/types'
 
 type ParamsType = {
-  params: {
-    slug: string
-  }
+  params: { slug: string }
+  searchParams: { [key: string]: string | string[] | undefined }
 }
 
 export async function generateStaticParams(): Promise<
@@ -55,7 +53,10 @@ export async function generateMetadata(
   }
 }
 
-const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
+const PaperPage = async ({
+  params,
+  searchParams,
+}: ParamsType): Promise<JSX.Element> => {
   const papers = await getPapers()
   const filterPaper = papers.find(
     (paper: PaperData) => paper.slug === params.slug,
@@ -64,6 +65,10 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
   if (!filterPaper) {
     notFound()
   }
+
+  const backToResearchLink = searchParams?.substance
+    ? `/research?substance=${searchParams.substance}`
+    : '/research'
 
   const {
     title,
@@ -79,15 +84,10 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
 
   return (
     <div className='py-6'>
-      <Breadcrumbs
-        items={[
-          { label: 'Research', url: '/research' },
-          {
-            label: `${title}`,
-            url: `/research/${params.slug}`,
-          },
-        ]}
-      />
+      <nav className='flex items-center pl-2 text-primary/80 mb-10 group text-sm'>
+        <ArrowLeftIcon className='mr-1.5 group-hover:-translate-x-1 transition-transform' />
+        <Link href={backToResearchLink}>All Researches</Link>
+      </nav>
       <article className='grid grid-cols-[1fr_0.5fr] gap-5 divide-x'>
         <div className='px-3'>
           <h1 className='text-5xl mb-16 font-medium font-garamond'>{title}</h1>

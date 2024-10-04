@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 'use client'
+
 import React, { useMemo, useState } from 'react'
 import algoliasearch from 'algoliasearch'
 import clsx from 'clsx'

@@ -3,8 +3,14 @@
 import { useMemo } from 'react'
 import dayjs from 'dayjs'
 import Link from 'next/link'
-import { parseAsArrayOf, parseAsString, useQueryState } from 'nuqs'
+import {
+  parseAsArrayOf,
+  parseAsInteger,
+  parseAsString,
+  useQueryState,
+} from 'nuqs'
 
+import CustomPagination from '@/components/CustomPagination'
 import {
   BarArrowDownIcon,
   BarArrowUpIcon,
@@ -44,6 +50,12 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
     'sort',
     parseAsString.withDefault(''),
   )
+
+  const [queryPage, setQueryPage] = useQueryState(
+    'page',
+    parseAsInteger.withDefault(1),
+  )
+
   const totalPaperNumber = papers?.length || 0
 
   const filteredPapers =
@@ -51,7 +63,7 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
       ? papers
       : papers.filter((paper) =>
           paper.substance.some((substance) =>
-            querySubstance.includes(substance),
+            querySubstance?.includes(substance),
           ),
         )
 
@@ -71,9 +83,16 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
     [querySort, filteredPapers],
   )
 
-  const onSubstanceBadgeClick = (substance: string) => {
+  const itemPerPage = 1
+
+  const pagedPapers = sortedPapers.slice(
+    (queryPage - 1) * itemPerPage,
+    queryPage * itemPerPage,
+  )
+
+  const onSubstanceBadgeClick = (substance: string): void => {
     setQuerySubstance((prev) => {
-      if (prev.includes(substance)) {
+      if (prev?.includes(substance)) {
         return prev.filter((item) => item !== substance)
       } else {
         return [...prev, substance]
@@ -82,7 +101,7 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
   }
 
   return (
-    <div>
+    <>
       <div className='flex items-center justify-between mb-6'>
         <Select value={querySort} onValueChange={setQuerySort}>
           <SelectTrigger className='w-40 md:w-48'>
@@ -100,15 +119,19 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
           </SelectContent>
         </Select>
         <div className='flex items-center text-primary/70 pr-2'>
-          <span className=''>{sortedPapers.length}</span>
+          <span>{sortedPapers.length}</span>
           <SlashIcon className='size-4' />
           <span className='mr-2'>{totalPaperNumber}</span>
           <BookOpenIcon className='inline mr-1 w-5 h-5' />
         </div>
       </div>
       <div className='flex flex-col gap-7 md:gap-10 px-1'>
-        {sortedPapers.map(
+        {pagedPapers.map(
           ({ id, title, authors, publishedAt, substance, slug }) => {
+            const link = querySubstance?.length
+              ? `/research/${slug}?substance=${querySubstance?.join(',')}`
+              : `/research/${slug}`
+
             return (
               <article key={id}>
                 <div className='flex flex-col gap-1.5'>
@@ -116,8 +139,8 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
                     {dayjs(publishedAt).format('YYYY MMM')}
                   </time>
                   <Link
-                    href={`/research/${slug}`}
-                    className='text-2xl font-medium font-garamond transition-opacity hover:opacity-50'
+                    href={link}
+                    className='text-2xl xl:text-3xl font-medium font-garamond transition-opacity hover:opacity-50'
                   >
                     {title}
                   </Link>
@@ -159,7 +182,14 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
           },
         )}
       </div>
-    </div>
+      {sortedPapers.length > itemPerPage && (
+        <CustomPagination
+          totalElements={sortedPapers.length}
+          itemsPerPage={itemPerPage}
+          onPageChange={setQueryPage}
+        />
+      )}
+    </>
   )
 }
 

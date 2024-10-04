@@ -1,16 +1,15 @@
-import clsx from 'clsx'
-
 import { AspectRatio } from './ui/aspect-ratio'
 
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
+import { cn } from '@/lib/utils'
 
 type SkeletonCardProps = {
   isGrid: boolean
   cardNumber?: number
 }
 
-const GridSkeletonCard = () => {
+const GridSkeletonCard = (): JSX.Element => {
   return (
     <Card className='relative break-inside mb-4 z-10'>
       <CardHeader>
@@ -37,7 +36,7 @@ const GridSkeletonCard = () => {
   )
 }
 
-const StackSkeletonCard = () => {
+const StackSkeletonCard = (): JSX.Element => {
   return (
     <Card className='relative overflow-hidden grid grid-rows-[minmax(0,1fr)_200px] sm:grid-rows-none sm:grid-cols-[minmax(0,1fr)_240px] xl:grid-cols-[minmax(0,1fr)_320px] z-10'>
       <div>
@@ -74,7 +73,7 @@ const SkeletonCard = ({
   return (
     <>
       <div
-        className={clsx(
+        className={cn(
           isGrid ? 'columns-xs xl:columns-sm' : 'flex flex-col gap-4',
         )}
       >
