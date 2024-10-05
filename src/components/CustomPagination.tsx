@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useMemo, useState } from 'react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
 
+import { ChevronLeftIcon, ChevronRightIcon } from '@/components/Icons'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
@@ -92,9 +92,9 @@ const CustomPagination = ({
         variant='ghost'
         size='icon'
         disabled={currentPage === 1}
-        className='disabled:opacity-50 px-3'
+        className='disabled:opacity-50 px-1.5 md:px-3 w-8 md:w-10'
       >
-        <ChevronLeft />
+        <ChevronLeftIcon />
       </Button>
       {paginationRange?.map((pageNumber, index) => (
         <Button
@@ -105,7 +105,7 @@ const CustomPagination = ({
           className={cn(
             pageNumber === '...'
               ? 'cursor-default hover:bg-transparent w-5'
-              : 'px-3',
+              : 'px-1.5 md:px-3 w-8 md:w-10',
           )}
         >
           {pageNumber}
@@ -116,9 +116,9 @@ const CustomPagination = ({
         variant='ghost'
         size='icon'
         disabled={currentPage === Math.ceil(totalElements / itemsPerPage)}
-        className='disabled:opacity-50 px-3'
+        className='disabled:opacity-50 px-1.5 md:px-3 w-8 md:w-10'
       >
-        <ChevronRight />
+        <ChevronRightIcon />
       </Button>
     </nav>
   )
