@@ -39,6 +39,7 @@ const ResearchPage = async (): Promise<JSX.Element> => {
           alt='The eyes'
           className='rounded-lg w-full'
           quality={75}
+          placeholder='blur'
         />
       </div>
       <PaperSection />

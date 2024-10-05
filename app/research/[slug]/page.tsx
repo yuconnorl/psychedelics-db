@@ -7,6 +7,12 @@ import { notFound } from 'next/navigation'
 import { getPapers } from '@/api/general'
 import { ArrowLeftIcon, LinkIcon } from '@/components/Icons'
 import SerializeSlate from '@/components/SerializeSlate'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion'
 import { Badge } from '@/components/ui/badge'
 import { substanceOptions } from '@/config/options'
 import { PaperData } from '@/types'
@@ -88,9 +94,85 @@ const PaperPage = async ({
         <ArrowLeftIcon className='mr-1.5 group-hover:-translate-x-1 transition-transform' />
         <Link href={backToResearchLink}>All Researches</Link>
       </nav>
-      <article className='grid grid-cols-[1fr_0.5fr] gap-5 divide-x'>
-        <div className='px-3'>
-          <h1 className='text-5xl mb-16 font-medium font-garamond'>{title}</h1>
+      <article className='flex flex-col md:grid md:grid-cols-[1fr_0.5fr]'>
+        <div className='px-3 md:pr-6 md:border-r'>
+          <h1 className='text-4xl md:text-5xl md:mb-16 mb-8 font-medium font-garamond'>
+            {title}
+          </h1>
+          <Accordion type='single' className='md:hidden mb-8' collapsible>
+            <AccordionItem value='paper-detail'>
+              <AccordionTrigger className='text-primary/80'>
+                Paper Detail
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className='flex flex-col gap-4'>
+                  <section>
+                    <h3 className='font-medium mb-3'>Journal</h3>
+                    <div className='text-primary/80'>{journal}</div>
+                  </section>
+                  <section>
+                    <h3 className='font-medium mb-3'>Authors</h3>
+                    <div className='text-primary/80'>
+                      {authors.length > 1
+                        ? authors.map((author, index) => {
+                            return (
+                              <Fragment key={author}>
+                                <span className='whitespace-nowrap'>
+                                  {author}
+                                </span>
+                                {index !== authors.length - 1 && ', '}
+                              </Fragment>
+                            )
+                          })
+                        : authors[0]}
+                    </div>
+                  </section>
+                  <section>
+                    <h3 className='font-medium mb-3'>Keywords</h3>
+                    <div className='text-primary/80'>
+                      {keywords.map((keyword) => (
+                        <Fragment key={keyword}>
+                          <span className='whitespace-nowrap'>{`${keyword}`}</span>
+                          {', '}
+                        </Fragment>
+                      ))}
+                    </div>
+                  </section>
+                  <section>
+                    <h3 className='font-medium mb-3'>DOI</h3>
+                    <div className='text-primary/80'>{doi}</div>
+                  </section>
+                  <section>
+                    <h3 className='font-medium mb-3'>Link</h3>
+                    <Link
+                      href={url}
+                      prefetch={false}
+                      target='_blank'
+                      className='flex items-center text-primary/80 hover:opacity-50 transition-opacity'
+                    >
+                      <>
+                        <LinkIcon className='size-4 mr-1 inline' />
+                        Link to paper
+                      </>
+                    </Link>
+                  </section>
+                  <section>
+                    <h3 className='font-medium mb-3'>Published</h3>
+                    <time className='text-primary/80'>
+                      {dayjs(publishedAt).format('MMMM YYYY')}
+                    </time>
+                  </section>
+                  <section>
+                    {substance.map((sub) => (
+                      <Badge key={sub} className='mr-1'>
+                        {substanceOptions[sub]}
+                      </Badge>
+                    ))}
+                  </section>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
           <div className='font-medium mb-3'>Abstract</div>
           {abstract && (
             <>
@@ -100,7 +182,7 @@ const PaperPage = async ({
             </>
           )}
         </div>
-        <aside className='pl-6 pr-5 pt-28 flex flex-col gap-5'>
+        <aside className='pl-6 pr-5 pt-28 md:flex flex-col hidden gap-5 top-1 md:sticky md:h-max'>
           <section>
             <h3 className='font-medium mb-3'>Journal</h3>
             <div className='text-primary/80'>{journal}</div>
@@ -109,24 +191,30 @@ const PaperPage = async ({
             <h3 className='font-medium mb-3'>Authors</h3>
             <div className='text-primary/80'>
               {authors.length > 1
-                ? authors.map((author) => (
-                    <Fragment key={author}>
-                      <span className='whitespace-nowrap'>{`${author}`}</span>
-                      {', '}
-                    </Fragment>
-                  ))
+                ? authors.map((author, index) => {
+                    return (
+                      <Fragment key={author}>
+                        <span className='whitespace-nowrap'>{author}</span>
+                        {index !== authors.length - 1 && ', '}
+                      </Fragment>
+                    )
+                  })
                 : authors[0]}
             </div>
           </section>
           <section>
             <h3 className='font-medium mb-3'>Keywords</h3>
             <div className='text-primary/80'>
-              {keywords.map((keyword) => (
-                <Fragment key={keyword}>
-                  <span className='whitespace-nowrap'>{`${keyword}`}</span>
-                  {', '}
-                </Fragment>
-              ))}
+              {keywords.length > 1
+                ? keywords.map((keyword, index) => {
+                    return (
+                      <Fragment key={keyword}>
+                        <span className='whitespace-nowrap'>{keyword}</span>
+                        {index !== keywords.length - 1 && ', '}
+                      </Fragment>
+                    )
+                  })
+                : keywords[0]}
             </div>
           </section>
           <section>

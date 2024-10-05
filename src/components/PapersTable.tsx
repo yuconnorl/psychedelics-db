@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import dayjs from 'dayjs'
 import Link from 'next/link'
 import {
@@ -83,7 +83,7 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
     [querySort, filteredPapers],
   )
 
-  const itemPerPage = 1
+  const itemPerPage = 5
 
   const pagedPapers = sortedPapers.slice(
     (queryPage - 1) * itemPerPage,
@@ -92,13 +92,21 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
 
   const onSubstanceBadgeClick = (substance: string): void => {
     setQuerySubstance((prev) => {
-      if (prev?.includes(substance)) {
+      if (prev === null) {
+        return [substance]
+      } else if (prev?.includes(substance)) {
         return prev.filter((item) => item !== substance)
       } else {
         return [...prev, substance]
       }
     })
   }
+
+  useEffect(() => {
+    if (sortedPapers.length <= itemPerPage) {
+      setQueryPage(1)
+    }
+  }, [sortedPapers])
 
   return (
     <>
@@ -125,7 +133,7 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
           <BookOpenIcon className='inline mr-1 w-5 h-5' />
         </div>
       </div>
-      <div className='flex flex-col gap-7 md:gap-10 px-1'>
+      <div className='flex flex-col gap-7 md:gap-10 px-1 md:pr-3'>
         {pagedPapers.map(
           ({ id, title, authors, publishedAt, substance, slug }) => {
             const link = querySubstance?.length
@@ -140,11 +148,11 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
                   </time>
                   <Link
                     href={link}
-                    className='text-2xl xl:text-3xl font-medium font-garamond transition-opacity hover:opacity-50'
+                    className='text-2xl 2xl:text-3xl font-medium font-garamond transition-opacity hover:opacity-50'
                   >
                     {title}
                   </Link>
-                  <div className='flex gap-1.5'>
+                  <div className='flex gap-1.5 flex-wrap'>
                     {authors.map((author) => (
                       <TooltipProvider key={author}>
                         <Tooltip>

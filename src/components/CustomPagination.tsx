@@ -89,24 +89,24 @@ const CustomPagination = ({
     >
       <Button
         onClick={onPrevious}
-        disabled={currentPage === 1}
-        className='disabled:opacity-50 px-3'
         variant='ghost'
         size='icon'
+        disabled={currentPage === 1}
+        className='disabled:opacity-50 px-3'
       >
         <ChevronLeft />
       </Button>
       {paginationRange?.map((pageNumber, index) => (
         <Button
           key={index}
-          variant={pageNumber === currentPage ? 'outline' : 'ghost'}
           onClick={(): void => pageNumber !== '...' && onPageClick(pageNumber)}
+          variant={pageNumber === currentPage ? 'outline' : 'ghost'}
+          size='icon'
           className={cn(
             pageNumber === '...'
               ? 'cursor-default hover:bg-transparent w-5'
               : 'px-3',
           )}
-          size='icon'
         >
           {pageNumber}
         </Button>
@@ -125,7 +125,7 @@ const CustomPagination = ({
 }
 
 // Utility function to create a range of numbers
-const range = (start, end): Array<number> => {
+const range = (start: number, end: number): Array<number> => {
   let length = end - start + 1
   return Array.from({ length }, (_, idx) => idx + start)
 }
