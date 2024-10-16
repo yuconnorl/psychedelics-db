@@ -76,7 +76,7 @@ const Header = ({
                 href={'/database'}
                 className={cn(
                   currentCategory === 'database' &&
-                    'underline underline-offset-4',
+                    'underline underline-offset-4 text-foreground',
                   'hover:opacity-40 transition-opacity',
                 )}
               >
@@ -86,7 +86,7 @@ const Header = ({
                 href={'/research'}
                 className={cn(
                   currentCategory === 'research' &&
-                    'underline underline-offset-4',
+                    'underline underline-offset-4 text-foreground',
                   'hover:opacity-40 transition-opacity',
                 )}
               >
@@ -95,7 +95,8 @@ const Header = ({
               <Link
                 href={'/about'}
                 className={cn(
-                  currentCategory === 'about' && 'underline underline-offset-4',
+                  currentCategory === 'about' &&
+                    'underline underline-offset-4 text-foreground',
                   'hover:opacity-40 transition-opacity',
                 )}
               >

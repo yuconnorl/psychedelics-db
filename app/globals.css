@@ -55,7 +55,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground selection:text-[#b65dee]/70 selection:bg-emerald-200/60;
+    @apply bg-background text-foreground selection:text-[#b65dee]/80 selection:bg-[#B2FFD6];
   }
 
   .container {

@@ -16,10 +16,6 @@ const checkDuplicateDOI: CollectionBeforeChangeHook = async ({
   data, // original arguments passed into the operation
   operation,
 }) => {
-  console.log(operation, 'operation')
-
-  console.log(data)
-
   return data // return modified operation arguments as necessary
 }
 

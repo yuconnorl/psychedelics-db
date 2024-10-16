@@ -4,6 +4,11 @@
   align-items: center;
 }
 
+.button-wrapper {
+  display: flex;
+  gap: 5px;
+}
+
 .result {
   margin-top: 20px;
 }

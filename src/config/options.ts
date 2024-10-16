@@ -53,6 +53,7 @@ export const TYPE_OPTIONS = [
 export const LANGUAGE_OPTIONS = ['zh-tw', 'en'] as const
 
 export const substanceOptions = {
+  '2c-b': '2C-B',
   '5-meo-dmt': '5-MeO-DMT',
   'amanita-muscaria': 'Amanita muscaria',
   ayahuasca: 'Ayahuasca',

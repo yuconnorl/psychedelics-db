@@ -34,6 +34,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import { substanceOptions } from '@/config/options'
+import { PAPER_ITEM_PER_PAGE } from '@/constants/constants'
 import type { PaperData } from '@/types'
 
 type PapersTableProps = {
@@ -83,11 +84,9 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
     [querySort, filteredPapers],
   )
 
-  const itemPerPage = 2
-
   const pagedPapers = sortedPapers.slice(
-    (queryPage - 1) * itemPerPage,
-    queryPage * itemPerPage,
+    (queryPage - 1) * PAPER_ITEM_PER_PAGE,
+    queryPage * PAPER_ITEM_PER_PAGE,
   )
 
   const onSubstanceBadgeClick = (substance: string): void => {
@@ -103,7 +102,7 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
   }
 
   useEffect(() => {
-    if (sortedPapers.length <= itemPerPage) {
+    if (sortedPapers.length <= PAPER_ITEM_PER_PAGE) {
       setQueryPage(1)
     }
   }, [sortedPapers])
@@ -111,6 +110,12 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
   return (
     <>
       <div className='flex items-center justify-between mb-6'>
+        <div className='flex items-center text-primary/70 pl-2'>
+          <BookOpenIcon className='inline mr-1.5 h-[1.125rem] w-[1.125rem]' />
+          <span>{sortedPapers.length}</span>
+          <SlashIcon className='size-4' />
+          <span>{totalPaperNumber}</span>
+        </div>
         <Select value={querySort} onValueChange={setQuerySort}>
           <SelectTrigger className='w-40 md:w-48'>
             <SelectValue aria-label={querySort} placeholder='Sort' />
@@ -126,12 +131,6 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
             </SelectItem>
           </SelectContent>
         </Select>
-        <div className='flex items-center text-primary/70 pr-2'>
-          <span>{sortedPapers.length}</span>
-          <SlashIcon className='size-4' />
-          <span className='mr-2'>{totalPaperNumber}</span>
-          <BookOpenIcon className='inline mr-1 w-5 h-5' />
-        </div>
       </div>
       <div className='flex flex-col gap-7 md:gap-10 px-1 md:pr-3'>
         {pagedPapers.map(
@@ -142,13 +141,13 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
 
             return (
               <article key={id}>
-                <div className='flex flex-col gap-1.5'>
+                <div className='flex flex-col gap-2'>
                   <time className='text-primary/70 text-sm'>
                     {dayjs(publishedAt).format('YYYY MMM')}
                   </time>
                   <Link
                     href={link}
-                    className='text-2xl 2xl:text-3xl font-medium font-garamond transition-opacity hover:opacity-50'
+                    className='text-2xl 2xl:text-3xl md:max-w-3xl 2xl:max-w-full font-medium font-garamond transition-opacity hover:opacity-50'
                   >
                     {title}
                   </Link>
@@ -190,10 +189,10 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
           },
         )}
       </div>
-      {sortedPapers.length > itemPerPage && (
+      {sortedPapers.length > PAPER_ITEM_PER_PAGE && (
         <CustomPagination
           totalElements={sortedPapers.length}
-          itemsPerPage={itemPerPage}
+          itemsPerPage={PAPER_ITEM_PER_PAGE}
           onPageChange={setQueryPage}
         />
       )}

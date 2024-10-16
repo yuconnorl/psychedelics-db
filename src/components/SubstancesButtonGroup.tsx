@@ -94,12 +94,12 @@ const SubstancesButtonGroup = (): JSX.Element => {
               <button
                 className={cn(
                   isActive && '-translate-x-2 -translate-y-2 border-foreground',
-                  'relative rounded-lg border bg-card text-card-foreground shadow-sm break-inside active:translate-y-1 active:translate-x-1 transition-all will-change-transform z-20',
+                  'relative rounded-md border bg-card text-card-foreground shadow-sm break-inside active:translate-y-1 active:translate-x-1 transition-all will-change-transform z-20',
                 )}
                 onClick={(): void => onSubstanceBadgeClick(value)}
               >
-                <div className='flex flex-col p-6 px-4 py-2 space-y-0'>
-                  <h3 className='font-normal text-base z-10 group-hover:opacity-50 transition-opacity'>
+                <div className='flex flex-col px-3 md:px-4 py-1.5 space-y-0'>
+                  <h3 className='font-normal text-sm z-10 group-hover:opacity-50 transition-opacity'>
                     {substanceName}
                   </h3>
                 </div>
