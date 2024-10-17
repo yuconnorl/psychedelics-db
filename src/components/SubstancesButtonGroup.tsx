@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo } from 'react'
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 import { parseAsArrayOf, parseAsString, useQueryState } from 'nuqs'
 
 import imgURSociopath from '../assets/u-r-sociopath.gif'
@@ -49,13 +49,16 @@ const SubstancesButtonGroup = (): JSX.Element => {
     group3: imgPsyBg3,
   }
 
-  const getImageForSubstance = (substance: string): string => {
+  const getImageForSubstance = (
+    substance: string,
+  ): string | StaticImageData => {
     for (const [group, substances] of Object.entries(substancesGroupMap)) {
       if (substances.includes(substance)) {
         return groupToImgMap[group]
+      } else {
+        return imgPsyBg1
       }
     }
-    return ''
   }
 
   const randomThreshold = useMemo(() => Math.floor(Math.random() * 3) + 1, [])
