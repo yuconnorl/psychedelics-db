@@ -1,10 +1,8 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 
+import HeadOrTailEyes from './HeadOrTailEyes'
 import HoverRevealImage from './HoverRevealImage'
 import PaperSection from './PaperSection'
-
-import imgTheEyes from '@/assets/the-eyes.png'
 
 export const metadata: Metadata = {
   title: 'Research',
@@ -33,15 +31,7 @@ const ResearchPage = async (): Promise<JSX.Element> => {
           </p>
         </div>
       </div>
-      <div className='w-full my-8 md:my-16'>
-        <Image
-          src={imgTheEyes}
-          alt='The eyes'
-          className='rounded-lg w-full'
-          quality={75}
-          placeholder='blur'
-        />
-      </div>
+      <HeadOrTailEyes />
       <PaperSection />
     </div>
   )

@@ -80,7 +80,8 @@
     "react-instantsearch-nextjs": "^0.1.4",
     "slate": "^0.101.4",
     "tailwind-merge": "^2.0.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "tailwindcss-animated": "^1.1.2"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.1.6",
