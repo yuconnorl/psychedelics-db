@@ -40,7 +40,7 @@ const subArr = [
   },
 ]
 
-const RandomSubstance = () => {
+const RandomSubstance = (): JSX.Element => {
   const randomSubstance = useMemo(
     () => subArr[Math.floor(Math.random() * subArr.length)],
     [],
@@ -65,16 +65,16 @@ const NoResultsFallback = (): JSX.Element => {
   return (
     <div className='flex items-center justify-center relative px-2'>
       {indexUiState.query && status !== 'loading' ? (
-        <div className='text-muted-foreground pointer-events-none'>
-          <span className='mr-1 text-primary'>"{indexUiState.query}"</span>
-          isn't the right key for the door
+        <div className='text-muted-foreground pointer-events-none max-w-xs text-center'>
+          You are more than welcome to contribute the entry for
+          <span className='mx-1.5 text-primary font-medium'>
+            "{indexUiState.query}"
+          </span>
+          to our database!
         </div>
       ) : (
         <>
           <RandomSubstance />
-          <p className='text-muted-foreground pointer-events-none text-center'>
-            Try searching for something cool
-          </p>
         </>
       )}
     </div>
