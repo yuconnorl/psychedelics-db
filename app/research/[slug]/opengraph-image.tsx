@@ -3,7 +3,6 @@ import { ImageResponse } from 'next/og'
 import { getPapers } from '@/api/general'
 import { PaperData } from '@/types'
 
-export const alt = 'About Acme'
 export const size = {
   width: 1200,
   height: 630,
@@ -34,7 +33,6 @@ export default async function Image({ params }: { params: { slug: string } }) {
     ),
     {
       ...size,
-      alt: filterPaper.title, // Exp
     },
   )
 }

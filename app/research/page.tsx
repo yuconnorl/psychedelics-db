@@ -1,12 +1,27 @@
-import type { Metadata } from 'next'
+import type { Metadata, ResolvingMetadata } from 'next'
 
 import HeadOrTailEyes from './HeadOrTailEyes'
 import HoverRevealImage from './HoverRevealImage'
 import PaperSection from './PaperSection'
 
-export const metadata: Metadata = {
-  title: 'Research',
-  description: 'Scientific researches across all aspects of Psychedelics',
+type Props = {
+  params: Promise<{ id: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const previousImages = (await parent).openGraph?.images || []
+
+  return {
+    title: 'Research',
+    description: 'Scientific researches across all aspects of Psychedelics',
+    openGraph: {
+      images: ['/some-specific-page-image.jpg', ...previousImages],
+    },
+  }
 }
 
 const ResearchPage = async (): Promise<JSX.Element> => {
