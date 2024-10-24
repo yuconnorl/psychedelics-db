@@ -10,7 +10,7 @@ type Props = {
   validate?: (value: unknown) => string | boolean
 }
 
-export const UrlManager: React.FC = ({
+export const FileUrlManager: React.FC = ({
   path,
   label,
   required = false,
@@ -91,15 +91,15 @@ export const UrlManager: React.FC = ({
         handleSummaryAdd(summary)
       })
 
-      // researchPaperDetail.authors.forEach((author) => {
-      //   handleAuthorsAdd(author)
-      // })
+      researchPaperDetail.authors.forEach((author) => {
+        handleAuthorsAdd(author)
+      })
 
-      // researchPaperDetail.keywords.forEach((keyword) => {
-      //   handleKeywordsAdd(keyword)
-      // })
+      researchPaperDetail.keywords.forEach((keyword) => {
+        handleKeywordsAdd(keyword)
+      })
 
-      // handleTitleAdd(researchPaperDetail.title)
+      handleTitleAdd(researchPaperDetail.title)
     } catch (error: unknown) {
       console.error('Error fetching paper:', error)
       setIsFailed(true)
@@ -119,7 +119,7 @@ export const UrlManager: React.FC = ({
           type='text'
           value={value}
           onChange={handleInputChange}
-          placeholder='URL'
+          placeholder='File Url'
         />
         <button
           className='btn btn--style-primary btn--icon-style-without-border btn--size-small doi-fetch-button'
@@ -134,8 +134,9 @@ export const UrlManager: React.FC = ({
         </button>
       </div>
       <div className='field-description'>
-        Fetch paper details by entering link to the paper. This will populate
-        the title, authors, keywords, and Summary (key findings) fields.
+        Url to the sci-hub paper location. Fetch paper details by entering link
+        to the paper. This will populate the title, authors, keywords, and
+        Summary (key findings) fields.
       </div>
       <div>
         {isFailed && (

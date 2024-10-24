@@ -106,9 +106,14 @@ const PaperPage = async ({
       </Link>
       <article className='flex flex-col md:grid md:grid-cols-[1fr_0.5fr]'>
         <div className='px-3 md:pr-6 md:border-r'>
-          <h1 className='text-4xl md:text-5xl md:mb-10 mb-8 font-medium font-garamond'>
+          <h1 className='text-4xl md:text-5xl mb-4 font-medium font-garamond'>
             {title}
           </h1>
+          <section className='md:mb-10 mb-4 flex gap-1.5'>
+            {substance.map((sub) => (
+              <Badge key={sub}>{substanceOptions[sub]}</Badge>
+            ))}
+          </section>
           <Accordion type='single' className='md:hidden mb-8' collapsible>
             <AccordionItem value='paper-detail'>
               <AccordionTrigger className='text-primary/80'>
@@ -172,13 +177,6 @@ const PaperPage = async ({
                       {dayjs(publishedAt).format('MMMM YYYY')}
                     </time>
                   </section>
-                  <section>
-                    {substance.map((sub) => (
-                      <Badge key={sub} className='mr-1'>
-                        {substanceOptions[sub]}
-                      </Badge>
-                    ))}
-                  </section>
                 </div>
               </AccordionContent>
             </AccordionItem>
@@ -189,15 +187,18 @@ const PaperPage = async ({
                 <KeyIcon className='mr-2 inline' />
                 Key Findings
               </h3>
-              <ul className='flex flex-col gap-3 pl-3 list-disc ml-3'>
+              <ul className='flex flex-col gap-3 pl-2 ml-3'>
                 {summary.map(({ id, summary }) => (
-                  <li className='pl-1' key={id}>
+                  <li
+                    className='pl-1 relative before:contents-[""] before:absolute before:w-[0.3rem] before:h-[0.3rem] before:bg-primary/60 before:rounded-full before:-left-[0.8rem] before:top-[0.65rem]'
+                    key={id}
+                  >
                     {summary}
                   </li>
                 ))}
               </ul>
               <div className='text-muted-foreground text-xs flex items-center ml-auto mt-2 opacity-80'>
-                <span className='mr-1'>Compile with</span>
+                <span className='mr-1.5'>Compile with</span>
                 <ChatGPTIcon className='inline' />
               </div>
             </section>
@@ -205,7 +206,7 @@ const PaperPage = async ({
           <div className='font-medium mb-3'>Abstract</div>
           {abstract && (
             <>
-              <div className='text-primary prose-lg'>
+              <div className='text-primary prose'>
                 <SerializeSlate value={abstract} />
               </div>
             </>
@@ -269,13 +270,6 @@ const PaperPage = async ({
             <time className='text-primary/80'>
               {dayjs(publishedAt).format('MMMM YYYY')}
             </time>
-          </section>
-          <section>
-            {substance.map((sub) => (
-              <Badge key={sub} className='mr-1'>
-                {substanceOptions[sub]}
-              </Badge>
-            ))}
           </section>
         </aside>
       </article>

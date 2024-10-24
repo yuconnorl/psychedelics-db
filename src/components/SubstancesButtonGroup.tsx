@@ -113,7 +113,7 @@ const SubstancesButtonGroup = (): JSX.Element => {
                     src={imgUrl}
                     alt='Psychedelic-ish background'
                     className='w-full left-0 top-0 opacity-75'
-                    quality={10}
+                    unoptimized
                   />
                 </div>
               </div>

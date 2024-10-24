@@ -66,19 +66,10 @@ export interface Type {
 export interface Paper {
   id: string;
   doi: string;
+  url: string;
+  fileUrl?: string | null;
   title: string;
-  authorsField?:
-    | {
-        author?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  summaryField?:
-    | {
-        summary?: string | null;
-        id?: string | null;
-      }[]
-    | null;
+  journal: string;
   publishedAt: string;
   substance: (
     | '2c-b'
@@ -102,6 +93,18 @@ export interface Paper {
     | 'salvia'
     | 'unspecified'
   )[];
+  authorsField?:
+    | {
+        author?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  summaryField?:
+    | {
+        summary?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   abstract: {
     [k: string]: unknown;
   }[];
@@ -112,8 +115,6 @@ export interface Paper {
         id?: string | null;
       }[]
     | null;
-  journal: string;
-  url: string;
   isVectorized?: boolean | null;
   viewCount: number;
   updatedAt: string;

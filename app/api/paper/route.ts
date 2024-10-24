@@ -35,7 +35,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     const response = await fetch(fetchUrl)
 
     if (!response.ok) {
-      throw new Error(`HTTP error! 123123 status: ${response.status}`)
+      throw new Error(`HTTP error! status: ${response.status}`)
     }
 
     const html = await response.text()

@@ -7,6 +7,7 @@ import CustomSlugField from '../components/CustomSlugField'
 import { PAYLOAD_SUBSTANCE_OPTIONS } from '../config/options'
 import { AuthorManager } from '../fields/AuthorManager/AuthorManager'
 import { CustomDOIField } from '../fields/DOIManager/field'
+import { CustomFileURLField } from '../fields/FileUrlManager/field'
 import { KeywordManager } from '../fields/KeywordManager/KeywordManager'
 import { CustomURLField } from '../fields/UrlManager/field'
 
@@ -28,15 +29,17 @@ const Papers: CollectionConfig = {
   },
   fields: [
     CustomDOIField,
-    {
-      name: 'url',
-      label: 'URL',
-      type: 'text',
-      required: true,
-      admin: {
-        description: 'URL to the paper',
-      },
-    },
+    CustomURLField,
+    CustomFileURLField,
+    // {
+    //   name: 'url',
+    //   label: 'URL',
+    //   type: 'text',
+    //   required: true,
+    //   admin: {
+    //     description: 'URL to the paper',
+    //   },
+    // },
     {
       name: 'title',
       label: 'Title',
