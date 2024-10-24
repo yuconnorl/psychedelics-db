@@ -46,7 +46,7 @@ export async function generateMetadata(
     (paper: PaperData) => paper.slug === params.slug,
   )
 
-  const parentData = (await parent) as Metadata
+  const parentData = (await parent) as unknown as Metadata
   const parentOpenGraph = parentData.openGraph
   const parentTwitter = parentData.twitter
 

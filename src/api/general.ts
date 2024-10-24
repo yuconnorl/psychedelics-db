@@ -1,4 +1,3 @@
-import pdf from 'pdf-parse'
 import qs from 'qs'
 
 import { getPayloadClient } from '../getPayload'

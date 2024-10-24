@@ -21,7 +21,7 @@ export async function generateMetadata(
   { params }: CardParamsProps,
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
-  const parentData = (await parent) as Metadata
+  const parentData = (await parent) as unknown as Metadata
   const categories = await getCategories()
   const parentOpenGraph = parentData.openGraph
   const parentTwitter = parentData.twitter
