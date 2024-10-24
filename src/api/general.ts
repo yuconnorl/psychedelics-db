@@ -123,6 +123,7 @@ export const getPapers = async (limit = 300): Promise<PaperData[] | []> => {
     }
 
     const data: { docs: PaperType[] } = await response.json()
+
     const papers: PaperData[] = data?.docs.map((paper) => {
       return {
         id: paper.id,
@@ -137,6 +138,7 @@ export const getPapers = async (limit = 300): Promise<PaperData[] | []> => {
         substance: paper.substance,
         publishedAt: paper.publishedAt,
         viewCount: paper.viewCount,
+        summary: paper.summaryField,
       }
     })
     return papers

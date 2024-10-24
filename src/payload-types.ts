@@ -65,6 +65,7 @@ export interface Type {
 }
 export interface Paper {
   id: string;
+  doi: string;
   title: string;
   authorsField?:
     | {
@@ -72,8 +73,15 @@ export interface Paper {
         id?: string | null;
       }[]
     | null;
+  summaryField?:
+    | {
+        summary?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   publishedAt: string;
   substance: (
+    | '2c-b'
     | '5-meo-dmt'
     | 'amanita-muscaria'
     | 'ayahuasca'
@@ -105,7 +113,6 @@ export interface Paper {
       }[]
     | null;
   journal: string;
-  doi: string;
   url: string;
   isVectorized?: boolean | null;
   viewCount: number;

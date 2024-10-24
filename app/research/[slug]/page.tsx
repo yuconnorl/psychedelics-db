@@ -5,7 +5,12 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { getPapers } from '@/api/general'
-import { ArrowLeftIcon, LinkIcon } from '@/components/Icons'
+import {
+  ArrowLeftIcon,
+  ChatGPTIcon,
+  KeyIcon,
+  LinkIcon,
+} from '@/components/Icons'
 import SerializeSlate from '@/components/SerializeSlate'
 import {
   Accordion,
@@ -47,9 +52,10 @@ export async function generateMetadata(
 
   return {
     title: filterPaper.title,
+    // description: filterPaper.abstract,
     openGraph: {
       title: filterPaper.title,
-      images: parentOpenGraph.images,
+      // images: Apoelw,
     },
     twitter: {
       card: 'summary_large_image',
@@ -86,17 +92,21 @@ const PaperPage = async ({
     url,
     substance,
     publishedAt,
+    summary,
   } = filterPaper
 
   return (
     <div className='py-6'>
-      <nav className='flex items-center pl-2 text-primary/80 mb-10 group text-sm'>
+      <Link
+        href={backToResearchLink}
+        className='flex items-center text-primary/80 mb-10 group text-sm hover:opacity-50 transition-opacity w-fit'
+      >
         <ArrowLeftIcon className='mr-1.5 group-hover:-translate-x-1 transition-transform' />
-        <Link href={backToResearchLink}>All Researches</Link>
-      </nav>
+        <>All Researches</>
+      </Link>
       <article className='flex flex-col md:grid md:grid-cols-[1fr_0.5fr]'>
         <div className='px-3 md:pr-6 md:border-r'>
-          <h1 className='text-4xl md:text-5xl md:mb-16 mb-8 font-medium font-garamond'>
+          <h1 className='text-4xl md:text-5xl md:mb-10 mb-8 font-medium font-garamond'>
             {title}
           </h1>
           <Accordion type='single' className='md:hidden mb-8' collapsible>
@@ -173,6 +183,25 @@ const PaperPage = async ({
               </AccordionContent>
             </AccordionItem>
           </Accordion>
+          {summary.length > 0 && (
+            <section className='flex relative flex-col p-5 pb-4 bg-primary-foreground mb-5 rounded-sm'>
+              <h3 className='mb-4 flex items-center font-medium'>
+                <KeyIcon className='mr-2 inline' />
+                Key Findings
+              </h3>
+              <ul className='flex flex-col gap-3 pl-3 list-disc ml-3'>
+                {summary.map(({ id, summary }) => (
+                  <li className='pl-1' key={id}>
+                    {summary}
+                  </li>
+                ))}
+              </ul>
+              <div className='text-muted-foreground text-xs flex items-center ml-auto mt-2 opacity-80'>
+                <span className='mr-1'>Compile with</span>
+                <ChatGPTIcon className='inline' />
+              </div>
+            </section>
+          )}
           <div className='font-medium mb-3'>Abstract</div>
           {abstract && (
             <>
@@ -182,7 +211,7 @@ const PaperPage = async ({
             </>
           )}
         </div>
-        <aside className='pl-6 pr-5 pt-28 md:flex flex-col hidden gap-5 top-1 md:sticky md:h-max'>
+        <aside className='pl-4 xl:pl-6 pr-5 pt-28 md:flex flex-col hidden gap-5 top-1 md:sticky md:h-max'>
           <section>
             <h3 className='font-medium mb-3'>Journal</h3>
             <div className='text-primary/80'>{journal}</div>

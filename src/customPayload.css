@@ -39,3 +39,20 @@
   display: flex;
   gap: 0.5rem;
 }
+
+.doi-input-wrapper {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.doi-fetch-button {
+  min-width: 120px;
+  padding: 0.9rem 1rem;
+  margin: 0 0 0 0.5rem;
+}
+
+.field-error {
+  color: var(--theme-error-600);
+  font-size: 1.15rem;
+}

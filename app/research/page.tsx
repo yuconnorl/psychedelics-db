@@ -6,7 +6,7 @@ import PaperSection from './PaperSection'
 
 export const metadata: Metadata = {
   title: 'Research',
-  description: 'Scientific Researches across all aspects of Psychedelics',
+  description: 'Scientific researches across all aspects of Psychedelics',
 }
 
 const ResearchPage = async (): Promise<JSX.Element> => {

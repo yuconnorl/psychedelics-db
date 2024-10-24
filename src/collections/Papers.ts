@@ -6,17 +6,16 @@ import type {
 import CustomSlugField from '../components/CustomSlugField'
 import { PAYLOAD_SUBSTANCE_OPTIONS } from '../config/options'
 import { AuthorManager } from '../fields/AuthorManager/AuthorManager'
+import { CustomDOIField } from '../fields/DOIManager/field'
 import { KeywordManager } from '../fields/KeywordManager/KeywordManager'
+import { CustomURLField } from '../fields/UrlManager/field'
 
-export const validateSlug = (value: string) => {
+export const validateSlug = (value: string): true | string => {
   return (value !== undefined && value !== '') || `${value} should not be empty`
 }
 
-const checkDuplicateDOI: CollectionBeforeChangeHook = async ({
-  data, // original arguments passed into the operation
-  operation,
-}) => {
-  return data // return modified operation arguments as necessary
+const checkDuplicateDOI: CollectionBeforeChangeHook = async ({ data }) => {
+  return data
 }
 
 const Papers: CollectionConfig = {
@@ -28,11 +27,52 @@ const Papers: CollectionConfig = {
     read: () => true,
   },
   fields: [
+    CustomDOIField,
+    {
+      name: 'url',
+      label: 'URL',
+      type: 'text',
+      required: true,
+      admin: {
+        description: 'URL to the paper',
+      },
+    },
     {
       name: 'title',
       label: 'Title',
       type: 'text',
       required: true,
+    },
+    {
+      name: 'journal',
+      label: 'Journal',
+      type: 'text',
+      required: true,
+      admin: {
+        description: 'Journal to the paper. Leave - if not applicable',
+      },
+    },
+    {
+      name: 'publishedAt',
+      type: 'date',
+      required: true,
+      admin: {
+        date: {
+          pickerAppearance: 'dayOnly',
+          displayFormat: 'd MMM yyy',
+        },
+      },
+    },
+    {
+      name: 'substance',
+      type: 'select',
+      hasMany: true,
+      required: true,
+      admin: {
+        isClearable: true,
+        isSortable: true,
+      },
+      options: PAYLOAD_SUBSTANCE_OPTIONS,
     },
     {
       type: 'ui',
@@ -58,26 +98,18 @@ const Papers: CollectionConfig = {
       ],
     },
     {
-      name: 'publishedAt',
-      type: 'date',
-      required: true,
+      name: 'summaryField',
+      type: 'array',
+      label: 'Summary',
       admin: {
-        date: {
-          pickerAppearance: 'dayOnly',
-          displayFormat: 'd MMM yyy',
+        initCollapsed: true,
+      },
+      fields: [
+        {
+          name: 'summary',
+          type: 'text',
         },
-      },
-    },
-    {
-      name: 'substance',
-      type: 'select',
-      hasMany: true,
-      required: true,
-      admin: {
-        isClearable: true,
-        isSortable: true,
-      },
-      options: PAYLOAD_SUBSTANCE_OPTIONS,
+      ],
     },
     {
       name: 'abstract',
@@ -124,36 +156,8 @@ const Papers: CollectionConfig = {
       ],
     },
     {
-      name: 'journal',
-      label: 'Journal',
-      type: 'text',
-      required: true,
-      admin: {
-        description: 'Journal to the paper. Leave - if not applicable',
-      },
-    },
-    {
-      name: 'doi',
-      label: 'DOI',
-      type: 'text',
-      admin: {
-        description:
-          'Digital Object Identifier (DOI) of the paper. e.g. 10.3389/fnhum.2014.00204',
-      },
-      required: true,
-    },
-    {
-      name: 'url',
-      label: 'URL',
-      type: 'text',
-      required: true,
-      admin: {
-        description: 'URL to the paper',
-      },
-    },
-    {
       name: 'isVectorized',
-      type: 'checkbox', // required
+      type: 'checkbox',
       label: 'Vectorized',
       defaultValue: false,
       admin: {
