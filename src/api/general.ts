@@ -146,18 +146,3 @@ export const getPapers = async (limit = 300): Promise<PaperData[] | []> => {
     return []
   }
 }
-
-// export const getPdf = async () => {
-//   const response = await fetch(
-//     'https://sci-hub.se/10.1016/j.drugalcdep.2006.04.001',
-//   )
-//   const arrayBuffer = await response.arrayBuffer()
-//   const buffer = Buffer.from(arrayBuffer)
-
-//   const data = await pdf(buffer)
-
-//   console.log('data', data)
-//   console.log('data text-------', data.text)
-
-//   return data.text
-// }

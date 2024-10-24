@@ -21,14 +21,31 @@ module.exports = withPayload(
       contentDispositionType: 'attachment',
       contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     },
-    // webpack(config) {
-    //   config.resolve.fallback = {
-    //     ...config.resolve.fallback,
-    //     fs: false,
-    //   }
+    webpack: (config, { isServer }) => {
+      // Handle fs fallback
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+      }
 
-    //   return config
-    // },
+      // Add babel-loader for Undici
+      config.module.rules.push({
+        test: /\.js$/,
+        include: /node_modules\/undici/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            plugins: [
+              '@babel/plugin-proposal-private-methods',
+              '@babel/plugin-proposal-class-properties',
+            ],
+          },
+        },
+      })
+
+      return config
+    },
   },
   {
     // The second argument to `withPayload`
