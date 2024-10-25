@@ -3,4 +3,6 @@ export const IMAGE_PLACEHOLDER =
 
 export const SITE_NAME = 'Psychedelics Database'
 
+export const SITE_URL = 'https://psychedelics-database.vercel.app'
+
 export const PAPER_ITEM_PER_PAGE = 10 as const

@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import dayjs from 'dayjs'
-import { Metadata, ResolvingMetadata } from 'next'
+import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
@@ -20,11 +20,11 @@ import {
 } from '@/components/ui/accordion'
 import { Badge } from '@/components/ui/badge'
 import { substanceOptions } from '@/config/options'
+import { SITE_URL } from '@/constants/constants'
 import { PaperData } from '@/types'
 
 type ParamsType = {
   params: { slug: string }
-  // searchParams: { [key: string]: string | string[] | undefined }
 }
 
 export const dynamic = 'force-static'
@@ -39,30 +39,24 @@ export async function generateStaticParams(): Promise<
   }))
 }
 
-export async function generateMetadata(
-  { params }: ParamsType,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: ParamsType): Promise<Metadata> {
   const papers = await getPapers()
   const filterPaper = papers.find(
     (paper: PaperData) => paper.slug === params.slug,
   )
 
-  const parentData = (await parent) as unknown as Metadata
-  const parentOpenGraph = parentData.openGraph
-  const parentTwitter = parentData.twitter
-
   return {
-    title: 'Test title',
-    // title: filterPaper.title,
-    // openGraph: {
-    //   title: filterPaper.title,
-    // },
-    // twitter: {
-    //   card: 'summary_large_image',
-    //   title: filterPaper.title,
-    //   images: parentTwitter.images,
-    // },
+    title: filterPaper?.title,
+    openGraph: {
+      title: filterPaper?.title,
+      url: `${SITE_URL}/research/${filterPaper?.slug}`,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: filterPaper?.title,
+    },
   }
 }
 
@@ -72,13 +66,9 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
     (paper: PaperData) => paper.slug === params.slug,
   )
 
-  // if (!filterPaper) {
-  //   notFound()
-  // }
-
-  // const backToResearchLink = searchParams?.substance
-  //   ? `/research?substance=${searchParams.substance}`
-  //   : '/research'
+  if (!filterPaper) {
+    notFound()
+  }
 
   const {
     title,
