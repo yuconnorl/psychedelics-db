@@ -17,7 +17,7 @@ const CategoriedHeader = async (): Promise<JSX.Element> => {
     return acc
   }, {})
 
-  const processRecords = (data, map) => {
+  const processRecords = (data, map): void => {
     data
       .sort((a, b) => a.title.localeCompare(b.title))
       .forEach((record) => {

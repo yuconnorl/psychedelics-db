@@ -46,14 +46,13 @@ export async function generateMetadata(
     (paper: PaperData) => paper.slug === params.slug,
   )
 
-  console.log('filterPaper 112345', filterPaper)
-
   const parentData = (await parent) as unknown as Metadata
   const parentOpenGraph = parentData.openGraph
   const parentTwitter = parentData.twitter
 
   return {
-    title: filterPaper.title,
+    title: 'Test title',
+    // title: filterPaper.title,
     // openGraph: {
     //   title: filterPaper.title,
     // },
@@ -203,14 +202,16 @@ const PaperPage = async ({
               </div>
             </section>
           )}
-          <div className='font-medium mb-3'>Abstract</div>
-          {abstract && (
-            <>
-              <div className='text-primary prose'>
-                <SerializeSlate value={abstract} />
-              </div>
-            </>
-          )}
+          <section className='pl-2'>
+            <div className='font-medium mb-3'>Abstract</div>
+            {abstract && (
+              <>
+                <div className='text-primary prose max-w-full'>
+                  <SerializeSlate value={abstract} />
+                </div>
+              </>
+            )}
+          </section>
         </div>
         <aside className='pl-4 xl:pl-6 pr-5 pt-28 md:flex flex-col hidden gap-5 top-1 md:sticky md:h-max'>
           <section>

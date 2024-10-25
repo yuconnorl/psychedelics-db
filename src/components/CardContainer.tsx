@@ -34,7 +34,7 @@ const CardContainer = ({ children }: ChildrenProps): JSX.Element => {
               className='ml-auto'
               variant={!isGrid ? 'outline' : 'default'}
               size='icon'
-              onClick={() => router.push(`?layout=grid`)}
+              onClick={(): void => router.push(`?layout=grid`)}
             >
               <SquaresIcon />
             </Button>
@@ -43,7 +43,7 @@ const CardContainer = ({ children }: ChildrenProps): JSX.Element => {
             <Button
               variant={isGrid ? 'outline' : 'default'}
               size='icon'
-              onClick={() => router.push(`?layout=stack`)}
+              onClick={(): void => router.push(`?layout=stack`)}
             >
               <StacksIcon />
             </Button>
