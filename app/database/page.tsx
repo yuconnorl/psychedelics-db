@@ -19,11 +19,11 @@ export async function generateMetadata(
     title: 'Database',
     openGraph: {
       title: 'Database',
-      images: parentOpenGraph.images,
+      // images: parentOpenGraph.images,
     },
     twitter: {
       title: 'Database',
-      images: parentTwitter.images,
+      // images: parentTwitter.images,
     },
   }
 }

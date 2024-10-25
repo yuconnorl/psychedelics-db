@@ -73,9 +73,9 @@ const PaperPage = async ({
     (paper: PaperData) => paper.slug === params.slug,
   )
 
-  if (!filterPaper) {
-    notFound()
-  }
+  // if (!filterPaper) {
+  //   notFound()
+  // }
 
   const backToResearchLink = searchParams?.substance
     ? `/research?substance=${searchParams.substance}`
