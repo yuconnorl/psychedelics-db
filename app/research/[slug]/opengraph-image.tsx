@@ -28,7 +28,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
           justifyContent: 'center',
         }}
       >
-        {filterPaper.title}
+        Test og image generation
       </div>
     ),
     {

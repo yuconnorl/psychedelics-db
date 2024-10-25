@@ -46,22 +46,22 @@ export async function generateMetadata(
     (paper: PaperData) => paper.slug === params.slug,
   )
 
+  console.log('filterPaper 112345', filterPaper)
+
   const parentData = (await parent) as unknown as Metadata
   const parentOpenGraph = parentData.openGraph
   const parentTwitter = parentData.twitter
 
   return {
     title: filterPaper.title,
-    // description: filterPaper.abstract,
-    openGraph: {
-      title: filterPaper.title,
-      // images: Apoelw,
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: filterPaper.title,
-      images: parentTwitter.images,
-    },
+    // openGraph: {
+    //   title: filterPaper.title,
+    // },
+    // twitter: {
+    //   card: 'summary_large_image',
+    //   title: filterPaper.title,
+    //   images: parentTwitter.images,
+    // },
   }
 }
 

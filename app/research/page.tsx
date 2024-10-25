@@ -13,14 +13,14 @@ export async function generateMetadata(
   { params, searchParams }: Props,
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
-  const previousImages = (await parent).openGraph?.images || []
+  // const previousImages = (await parent).openGraph?.images || []
 
   return {
     title: 'Research',
     description: 'Scientific researches across all aspects of Psychedelics',
-    openGraph: {
-      images: ['/some-specific-page-image.jpg', ...previousImages],
-    },
+    // openGraph: {
+    //   images: ['/some-specific-page-image.jpg', ...previousImages],
+    // },
   }
 }
 
