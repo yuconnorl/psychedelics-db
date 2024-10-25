@@ -114,8 +114,8 @@ importers:
         specifier: ^6.1.11
         version: 6.1.11
       nuqs:
-        specifier: ^1.19.3
-        version: 1.19.3(next@14.0.2-canary.25(@babel/core@7.25.9)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4))
+        specifier: ^2.0.4
+        version: 2.0.4(next@14.0.2-canary.25(@babel/core@7.25.9)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
       openai:
         specifier: ^4.68.0
         version: 4.68.0(zod@3.23.8)
@@ -5302,10 +5302,20 @@ packages:
   nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
 
-  nuqs@1.19.3:
-    resolution: {integrity: sha512-PpHjONraQDmuJzVQvZvCBNNOij5X0w2pGd8O22lSpRSqKIB6oEmwH+w2M3kGk/Gwf3R6XyvXBb2DSkUHYfrtrQ==}
+  nuqs@2.0.4:
+    resolution: {integrity: sha512-d0GQCOHW9o04slcTe9nfTgskCT/09K5pOMXu671Y8p7d/48KEKJLzZjklWXIt3pFjYaplErMZpXiLiYo0w8uQQ==}
     peerDependencies:
-      next: '>=13.4 <14.0.2 || ^14.0.3'
+      '@remix-run/react': '>= 2'
+      next: '>= 14.2.0'
+      react: '>= 18.2.0'
+      react-router-dom: '>= 6'
+    peerDependenciesMeta:
+      '@remix-run/react':
+        optional: true
+      next:
+        optional: true
+      react-router-dom:
+        optional: true
 
   object-assign@4.1.1:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
@@ -13532,10 +13542,13 @@ snapshots:
     dependencies:
       boolbase: 1.0.0
 
-  nuqs@1.19.3(next@14.0.2-canary.25(@babel/core@7.25.9)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4)):
+  nuqs@2.0.4(next@14.0.2-canary.25(@babel/core@7.25.9)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0):
     dependencies:
       mitt: 3.0.1
+      react: 18.2.0
+    optionalDependencies:
       next: 14.0.2-canary.25(@babel/core@7.25.9)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4)
+      react-router-dom: 5.3.4(react@18.2.0)
 
   object-assign@4.1.1: {}
 

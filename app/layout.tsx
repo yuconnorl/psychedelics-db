@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
+import { NuqsAdapter } from 'nuqs/adapters/next/app'
 
 import './globals.css'
 import CategoriedHeader from '@/components/CategoriedHeader'
@@ -77,7 +78,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <CategoriedHeader />
-          {children}
+          <NuqsAdapter>{children}</NuqsAdapter>
           <div id='sheet-portal-container'>
             <div></div>
           </div>

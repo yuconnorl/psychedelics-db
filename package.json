@@ -69,7 +69,7 @@
     "next": "^14.0.2-canary.25",
     "next-themes": "^0.2.1",
     "node-html-parser": "^6.1.11",
-    "nuqs": "^1.19.3",
+    "nuqs": "^2.0.4",
     "openai": "^4.68.0",
     "payload": "^2.0.4",
     "qs": "^6.11.2",

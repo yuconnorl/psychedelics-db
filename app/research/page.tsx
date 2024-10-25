@@ -4,6 +4,8 @@ import HeadOrTailEyes from './HeadOrTailEyes'
 import HoverRevealImage from './HoverRevealImage'
 import PaperSection from './PaperSection'
 
+import { getPapers } from '@/api/general'
+
 type Props = {
   params: Promise<{ id: string }>
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>

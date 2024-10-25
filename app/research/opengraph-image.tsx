@@ -3,7 +3,7 @@ import { ImageResponse } from 'next/og'
 export const runtime = 'edge'
 
 // Image metadata
-export const alt = 'About Acme'
+export const alt = 'Research - Psychedelic Database'
 export const size = {
   width: 1200,
   height: 630,
@@ -20,14 +20,7 @@ export default async function Image() {
 
   return new ImageResponse(
     (
-      // Modified based on https://tailwindui.com/components/marketing/sections/cta-sections
-      <div
-        style={{
-          height: '100%',
-          width: '100%',
-          backgroundColor: 'white',
-        }}
-      >
+      <div tw='flex flex-col w-full h-full items-center justify-center bg-white'>
         <div tw='flex flex-col'>
           <div>Research</div>
           <div>Psychedelic Database</div>

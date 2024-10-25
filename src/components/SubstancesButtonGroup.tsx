@@ -69,19 +69,22 @@ const SubstancesButtonGroup = (): JSX.Element => {
   )
 
   const onDeselectAllClick = (): void => {
-    setQuerySubstance([])
+    setQuerySubstance([], { shallow: true })
   }
 
   const onSubstanceBadgeClick = (substance: string): void => {
-    setQuerySubstance((prev) => {
-      if (prev === null) {
-        return [substance]
-      } else if (prev.includes(substance)) {
-        return prev.filter((item) => item !== substance)
-      } else {
-        return [...prev, substance]
-      }
-    })
+    setQuerySubstance(
+      (prev) => {
+        if (prev === null) {
+          return [substance]
+        } else if (prev.includes(substance)) {
+          return prev.filter((item) => item !== substance)
+        } else {
+          return [...prev, substance]
+        }
+      },
+      { shallow: true },
+    )
   }
 
   return (

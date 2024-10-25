@@ -147,6 +147,7 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
                   </time>
                   <Link
                     href={link}
+                    prefetch={false}
                     className='text-2xl 2xl:text-3xl md:max-w-3xl 2xl:max-w-full font-medium font-garamond transition-opacity hover:opacity-50'
                   >
                     {title}
