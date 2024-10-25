@@ -24,8 +24,10 @@ import { PaperData } from '@/types'
 
 type ParamsType = {
   params: { slug: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  // searchParams: { [key: string]: string | string[] | undefined }
 }
+
+export const dynamic = 'force-static'
 
 export async function generateStaticParams(): Promise<
   Record<'slug', string>[]
@@ -64,10 +66,7 @@ export async function generateMetadata(
   }
 }
 
-const PaperPage = async ({
-  params,
-  searchParams,
-}: ParamsType): Promise<JSX.Element> => {
+const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
   const papers = await getPapers()
   const filterPaper = papers.find(
     (paper: PaperData) => paper.slug === params.slug,
@@ -77,9 +76,9 @@ const PaperPage = async ({
   //   notFound()
   // }
 
-  const backToResearchLink = searchParams?.substance
-    ? `/research?substance=${searchParams.substance}`
-    : '/research'
+  // const backToResearchLink = searchParams?.substance
+  //   ? `/research?substance=${searchParams.substance}`
+  //   : '/research'
 
   const {
     title,
@@ -97,7 +96,7 @@ const PaperPage = async ({
   return (
     <div className='py-6'>
       <Link
-        href={backToResearchLink}
+        href={'/research'}
         className='flex items-center text-primary/80 mb-10 group text-sm hover:opacity-50 transition-opacity w-fit'
       >
         <ArrowLeftIcon className='mr-1.5 group-hover:-translate-x-1 transition-transform' />
