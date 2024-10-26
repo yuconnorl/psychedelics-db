@@ -4,7 +4,7 @@ import HeadOrTailEyes from './HeadOrTailEyes'
 import HoverRevealImage from './HoverRevealImage'
 import PaperSection from './PaperSection'
 
-import { getPapers } from '@/api/general'
+import { SITE_NAME, SITE_URL } from '@/constants/constants'
 
 type Props = {
   params: Promise<{ id: string }>
@@ -20,9 +20,15 @@ export async function generateMetadata(
   return {
     title: 'Research',
     description: 'Scientific researches across all aspects of Psychedelics',
-    // openGraph: {
-    //   images: ['/some-specific-page-image.jpg', ...previousImages],
-    // },
+    openGraph: {
+      title: 'Research',
+      siteName: SITE_NAME,
+      url: `${SITE_URL}/research`,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Research',
+    },
   }
 }
 

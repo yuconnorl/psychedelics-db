@@ -6,6 +6,7 @@ import { getCategories } from '@/api/general'
 import imgPsychedelicDatabaseIntro from '@/assets/psychedelic-database-intro.jpeg'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Card, CardHeader, CardTitle } from '@/components/ui/card'
+import { SITE_NAME, SITE_URL } from '@/constants/constants'
 
 export async function generateMetadata(
   { params },
@@ -17,13 +18,16 @@ export async function generateMetadata(
 
   return {
     title: 'Database',
+    description:
+      'Psychedelics Database is the leading information hub around therapeutic and recreational usage of psychedelic compounds, managed by the Taiwan Psychedelic Collective',
     openGraph: {
       title: 'Database',
-      // images: parentOpenGraph.images,
+      siteName: SITE_NAME,
+      url: `${SITE_URL}/database`,
     },
     twitter: {
+      card: 'summary_large_image',
       title: 'Database',
-      // images: parentTwitter.images,
     },
   }
 }

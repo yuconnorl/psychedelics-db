@@ -21,7 +21,7 @@ import {
 } from '@/components/ui/accordion'
 import { Badge } from '@/components/ui/badge'
 import { substanceOptions } from '@/config/options'
-import { SITE_URL } from '@/constants/constants'
+import { SITE_NAME, SITE_URL } from '@/constants/constants'
 import { PaperData } from '@/types'
 
 type ParamsType = {
@@ -56,10 +56,12 @@ export async function generateMetadata({
 
   return {
     title: filterPaper?.title,
+    description: abstractString,
     openGraph: {
       title: filterPaper?.title,
       url: `${SITE_URL}/research/${filterPaper?.slug}`,
       description: abstractString,
+      siteName: SITE_NAME,
     },
     twitter: {
       card: 'summary_large_image',
