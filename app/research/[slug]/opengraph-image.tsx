@@ -5,6 +5,8 @@ import { PaperData } from '@/types'
 
 export const contentType = 'image/png'
 
+export const runtime = 'edge'
+
 export default async function Image({
   params,
 }: {
@@ -18,11 +20,11 @@ export default async function Image({
   const { title } = filterPaper
 
   const cormorantUpright = await fetch(
-    new URL('/public/fonts/cormorant-upright-bold.ttf', import.meta.url),
+    new URL('public/fonts/cormorant-upright-bold.ttf', import.meta.url),
   )
 
   const roboto = await fetch(
-    new URL('/public/fonts/roboto-light.ttf', import.meta.url),
+    new URL('public/fonts/roboto-light.ttf', import.meta.url),
   )
 
   if (!cormorantUpright.ok) {

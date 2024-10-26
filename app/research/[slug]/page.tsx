@@ -3,6 +3,7 @@ import dayjs from 'dayjs'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { Node } from 'slate'
 
 import { getPapers } from '@/api/general'
 import {
@@ -47,15 +48,23 @@ export async function generateMetadata({
     (paper: PaperData) => paper.slug === params.slug,
   )
 
+  const serialize = (nodes) => {
+    return nodes.map((n) => Node.string(n)).join('\n')
+  }
+
+  const abstractString = serialize(filterPaper?.abstract)
+
   return {
     title: filterPaper?.title,
     openGraph: {
       title: filterPaper?.title,
       url: `${SITE_URL}/research/${filterPaper?.slug}`,
+      description: abstractString,
     },
     twitter: {
       card: 'summary_large_image',
       title: filterPaper?.title,
+      description: abstractString,
     },
   }
 }

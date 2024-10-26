@@ -140,6 +140,9 @@ importers:
       slate:
         specifier: ^0.101.4
         version: 0.101.4
+      slate-plain-serializer:
+        specifier: ^0.7.13
+        version: 0.7.13(immutable@4.3.4)(slate@0.101.4)
       tailwind-merge:
         specifier: ^2.0.0
         version: 2.0.0
@@ -6641,6 +6644,12 @@ packages:
     resolution: {integrity: sha512-A/jvoLTAgeRcJaUPQCYOikCJxSws6+/jkL7mM+QuZljNd7EA5YqafGA7sVBJRFpcoSsDRUIah1yNiC/7vxZPYg==}
     peerDependencies:
       slate: '>=0.65.3'
+
+  slate-plain-serializer@0.7.13:
+    resolution: {integrity: sha512-TtrlaslxQBEMV0LYdf3s7VAbTxRPe1xaW10WNNGAzGA855/0RhkaHjKkQiRjHv5rvbRleVf7Nxr9fH+4uErfxQ==}
+    peerDependencies:
+      immutable: '>=3.8.1'
+      slate: '>=0.46.0 <0.50.0'
 
   slate-react@0.92.0:
     resolution: {integrity: sha512-xEDKu5RKw5f0N95l1UeNQnrB0Pxh4JPjpIZR/BVsMo0ININnLAknR99gLo46bl/Ffql4mr7LeaxQRoXxbFtJOQ==}
@@ -15038,6 +15047,11 @@ snapshots:
     dependencies:
       is-plain-object: 5.0.0
       slate: 0.91.4
+
+  slate-plain-serializer@0.7.13(immutable@4.3.4)(slate@0.101.4):
+    dependencies:
+      immutable: 4.3.4
+      slate: 0.101.4
 
   slate-react@0.92.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(slate@0.91.4):
     dependencies:
