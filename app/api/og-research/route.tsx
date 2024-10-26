@@ -40,7 +40,7 @@ export async function GET(request: NextRequest) {
             backgroundColor: 'white',
           }}
         >
-          <div tw='flex flex-col absolute bottom-16 left-12'>
+          <div tw='flex flex-col absolute bottom-16 left-20'>
             <div tw='flex relative flex-col mb-8'>
               <svg
                 viewBox='0 0 166 81'
