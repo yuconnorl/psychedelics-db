@@ -1,25 +1,14 @@
+/* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from 'next/og'
+import { NextRequest } from 'next/server'
 
-import { getPapers } from '@/api/general'
-import { PaperData } from '@/types'
-
-export const contentType = 'image/png'
-
+// Route segment config
 export const runtime = 'edge'
 
-export const dynamic = 'force-static'
-
-export default async function Image({
-  params,
-}: {
-  params: { slug: string }
-}): Promise<ImageResponse> {
-  const papers = await getPapers()
-  const filterPaper = papers.find(
-    (paper: PaperData) => paper.slug === params.slug,
-  )
-
-  const { title } = filterPaper
+export async function GET(req: NextRequest) {
+  const contentType = 'image/png'
+  const url = new URL(req.url)
+  const title = url.searchParams.get('title')
 
   const cormorantUpright = await fetch(
     new URL('public/fonts/cormorant-upright-bold.ttf', import.meta.url),
