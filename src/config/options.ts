@@ -51,3 +51,30 @@ export const TYPE_OPTIONS = [
 ] as const
 
 export const LANGUAGE_OPTIONS = ['zh-tw', 'en'] as const
+
+export const substanceOptions = {
+  '2c-b': '2C-B',
+  '5-meo-dmt': '5-MeO-DMT',
+  'amanita-muscaria': 'Amanita muscaria',
+  ayahuasca: 'Ayahuasca',
+  cannabis: 'Cannabis',
+  dmt: 'DMT',
+  doi: 'DOI',
+  ghb: 'GHB',
+  ibogaine: 'Ibogaine',
+  ketamine: 'Ketamine',
+  lsa: 'LSA',
+  lsd: 'LSD',
+  'lsd-analogs': 'LSD-Analogs',
+  mdma: 'MDMA',
+  mescaline: 'Mescaline',
+  peyote: 'Peyote',
+  pcp: 'PCP',
+  psilocybin: 'Psilocybin',
+  salvia: 'Salvia',
+  unspecified: 'Unspecified',
+} as const
+
+export const PAYLOAD_SUBSTANCE_OPTIONS = Object.entries(substanceOptions).map(
+  ([value, label]) => ({ value, label }),
+)

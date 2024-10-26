@@ -6,7 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { SearchIcon } from '../Icons'
+import { AlgoliaLogoIcon, SearchIcon } from '../Icons'
 import SearchButton from '../SearchButton'
 import searchClient from './algoliaSearchClient'
 import CustomHits from './CustomHits'
@@ -71,18 +71,12 @@ const AlgoliaSearchComponent = ({
           <div className='border-t items-center px-6 py-4 flex justify-end'>
             <Link
               href={'https://www.algolia.com/ref/docsearch'}
-              className='flex items-center'
+              className='flex items-center text-primary/50'
             >
               <p className='text-muted-foreground text-xs mr-3 opacity-50'>
                 Search by
               </p>
-              <Image
-                src={'/algolia-logo-blue.svg'}
-                width={79}
-                height={14}
-                alt='Algolia logo'
-                aria-label='Algolia'
-              />
+              <AlgoliaLogoIcon />
             </Link>
           </div>
         </DialogContent>

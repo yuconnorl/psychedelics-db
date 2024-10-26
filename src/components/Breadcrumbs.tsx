@@ -1,11 +1,12 @@
 'use client'
+
 import { Fragment } from 'react'
 import { CaretRightIcon } from '@radix-ui/react-icons'
-import clsx from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { DEFAULT_LAYOUT } from '@/config/general'
+import { cn } from '@/lib/utils'
 
 interface BreadcrumbsItem {
   label: string
@@ -32,7 +33,7 @@ const Breadcrumbs = ({ items }: Props): JSX.Element => {
               {isLastItem ? (
                 <li className='w-[250px] truncate'>
                   <span
-                    className={clsx(
+                    className={cn(
                       pathname === url
                         ? 'text-foreground'
                         : 'text-muted-foreground',
@@ -45,11 +46,11 @@ const Breadcrumbs = ({ items }: Props): JSX.Element => {
               ) : (
                 <li
                   key={index}
-                  className={clsx(isMiddleItem && 'max-w-[8rem] truncate')}
+                  className={cn(isMiddleItem && 'max-w-[8rem] truncate')}
                 >
                   <Link
                     href={modifiedUrl}
-                    className={clsx(
+                    className={cn(
                       pathname === url
                         ? 'text-foreground'
                         : 'text-muted-foreground',

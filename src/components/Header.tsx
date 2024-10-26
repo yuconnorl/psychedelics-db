@@ -74,13 +74,31 @@ const Header = ({
             <div className='md:flex gap-3 md:gap-5 items-center text-foreground/70'>
               <Link
                 href={'/database'}
-                className='hover:opacity-40 transition-opacity'
+                className={cn(
+                  currentCategory === 'database' &&
+                    'underline underline-offset-4 text-foreground',
+                  'hover:opacity-40 transition-opacity',
+                )}
               >
                 Database
               </Link>
               <Link
+                href={'/research'}
+                className={cn(
+                  currentCategory === 'research' &&
+                    'underline underline-offset-4 text-foreground',
+                  'hover:opacity-40 transition-opacity',
+                )}
+              >
+                Research
+              </Link>
+              <Link
                 href={'/about'}
-                className='hover:opacity-40 transition-opacity'
+                className={cn(
+                  currentCategory === 'about' &&
+                    'underline underline-offset-4 text-foreground',
+                  'hover:opacity-40 transition-opacity',
+                )}
               >
                 About
               </Link>
@@ -128,6 +146,20 @@ const Header = ({
                           )}
                         >
                           Database
+                        </span>
+                      </Link>
+                      <Link
+                        href={'/research'}
+                        className='hover:opacity-40 transition-opacity'
+                      >
+                        <span
+                          onClick={(): void => setSheetOpen(false)}
+                          className={cn(
+                            currentCategory === 'research' &&
+                              'underline underline-offset-4',
+                          )}
+                        >
+                          Research
                         </span>
                       </Link>
                       <Link

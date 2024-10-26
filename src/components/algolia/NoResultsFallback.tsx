@@ -40,7 +40,7 @@ const subArr = [
   },
 ]
 
-const RandomSubstance = () => {
+const RandomSubstance = (): JSX.Element => {
   const randomSubstance = useMemo(
     () => subArr[Math.floor(Math.random() * subArr.length)],
     [],
@@ -50,7 +50,7 @@ const RandomSubstance = () => {
   const description = randomSubstance.description
 
   return (
-    <div className='absolute opacity-10 flex flex-col items-center pointer-events-none'>
+    <div className='absolute opacity-20 flex flex-col items-center pointer-events-none'>
       <Formula className='opacity-[0.5]' />
       <span className='mt-2 sm:mt-4 font-semibold font-garamond font-sm sm:font-base'>
         {description}
@@ -64,19 +64,21 @@ const NoResultsFallback = (): JSX.Element => {
 
   return (
     <div className='flex items-center justify-center relative px-2'>
-      {indexUiState.query && status !== 'loading' ? (
-        <div className='text-muted-foreground pointer-events-none'>
-          <span className='mr-1 text-primary'>"{indexUiState.query}"</span>
-          isn't the right key for the door
+      {indexUiState.query && status !== 'loading' && (
+        <div className='text-muted-foreground pointer-events-none max-w-xs text-center'>
+          You are more than welcome to contribute the entry for
+          <span className='mx-1.5 text-primary font-medium'>
+            "{indexUiState.query}"
+          </span>
+          to our database
         </div>
-      ) : (
-        <>
-          <RandomSubstance />
-          <p className='text-muted-foreground pointer-events-none text-center'>
-            Try searching for something cool
-          </p>
-        </>
       )}
+      {status === 'loading' && (
+        <div className='text-muted-foreground pointer-events-none max-w-xs text-center'>
+          Searching...
+        </div>
+      )}
+      <RandomSubstance />
     </div>
   )
 }

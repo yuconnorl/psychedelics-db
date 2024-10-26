@@ -3,30 +3,35 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { getCategories } from '@/api/general'
-import psychedelicDatabaseIntro from '@/assets/psychedelic-database-intro.jpeg'
+import imgPsychedelicDatabaseIntro from '@/assets/psychedelic-database-intro.jpeg'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Card, CardHeader, CardTitle } from '@/components/ui/card'
+import { SITE_NAME, SITE_URL } from '@/constants/constants'
 
 export async function generateMetadata(
   { params },
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
-  const parentData = (await parent) as Metadata
+  const parentData = (await parent) as unknown as Metadata
   const parentOpenGraph = parentData.openGraph
   const parentTwitter = parentData.twitter
 
   return {
     title: 'Database',
+    description:
+      'Psychedelics Database is the leading information hub around therapeutic and recreational usage of psychedelic compounds, managed by the Taiwan Psychedelic Collective',
     openGraph: {
       title: 'Database',
-      images: parentOpenGraph.images,
+      siteName: SITE_NAME,
+      url: `${SITE_URL}/database`,
     },
     twitter: {
+      card: 'summary_large_image',
       title: 'Database',
-      images: parentTwitter.images,
     },
   }
 }
+
 const CategoriesCard = ({ categoryTitle, category }): JSX.Element => {
   return (
     <article className='relative group h-fit'>
@@ -59,7 +64,7 @@ const DatabasePage = async (): Promise<JSX.Element> => {
       >
         <Image
           fill
-          src={psychedelicDatabaseIntro}
+          src={imgPsychedelicDatabaseIntro}
           alt='Psychedelic database'
           priority
           placeholder='blur'
@@ -69,7 +74,7 @@ const DatabasePage = async (): Promise<JSX.Element> => {
       </AspectRatio>
       <div className='text-4xl font-semibold text-primary my-6'>Intro</div>
       <div className='text-secondary-foreground text-base sm:text-lg'>
-        <span>
+        <p>
           The psychedelics database aims to serve as the leading information hub
           around therapeutic and recreational usage of psychedelic compounds.
           Containing data on over 100 psychedelic substances, it details
@@ -78,9 +83,9 @@ const DatabasePage = async (): Promise<JSX.Element> => {
           examine the wealth of aggregated data to identify relationships
           between dose taken, subjective effects, physiological changes and
           psychological impacts.
-        </span>
+        </p>
         <div className='mt-4'>
-          <span>
+          <p>
             Alongside supporting scientific research, the database also houses
             resources for public education around responsible psychedelic use.
             It contains over 300 educational articles and 100 podcast episodes
@@ -91,7 +96,7 @@ const DatabasePage = async (): Promise<JSX.Element> => {
             database facilitates scientific understanding and social awareness
             of these profoundly consciousness-altering compounds through a
             multifaceted, evidence-based approach.
-          </span>
+          </p>
         </div>
       </div>
       <>

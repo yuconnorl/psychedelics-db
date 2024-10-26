@@ -1,10 +1,11 @@
 /* eslint-disable no-console */
 'use client'
+
 import React, { useMemo, useState } from 'react'
 import algoliasearch from 'algoliasearch'
 import clsx from 'clsx'
 
-import { getAllRecords } from '../api/general'
+import { getAllRecords, getPapers } from '../api/general'
 
 type TriggerResponse =
   | {
@@ -63,7 +64,35 @@ const UpdateSection = (): JSX.Element => {
     }
   }
 
-  const onButtonClick = async () => {
+  const onUpdateIndicesBtnClick = async (): Promise<void> => {
+    const transformedRecords = await getAllRecords().then((records) => {
+      return records.map(({ id: objectID, ...record }) => ({
+        ...record,
+        objectID,
+      }))
+    })
+
+    const transformedPapers = await getPapers().then((papers) => {
+      return papers.map(({ id: objectID, ...paper }) => ({
+        ...paper,
+        objectID,
+      }))
+    })
+
+    const wholeData = [...transformedRecords, ...transformedPapers]
+
+    if (wholeData.length === 0) {
+      console.log('no data')
+      return
+    } else {
+      setUpdateIndices(status.pending)
+      setTimeout(() => {
+        updateAlgoliaIndex(wholeData)
+      }, 3000)
+    }
+  }
+
+  const onButtonClick = async (): Promise<void> => {
     await getAllRecords().then((records) => {
       const transformedRecords = records.map(({ id: objectID, ...record }) => ({
         ...record,
@@ -86,13 +115,22 @@ const UpdateSection = (): JSX.Element => {
         The button below will trigger a rebuild of the site, and update search
         indices on Algolia.
       </div>
-      <button
-        className='btn btn--style-primary btn--icon-style-without-border btn--size-small'
-        type='button'
-        onClick={onButtonClick}
-      >
-        Rebuild and Update
-      </button>
+      <div className='button-wrapper'>
+        <button
+          className='btn btn--style-primary btn--icon-style-without-border btn--size-small'
+          type='button'
+          onClick={onButtonClick}
+        >
+          Rebuild and Update
+        </button>
+        <button
+          className='btn btn--style-primary btn--icon-style-without-border btn--size-small'
+          type='button'
+          onClick={onUpdateIndicesBtnClick}
+        >
+          Update indices
+        </button>
+      </div>
       <div>
         <div className='status-wrapper'>
           <span>Rebuild status: {rebuild}</span>

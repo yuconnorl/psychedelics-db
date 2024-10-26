@@ -1,14 +1,15 @@
 import clsx from 'clsx'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
+import { NuqsAdapter } from 'nuqs/adapters/next/app'
 
 import './globals.css'
 import CategoriedHeader from '@/components/CategoriedHeader'
 import { ThemeProvider } from '@/components/ThemeProvider'
-import { SITE_NAME } from '@/constants/constants'
+import { SITE_NAME, SITE_URL } from '@/constants/constants'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://psychedelics-database.vercel.app/'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: `${SITE_NAME} - The leading information hub around therapeutic and recreational usage of psychedelic compounds`,
     template: `%s - ${SITE_NAME}`,
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
     },
     description:
       'The leading information hub around therapeutic and recreational usage of psychedelic compounds',
-    url: 'https://psychedelics-database.vercel.app',
+    url: SITE_URL,
     siteName: SITE_NAME,
     locale: 'zh_TW',
     type: 'website',
@@ -69,7 +70,7 @@ export default function RootLayout({
   children: React.ReactNode
 }): React.JSX.Element {
   return (
-    <html lang='en' className={clsx(garamond.variable, 'h-full')}>
+    <html lang='en' className={clsx(garamond.variable)}>
       <body className='relative antialiased flex flex-col min-h-[100dvh] font-noto'>
         <ThemeProvider
           attribute='class'
@@ -77,7 +78,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <CategoriedHeader />
-          {children}
+          <NuqsAdapter>{children}</NuqsAdapter>
           <div id='sheet-portal-container'>
             <div></div>
           </div>

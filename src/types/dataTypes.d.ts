@@ -1,11 +1,22 @@
 /* eslint-disable @typescript-eslint/consistent-type-definitions */
-import type { Record } from '../payload-types'
+import type { Paper, Record } from '../payload-types'
 
 import type { CATEGORY_OPTIONS } from '@/config/options'
 
 export type CategoryOptionsType = (typeof CATEGORY_OPTIONS)[number]
 
 export type RecordType = Record
+
+export type PaperType = Paper
+
+export type PaperData = Omit<
+  PaperType,
+  'authorsField' | 'keywordsField' | 'updatedAt' | 'createdAt'
+> & {
+  authors: string[]
+  keywords: string[]
+  summary: PaperType['summaryField']
+}
 
 export type InfoCard = {
   category: string

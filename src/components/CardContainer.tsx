@@ -1,6 +1,6 @@
 'use client'
+
 import { Suspense } from 'react'
-import clsx from 'clsx'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 import { SquaresIcon, StacksIcon } from './Icons'
@@ -10,6 +10,7 @@ import SkeletonCard from '@/components/SkeletonCard'
 import { Button } from '@/components/ui/button'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { DEFAULT_LAYOUT } from '@/config/general'
+import { cn } from '@/lib/utils'
 import { ChildrenProps } from '@/types'
 
 const CardContainer = ({ children }: ChildrenProps): JSX.Element => {
@@ -33,7 +34,7 @@ const CardContainer = ({ children }: ChildrenProps): JSX.Element => {
               className='ml-auto'
               variant={!isGrid ? 'outline' : 'default'}
               size='icon'
-              onClick={() => router.push(`?layout=grid`)}
+              onClick={(): void => router.push(`?layout=grid`)}
             >
               <SquaresIcon />
             </Button>
@@ -42,7 +43,7 @@ const CardContainer = ({ children }: ChildrenProps): JSX.Element => {
             <Button
               variant={isGrid ? 'outline' : 'default'}
               size='icon'
-              onClick={() => router.push(`?layout=stack`)}
+              onClick={(): void => router.push(`?layout=stack`)}
             >
               <StacksIcon />
             </Button>
@@ -51,7 +52,7 @@ const CardContainer = ({ children }: ChildrenProps): JSX.Element => {
       </div>
       <Suspense fallback={<SkeletonCard isGrid={isGrid} />}>
         <div
-          className={clsx(
+          className={cn(
             isGrid ? 'columns-3xs lg:columns-xs' : 'flex flex-col gap-4',
           )}
         >

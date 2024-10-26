@@ -55,7 +55,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground selection:text-[#b65dee]/80 selection:bg-[#B2FFD6];
   }
 
   .container {
@@ -67,7 +67,7 @@
   }
 
   .search-button-bg {
-    @apply bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-yellow-200/30 via-emerald-200/30 to-[#b65dee]/50
+    @apply bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-yellow-200/30 via-emerald-200/30 to-[#b65dee]/30
   }
 
   .dark-before {

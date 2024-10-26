@@ -104,5 +104,6 @@ module.exports = {
         },
       })
     }),
+    require('tailwindcss-animated'),
   ],
 }
