@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.2.0](https://github.com/yuconnorl/psychedelics-db/compare/v1.1.0...v1.2.0) (2024-10-27)
+
+
+### Features
+
+* Add pagination for paper table ([da5e194](https://github.com/yuconnorl/psychedelics-db/commit/da5e1944db56df2ac0b353d4fb52f0ceac520f8b))
+* Add sorting dropdown for paper table ([0562dce](https://github.com/yuconnorl/psychedelics-db/commit/0562dce04e7bcfb5160c43d167eb98e80d403755))
+* Add substances button group and slug page ([a3c8c28](https://github.com/yuconnorl/psychedelics-db/commit/a3c8c28fa153e83bd9741f5bffcd65bdf86b94f2))
+* add svg eyes to landing page and research page ([32b1402](https://github.com/yuconnorl/psychedelics-db/commit/32b1402f218559aa23cccf1b783afb207814bc10))
+* adpot algolia search for research ([e658b92](https://github.com/yuconnorl/psychedelics-db/commit/e658b924b6dde0370b2f3284392a1ab939f5ee49))
+* Allow fetch paper with DOI, adding summary field for paper entry ([f5a88ee](https://github.com/yuconnorl/psychedelics-db/commit/f5a88ee7be5b9825a651b8ed2bc851fdddde31cc))
+* Clicking badge and modify query string ([fa88eb4](https://github.com/yuconnorl/psychedelics-db/commit/fa88eb4c8656046a2c851612cabf947bb9e27d99))
+* File based data fetcher, adjust algolia icon ([6e79c7e](https://github.com/yuconnorl/psychedelics-db/commit/6e79c7ef0098058c17e9749e894aa92972bbccf8))
+* Research page init, add data ([6bb3ed8](https://github.com/yuconnorl/psychedelics-db/commit/6bb3ed8988bb548ecfc5a8a4ab5c7e1590e8a30d))
+* research slug page ([5f516ca](https://github.com/yuconnorl/psychedelics-db/commit/5f516ca814471aefa935f7d0d9c03e7ebf33a450))
+* Update layout for research page, implemented paper filter ([4333fdc](https://github.com/yuconnorl/psychedelics-db/commit/4333fdcbff00b09d983864cd43355dab12ea934f))
+
+
+### Bug Fixes
+
+* building error ([aede83a](https://github.com/yuconnorl/psychedelics-db/commit/aede83abcc5071c513adceaed41ceb1eb193b2ea))
+* eslint warning, test for og title error ([9151b99](https://github.com/yuconnorl/psychedelics-db/commit/9151b9955ba21cab146ad460184602ad0a7161be))
+* font error ([d54031e](https://github.com/yuconnorl/psychedelics-db/commit/d54031e155cdd867161cee564a7ce58b2878ece1))
+* Mobile layout for paper table ([bf45337](https://github.com/yuconnorl/psychedelics-db/commit/bf4533711e0480abe3baafae412751983a1866e4))
+* Re-rendering of paper table, remove local state ([a070aa7](https://github.com/yuconnorl/psychedelics-db/commit/a070aa77b16295c2fba21715dfa2cf4816443f31))
+* remove dynamic link path ([78e8f3c](https://github.com/yuconnorl/psychedelics-db/commit/78e8f3c7f000eecc2d87fa193413e7537308749c))
+* remove og api route ([e5f129e](https://github.com/yuconnorl/psychedelics-db/commit/e5f129ec4893c9223aa46edc68bb9ec7926b871c))
+* remove unused image, fix horizontal scroll bar of landing page ([8f21050](https://github.com/yuconnorl/psychedelics-db/commit/8f210506f9a4ab1ba72eb0e55b669766f18bf23a))
+* research slug title error ([42b1bf6](https://github.com/yuconnorl/psychedelics-db/commit/42b1bf67507dcf306ecb2372114a6a9b1ebc6893))
+
 ## 1.1.0 (2023-12-19)
 
 
