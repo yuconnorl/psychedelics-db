@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation'
 import { Node } from 'slate'
 
 import { getPapers } from '@/api/general'
+import CopyButton from '@/components/CopyButton'
 import {
   ArrowLeftIcon,
   ChatGPTIcon,
@@ -106,28 +107,34 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
         <>All Researches</>
       </Link>
       <article className='flex flex-col md:grid md:grid-cols-[1fr_0.5fr]'>
-        <div className='px-3 md:pr-6 md:border-r'>
-          <h1 className='text-4xl md:text-5xl mb-4 font-medium font-garamond'>
+        <div className='md:pl-3 md:pr-6 md:border-r'>
+          <h1 className='text-4xl md:text-5xl mb-4 group font-medium font-garamond'>
             {title}
+            <CopyButton
+              text={title}
+              className='group-hover:opacity-100 opacity-0'
+            />
           </h1>
           <section className='md:mb-10 mb-4 flex gap-1.5'>
             {substance.map((sub) => (
               <Badge key={sub}>{substanceOptions[sub]}</Badge>
             ))}
           </section>
-          <Accordion type='single' className='md:hidden mb-8' collapsible>
+
+          {/* Paper Detail Accordion for mobile */}
+          <Accordion type='single' className='md:hidden mb-5' collapsible>
             <AccordionItem value='paper-detail'>
               <AccordionTrigger className='text-primary/80'>
                 Paper Detail
               </AccordionTrigger>
               <AccordionContent>
-                <div className='flex flex-col gap-4'>
+                <div className='flex flex-col gap-3'>
                   <section>
-                    <h3 className='font-medium mb-3'>Journal</h3>
+                    <h3 className='font-medium mb-1'>Journal</h3>
                     <div className='text-primary/80'>{journal}</div>
                   </section>
                   <section>
-                    <h3 className='font-medium mb-3'>Authors</h3>
+                    <h3 className='font-medium mb-1'>Authors</h3>
                     <div className='text-primary/80'>
                       {authors.length > 1
                         ? authors.map((author, index) => {
@@ -144,7 +151,7 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
                     </div>
                   </section>
                   <section>
-                    <h3 className='font-medium mb-3'>Keywords</h3>
+                    <h3 className='font-medium mb-1'>Keywords</h3>
                     <div className='text-primary/80'>
                       {keywords.map((keyword) => (
                         <Fragment key={keyword}>
@@ -155,16 +162,19 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
                     </div>
                   </section>
                   <section>
-                    <h3 className='font-medium mb-3'>DOI</h3>
-                    <div className='text-primary/80'>{doi}</div>
+                    <h3 className='font-medium mb-1'>DOI</h3>
+                    <div className='text-primary/80 flex items-center'>
+                      {doi}
+                      <CopyButton text={doi} />
+                    </div>
                   </section>
                   <section>
-                    <h3 className='font-medium mb-3'>Link</h3>
+                    <h3 className='font-medium mb-1'>Link</h3>
                     <Link
                       href={url}
                       prefetch={false}
                       target='_blank'
-                      className='flex items-center text-primary/80 hover:opacity-50 transition-opacity'
+                      className='flex items-center w-max text-primary/80 hover:opacity-50 transition-opacity'
                     >
                       <>
                         <LinkIcon className='size-4 mr-1 inline' />
@@ -173,7 +183,7 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
                     </Link>
                   </section>
                   <section>
-                    <h3 className='font-medium mb-3'>Published</h3>
+                    <h3 className='font-medium mb-1'>Published</h3>
                     <time className='text-primary/80'>
                       {dayjs(publishedAt).format('MMMM YYYY')}
                     </time>
@@ -183,15 +193,15 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
             </AccordionItem>
           </Accordion>
           {summary.length > 0 && (
-            <section className='flex relative flex-col p-5 pb-4 bg-primary-foreground mb-5 rounded-sm'>
+            <section className='flex relative flex-col p-4 md:p-5 pb-4 bg-primary-foreground mb-5 rounded-sm'>
               <h3 className='mb-4 flex items-center font-medium'>
                 <KeyIcon className='mr-2 inline' />
                 Key Findings
               </h3>
-              <ul className='flex flex-col gap-3 pl-2 ml-3'>
+              <ul className='flex flex-col gap-3 pl-2 ml-2 md:ml-3'>
                 {summary.map(({ id, summary }) => (
                   <li
-                    className='pl-1 relative before:contents-[""] before:absolute before:w-[0.3rem] before:h-[0.3rem] before:bg-primary/60 before:rounded-full before:-left-[0.8rem] before:top-[0.65rem]'
+                    className='md:pl-1 relative before:contents-[""] before:absolute before:w-[0.3rem] before:h-[0.3rem] before:bg-primary/60 before:rounded-full before:-left-[0.8rem] before:top-[0.65rem]'
                     key={id}
                   >
                     {summary}
@@ -252,7 +262,10 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
           </section>
           <section>
             <h3 className='font-medium mb-3'>DOI</h3>
-            <div className='text-primary/80'>{doi}</div>
+            <div className='text-primary/80 flex items-center'>
+              {doi}
+              <CopyButton text={doi} />
+            </div>
           </section>
           <section>
             <h3 className='font-medium mb-3'>Link</h3>
@@ -260,7 +273,7 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
               href={url}
               prefetch={false}
               target='_blank'
-              className='flex items-center text-primary/80 hover:opacity-50 transition-opacity'
+              className='flex items-center w-max text-primary/80 hover:opacity-50 transition-opacity'
             >
               <>
                 <LinkIcon className='size-4 mr-1 inline' />

@@ -73,12 +73,12 @@ export async function GET(request: NextRequest) {
               </svg>
             </div>
             <div
-              tw='leading-tight mb-5 text-4xl max-w-3xl font-medium'
+              tw='leading-tight mb-5 text-5xl max-w-3xl font-medium'
               style={{ fontFamily: 'CormorantUpright' }}
             >
               {title}
             </div>
-            <div tw='leading-tight text-sm' style={{ fontFamily: 'Roboto' }}>
+            <div tw='leading-tight text-lg' style={{ fontFamily: 'Roboto' }}>
               Research / Psychedelics Database
             </div>
           </div>

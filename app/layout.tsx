@@ -6,6 +6,7 @@ import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import './globals.css'
 import CategoriedHeader from '@/components/CategoriedHeader'
 import { ThemeProvider } from '@/components/ThemeProvider'
+import { Toaster } from '@/components/ui/sonner'
 import { SITE_NAME, SITE_URL } from '@/constants/constants'
 
 export const metadata: Metadata = {
@@ -79,6 +80,7 @@ export default function RootLayout({
         >
           <CategoriedHeader />
           <NuqsAdapter>{children}</NuqsAdapter>
+          <Toaster />
           <div id='sheet-portal-container'>
             <div></div>
           </div>

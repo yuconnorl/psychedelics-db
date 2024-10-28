@@ -7,7 +7,7 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import CardContainer from '@/components/CardContainer'
 import Grid from '@/components/GridLayoutCard'
 import Stack from '@/components/StackLayoutCard'
-import { CardParamsProps, CategoryOptionsType, RecordType } from '@/types'
+import { CardParamsProps, RecordType } from '@/types'
 
 export async function generateStaticParams() {
   const records = await getAllRecords()
