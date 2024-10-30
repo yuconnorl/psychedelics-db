@@ -12,15 +12,15 @@ import { SITE_NAME, SITE_URL } from '@/constants/constants'
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} - The leading information hub around therapeutic and recreational usage of psychedelic compounds`,
-    template: `%s - ${SITE_NAME}`,
+    default: `${SITE_NAME} – The leading information hub around therapeutic and recreational usage of psychedelic compounds`,
+    template: `%s – ${SITE_NAME}`,
   },
   description:
-    'Psychedelics database is the leading information hub around therapeutic and recreational usage of psychedelic compounds, managed by the Taiwan Psychedelic Collective',
+    'Psychedelics database is the leading information hub around therapeutic and recreational usage of psychedelic compounds, managed by members of Taiwan Psychedelic Collective',
   openGraph: {
     title: {
-      default: `${SITE_NAME} - The leading information hub around therapeutic and recreational usage of psychedelic compounds`,
-      template: `%s - ${SITE_NAME}`,
+      default: `${SITE_NAME} – The leading information hub around therapeutic and recreational usage of psychedelic compounds`,
+      template: `%s – ${SITE_NAME}`,
     },
     description:
       'The leading information hub around therapeutic and recreational usage of psychedelic compounds',
@@ -32,8 +32,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: {
-      default: `${SITE_NAME} - The leading information hub around therapeutic and recreational usage of psychedelic compounds`,
-      template: `%s - ${SITE_NAME}`,
+      default: `${SITE_NAME} – The leading information hub around therapeutic and recreational usage of psychedelic compounds`,
+      template: `%s – ${SITE_NAME}`,
     },
     description:
       'The leading information hub around therapeutic and recreational usage of psychedelic compounds',

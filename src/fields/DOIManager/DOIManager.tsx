@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import { useField, useForm } from 'payload/components/forms'
 
+import { getPapers } from '../../api/general'
 import { summarizePaperWithDoi } from '../../utilities/paperDetail'
 
 type Props = {
@@ -20,7 +21,31 @@ export const DOIManager: React.FC = ({
   })
   const [isLoading, setIsLoading] = useState(false)
   const [isFailed, setIsFailed] = useState(false)
+  const [doiCheckResult, setDoiCheckResult] = useState('')
   const { addFieldRow, dispatchFields } = useForm()
+
+  const handleDOICheck = async () => {
+    setDoiCheckResult('Checking...')
+
+    if (!value) {
+      setDoiCheckResult('Please enter a DOI.')
+      return
+    }
+    const paperData = await getPapers()
+
+    const isDuplicate = paperData.some(
+      (paper: { doi: string }) => paper.doi === value,
+    )
+
+    setTimeout(() => {
+      if (isDuplicate) {
+        setDoiCheckResult('This paper is already in the database 🫨')
+        return
+      } else {
+        setDoiCheckResult('This is a fresh entry 🎉')
+      }
+    }, 300)
+  }
 
   const handleSummaryAdd = useCallback(
     (summary) => {
@@ -137,6 +162,13 @@ export const DOIManager: React.FC = ({
             'Fetch Paper'
           )}
         </button>
+        <button
+          className='btn btn--style-primary btn--icon-style-without-border btn--size-small doi-fetch-button'
+          onClick={handleDOICheck}
+          type='button'
+        >
+          Check DOI
+        </button>
       </div>
       <div className='field-description'>
         Fetch paper details by entering a DOI. This will populate the title,
@@ -148,6 +180,9 @@ export const DOIManager: React.FC = ({
             Failed to fetch paper. Please check the DOI. If the DOI is correct,
             the paper may not be available on sci-hub.
           </div>
+        )}
+        {doiCheckResult && (
+          <div className='field-success'>{doiCheckResult}</div>
         )}
       </div>
     </div>

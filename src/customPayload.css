@@ -56,3 +56,8 @@
   color: var(--theme-error-600);
   font-size: 1.15rem;
 }
+
+.field-success {
+  color: var(--theme-success-350);
+  font-size: 1.15rem;
+}
