@@ -40,8 +40,8 @@ export async function GET(request: NextRequest) {
             backgroundColor: 'white',
           }}
         >
-          <div tw='flex flex-col absolute bottom-16 left-20'>
-            <div tw='flex relative flex-col mb-8'>
+          <div tw='flex flex-col absolute bottom-20 left-20'>
+            <div tw='flex relative flex-col mb-10'>
               <svg
                 viewBox='0 0 166 81'
                 fill='#292929'
@@ -73,7 +73,7 @@ export async function GET(request: NextRequest) {
               </svg>
             </div>
             <div
-              tw='leading-tight mb-5 text-5xl max-w-3xl font-medium'
+              tw='leading-tight mb-12 text-[3.35rem] leading-[1.1] max-w-4xl font-medium'
               style={{ fontFamily: 'CormorantUpright' }}
             >
               {title}
