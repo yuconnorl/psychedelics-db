@@ -21,11 +21,9 @@ import { Input } from '@/components/ui/input'
 const searchFetcher = async (searchTerm: string) => {
   if (!searchTerm) return []
 
-  const embeddingResponse = await getEmbedding(searchTerm)
-  const { embedding } = await embeddingResponse.json()
+  const { embedding } = await getEmbedding(searchTerm)
 
-  const queryResponse = await queryVector(embedding)
-  const { queryResults } = await queryResponse.json()
+  const { queryResults } = await queryVector(embedding)
 
   return queryResults?.points || []
 }
@@ -90,7 +88,7 @@ const VectorSearch = () => {
               <CubeTransparentIcon className='mr-2 w-6 h-6' />
               Vector Search
             </DialogTitle>
-            <DialogDescription className='max-w-full md:max-w-[80%] mt-3 md:mt-4'>
+            <DialogDescription className='max-w-full md:max-w-[90%] mt-3 md:mt-4'>
               Vector search is an algorithm that transforms data into vectors,
               allowing efficient retrieval of similar items in large datasets by
               comparing their positions in high-dimensional space. Note: This

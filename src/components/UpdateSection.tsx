@@ -9,6 +9,8 @@ import { v4 as uuidv4 } from 'uuid'
 import { getAllRecords, getPapers } from '../api/general'
 import { getEmbedding, updateVector } from '../utilities/paperDetail'
 
+import type { PaperData } from '@/types'
+
 type TriggerResponse =
   | {
       job: {
@@ -130,21 +132,20 @@ const UpdateSection = (): JSX.Element => {
     return flattenData
   }
 
-  const generateFlattenPaperData = async (data) => {
+  const generateFlattenPaperData = async () => {
     const transformedPapers = await getPapers().then((papers) => {
       return papers.map(({ id: objectID, ...paper }) => ({
         payload: {
           ...paper,
           objectID,
-        },
+        } as PaperData & { objectID: string },
         flattenString: flattenData(paper),
       }))
     })
 
-    const operationInfo = await Promise.allSettled(
+    const operationInfo = (await Promise.allSettled(
       transformedPapers.map(async (paper) => {
-        const embeddingRes = await getEmbedding(paper.flattenString)
-        const { embedding } = await embeddingRes.json()
+        const { embedding } = await getEmbedding(paper.flattenString)
 
         return {
           id: uuidv4(),
@@ -152,17 +153,28 @@ const UpdateSection = (): JSX.Element => {
           payload: paper.payload,
         }
       }),
+    )) as {
+      status: 'fulfilled' | 'rejected'
+      value?: {
+        id: string
+        vector: number[]
+        payload: PaperData & { objectID: string }
+      }
+    }[]
+
+    const successfulResults = operationInfo.filter(
+      (result) => result.status === 'fulfilled',
     )
 
-    const successfulResults = operationInfo
-      .filter((result) => result.status === 'fulfilled')
-      .map((result) => result.value)
+    const successfulPapers = successfulResults.map((result) => result?.value)
 
-    // Update the vector database with the successful results
-    await updateVector(successfulResults)
-
-    const vectorRes = await updateVector(successfulResults)
-    console.log(vectorRes)
+    try {
+      // Update the vector database with the successful results
+      const vectorRes = await updateVector(successfulPapers)
+      console.log(vectorRes)
+    } catch (error: unknown) {
+      console.error(`update vector failed: ${error}`)
+    }
   }
 
   return (

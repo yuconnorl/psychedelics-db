@@ -27,7 +27,7 @@ const LoadingSkeleton = () => {
 const VectorSearchResult = ({ searchResults, isLoading = false }) => {
   return (
     <div className='mt-6 md:mt-10'>
-      <div className='text-sm'>
+      <div className='text-sm pl-1'>
         <span className='text-primary/90'>Search Results </span>
         <span className='text-primary/70'>
           (By correlation, highest to lowest)
@@ -35,7 +35,7 @@ const VectorSearchResult = ({ searchResults, isLoading = false }) => {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <div className='inline-flex'>
+              <div className='inline-flex ml-0.5'>
                 <InfoIcon />
               </div>
             </TooltipTrigger>
@@ -52,7 +52,7 @@ const VectorSearchResult = ({ searchResults, isLoading = false }) => {
             <div className='text-primary/70 text-sm flex items-center'>
               <span>No results</span>
               <TheEye className='w-6 h-6 mx-1.5' />
-              <span>Trying to search.</span>
+              <span>Input keywords to search</span>
             </div>
           )}
           {
@@ -71,26 +71,28 @@ const VectorSearchResult = ({ searchResults, isLoading = false }) => {
               href={`/research/${result.payload.slug}`}
               prefetch={false}
               key={result.id}
-              className='text-sm flex flex-col sm:items-center sm:grid sm:grid-cols-[minmax(3.75rem,_1fr)_8fr] px-2 sm:px-3 py-3 rounded-sm bg-muted-foreground/5 hover:bg-muted-foreground/30 transition-colors'
+              className='text-sm flex flex-col px-2 sm:px-3 py-3.5 rounded-sm bg-muted-foreground/5 hover:bg-muted-foreground/30 transition-colors'
             >
-              <div className='flex gap-1 flex-col mb-2 pl-1'>
-                <div className='flex items-end text-primary/60'>
-                  <ChartBarSquareIcon className='mr-0.5' />
-                  <span className='text-xs'>{result.score.toFixed(3)}</span>
-                </div>
+              <div className='mb-2 gap-x-1 flex'>
+                {result.payload.substance.map((sub) => (
+                  <Badge
+                    className='text-[10px] px-2 py-0 text-primary/80'
+                    key={sub}
+                    variant='outline'
+                  >
+                    {substanceOptions[sub]}
+                  </Badge>
+                ))}
               </div>
-              <div>
-                <div className='pl-1 pr-3'>{result.payload.title}</div>
-                <div className='mt-1.5 gap-x-1 flex'>
-                  {result.payload.substance.map((sub) => (
-                    <Badge
-                      className=' text-[10px] px-2 py-0 text-primary/60'
-                      key={sub}
-                      variant='secondary'
-                    >
-                      {substanceOptions[sub]}
-                    </Badge>
-                  ))}
+              <div className='pl-0.5'>
+                <div className='pl-1 pr-3 text-primary/85'>
+                  {result.payload.title}
+                </div>
+                <div className='flex gap-1 flex-col mt-2 pl-1'>
+                  <div className='flex items-end text-primary/60'>
+                    <ChartBarSquareIcon className='mr-1' />
+                    <span className='text-xs'>{result.score.toFixed(3)}</span>
+                  </div>
                 </div>
               </div>
             </Link>

@@ -27,6 +27,12 @@ export const summarizePaperWithUrl = async (url) => {
   }
 }
 
+interface EmbeddingResponse {
+  // Define the expected properties of the response here
+  embedding: number[]
+  // Add other properties as needed
+}
+
 export const getEmbedding = async (message) => {
   try {
     const response = await fetch('/apiv2/embedding', {
@@ -37,9 +43,24 @@ export const getEmbedding = async (message) => {
       body: JSON.stringify({ message }),
     })
 
-    return response
+    if (!response.ok) {
+      throw new Error('Network response was not ok')
+    }
+
+    const data: EmbeddingResponse = await response.json()
+    return data
   } catch (error: unknown) {
     console.log('Error fetching paper:', error)
+    return undefined
+  }
+}
+
+interface UpdateVectorResponse {
+  time: number
+  status: string
+  result: {
+    status: 'acknowledged' | 'completed'
+    operation_id: number
   }
 }
 
@@ -53,13 +74,18 @@ export const updateVector = async (message) => {
       body: JSON.stringify({ message }),
     })
 
-    return response
+    if (!response.ok) {
+      throw new Error('Network response was not ok')
+    }
+
+    const data: UpdateVectorResponse = await response.json()
+    return data
   } catch (error: unknown) {
     console.log('Error fetching paper:', error)
   }
 }
 
-export const queryVector = async (message) => {
+export const queryVector = async (message: number[]) => {
   try {
     const response = await fetch('/apiv2/vector', {
       method: 'POST',
@@ -69,7 +95,12 @@ export const queryVector = async (message) => {
       body: JSON.stringify({ message }),
     })
 
-    return response
+    if (!response.ok) {
+      throw new Error('Network response was not ok')
+    }
+
+    const data = await response.json()
+    return data
   } catch (error: unknown) {
     console.log('Error fetching paper:', error)
   }

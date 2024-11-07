@@ -2,6 +2,7 @@
 import { QdrantClient } from '@qdrant/js-client-rest'
 import { type NextRequest, NextResponse } from 'next/server'
 
+// update vector database
 export async function PUT(request: NextRequest) {
   const { message } = await request.json()
 
@@ -30,8 +31,9 @@ export async function PUT(request: NextRequest) {
   }
 }
 
+// query vector database
 export async function POST(request: NextRequest) {
-  const { message } = await request.json()
+  const { message }: { message: number[] | [] } = await request.json()
 
   if (!message || message.length === 0) {
     return NextResponse.json({ success: false, message: 'No message provided' })
