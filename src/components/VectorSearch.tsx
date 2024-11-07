@@ -116,7 +116,7 @@ const VectorSearch = () => {
               </Button>
             </div>
             {error && (
-              <div className='text-red-500 mt-2 tetx-sm'>
+              <div className='text-red-400 mt-2 tetx-sm'>
                 Error performing search. Please try again.
               </div>
             )}
