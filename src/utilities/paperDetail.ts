@@ -26,3 +26,51 @@ export const summarizePaperWithUrl = async (url) => {
     console.log('Error fetching paper:', error)
   }
 }
+
+export const getEmbedding = async (message) => {
+  try {
+    const response = await fetch('/apiv2/embedding', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message }),
+    })
+
+    return response
+  } catch (error: unknown) {
+    console.log('Error fetching paper:', error)
+  }
+}
+
+export const updateVector = async (message) => {
+  try {
+    const response = await fetch('/apiv2/vector', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message }),
+    })
+
+    return response
+  } catch (error: unknown) {
+    console.log('Error fetching paper:', error)
+  }
+}
+
+export const queryVector = async (message) => {
+  try {
+    const response = await fetch('/apiv2/vector', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message }),
+    })
+
+    return response
+  } catch (error: unknown) {
+    console.log('Error fetching paper:', error)
+  }
+}

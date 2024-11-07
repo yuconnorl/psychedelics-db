@@ -4,8 +4,10 @@
 import React, { useMemo, useState } from 'react'
 import algoliasearch from 'algoliasearch'
 import clsx from 'clsx'
+import { v4 as uuidv4 } from 'uuid'
 
 import { getAllRecords, getPapers } from '../api/general'
+import { getEmbedding, updateVector } from '../utilities/paperDetail'
 
 type TriggerResponse =
   | {
@@ -109,6 +111,60 @@ const UpdateSection = (): JSX.Element => {
     })
   }
 
+  const flattenData = (data) => {
+    let flattenData = ''
+    for (const key in data) {
+      if (key === 'summary') {
+        data[key].forEach(({ summary }, i) => {
+          flattenData += `summary${i + 1}: ${summary}; `
+        })
+      } else if (key === 'abstract') {
+        const abstract = data[key][0]?.children[0]?.text || ''
+        flattenData += `abstract: ${abstract}; `
+      } else if (Array.isArray(data[key])) {
+        flattenData += `${key}: ${data[key].join(', ')}; `
+      } else {
+        flattenData += `${key}: ${data[key]}; `
+      }
+    }
+    return flattenData
+  }
+
+  const generateFlattenPaperData = async (data) => {
+    const transformedPapers = await getPapers().then((papers) => {
+      return papers.map(({ id: objectID, ...paper }) => ({
+        payload: {
+          ...paper,
+          objectID,
+        },
+        flattenString: flattenData(paper),
+      }))
+    })
+
+    const operationInfo = await Promise.allSettled(
+      transformedPapers.map(async (paper) => {
+        const embeddingRes = await getEmbedding(paper.flattenString)
+        const { embedding } = await embeddingRes.json()
+
+        return {
+          id: uuidv4(),
+          vector: embedding,
+          payload: paper.payload,
+        }
+      }),
+    )
+
+    const successfulResults = operationInfo
+      .filter((result) => result.status === 'fulfilled')
+      .map((result) => result.value)
+
+    // Update the vector database with the successful results
+    await updateVector(successfulResults)
+
+    const vectorRes = await updateVector(successfulResults)
+    console.log(vectorRes)
+  }
+
   return (
     <section>
       <div>
@@ -129,6 +185,13 @@ const UpdateSection = (): JSX.Element => {
           onClick={onUpdateIndicesBtnClick}
         >
           Update indices
+        </button>
+        <button
+          className='btn btn--style-primary btn--icon-style-without-border btn--size-small'
+          type='button'
+          onClick={generateFlattenPaperData}
+        >
+          Flatten
         </button>
       </div>
       <div>
