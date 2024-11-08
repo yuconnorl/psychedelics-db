@@ -12,6 +12,7 @@ import imgPsyBg3 from '@/assets/psy-bg-3.webp'
 import { DeselectAllIcon } from '@/components/Icons'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+import VectorSearch from '@/components/VectorSearch'
 import { substanceOptions } from '@/config/options'
 import { cn } from '@/lib/utils'
 
@@ -90,6 +91,7 @@ const SubstancesButtonGroup = (): JSX.Element => {
   return (
     <div className='md:top-24 md:sticky h-max md:pr-4'>
       <h3 className='mb-4 pl-2 font-semibold'>Substances</h3>
+      <VectorSearch />
       <div className='flex gap-2 flex-wrap items-start'>
         {Object.entries(substanceOptions).map(([value, substanceName]) => {
           const isActive = querySubstance?.includes(value)

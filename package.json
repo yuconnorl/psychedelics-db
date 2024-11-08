@@ -38,6 +38,7 @@
     "@payloadcms/db-mongodb": "latest",
     "@payloadcms/next-payload": "^0.1.9",
     "@payloadcms/richtext-slate": "latest",
+    "@qdrant/js-client-rest": "^1.12.0",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-aspect-ratio": "^1.0.3",
     "@radix-ui/react-avatar": "^1.0.4",
@@ -81,9 +82,11 @@
     "slate": "^0.101.4",
     "slate-plain-serializer": "^0.7.13",
     "sonner": "^1.5.0",
+    "swr": "^2.2.5",
     "tailwind-merge": "^2.0.0",
     "tailwindcss-animate": "^1.0.7",
     "tailwindcss-animated": "^1.1.2",
+    "uuid": "^11.0.2",
     "zod": "^3.23.8"
   },
   "devDependencies": {

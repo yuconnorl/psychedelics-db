@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import { InstantSearchNext } from 'react-instantsearch-nextjs'
-import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 

@@ -4,8 +4,12 @@
 import React, { useMemo, useState } from 'react'
 import algoliasearch from 'algoliasearch'
 import clsx from 'clsx'
+import { v4 as uuidv4 } from 'uuid'
 
 import { getAllRecords, getPapers } from '../api/general'
+import { getEmbedding, updateVector } from '../utilities/paperDetail'
+
+import type { PaperData } from '@/types'
 
 type TriggerResponse =
   | {
@@ -109,6 +113,70 @@ const UpdateSection = (): JSX.Element => {
     })
   }
 
+  const flattenData = (data) => {
+    let flattenData = ''
+    for (const key in data) {
+      if (key === 'summary') {
+        data[key].forEach(({ summary }, i) => {
+          flattenData += `summary${i + 1}: ${summary}; `
+        })
+      } else if (key === 'abstract') {
+        const abstract = data[key][0]?.children[0]?.text || ''
+        flattenData += `abstract: ${abstract}; `
+      } else if (Array.isArray(data[key])) {
+        flattenData += `${key}: ${data[key].join(', ')}; `
+      } else {
+        flattenData += `${key}: ${data[key]}; `
+      }
+    }
+    return flattenData
+  }
+
+  const generateFlattenPaperData = async () => {
+    const transformedPapers = await getPapers().then((papers) => {
+      return papers.map(({ id: objectID, ...paper }) => ({
+        payload: {
+          ...paper,
+          objectID,
+        } as PaperData & { objectID: string },
+        flattenString: flattenData(paper),
+      }))
+    })
+
+    const operationInfo = (await Promise.allSettled(
+      transformedPapers.map(async (paper) => {
+        const { embedding } = await getEmbedding(paper.flattenString)
+
+        return {
+          id: uuidv4(),
+          vector: embedding,
+          payload: paper.payload,
+        }
+      }),
+    )) as {
+      status: 'fulfilled' | 'rejected'
+      value?: {
+        id: string
+        vector: number[]
+        payload: PaperData & { objectID: string }
+      }
+    }[]
+
+    const successfulResults = operationInfo.filter(
+      (result) => result.status === 'fulfilled',
+    )
+
+    const successfulPapers = successfulResults.map((result) => result?.value)
+
+    try {
+      // Update the vector database with the successful results
+      const vectorRes = await updateVector(successfulPapers)
+      console.log(vectorRes)
+    } catch (error: unknown) {
+      console.error(`update vector failed: ${error}`)
+    }
+  }
+
   return (
     <section>
       <div>
@@ -129,6 +197,13 @@ const UpdateSection = (): JSX.Element => {
           onClick={onUpdateIndicesBtnClick}
         >
           Update indices
+        </button>
+        <button
+          className='btn btn--style-primary btn--icon-style-without-border btn--size-small'
+          type='button'
+          onClick={generateFlattenPaperData}
+        >
+          Flatten
         </button>
       </div>
       <div>
