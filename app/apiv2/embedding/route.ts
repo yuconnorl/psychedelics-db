@@ -2,6 +2,18 @@ import { type NextRequest, NextResponse } from 'next/server'
 import OpenAI from 'openai'
 
 export async function POST(request: NextRequest) {
+  const origin = request.headers.get('origin')
+
+  if (process.env.NODE_ENV === 'production' && origin !== process.env.APP_URL) {
+    return NextResponse.json(
+      {
+        success: false,
+        message: 'CORS policy: No access allowed from this origin',
+      },
+      { status: 403 },
+    )
+  }
+
   const { message } = await request.json()
 
   if (!message) {
