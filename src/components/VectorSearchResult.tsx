@@ -47,8 +47,8 @@ const VectorSearchResult = ({ searchResults, isLoading = false }) => {
             </TooltipTrigger>
             <TooltipContent>
               <p>
-                Showing the top five correlations, with higher values reflecting
-                stronger similarity
+                Showing the top five correlations, <br />
+                with higher values reflecting stronger similarity
               </p>
             </TooltipContent>
           </Tooltip>

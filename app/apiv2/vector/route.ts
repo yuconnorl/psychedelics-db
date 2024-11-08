@@ -47,7 +47,7 @@ export async function PUT(request: NextRequest) {
 export async function POST(request: NextRequest) {
   const origin = request.headers.get('origin')
 
-  if (origin !== process.env.APP_URL) {
+  if (process.env.NODE_ENV === 'production' && origin !== process.env.APP_URL) {
     return NextResponse.json(
       {
         success: false,
