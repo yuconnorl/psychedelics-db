@@ -12,6 +12,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import { substanceOptions } from '@/config/options'
+import { cn } from '@/lib/utils'
 
 const LoadingSkeleton = () => {
   return (
@@ -27,7 +28,12 @@ const LoadingSkeleton = () => {
 const VectorSearchResult = ({ searchResults, isLoading = false }) => {
   return (
     <div className='mt-6 md:mt-10'>
-      <div className='text-sm pl-1'>
+      <div
+        className={cn(
+          'text-sm pl-1 hidden',
+          searchResults?.length > 0 && 'block',
+        )}
+      >
         <span className='text-primary/90'>Search Results </span>
         <span className='text-primary/70'>
           (By correlation, highest to lowest)
@@ -40,18 +46,21 @@ const VectorSearchResult = ({ searchResults, isLoading = false }) => {
               </div>
             </TooltipTrigger>
             <TooltipContent>
-              <p>The results comprise the top five correlations</p>
+              <p>
+                Showing the top five correlations, with higher values reflecting
+                stronger similarity
+              </p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
       </div>
-      <article className='max-h-[45dvh] overflow-y-scroll relative'>
-        {isLoading || searchResults?.length > 0 ? <FadingMaskTop /> : null}
+      <article className='max-h-[45dvh] min-h-30 overflow-y-scroll relative'>
+        {searchResults?.length > 0 ? <FadingMaskTop /> : null}
         <div className='overflow-y-scroll h-full flex flex-col space-y-2.5'>
           {!isLoading && searchResults?.length === 0 && (
-            <div className='text-primary/70 text-sm flex items-center'>
+            <div className='text-primary/70 text-sm text-center flex items-center justify-center pt-6 pb-5'>
               <span>No results</span>
-              <TheEye className='w-6 h-6 mx-1.5' />
+              <TheEye className='w-6 h-6 mx-1' />
               <span>Input keywords to search</span>
             </div>
           )}
@@ -73,10 +82,10 @@ const VectorSearchResult = ({ searchResults, isLoading = false }) => {
               key={result.id}
               className='text-sm flex flex-col px-2 sm:px-3 py-3.5 rounded-sm bg-muted-foreground/5 hover:bg-muted-foreground/30 transition-colors'
             >
-              <div className='mb-2 gap-x-1 flex'>
+              <div className='mb-2 gap-x-1 flex pl-1'>
                 {result.payload.substance.map((sub) => (
                   <Badge
-                    className='text-[10px] px-2 py-0 text-primary/80'
+                    className='text-[10px] px-2 py-0 text-primary/80 border-primary/30'
                     key={sub}
                     variant='outline'
                   >
@@ -98,7 +107,7 @@ const VectorSearchResult = ({ searchResults, isLoading = false }) => {
             </Link>
           ))}
         </div>
-        {isLoading || searchResults?.length > 0 ? <FadingMaskBottom /> : null}
+        {searchResults?.length > 0 ? <FadingMaskBottom /> : null}
       </article>
     </div>
   )
