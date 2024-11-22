@@ -22,7 +22,7 @@ const Home = async (): Promise<JSX.Element> => {
               things about psychedelics.
             </p>
           </div>
-          <div className='fixed w-full h-full -bottom-12 md:bottom-0 left-0 -z-10'>
+          <div className='fixed w-full h-full bottom-8 left-0 -z-10'>
             <SplineComponent />
           </div>
         </div>

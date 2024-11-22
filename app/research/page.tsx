@@ -32,10 +32,10 @@ export async function generateMetadata(
   }
 }
 
-const ResearchPage = async (): Promise<JSX.Element> => {
+const ResearchPage = (): JSX.Element => {
   return (
     <div className='mt-16'>
-      <div className='relative'>
+      <section className='relative'>
         <h2 className='text-5xl md:text-6xl mb-12 md:mb-32 md:leading-tight'>
           Researches across all <br /> aspects of <HoverRevealImage />
         </h2>
@@ -53,7 +53,7 @@ const ResearchPage = async (): Promise<JSX.Element> => {
             an accessible.
           </p>
         </div>
-      </div>
+      </section>
       <HeadOrTailEyes />
       <PaperSection />
     </div>

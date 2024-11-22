@@ -7,26 +7,25 @@ export const runtime = 'edge'
 
 export async function GET(request: NextRequest) {
   try {
-    const contentType = 'image/png'
     const { searchParams } = new URL(request.url)
 
     const hasTitle = searchParams.has('title')
     const title = hasTitle ? searchParams.get('title') : 'Research'
 
-    const cormorantUpright = await fetch(
-      new URL('public/fonts/cormorant-upright-bold.ttf', import.meta.url),
-    )
-
     const roboto = await fetch(
       new URL('public/fonts/roboto-light.ttf', import.meta.url),
     )
 
-    if (!cormorantUpright.ok) {
-      throw new Error('Failed to fetch the font file')
+    const latoRegular = await fetch(
+      new URL('public/fonts/lato-regular.ttf', import.meta.url),
+    )
+
+    if (!roboto.ok || !latoRegular.ok) {
+      throw new Error('Failed to fetch the font file for og image')
     }
 
-    const cormorantUprightData = await cormorantUpright.arrayBuffer()
     const robotoData = await roboto.arrayBuffer()
+    const latoRegularData = await latoRegular.arrayBuffer()
 
     return new ImageResponse(
       (
@@ -73,8 +72,8 @@ export async function GET(request: NextRequest) {
               </svg>
             </div>
             <div
-              tw='leading-tight mb-12 text-[3.35rem] leading-[1.1] max-w-4xl font-medium'
-              style={{ fontFamily: 'CormorantUpright' }}
+              tw='mb-12 text-[3.1rem] leading-[1.3] max-w-4xl'
+              style={{ fontFamily: 'Lato' }}
             >
               {title}
             </div>
@@ -89,13 +88,13 @@ export async function GET(request: NextRequest) {
         height: 630,
         fonts: [
           {
-            name: 'CormorantUpright',
-            data: cormorantUprightData,
+            name: 'Roboto',
+            data: robotoData,
             style: 'normal',
           },
           {
-            name: 'Roboto',
-            data: robotoData,
+            name: 'Lato',
+            data: latoRegularData,
             style: 'normal',
           },
         ],

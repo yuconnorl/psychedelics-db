@@ -18,6 +18,7 @@ const LoadingSkeleton = () => {
   return (
     <div className='px-2 sm:px-3 py-5 rounded-sm bg-muted-foreground/5'>
       <div className='space-y-2'>
+        <Skeleton className='h-4 w-[18%]' />
         <Skeleton className='h-4 w-[84%]' />
         <Skeleton className='h-4 w-[73%]' />
       </div>
@@ -47,7 +48,7 @@ const VectorSearchResult = ({ searchResults, isLoading = false }) => {
             </TooltipTrigger>
             <TooltipContent>
               <p>
-                Showing the top five correlations, <br />
+                Showing the top five results, <br />
                 with higher values reflecting stronger similarity
               </p>
             </TooltipContent>
@@ -82,7 +83,7 @@ const VectorSearchResult = ({ searchResults, isLoading = false }) => {
               key={result.id}
               className='text-sm flex flex-col px-2 sm:px-3 py-3.5 rounded-sm bg-muted-foreground/5 hover:bg-muted-foreground/30 transition-colors'
             >
-              <div className='mb-2 gap-x-1 flex pl-1'>
+              <div className='mb-2 gap-x-1 flex pl-0.5'>
                 {result.payload.substance.map((sub) => (
                   <Badge
                     className='text-[10px] px-2 py-0 text-primary/80 border-primary/30'

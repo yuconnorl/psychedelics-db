@@ -198,10 +198,10 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
                 <KeyIcon className='mr-2 inline' />
                 Key Findings
               </h3>
-              <ul className='flex flex-col gap-3 pl-2 ml-2 md:ml-3'>
+              <ul className='flex flex-col prose text-primary pl-2 ml-2 md:ml-3'>
                 {summary.map(({ id, summary }) => (
                   <li
-                    className='md:pl-1 relative before:contents-[""] before:absolute before:w-[0.3rem] before:h-[0.3rem] before:bg-primary/60 before:rounded-full before:-left-[0.8rem] before:top-[0.65rem]'
+                    className='md:pl-1 relative before:contents-[""] before:absolute before:w-[0.3rem] before:h-[0.3rem] before:bg-primary/60 before:rounded-full before:-left-[0.8rem] before:top-[0.75rem]'
                     key={id}
                   >
                     {summary}

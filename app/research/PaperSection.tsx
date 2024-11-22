@@ -8,9 +8,7 @@ const PaperSection = async (): Promise<JSX.Element> => {
   return (
     <section className='grid gap-3 md:px-6 md:grid-cols-[minmax(12rem,_0.3fr)_1fr] relative'>
       <SubstancesButtonGroup />
-      <div className='flex flex-col gap-5'>
-        <PapersTable papers={papers} />
-      </div>
+      <PapersTable papers={papers} />
     </section>
   )
 }

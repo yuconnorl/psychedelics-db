@@ -10,15 +10,14 @@ import {
   useQueryState,
 } from 'nuqs'
 
+import AuthorBadges from '@/components/AuthorBadges'
 import CustomPagination from '@/components/CustomPagination'
 import {
   BarArrowDownIcon,
   BarArrowUpIcon,
   BookOpenIcon,
   SlashIcon,
-  UserCircleIcon,
 } from '@/components/Icons'
-import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import {
   Select,
@@ -27,12 +26,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
 import { substanceOptions } from '@/config/options'
 import { PAPER_ITEM_PER_PAGE } from '@/constants/constants'
 import type { PaperData } from '@/types'
@@ -108,7 +101,7 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
   }, [sortedPapers])
 
   return (
-    <>
+    <div className='flex flex-col gap-5'>
       <div className='flex items-center justify-between mb-6'>
         <div className='flex items-center text-primary/70 pl-2'>
           <BookOpenIcon className='inline mr-1.5 h-[1.125rem] w-[1.125rem]' />
@@ -132,7 +125,7 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
           </SelectContent>
         </Select>
       </div>
-      <div className='flex flex-col gap-7 md:gap-10 px-1 md:pr-3'>
+      <div className='flex flex-col gap-3 md:gap-4 px-1 md:pr-3'>
         {pagedPapers.map(
           ({ id, title, authors, publishedAt, substance, slug }) => {
             const link = querySubstance?.length
@@ -140,43 +133,27 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
               : `/research/${slug}`
 
             return (
-              <article key={id}>
+              <Link
+                key={id}
+                href={link}
+                prefetch={false}
+                className='p-4 pb-5 rounded-sm transition-colors hover:bg-secondary/55 group'
+              >
                 <div className='flex flex-col gap-2'>
                   <time className='text-primary/70 text-sm'>
                     {dayjs(publishedAt).format('YYYY MMM')}
                   </time>
-                  <Link
-                    href={link}
-                    prefetch={false}
-                    className='text-2xl 2xl:text-3xl md:max-w-3xl 2xl:max-w-full font-medium font-garamond transition-opacity hover:opacity-50'
-                  >
+                  <h3 className='text-2xl 2xl:text-3xl md:max-w-3xl 2xl:max-w-full font-medium font-garamond transition-opacity group-hover:opacity-80'>
                     {title}
-                  </Link>
-                  <div className='flex gap-1.5 flex-wrap'>
-                    {authors.map((author) => (
-                      <TooltipProvider key={author}>
-                        <Tooltip>
-                          <TooltipTrigger>
-                            <Avatar className='h-7 w-7' key={author}>
-                              <AvatarFallback className='text-xs'>
-                                {author.slice(0, 2)}
-                              </AvatarFallback>
-                            </Avatar>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <div className='flex items-center'>
-                              <UserCircleIcon className='inline mr-1 size-4' />
-                              <span className='pr-0.5'>{author}</span>
-                            </div>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
-                    ))}
-                  </div>
+                  </h3>
+                  <AuthorBadges authors={authors} />
                   <div className='mt-2'>
                     {substance.map((sub) => (
                       <Badge
-                        onClick={(): void => onSubstanceBadgeClick(sub)}
+                        onClick={(e): void => {
+                          e.preventDefault()
+                          onSubstanceBadgeClick(sub)
+                        }}
                         key={sub}
                         className='mr-1 cursor-pointer'
                       >
@@ -185,7 +162,7 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
                     ))}
                   </div>
                 </div>
-              </article>
+              </Link>
             )
           },
         )}
@@ -197,7 +174,7 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
           onPageChange={setQueryPage}
         />
       )}
-    </>
+    </div>
   )
 }
 
