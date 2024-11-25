@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 'use client'
 
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import algoliasearch from 'algoliasearch'
 import clsx from 'clsx'
 import { v4 as uuidv4 } from 'uuid'
@@ -21,16 +21,26 @@ type TriggerResponse =
     }
   | undefined
 
-const status = {
-  idle: 'idle',
+const statusMap = {
+  ready: 'ready',
   pending: 'pending',
   success: 'success',
   failure: 'failure',
+  running: 'running',
 }
 
 const UpdateSection = (): JSX.Element => {
-  const [rebuild, setRebuild] = useState(status.idle)
-  const [updateIndices, setUpdateIndices] = useState(status.idle)
+  const [status, setStatus] = useState(statusMap.ready)
+  const [updateIndices, setUpdateIndices] = useState(statusMap.ready)
+  const [isUpdating, setIsUpdating] = useState(false)
+
+  const statusStyle = {
+    success: 'bg-green-400',
+    failure: 'bg-red-400',
+    pending: 'bg-blue-400',
+    ready: 'bg-blue-400',
+    running: 'bg-orange-400',
+  }
 
   const client = useMemo(
     () =>
@@ -48,11 +58,11 @@ const UpdateSection = (): JSX.Element => {
 
       if (jobResponse?.job.state === 'PENDING') {
         console.log('trigger rebuild success')
-        setRebuild(status.success)
+        setStatus(statusMap.success)
       }
     } catch (error: unknown) {
       console.error(`trigger rebuild failed: ${error}`)
-      setRebuild(status.failure)
+      setStatus(statusMap.failure)
     }
   }
 
@@ -61,14 +71,17 @@ const UpdateSection = (): JSX.Element => {
       const index = client.initIndex('psychedelics_db')
       const algoliaResponse = await index.saveObjects(newData)
       console.log('update algolia index success', algoliaResponse)
-      setUpdateIndices(status.success)
+      setUpdateIndices(statusMap.success)
     } catch (error: unknown) {
       console.error(`update algolia index failed: ${error}`)
-      setUpdateIndices(status.failure)
+      setUpdateIndices(statusMap.failure)
     }
   }
 
   const onUpdateIndicesBtnClick = async (): Promise<void> => {
+    setIsUpdating(true)
+    setStatus(statusMap.running)
+
     const transformedRecords = await getAllRecords().then((records) => {
       return records.map(({ id: objectID, ...record }) => ({
         ...record,
@@ -89,28 +102,43 @@ const UpdateSection = (): JSX.Element => {
       console.log('no data')
       return
     } else {
-      setUpdateIndices(status.pending)
+      setUpdateIndices(statusMap.pending)
       setTimeout(() => {
         updateAlgoliaIndex(wholeData)
       }, 3000)
+
+      setStatus(statusMap.success)
     }
+
+    setIsUpdating(false)
   }
 
   const onButtonClick = async (): Promise<void> => {
-    await getAllRecords().then((records) => {
-      const transformedRecords = records.map(({ id: objectID, ...record }) => ({
-        ...record,
-        objectID,
-      }))
+    setIsUpdating(true)
 
-      setRebuild(status.pending)
-      setUpdateIndices(status.pending)
+    try {
+      await getAllRecords().then((records) => {
+        const transformedRecords = records.map(
+          ({ id: objectID, ...record }) => ({
+            ...record,
+            objectID,
+          }),
+        )
 
-      setTimeout(() => {
-        updateAlgoliaIndex(transformedRecords)
-        triggerRebuild()
-      }, 3000)
-    })
+        setStatus(statusMap.pending)
+        setUpdateIndices(statusMap.pending)
+
+        setTimeout(() => {
+          updateAlgoliaIndex(transformedRecords)
+          triggerRebuild()
+        }, 3000)
+      })
+    } catch (error: unknown) {
+      console.error(`rebuild failed: ${error}`)
+      setStatus(statusMap.failure)
+    } finally {
+      setIsUpdating(false)
+    }
   }
 
   const flattenData = (data) => {
@@ -132,7 +160,11 @@ const UpdateSection = (): JSX.Element => {
     return flattenData
   }
 
+  // TODO: only perform flatten operation on entry with no vector (isVector: false)
   const generateFlattenPaperData = async () => {
+    setIsUpdating(true)
+    setStatus(statusMap.running)
+
     const transformedPapers = await getPapers().then((papers) => {
       return papers.map(({ id: objectID, ...paper }) => ({
         payload: {
@@ -172,70 +204,124 @@ const UpdateSection = (): JSX.Element => {
       // Update the vector database with the successful results
       const vectorRes = await updateVector(successfulPapers)
       console.log(vectorRes)
+      setStatus(statusMap.success)
     } catch (error: unknown) {
       console.error(`update vector failed: ${error}`)
+      setStatus(statusMap.failure)
+    } finally {
+      setIsUpdating(false)
     }
   }
 
+  useEffect(() => {
+    if (status === statusMap.success) {
+      setTimeout(() => {
+        setStatus(statusMap.ready)
+      }, 10000)
+    }
+  }, [status])
+
   return (
-    <section>
-      <div>
-        The button below will trigger a rebuild of the site, and update search
-        indices on Algolia.
-      </div>
-      <div className='button-wrapper'>
-        <button
-          className='btn btn--style-primary btn--icon-style-without-border btn--size-small'
-          type='button'
-          onClick={onButtonClick}
-        >
-          Rebuild and Update
-        </button>
-        <button
-          className='btn btn--style-primary btn--icon-style-without-border btn--size-small'
-          type='button'
-          onClick={onUpdateIndicesBtnClick}
-        >
-          Update indices
-        </button>
-        <button
-          className='btn btn--style-primary btn--icon-style-without-border btn--size-small'
-          type='button'
-          onClick={generateFlattenPaperData}
-        >
-          Flatten
-        </button>
-      </div>
-      <div>
-        <div className='status-wrapper'>
-          <span>Rebuild status: {rebuild}</span>
-          <div className={clsx('status-light', rebuild)} />
-        </div>
-        <div className='status-wrapper'>
-          <span>Update indices status: {updateIndices}</span>
-          <div className={clsx('status-light', updateIndices)} />
-        </div>
-        <div className='result'>
-          <span>Result</span>
-          <div>
-            {rebuild === status.pending && <div>Rebuild in progress...</div>}
-            {rebuild === status.success && <div>Rebuild starting 🎉</div>}
-            {rebuild === status.failure && <div>Rebuild failed 🫠</div>}
+    <div className='mt-4'>
+      <h2 className='mb-10'>
+        Utilities for rebuild, Algolia and vector indices update
+      </h2>
+      <section className='grid md:grid-cols-2 gap-4'>
+        <div className='flex flex-col gap-y-2 mb-4 border-gray-400 border-0 md:border-r border-l-0 border-t-0 border-b-0 border-solid'>
+          <div className='flex gap-2'>
+            <button
+              className='btn btn--style-primary my-0 px-4 py-3 font-semibold whitespace-nowrap transition-opacity disabled:opacity-50 disabled:cursor-not-allowed'
+              type='button'
+              onClick={onButtonClick}
+              disabled={isUpdating}
+            >
+              Rebuild and Update
+            </button>
+            <div className='max-w-xs'>
+              Rebuild site and update Algolia indices
+            </div>
           </div>
-          <div>
-            {updateIndices === status.pending && (
-              <div>Updating Algolia index in progress...</div>
-            )}
-            {updateIndices === status.success && (
-              <div>Updating Algolia index success 🎉</div>
-            )}
-            {updateIndices === status.failure && (
-              <div>Updating Algolia index failed 🫠</div>
-            )}
+          <div className='flex gap-2'>
+            <button
+              className='btn btn--style-primary my-0 px-4 py-3 font-semibold whitespace-nowrap transition-opacity disabled:opacity-50 disabled:cursor-not-allowed'
+              type='button'
+              onClick={onUpdateIndicesBtnClick}
+              disabled={isUpdating}
+            >
+              Update indices
+            </button>
+            <div className='max-w-xs'>
+              Update the search indices on Algolia with both the records and
+              papers
+            </div>
+          </div>
+          <div className='flex gap-2'>
+            <button
+              className='btn btn--style-primary my-0 px-4 py-3 font-semibold whitespace-nowrap transition-opacity disabled:opacity-50 disabled:cursor-not-allowed'
+              type='button'
+              onClick={generateFlattenPaperData}
+              disabled={isUpdating}
+            >
+              Update Vector
+            </button>
+            <div className=''>
+              Flatten & Vector Update: This will generate the flatten string of
+              the paper data and update the vector database
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+        <div className='pl-2'>
+          <div className='mb-4 font-semibold text-xl flex items-center'>
+            <span className='mr-2'>Status</span>
+            {isUpdating && (
+              <svg
+                aria-hidden='true'
+                className='w-6 h-6 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600'
+                viewBox='0 0 100 101'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  d='M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z'
+                  fill='currentColor'
+                />
+                <path
+                  d='M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z'
+                  fill='currentFill'
+                />
+              </svg>
+            )}
+          </div>
+          <div className='flex items-center'>
+            <span className='mr-3'>Current Status</span>
+            <span className='relative flex h-5 w-5'>
+              <span
+                className={clsx(
+                  'animate-ping absolute inline-flex h-full w-full rounded-full opacity-75',
+                  statusStyle[status],
+                )}
+              />
+              <span
+                className={clsx(
+                  'relative inline-flex rounded-full h-5 w-5',
+                  statusStyle[status],
+                )}
+              />
+            </span>
+          </div>
+          <div className=''>
+            <span>Result:</span>
+            <div>
+              {status === statusMap.pending && <div>In progress...</div>}
+              {status === statusMap.success && <div>Success!</div>}
+              {status === statusMap.failure && (
+                <div>Failed 🫠, plz check log</div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }
 

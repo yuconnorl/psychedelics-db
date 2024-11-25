@@ -1,39 +1,5 @@
-.status-wrapper {
-  display: flex;
-  gap: 3px;
-  align-items: center;
-}
-
-.button-wrapper {
-  display: flex;
-  gap: 5px;
-}
-
-.result {
-  margin-top: 20px;
-}
-
-.status-light {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-
-.idle {
-  background-color: #fff;
-}
-
-.success {
-  background-color: green;
-}
-
-.pending {
-  background-color: orange;
-}
-
-.failure {
-  background-color: red;
-}
+@tailwind components;
+@tailwind utilities;
 
 .btn-wrapper {
   display: flex;
