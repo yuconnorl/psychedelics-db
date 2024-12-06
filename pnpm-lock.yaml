@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@ai-sdk/openai':
+        specifier: ^1.0.7
+        version: 1.0.7(zod@3.23.8)
       '@payloadcms/bundler-webpack':
         specifier: latest
         version: 1.0.5(@swc/core@1.3.76(@swc/helpers@0.5.5))(payload@2.0.15(@swc/helpers@0.5.5)(@types/react@18.2.36)(typescript@5.3.2)(webpack@5.89.0))(sass@1.69.4)
@@ -74,6 +77,9 @@ importers:
       '@tailwindcss/line-clamp':
         specifier: ^0.4.4
         version: 0.4.4(tailwindcss@3.4.0(ts-node@10.9.1(@swc/core@1.3.76(@swc/helpers@0.5.5))(@types/node@18.11.3)(typescript@5.3.2)))
+      ai:
+        specifier: ^4.0.12
+        version: 4.0.12(react@18.2.0)(zod@3.23.8)
       algoliasearch:
         specifier: ^4.20.0
         version: 4.20.0
@@ -112,16 +118,16 @@ importers:
         version: 0.292.0(react@18.2.0)
       next:
         specifier: ^14.0.2-canary.25
-        version: 14.0.2-canary.25(@babel/core@7.25.9)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4)
+        version: 14.0.2-canary.25(@babel/core@7.25.9)(@opentelemetry/api@1.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4)
       next-themes:
         specifier: ^0.2.1
-        version: 0.2.1(next@14.0.2-canary.25(@babel/core@7.25.9)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 0.2.1(next@14.0.2-canary.25(@babel/core@7.25.9)(@opentelemetry/api@1.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       node-html-parser:
         specifier: ^6.1.11
         version: 6.1.11
       nuqs:
         specifier: ^2.0.4
-        version: 2.0.4(next@14.0.2-canary.25(@babel/core@7.25.9)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
+        version: 2.0.4(next@14.0.2-canary.25(@babel/core@7.25.9)(@opentelemetry/api@1.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
       openai:
         specifier: ^4.68.0
         version: 4.68.0(zod@3.23.8)
@@ -142,7 +148,7 @@ importers:
         version: 7.3.0(algoliasearch@4.20.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-instantsearch-nextjs:
         specifier: ^0.1.4
-        version: 0.1.4(next@14.0.2-canary.25(@babel/core@7.25.9)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4))(react-instantsearch@7.3.0(algoliasearch@4.20.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
+        version: 0.1.4(next@14.0.2-canary.25(@babel/core@7.25.9)(@opentelemetry/api@1.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4))(react-instantsearch@7.3.0(algoliasearch@4.20.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
       slate:
         specifier: ^0.101.4
         version: 0.101.4
@@ -276,6 +282,46 @@ packages:
   '@aashutoshrathi/word-wrap@1.2.6':
     resolution: {integrity: sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==}
     engines: {node: '>=0.10.0'}
+
+  '@ai-sdk/openai@1.0.7':
+    resolution: {integrity: sha512-eXWERuUrMyH3k1GpmYHzTj7Xzxx5/0dENAkbxnj7t2Sn2Mgfb5Td/8QYfGSxuuPd8BrfGTyknArff6yqPkuvPA==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      zod: ^3.0.0
+
+  '@ai-sdk/provider-utils@2.0.3':
+    resolution: {integrity: sha512-Cyk7GlFEse2jQ4I3FWYuZ1Zhr5w1mD9SHMJTYm/in1rd7r89nmEoQiOy3h8YV2ZvTa2/6aR10xZ4M0k4B3BluA==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      zod: ^3.0.0
+    peerDependenciesMeta:
+      zod:
+        optional: true
+
+  '@ai-sdk/provider@1.0.1':
+    resolution: {integrity: sha512-mV+3iNDkzUsZ0pR2jG0sVzU6xtQY5DtSCBy3JFycLp6PwjyLw/iodfL3MwdmMCRJWgs3dadcHejRnMvF9nGTBg==}
+    engines: {node: '>=18'}
+
+  '@ai-sdk/react@1.0.5':
+    resolution: {integrity: sha512-OPqYhltJE9dceWxw5pTXdYtAhs1Ca6Ly8xR7z/T+JZ0lrcgembFIMvnJ0dMBkba07P4GQBmuvd5DVTeAqPM9SQ==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      react: ^18 || ^19 || ^19.0.0-rc
+      zod: ^3.0.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      zod:
+        optional: true
+
+  '@ai-sdk/ui-utils@1.0.4':
+    resolution: {integrity: sha512-P2vDvASaGsD+lmbsQ5WYjELxJBQgse3CpxyLSA+usZiZxspwYbLFsSWiYz3zhIemcnS0T6/OwQdU6UlMB4N5BQ==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      zod: ^3.0.0
+    peerDependenciesMeta:
+      zod:
+        optional: true
 
   '@algolia/cache-browser-local-storage@4.20.0':
     resolution: {integrity: sha512-uujahcBt4DxduBTvYdwO3sBfHuJvJokiC3BP1+O70fglmE1ShkH8lpXqZBac1rrU3FnNYSUs4pL9lBdTKeRPOQ==}
@@ -1485,6 +1531,10 @@ packages:
   '@nodelib/fs.walk@1.2.8':
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
+
+  '@opentelemetry/api@1.9.0':
+    resolution: {integrity: sha512-3giAOQvZiH5F9bMlMiv8+GSPMeqg0dbaeo58/0SlA9sxSqZhnUtxzX9/2FzyhS9sWQf5S0GJE0AKBrFqjpeYcg==}
+    engines: {node: '>=8.0.0'}
 
   '@payloadcms/bundler-webpack@1.0.5':
     resolution: {integrity: sha512-TjzRTGRDQPrxGoMZ+fV76Pzx3nXC37oSZe/+dA/5HM18fRA9vlu/z54r8HHvThZc7ywx0iRiSwgPZYzQu5xUVQ==}
@@ -2717,6 +2767,9 @@ packages:
   '@types/connect@3.4.38':
     resolution: {integrity: sha512-K6uROf1LD88uDQqJCktA4yzL1YYAK6NgfsI0v/mTgyPKWsX1CnJ0XPSDhViejru1GcRkLWb8RlzFYJRqGUbaug==}
 
+  '@types/diff-match-patch@1.0.36':
+    resolution: {integrity: sha512-xFdR6tkm0MWvBfO8xXCSsinYxHcqkQUlcHeSpMC2ukzOb6lwQAfDmW+Qt0AvlGd8HpsS28qKsB+oPeJn9I39jg==}
+
   '@types/dom-speech-recognition@0.0.1':
     resolution: {integrity: sha512-udCxb8DvjcDKfk1WTBzDsxFbLgYxmQGKrE/ricoMqHRNjSlSUCcamVTA5lIQqzY10mY5qCY0QDwBfFEwhfoDPw==}
 
@@ -3019,6 +3072,18 @@ packages:
     resolution: {integrity: sha512-5GG/5IbQQpC9FpkRGsSvZI5QYeSCzlJHdpBQntCsuTOxhKD8lqKhrleg2Yi7yvMIf82Ycmmqln9U8V9qwEiJew==}
     engines: {node: '>= 8.0.0'}
 
+  ai@4.0.12:
+    resolution: {integrity: sha512-3Qu9IfNDNmq6u2pvBSqLl5bKsrJ/xQM3LuudnlotfM6ytfjD4WbhlzGqNRdT//oaC9GcborHu3O+666kAO+Iog==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      react: ^18 || ^19 || ^19.0.0-rc
+      zod: ^3.0.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      zod:
+        optional: true
+
   ajv-formats@2.1.1:
     resolution: {integrity: sha512-Wx0Kx52hxE7C18hkMEggYlEifqWZtYaRgouJor+WMdPnQyEK13vgEWyVNup7SoeeoLMsr4kf5h6dOW11I15MUA==}
     peerDependencies:
@@ -3296,6 +3361,10 @@ packages:
   chalk@4.1.2:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
     engines: {node: '>=10'}
+
+  chalk@5.3.0:
+    resolution: {integrity: sha512-dLitG79d+GV1Nb/VYcCDFivJeK1hiukt9QjRNVOsUtTy1rR1YJsmpGGTZ3qJos+uw7WmWF4wUwBd9jxjocFC2w==}
+    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
 
   charenc@0.0.2:
     resolution: {integrity: sha512-yrLQ/yVUFXkzg7EDQsPieE/53+0RlaWTs+wBrvW36cyilJ2SaDWfl4Yj7MtLTXleV9uEKefbAGUPv2/iWSooRA==}
@@ -3826,6 +3895,9 @@ packages:
   didyoumean@1.2.2:
     resolution: {integrity: sha512-gxtyfqMg7GKyhQmb056K7M3xszy/myH8w+B4RT+QXBQsvAOdc3XymqDDPHx1BgPgsdAA5SIifona89YtRATDzw==}
 
+  diff-match-patch@1.0.5:
+    resolution: {integrity: sha512-IayShXAgj/QMXgB0IWmKx+rOPuGMhqm5w6jvFxmVenXKIzRqTAAsbBPT3kWQeGANj3jGgvcvv4yK6SxqYmikgw==}
+
   diff@4.0.2:
     resolution: {integrity: sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A==}
     engines: {node: '>=0.3.1'}
@@ -4148,6 +4220,10 @@ packages:
   events@3.3.0:
     resolution: {integrity: sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==}
     engines: {node: '>=0.8.x'}
+
+  eventsource-parser@3.0.0:
+    resolution: {integrity: sha512-T1C0XCUimhxVQzW4zFipdx0SficT651NnkR0ZSH3yQwh+mFMdLfgjABVi4YtMTtaL4s168593DaoaRLMqryavA==}
+    engines: {node: '>=18.0.0'}
 
   expand-template@2.0.3:
     resolution: {integrity: sha512-XYfuKMvj4O35f/pOXLObndIRvyQ+/+6AhODh+OKWj9S9498pHHn/IMszH+gt0fBCRWMNfk1ZSp5x3AifmnI2vg==}
@@ -4922,6 +4998,9 @@ packages:
   json-schema-typed@7.0.3:
     resolution: {integrity: sha512-7DE8mpG+/fVw+dTpjbxnx47TaMnDfOI1jwft9g1VybltZCduyRQPJPvc+zzKY9WPHxhPWczyFuYa6I8Mw4iU5A==}
 
+  json-schema@0.4.0:
+    resolution: {integrity: sha512-es94M3nTIfsEPisRafak+HDLfHXnKBhV3vU5eqPcS3flIWqcxJWgXHXiey3YrpaNsanY5ei1VoYEbOzijuq9BA==}
+
   json-stable-stringify-without-jsonify@1.0.1:
     resolution: {integrity: sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==}
 
@@ -4935,6 +5014,11 @@ packages:
   json5@2.2.3:
     resolution: {integrity: sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==}
     engines: {node: '>=6'}
+    hasBin: true
+
+  jsondiffpatch@0.6.0:
+    resolution: {integrity: sha512-3QItJOXp2AP1uv7waBkao5nCvhEv+QmJAd38Ybq7wNI74Q+BBmnLn4EDKz6yI9xGAIQoUF87qHt+kc1IVxB4zQ==}
+    engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
 
   jsonfile@6.1.0:
@@ -7038,6 +7122,10 @@ packages:
   thread-stream@2.4.1:
     resolution: {integrity: sha512-d/Ex2iWd1whipbT681JmTINKw0ZwOUBZm7+Gjs64DHuX34mmw8vJL2bFAaNacaW72zYiTJxSHi5abUuOi5nsfg==}
 
+  throttleit@2.1.0:
+    resolution: {integrity: sha512-nt6AMGKW1p/70DF/hGBdJB57B8Tspmbp5gfJ8ilhLnt7kkr2ye7hzD6NVG8GGErk2HWF34igrL2CXmNIkzKqKw==}
+    engines: {node: '>=18'}
+
   through2@2.0.5:
     resolution: {integrity: sha512-/mrRod8xqpA+IHSLyGCQ2s8SPHiCDEeQJSep1jqLYeEUClOFG2Qsh+4FU6G9VeqpZnGW/Su8LQGc4YKni5rYSQ==}
 
@@ -7556,12 +7644,54 @@ packages:
     resolution: {integrity: sha512-b4JR1PFR10y1mKjhHY9LaGo6tmrgjit7hxVIeAmyMw3jegXR4dhYqLaQF5zMXZxY7tLpMyJeLjr1C4rLmkVe8g==}
     engines: {node: '>=12.20'}
 
+  zod-to-json-schema@3.23.5:
+    resolution: {integrity: sha512-5wlSS0bXfF/BrL4jPAbz9da5hDlDptdEppYfe+x4eIJ7jioqKG9uUxOwPzqof09u/XeVdrgFu29lZi+8XNDJtA==}
+    peerDependencies:
+      zod: ^3.23.3
+
   zod@3.23.8:
     resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
 
 snapshots:
 
   '@aashutoshrathi/word-wrap@1.2.6': {}
+
+  '@ai-sdk/openai@1.0.7(zod@3.23.8)':
+    dependencies:
+      '@ai-sdk/provider': 1.0.1
+      '@ai-sdk/provider-utils': 2.0.3(zod@3.23.8)
+      zod: 3.23.8
+
+  '@ai-sdk/provider-utils@2.0.3(zod@3.23.8)':
+    dependencies:
+      '@ai-sdk/provider': 1.0.1
+      eventsource-parser: 3.0.0
+      nanoid: 3.3.7
+      secure-json-parse: 2.7.0
+    optionalDependencies:
+      zod: 3.23.8
+
+  '@ai-sdk/provider@1.0.1':
+    dependencies:
+      json-schema: 0.4.0
+
+  '@ai-sdk/react@1.0.5(react@18.2.0)(zod@3.23.8)':
+    dependencies:
+      '@ai-sdk/provider-utils': 2.0.3(zod@3.23.8)
+      '@ai-sdk/ui-utils': 1.0.4(zod@3.23.8)
+      swr: 2.2.5(react@18.2.0)
+      throttleit: 2.1.0
+    optionalDependencies:
+      react: 18.2.0
+      zod: 3.23.8
+
+  '@ai-sdk/ui-utils@1.0.4(zod@3.23.8)':
+    dependencies:
+      '@ai-sdk/provider': 1.0.1
+      '@ai-sdk/provider-utils': 2.0.3(zod@3.23.8)
+      zod-to-json-schema: 3.23.5(zod@3.23.8)
+    optionalDependencies:
+      zod: 3.23.8
 
   '@algolia/cache-browser-local-storage@4.20.0':
     dependencies:
@@ -9274,6 +9404,8 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
 
+  '@opentelemetry/api@1.9.0': {}
+
   '@payloadcms/bundler-webpack@1.0.5(@swc/core@1.3.76(@swc/helpers@0.5.5))(payload@2.0.15(@swc/helpers@0.5.5)(@types/react@18.2.36)(typescript@5.3.2)(webpack@5.89.0))(sass@1.69.4)':
     dependencies:
       compression: 1.7.4
@@ -10714,6 +10846,8 @@ snapshots:
     dependencies:
       '@types/node': 18.11.3
 
+  '@types/diff-match-patch@1.0.36': {}
+
   '@types/dom-speech-recognition@0.0.1': {}
 
   '@types/escape-html@1.0.4': {}
@@ -11062,6 +11196,19 @@ snapshots:
     dependencies:
       humanize-ms: 1.2.1
 
+  ai@4.0.12(react@18.2.0)(zod@3.23.8):
+    dependencies:
+      '@ai-sdk/provider': 1.0.1
+      '@ai-sdk/provider-utils': 2.0.3(zod@3.23.8)
+      '@ai-sdk/react': 1.0.5(react@18.2.0)(zod@3.23.8)
+      '@ai-sdk/ui-utils': 1.0.4(zod@3.23.8)
+      '@opentelemetry/api': 1.9.0
+      jsondiffpatch: 0.6.0
+      zod-to-json-schema: 3.23.5(zod@3.23.8)
+    optionalDependencies:
+      react: 18.2.0
+      zod: 3.23.8
+
   ajv-formats@2.1.1(ajv@8.12.0):
     optionalDependencies:
       ajv: 8.12.0
@@ -11393,6 +11540,8 @@ snapshots:
     dependencies:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
+
+  chalk@5.3.0: {}
 
   charenc@0.0.2: {}
 
@@ -12014,6 +12163,8 @@ snapshots:
 
   didyoumean@1.2.2: {}
 
+  diff-match-patch@1.0.5: {}
+
   diff@4.0.2: {}
 
   diff@5.1.0: {}
@@ -12414,6 +12565,8 @@ snapshots:
   event-target-shim@5.0.1: {}
 
   events@3.3.0: {}
+
+  eventsource-parser@3.0.0: {}
 
   expand-template@2.0.3: {}
 
@@ -13267,6 +13420,8 @@ snapshots:
 
   json-schema-typed@7.0.3: {}
 
+  json-schema@0.4.0: {}
+
   json-stable-stringify-without-jsonify@1.0.1: {}
 
   json-stringify-safe@5.0.1: {}
@@ -13276,6 +13431,12 @@ snapshots:
       minimist: 1.2.8
 
   json5@2.2.3: {}
+
+  jsondiffpatch@0.6.0:
+    dependencies:
+      '@types/diff-match-patch': 1.0.36
+      chalk: 5.3.0
+      diff-match-patch: 1.0.5
 
   jsonfile@6.1.0:
     dependencies:
@@ -13629,15 +13790,15 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next-themes@0.2.1(next@14.0.2-canary.25(@babel/core@7.25.9)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  next-themes@0.2.1(next@14.0.2-canary.25(@babel/core@7.25.9)(@opentelemetry/api@1.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
-      next: 14.0.2-canary.25(@babel/core@7.25.9)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4)
+      next: 14.0.2-canary.25(@babel/core@7.25.9)(@opentelemetry/api@1.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
   next-tick@1.1.0: {}
 
-  next@14.0.2-canary.25(@babel/core@7.25.9)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4):
+  next@14.0.2-canary.25(@babel/core@7.25.9)(@opentelemetry/api@1.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4):
     dependencies:
       '@next/env': 14.0.2-canary.25
       '@swc/helpers': 0.5.2
@@ -13658,6 +13819,7 @@ snapshots:
       '@next/swc-win32-arm64-msvc': 14.0.2-canary.25
       '@next/swc-win32-ia32-msvc': 14.0.2-canary.25
       '@next/swc-win32-x64-msvc': 14.0.2-canary.25
+      '@opentelemetry/api': 1.9.0
       sass: 1.69.4
     transitivePeerDependencies:
       - '@babel/core'
@@ -13735,12 +13897,12 @@ snapshots:
     dependencies:
       boolbase: 1.0.0
 
-  nuqs@2.0.4(next@14.0.2-canary.25(@babel/core@7.25.9)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0):
+  nuqs@2.0.4(next@14.0.2-canary.25(@babel/core@7.25.9)(@opentelemetry/api@1.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0):
     dependencies:
       mitt: 3.0.1
       react: 18.2.0
     optionalDependencies:
-      next: 14.0.2-canary.25(@babel/core@7.25.9)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4)
+      next: 14.0.2-canary.25(@babel/core@7.25.9)(@opentelemetry/api@1.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4)
       react-router-dom: 5.3.4(react@18.2.0)
 
   object-assign@4.1.1: {}
@@ -14734,9 +14896,9 @@ snapshots:
       react: 18.2.0
       use-sync-external-store: 1.2.0(react@18.2.0)
 
-  react-instantsearch-nextjs@0.1.4(next@14.0.2-canary.25(@babel/core@7.25.9)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4))(react-instantsearch@7.3.0(algoliasearch@4.20.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)):
+  react-instantsearch-nextjs@0.1.4(next@14.0.2-canary.25(@babel/core@7.25.9)(@opentelemetry/api@1.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4))(react-instantsearch@7.3.0(algoliasearch@4.20.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)):
     dependencies:
-      next: 14.0.2-canary.25(@babel/core@7.25.9)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4)
+      next: 14.0.2-canary.25(@babel/core@7.25.9)(@opentelemetry/api@1.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4)
       react-instantsearch: 7.3.0(algoliasearch@4.20.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 
   react-instantsearch@7.3.0(algoliasearch@4.20.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
@@ -15579,6 +15741,8 @@ snapshots:
     dependencies:
       real-require: 0.2.0
 
+  throttleit@2.1.0: {}
+
   through2@2.0.5:
     dependencies:
       readable-stream: 2.3.8
@@ -16085,5 +16249,9 @@ snapshots:
   yocto-queue@0.1.0: {}
 
   yocto-queue@1.1.1: {}
+
+  zod-to-json-schema@3.23.5(zod@3.23.8):
+    dependencies:
+      zod: 3.23.8
 
   zod@3.23.8: {}

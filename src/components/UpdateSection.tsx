@@ -1,12 +1,15 @@
-/* eslint-disable no-console */
 'use client'
 
 import React, { useEffect, useMemo, useState } from 'react'
 import algoliasearch from 'algoliasearch'
 import clsx from 'clsx'
-import { v4 as uuidv4 } from 'uuid'
+import { v5 as uuidv5 } from 'uuid'
 
-import { getAllRecords, getPapers } from '../api/general'
+import {
+  getAllRecords,
+  getPapers,
+  updatePaperVectorizeState,
+} from '../api/general'
 import { getEmbedding, updateVector } from '../utilities/paperDetail'
 
 import type { PaperData } from '@/types'
@@ -29,9 +32,19 @@ const statusMap = {
   running: 'running',
 }
 
+const resultMessageMap = {
+  triggerRebuildSuccess: 'Trigger rebuild successful 🎯',
+  triggerRebuildFailure: 'Trigger rebuild failed 😢',
+  updateAlgoliaSuccess: 'Update Algolia index successful 🌀',
+  updateAlgoliaFailure: 'Update Algolia index failed 😢',
+  vectorUpdateSuccess: 'Vector update successful 🧠',
+  vectorUpdateFailure: 'Vector update failed 😢',
+  allPapersVectorized: 'All papers are vectorized 🎉, update skipped',
+}
+
 const UpdateSection = (): JSX.Element => {
   const [status, setStatus] = useState(statusMap.ready)
-  const [updateIndices, setUpdateIndices] = useState(statusMap.ready)
+  const [resultMessage, setResultMessage] = useState('')
   const [isUpdating, setIsUpdating] = useState(false)
 
   const statusStyle = {
@@ -57,11 +70,11 @@ const UpdateSection = (): JSX.Element => {
       const jobResponse: TriggerResponse = await rebuildRes.json()
 
       if (jobResponse?.job.state === 'PENDING') {
-        console.log('trigger rebuild success')
         setStatus(statusMap.success)
+        setResultMessage(resultMessageMap.triggerRebuildSuccess)
       }
     } catch (error: unknown) {
-      console.error(`trigger rebuild failed: ${error}`)
+      setResultMessage(`${resultMessageMap.triggerRebuildFailure}: ${error}`)
       setStatus(statusMap.failure)
     }
   }
@@ -69,12 +82,17 @@ const UpdateSection = (): JSX.Element => {
   const updateAlgoliaIndex = async (newData): Promise<void> => {
     try {
       const index = client.initIndex('psychedelics_db')
-      const algoliaResponse = await index.saveObjects(newData)
-      console.log('update algolia index success', algoliaResponse)
-      setUpdateIndices(statusMap.success)
+      const response = await index.saveObjects(newData)
+
+      if (response?.taskIDs) {
+        setResultMessage(
+          `${resultMessageMap.updateAlgoliaSuccess}: taskID - ${response?.taskIDs}`,
+        )
+      } else {
+        setResultMessage(`${resultMessageMap.updateAlgoliaFailure}`)
+      }
     } catch (error: unknown) {
-      console.error(`update algolia index failed: ${error}`)
-      setUpdateIndices(statusMap.failure)
+      setResultMessage(`${resultMessageMap.updateAlgoliaFailure}: ${error}`)
     }
   }
 
@@ -102,7 +120,6 @@ const UpdateSection = (): JSX.Element => {
       console.log('no data')
       return
     } else {
-      setUpdateIndices(statusMap.pending)
       setTimeout(() => {
         updateAlgoliaIndex(wholeData)
       }, 3000)
@@ -126,7 +143,6 @@ const UpdateSection = (): JSX.Element => {
         )
 
         setStatus(statusMap.pending)
-        setUpdateIndices(statusMap.pending)
 
         setTimeout(() => {
           updateAlgoliaIndex(transformedRecords)
@@ -160,13 +176,20 @@ const UpdateSection = (): JSX.Element => {
     return flattenData
   }
 
-  // TODO: only perform flatten operation on entry with no vector (isVector: false)
+  const MY_NAMESPACE = process.env.PAYLOAD_PUBLIC_NAME_SPACE
+
+  const generateDeterministicUUID = (id: String) => {
+    return uuidv5(String(id), MY_NAMESPACE)
+  }
+
   const generateFlattenPaperData = async () => {
     setIsUpdating(true)
     setStatus(statusMap.running)
 
     const transformedPapers = await getPapers().then((papers) => {
-      return papers.map(({ id: objectID, ...paper }) => ({
+      const unVectorizedPapers = papers.filter((paper) => !paper.isVectorized)
+
+      return unVectorizedPapers.map(({ id: objectID, ...paper }) => ({
         payload: {
           ...paper,
           objectID,
@@ -175,12 +198,19 @@ const UpdateSection = (): JSX.Element => {
       }))
     })
 
+    if (transformedPapers.length === 0) {
+      setStatus(statusMap.success)
+      setResultMessage(resultMessageMap.allPapersVectorized)
+      setIsUpdating(false)
+      return
+    }
+
     const operationInfo = (await Promise.allSettled(
       transformedPapers.map(async (paper) => {
         const { embedding } = await getEmbedding(paper.flattenString)
 
         return {
-          id: uuidv4(),
+          id: generateDeterministicUUID(paper.payload.objectID),
           vector: embedding,
           payload: paper.payload,
         }
@@ -199,18 +229,41 @@ const UpdateSection = (): JSX.Element => {
     )
 
     const successfulPapers = successfulResults.map((result) => result?.value)
+    const newlyAddedPapersCount = successfulPapers?.length || 0
+    const vectorRes = await updateVector(successfulPapers)
 
-    try {
-      // Update the vector database with the successful results
-      const vectorRes = await updateVector(successfulPapers)
-      console.log(vectorRes)
-      setStatus(statusMap.success)
-    } catch (error: unknown) {
-      console.error(`update vector failed: ${error}`)
+    // perform updatePaperVectorizeState for each successful paper
+    const updateVectorRes = await Promise.allSettled(
+      successfulPapers.map(async (paper) => {
+        const { payload } = paper
+        const { objectID } = payload
+        return updatePaperVectorizeState(objectID, true)
+      }),
+    )
+
+    if (updateVectorRes.some((res) => res.status === 'rejected')) {
+      const failedPapers = updateVectorRes.filter(
+        (res) => res.status === 'rejected',
+      )
+      const failedPaperIds = failedPapers.join(', ')
       setStatus(statusMap.failure)
-    } finally {
-      setIsUpdating(false)
+      setResultMessage(
+        `${resultMessageMap.vectorUpdateFailure}: ${failedPaperIds}`,
+      )
+    } else {
+      if (vectorRes.success) {
+        setStatus(statusMap.success)
+        setResultMessage(
+          `${resultMessageMap.vectorUpdateSuccess}, ${newlyAddedPapersCount} papers added to vector database`,
+        )
+      } else {
+        setStatus(statusMap.failure)
+        const message = `${resultMessageMap.vectorUpdateFailure} ${vectorRes?.message}`
+        setResultMessage(message)
+      }
     }
+
+    setIsUpdating(false)
   }
 
   useEffect(() => {
@@ -310,14 +363,8 @@ const UpdateSection = (): JSX.Element => {
             </span>
           </div>
           <div className=''>
-            <span>Result:</span>
-            <div>
-              {status === statusMap.pending && <div>In progress...</div>}
-              {status === statusMap.success && <div>Success!</div>}
-              {status === statusMap.failure && (
-                <div>Failed 🫠, plz check log</div>
-              )}
-            </div>
+            <span>Result: </span>
+            <span className='font-semibold'>{resultMessage}</span>
           </div>
         </div>
       </section>

@@ -78,3 +78,93 @@
     @apply after:transition-all after:duration-500 after:content-[''] after:absolute after:block after:w-[32px] after:h-5 after:rounded-l-[24px] after:rounded-r-[24px] after:bg-foreground after:data-[state=checked]:bg-input after:right-0 after:data-[state=checked]:w-[1.5px] after:data-[state=checked]:h-[1.5px]; 
   }
 }
+
+.particle-bg {
+  position: absolute;
+  left: -50%;
+  top: -50%;
+  width: 300%;
+  height: 300%;
+  background: transparent url('../src/assets/noise-transparent.png') repeat 0 0;
+  background-repeat: repeat;
+  animation: bg-animation .2s infinite;
+  opacity: 1;
+  visibility: visible;
+}
+
+@keyframes bg-animation {
+    0% { transform: translate(0,0) }
+    10% { transform: translate(-5%,-5%) }
+    20% { transform: translate(-10%,5%) }
+    30% { transform: translate(5%,-10%) }
+    40% { transform: translate(-5%,15%) }
+    50% { transform: translate(-10%,5%) }
+    60% { transform: translate(15%,0) }
+    70% { transform: translate(0,10%) }
+    80% { transform: translate(-15%,0) }
+    90% { transform: translate(10%,5%) }
+    100% { transform: translate(5%,0) }
+}
+
+/*  ref: https://codepen.io/argyleink/pen/vYPZgXB */
+@property --lines {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0.00010px;
+}
+
+/* 
+  ping/pong animation 
+  change value to change speed
+  faster = more sub pixels to transition
+*/
+@keyframes liner {
+  50% {
+    --lines: 0.0010px;
+  }
+}
+
+@layer demo {
+  .noise {
+    /* animate the length custom property */
+    animation: liner 3666000ms linear infinite;
+    
+    /*
+      repeating sub pixel radial hard stop lines
+      creates thousands, so small they distort
+      use this distortion as a mask
+      the hard stops are basically on/off lines
+    */
+    mask: repeating-radial-gradient(
+      circle at center,
+      #00000073,
+      var(--lines),
+      #ffffff73,
+      0,
+      #0000,
+      calc(var(--lines) * 2),
+      #0000 0
+    );
+  }
+}
+
+@layer demo.gradient-text {
+  .noise {
+    --space:;
+    @supports (background: linear-gradient(in oklch, #0000004D, #ffffff4D)) {
+      --space: in oklch;
+    }
+    
+    background-image: linear-gradient(
+      to right var(--space), 
+      deeppink, blue
+    );
+    
+    @media (prefers-color-scheme: light) {
+      background-image: linear-gradient(
+        to right var(--space), 
+        black, gray
+      );
+    }
+  }
+}

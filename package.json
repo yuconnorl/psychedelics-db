@@ -34,6 +34,7 @@
     "release": "commit-and-tag-version"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^1.0.7",
     "@payloadcms/bundler-webpack": "latest",
     "@payloadcms/db-mongodb": "latest",
     "@payloadcms/next-payload": "^0.1.9",
@@ -56,6 +57,7 @@
     "@splinetool/react-spline": "^2.2.6",
     "@splinetool/runtime": "^1.0.11",
     "@tailwindcss/line-clamp": "^0.4.4",
+    "ai": "^4.0.12",
     "algoliasearch": "^4.20.0",
     "cheerio": "^1.0.0",
     "class-variance-authority": "^0.7.0",

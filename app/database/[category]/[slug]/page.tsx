@@ -120,7 +120,7 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
       </div>
       <div className='flex flex-col gap-2'>
         <AspectRatio
-          className='my-2 border-muted-foreground/20 border rounded-lg'
+          className='my-2 border-muted-foreground/10 border rounded-lg'
           ratio={21 / 9}
         >
           <Image

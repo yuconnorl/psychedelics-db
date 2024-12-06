@@ -1,7 +1,7 @@
 'use client'
 
-import { useMemo } from 'react'
-import Image, { StaticImageData } from 'next/image'
+import { useEffect, useMemo, useRef } from 'react'
+import Image from 'next/image'
 import { parseAsArrayOf, parseAsString, useQueryState } from 'nuqs'
 
 import imgURSociopath from '../assets/u-r-sociopath.gif'
@@ -17,6 +17,7 @@ import { substanceOptions } from '@/config/options'
 import { cn } from '@/lib/utils'
 
 const SubstancesButtonGroup = (): JSX.Element => {
+  const fiveEyesRef = useRef(null)
   const [querySubstance, setQuerySubstance] = useQueryState(
     'substance',
     parseAsArrayOf(parseAsString),
@@ -48,6 +49,13 @@ const SubstancesButtonGroup = (): JSX.Element => {
     group1: imgPsyBg1,
     group2: imgPsyBg2,
     group3: imgPsyBg3,
+  }
+
+  type StaticImageData = {
+    src: string
+    height: number
+    width: number
+    blurDataURL?: string
   }
 
   const getImageForSubstance = (
@@ -88,6 +96,34 @@ const SubstancesButtonGroup = (): JSX.Element => {
     )
   }
 
+  const handleScrollToSection = () => {
+    // Get the position of the target div
+    const targetPosition = fiveEyesRef.current?.getBoundingClientRect().top
+
+    // Get the current scroll position
+    const startPosition = window.scrollY
+
+    // Calculate the scroll distance
+    const distance = targetPosition + startPosition + 200
+
+    // Custom smooth scroll function
+    const smoothScroll = () => {
+      window.scrollTo({
+        top: distance,
+        behavior: 'smooth',
+      })
+    }
+
+    if (distance === window.scrollY) return
+
+    smoothScroll()
+  }
+
+  useEffect(() => {
+    const fiveEyes = document.getElementById('five-eyes-image-section')
+    fiveEyesRef.current = fiveEyes
+  }, [])
+
   return (
     <div className='md:top-24 md:sticky h-max md:pr-4'>
       <h3 className='mb-4 pl-2 font-semibold'>Substances</h3>
@@ -98,7 +134,11 @@ const SubstancesButtonGroup = (): JSX.Element => {
           const imgUrl = getImageForSubstance(value)
 
           return (
-            <div className='relative group h-fit' key={value}>
+            <div
+              className='relative group h-fit'
+              onClick={handleScrollToSection}
+              key={value}
+            >
               <button
                 className={cn(
                   isActive && '-translate-x-2 -translate-y-2 border-foreground',

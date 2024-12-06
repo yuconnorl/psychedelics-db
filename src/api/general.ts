@@ -111,7 +111,7 @@ export const getTypes = async (limit = 300) => {
   }
 }
 
-export const getPapers = async (limit = 300): Promise<PaperData[] | []> => {
+export const getPapers = async (limit = 300): Promise<PaperData[]> => {
   try {
     const fetchUrl = `http://localhost:3000/api/papers?limit=${limit}`
 
@@ -138,11 +138,37 @@ export const getPapers = async (limit = 300): Promise<PaperData[] | []> => {
         publishedAt: paper.publishedAt,
         viewCount: paper.viewCount,
         summary: paper.summaryField,
+        isVectorized: paper.isVectorized,
       }
     })
     return papers
   } catch (error: unknown) {
     console.error('Fetch papers error:', error)
-    return []
+  }
+}
+
+export const updatePaperVectorizeState = async (
+  id: string,
+  isVector: boolean,
+) => {
+  try {
+    const fetchUrl = `http://localhost:3000/api/papers/${id}`
+
+    const response = await fetch(fetchUrl, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ isVectorized: isVector }),
+    })
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+
+    return response.json()
+  } catch (error: unknown) {
+    console.error('Update paper isVector error:', error)
+    return false
   }
 }

@@ -57,11 +57,12 @@ export const getEmbedding = async (message) => {
 
 interface UpdateVectorResponse {
   time: number
-  status: string
+  success: boolean
   result: {
     status: 'acknowledged' | 'completed'
     operation_id: number
   }
+  message?: string
 }
 
 export const updateVector = async (message) => {

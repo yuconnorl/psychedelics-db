@@ -34,11 +34,15 @@ export async function PUT(request: NextRequest) {
     })
 
     return NextResponse.json({ operationInfo: operationInfo, success: true })
-  } catch (error: unknown) {
+  } catch (error: any) {
     console.error('Error Updating Vector: ', error)
+
+    const errorMessage =
+      error?.data?.status?.error || error?.message || 'Unknown error'
+
     return NextResponse.json({
       success: false,
-      message: 'Error Updating Vector',
+      message: `Error Updating Vector: ${errorMessage}`,
     })
   }
 }
@@ -78,10 +82,10 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ queryResults: queryResults, success: true })
   } catch (error: unknown) {
-    console.error('Error Updating Vector: ', error)
+    console.error('Error query Vector database: ', error)
     return NextResponse.json({
       success: false,
-      message: 'Error Updating Vector',
+      message: `Error query Vector database: ${error}`,
     })
   }
 }

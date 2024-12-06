@@ -115,7 +115,7 @@ export interface Paper {
         id?: string | null;
       }[]
     | null;
-  isVectorized?: boolean | null;
+  isVectorized: boolean;
   viewCount: number;
   updatedAt: string;
   createdAt: string;

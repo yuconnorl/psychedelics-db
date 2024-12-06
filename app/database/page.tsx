@@ -59,7 +59,7 @@ const DatabasePage = async (): Promise<JSX.Element> => {
   return (
     <div className=''>
       <AspectRatio
-        className='my-2 border-muted-foreground/20 border rounded-lg'
+        className='my-2 border-muted-foreground/10 border rounded-lg relative flex justify-center items-center overflow-hidden'
         ratio={21 / 9}
       >
         <Image
@@ -71,8 +71,10 @@ const DatabasePage = async (): Promise<JSX.Element> => {
           sizes='(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 100vw'
           className='rounded-md object-cover object-center'
         />
+        <div className='noise w-full h-full absolute'></div>
       </AspectRatio>
       <div className='text-4xl font-semibold text-primary my-6'>Intro</div>
+
       <div className='text-secondary-foreground text-base sm:text-lg'>
         <p>
           The psychedelics database aims to serve as the leading information hub

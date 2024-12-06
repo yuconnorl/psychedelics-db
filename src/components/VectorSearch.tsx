@@ -17,6 +17,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
+import { cn } from '@/lib/utils'
 
 const searchFetcher = async (searchTerm: string) => {
   if (!searchTerm) return []
@@ -42,6 +43,7 @@ const VectorSearch = () => {
     ([_, term]) => searchFetcher(term),
     {
       revalidateOnFocus: false,
+      keepPreviousData: true,
       dedupingInterval: 5000,
       onError: (err) => {
         // eslint-disable-next-line no-console
@@ -82,18 +84,22 @@ const VectorSearch = () => {
         Vector Search
       </Button>
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className='max-w-[85%] md:max-w-2xl p-4 md:p-6'>
+        <DialogContent className='max-w-[90%] md:max-w-2xl px-5 py-[1.35rem] md:p-6'>
           <DialogHeader className='text-left'>
-            <DialogTitle className='flex items-center text-2xl'>
-              <CubeTransparentIcon className='mr-2 w-6 h-6' />
+            <DialogTitle className='flex items-center text-xl md:text-2xl'>
+              <CubeTransparentIcon
+                className={cn(
+                  'mr-1.5 md:mr-2 w-5 h-5 md:w-6 md:h-6',
+                  isLoading &&
+                    'animate-spin animate-infinite animate-duration-[1500ms] animate-ease-in-out',
+                )}
+              />
               Vector Search
             </DialogTitle>
-            <DialogDescription className='max-w-full md:max-w-[90%] mt-3 md:mt-4'>
+            <DialogDescription className='max-w-full md:max-w-[90%] px-1 mt-3 md:mt-4'>
               Vector search is an algorithm that transforms data into vectors,
               allowing efficient retrieval of similar items in large datasets by
-              comparing their positions in high-dimensional space. Note: This
-              feature is experimental and may not be accurate, and the dataset
-              is limited to the papers in the database.
+              comparing their positions in high-dimensional space.
             </DialogDescription>
           </DialogHeader>
           <div>

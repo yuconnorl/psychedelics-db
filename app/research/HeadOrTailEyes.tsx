@@ -6,7 +6,10 @@ const headOrTailEyes = (): JSX.Element => {
   const headOrTail = Math.random() < 0.5 ? 'head' : 'tail'
 
   return (
-    <section className='w-full my-8 md:my-16 h-64 md:h-80 bg-white dark:bg-black rounded-lg group'>
+    <section
+      id='five-eyes-image-section'
+      className='w-full my-8 md:my-16 h-64 md:h-80 bg-white dark:bg-black rounded-lg group'
+    >
       <div className='relative w-full h-full flex justify-center items-center overflow-hidden'>
         {headOrTail === 'head' ? (
           <>
