@@ -164,7 +164,7 @@ const Papers: CollectionConfig = {
       label: 'Vectorized',
       defaultValue: false,
       admin: {
-        readOnly: true,
+        // readOnly: true,
       },
     },
     {

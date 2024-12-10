@@ -1,18 +1,10 @@
 import Link from 'next/link'
 
 import FadingMaskBottom from '@/components/FadingMaskBottom'
-import FadingMaskTop from '@/components/FadingMaskTop'
 import { ChartBarSquareIcon, InfoIcon, TheEye } from '@/components/Icons'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
 import { substanceOptions } from '@/config/options'
-import { cn } from '@/lib/utils'
 
 const LoadingSkeleton = () => {
   return (
@@ -26,45 +18,12 @@ const LoadingSkeleton = () => {
   )
 }
 
-const VectorSearchResult = ({ searchResults, isLoading = false }) => {
+const VectorSearchResult = ({ search, searchResults, isLoading = false }) => {
   return (
-    <div className='mt-6 md:mt-10'>
-      <div
-        className={cn(
-          'text-sm pl-1 hidden',
-          searchResults?.length > 0 && 'block',
-        )}
-      >
-        <span className='text-primary/90'>Search Results </span>
-        <span className='text-primary/70'>
-          (By correlation, highest to lowest)
-        </span>
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className='inline-flex ml-0.5'>
-                <InfoIcon />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>
-                Showing the top five results, <br />
-                with higher values reflecting stronger similarity
-              </p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      </div>
-      <article className='max-h-[45dvh] min-h-30 overflow-y-scroll relative'>
-        {searchResults?.length > 0 ? <FadingMaskTop /> : null}
+    <div>
+      <article className='max-h-[50dvh] min-h-30 overflow-y-scroll relative'>
+        {/* {searchResults?.length > 0 ? <FadingMaskTop /> : null} */}
         <div className='overflow-y-scroll h-full flex flex-col space-y-2.5'>
-          {!isLoading && searchResults?.length === 0 && (
-            <div className='text-primary/70 text-sm text-center flex items-center justify-center pt-6 pb-5'>
-              <span>No results</span>
-              <TheEye className='w-6 h-6 mx-1' />
-              <span>Input keywords to search</span>
-            </div>
-          )}
           {
             <>
               {isLoading && (

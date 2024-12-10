@@ -168,3 +168,9 @@
     }
   }
 }
+
+/* div[contenteditable=true] p:empty:before {
+  content: attr(data-placeholder);
+  pointer-events: none;
+  display: block;
+} */
