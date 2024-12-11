@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@ai-sdk/openai": "^1.0.7",
-    "@nytimes/react-prosemirror": "^1.0.0",
+    "@nytimes/react-prosemirror": "1.0.0",
     "@payloadcms/bundler-webpack": "latest",
     "@payloadcms/db-mongodb": "latest",
     "@payloadcms/next-payload": "^0.1.9",

@@ -3,7 +3,9 @@
 import { useEffect, useState } from 'react'
 import { useCompletion } from 'ai/react'
 
+import { ChatGPTIcon } from '@/components/Icons'
 import MarkdownParser from '@/components/MarkdownParser'
+import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
 import { cn } from '@/lib/utils'
 import { localStorageHelper } from '@/utilities/localStorage'
@@ -92,10 +94,14 @@ const CompletionResult = ({
   return (
     <div
       className={cn(
-        'relative prose dark:prose-invert prose-strong:text-primary max-h-[50dvh] pb-3 px-6 border-primary/10 rounded-2xl overflow-y-scroll',
-        isCompletionLoading && 'overflow-y-hidden',
+        'relative prose dark:prose-invert bg-muted-foreground/5 prose-strong:text-primary max-h-[50dvh] pt-4 pb-4 px-5 border-primary/10 rounded-xl overflow-y-scroll',
+        isCompletionLoading && 'overflow-y-hidden animate-pulse',
       )}
     >
+      <Badge className='bg-muted text-primary/80 hover:bg-muted py-1.5'>
+        <ChatGPTIcon />
+        <span className='ml-1'>Summarize</span>
+      </Badge>
       {wholeLoading && !isCompletionLoading && <CompletionLoadingSkeleton />}
       {
         <MarkdownParser

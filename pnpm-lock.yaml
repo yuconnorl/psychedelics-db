@@ -12,7 +12,7 @@ importers:
         specifier: ^1.0.7
         version: 1.0.7(zod@3.23.8)
       '@nytimes/react-prosemirror':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0(prosemirror-model@1.24.0)(prosemirror-state@1.4.3)(prosemirror-view@1.37.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@payloadcms/bundler-webpack':
         specifier: latest

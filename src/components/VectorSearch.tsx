@@ -96,13 +96,8 @@ const VectorSearch = () => {
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [handleSearchButtonClick])
 
-  const handleInput = (searchInput) => {
-    if (!searchInput) return
-    setSearch(searchInput)
-  }
-
   useEffect(() => {
-    handleInput(editorState.doc.toJSON()?.content?.[0]?.content?.[0]?.text)
+    setSearch(editorState.doc.toJSON()?.content?.[0]?.content?.[0]?.text)
   }, [editorState])
 
   return (
@@ -114,14 +109,25 @@ const VectorSearch = () => {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className='max-w-[90%] md:max-w-4xl xl:max-w-5xl px-5 py-[1.35rem] md:p-6'>
           <DialogHeader className='flex flex-col items-center'>
-            <DialogTitle className='flex font-garamond justify-center items-center mt-5 mb-1 text-2xl md:text-3xl'>
+            <DialogTitle className='flex relative font-garamond justify-center items-center mt-6 mb-3 text-2xl md:text-3xl'>
               <CubeTransparentIcon
                 className={cn(
-                  'mr-1.5 w-7 h-7 md:w-9 md:h-9',
-                  wholeLoading &&
-                    'animate-spin animate-infinite animate-duration-[1500ms] animate-ease-in-out',
+                  'w-7 h-7 md:w-9 md:h-9 absolute',
+                  wholeLoading
+                    ? 'opacity-0'
+                    : 'opacity-100 animate-jumpyy animate-once animate-duration-[300ms]',
                 )}
               />
+              <div
+                className={cn(
+                  'transition-opacity duration-200 absolute',
+                  wholeLoading
+                    ? 'block opacity-100 animate-jumpyy animate-once animate-duration-[300ms]'
+                    : 'opacity-0',
+                )}
+              >
+                🤔
+              </div>
               {/* Expand your consciousness */}
             </DialogTitle>
           </DialogHeader>
@@ -129,7 +135,7 @@ const VectorSearch = () => {
           <div className='flex flex-col items-center mt-3 mb-4 md:mb-6'>
             <div className='flex flex-col w-full mx-auto max-w-2xl bg-secondary text-primary pl-4 pt-2.5 pr-2.5 pb-2.5 sm:mx-0 rounded-2xl z-20'>
               <div className='flex w-full justify-between'>
-                <div className='mt-1 max-h-96 w-full overflow-y-auto break-words min-h-[4.5rem] mb-2 mr-3'>
+                <div className='mt-1 max-h-96 flex-1 w-full overflow-y-auto break-words min-h-[4.5rem] mb-2 mr-3'>
                   <ProseMirror
                     mount={mount}
                     state={editorState}
@@ -146,11 +152,16 @@ const VectorSearch = () => {
                 </div>
                 <Button
                   onClick={handleSearchButtonClick}
-                  className='flex disabled:cursor-not-allowed text-secondary bg-primary'
+                  className={cn(
+                    'flex disabled:cursor-not-allowed text-secondary bg-primary transition-opacity duration-200',
+                    !search
+                      ? 'opacity-0'
+                      : 'opacity-100 animate-jumpyy animate-once animate-duration-[300ms]',
+                  )}
                   disabled={wholeLoading}
                   size='icon'
                 >
-                  <UpArrowIcon />
+                  <UpArrowIcon className='w-4 h-4 md:w-5 md:h-5' />
                 </Button>
               </div>
               <div className='text-sm text-primary/70'>GPT-4o-mini</div>
@@ -167,7 +178,7 @@ const VectorSearch = () => {
             )}
           </div>
           <div className='flex flex-col gap-2'>
-            <div className='grid grid-cols-[minmax(17rem,_0.3fr)_1fr] gap-1.5'>
+            <div className='grid grid-cols-[minmax(17rem,_0.3fr)_1fr] gap-2.5'>
               <VectorSearchResult
                 searchResults={vectorSearchResult}
                 isLoading={isVectorSearchLoading}
