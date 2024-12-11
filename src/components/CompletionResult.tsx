@@ -1,17 +1,62 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useCompletion } from 'ai/react'
 
 import MarkdownParser from '@/components/MarkdownParser'
+import { Skeleton } from '@/components/ui/skeleton'
+import { cn } from '@/lib/utils'
+import { localStorageHelper } from '@/utilities/localStorage'
 import { vectorResultFormatter } from '@/utilities/summary'
+
+const CompletionLoadingSkeleton = () => {
+  return (
+    <>
+      <div className='relative mb-2'>
+        <span className='animate-spin'>🧠 </span>
+        Analysing...
+      </div>
+      <div className='flex flex-col gap-6'>
+        <div className='space-y-2'>
+          <Skeleton className='h-4 w-[60%]' />
+          <Skeleton className='h-4 w-[84%]' />
+          <Skeleton className='h-4 w-[73%]' />
+        </div>
+        <div className='space-y-2'>
+          <Skeleton className='h-4 w-[32%]' />
+          <Skeleton className='h-4 w-[65%]' />
+          <Skeleton className='h-4 w-[48%]' />
+        </div>
+        <div className='space-y-2'>
+          <Skeleton className='h-4 w-[74%]' />
+          <Skeleton className='h-4 w-[36%]' />
+          <Skeleton className='h-4 w-[50%]' />
+        </div>
+        <div className='space-y-2'>
+          <Skeleton className='h-4 w-[38%]' />
+          <Skeleton className='h-4 w-[60%]' />
+          <Skeleton className='h-4 w-[52%]' />
+        </div>
+      </div>
+    </>
+  )
+}
 
 type CompletionResultProps = {
   search: string
   searchResults: any[]
+  wholeLoading: boolean
+  setWholeLoading: (value: boolean) => void
 }
 
-const CompletionResult = ({ search, searchResults }: CompletionResultProps) => {
+const CompletionResult = ({
+  search,
+  searchResults,
+  wholeLoading,
+  setWholeLoading,
+}: CompletionResultProps) => {
+  const [completionCacheData, setCompletionCacheData] = useState('')
+
   const {
     completion,
     complete,
@@ -21,19 +66,46 @@ const CompletionResult = ({ search, searchResults }: CompletionResultProps) => {
   })
 
   useEffect(() => {
+    const completionCache = localStorageHelper.get('completion-cache') as string
+    setCompletionCacheData(completionCache)
+  }, [])
+
+  useEffect(() => {
     if (!search || searchResults.length === 0) return
+    const completionCache = localStorageHelper.get('completion-cache') as string
+    if (completionCache) return
 
     const message = `User's query: "${search}"\n\nResearch papers data:\n${vectorResultFormatter(
       searchResults,
     )}`
 
     complete(message)
-  }, [search, searchResults, complete])
+  }, [search, searchResults, complete, completionCacheData])
+
+  useEffect(() => {
+    if (!completion || isCompletionLoading) return
+
+    localStorageHelper.set('completion-cache', completion)
+    setWholeLoading(false)
+  }, [completion, isCompletionLoading, setWholeLoading])
 
   return (
-    <div className='relative prose max-h-[50dvh] overflow-y-scroll py-3 px-6 border-primary/10 rounded-2xl'>
-      {isCompletionLoading && <div>🧠 Analysing...</div>}
-      <MarkdownParser content={completion} />
+    <div
+      className={cn(
+        'relative prose dark:prose-invert prose-strong:text-primary max-h-[50dvh] pb-3 px-6 border-primary/10 rounded-2xl overflow-y-scroll',
+        isCompletionLoading && 'overflow-y-hidden',
+      )}
+    >
+      {wholeLoading && !isCompletionLoading && <CompletionLoadingSkeleton />}
+      {
+        <MarkdownParser
+          content={
+            !completion && !wholeLoading && !isCompletionLoading
+              ? completionCacheData
+              : completion
+          }
+        />
+      }
     </div>
   )
 }

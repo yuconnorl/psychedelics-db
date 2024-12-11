@@ -79,6 +79,7 @@
     "payload": "^2.0.4",
     "prosemirror-schema-basic": "^1.2.3",
     "prosemirror-state": "^1.4.3",
+    "prosemirror-view": "^1.37.0",
     "qs": "^6.11.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

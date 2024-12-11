@@ -24,7 +24,8 @@ export async function POST(request: NextRequest) {
   try {
     const result = streamText({
       model: openai('gpt-4o-mini'),
-      system: `You are an expert in summarizing structured data from research papers. You will be provided with structured text data from five research papers related to the user's query. Your task is to summarize the key findings from these research papers, highlighting their relevance and similarity to the user's query. Also, when refering to particular paper, add link to it with the URL field in paper detail. Ensure that the summary is clear, concise, and informative.`,
+      // system: `You are an expert in summarizing structured data from research papers. You will be provided with structured text data from five research papers related to the user's query. Your task is to summarize the key findings from these research papers, highlighting their relevance and similarity, and trying to use the information from five research papers to explain the user's query. Also, when refering to particular paper, add link to it with the URL field in paper detail, the format must follow: [paper title](link). Ensure that the summary is clear, concise, and informative.`,
+      system: `You are an expert in summarizing structured data from research papers. You will be provided with structured text data from five research papers related to the user's query. Your task is to use the information from five research papers to explain the user's query. Also, when refering to particular paper, add link to it with the URL field in paper detail, the format must follow: [paper title](link). Ensure that the summary is clear, concise, and informative.`,
       prompt: `${prompt}`,
     })
 

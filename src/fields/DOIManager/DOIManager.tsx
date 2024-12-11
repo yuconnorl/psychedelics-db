@@ -109,9 +109,6 @@ export const DOIManager: React.FC = ({
       const paperResponse = await summarizePaperWithDoi(value)
       const { researchPaperDetail } = await paperResponse.json()
 
-      // console.log('paperResponse', paperResponse)
-      // console.log('researchPaperDetail', researchPaperDetail)
-
       if (!researchPaperDetail) {
         setIsFailed(true)
         return
@@ -181,9 +178,7 @@ export const DOIManager: React.FC = ({
             the paper may not be available on sci-hub.
           </div>
         )}
-        {doiCheckResult && (
-          <div className='field-success'>{doiCheckResult}</div>
-        )}
+        {doiCheckResult && <div className=' font-bold'>{doiCheckResult}</div>}
       </div>
     </div>
   )

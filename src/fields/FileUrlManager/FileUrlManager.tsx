@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { useAllFormFields, useField, useForm } from 'payload/components/forms'
+import { useField, useForm } from 'payload/components/forms'
 
 import { summarizePaperWithUrl } from '../../utilities/paperDetail'
 
@@ -21,7 +21,6 @@ export const FileUrlManager: React.FC = ({
   const [isLoading, setIsLoading] = useState(false)
   const [isFailed, setIsFailed] = useState(false)
   const { addFieldRow, dispatchFields } = useForm()
-  const [allFields, dispatchAllFields] = useAllFormFields()
 
   const handleSummaryAdd = useCallback(
     (summary) => {
@@ -39,6 +38,29 @@ export const FileUrlManager: React.FC = ({
   const handleTitleAdd = useCallback(
     (titleItem) => {
       dispatchFields({ type: 'UPDATE', path: 'title', value: titleItem })
+    },
+    [dispatchFields],
+  )
+
+  const handleJournalAdd = useCallback(
+    (journal) => {
+      dispatchFields({ type: 'UPDATE', path: 'journal', value: journal })
+    },
+    [dispatchFields],
+  )
+
+  const handleSlugAdd = useCallback(
+    (titleItem) => {
+      const formatTitle = (val: string): string => {
+        if (!val) return ''
+        return val
+          .replace(/\s+/g, '-')
+          .replace(/[^\w-]+/g, '')
+          .toLowerCase()
+      }
+
+      const formatedTitle = formatTitle(titleItem) || ''
+      dispatchFields({ type: 'UPDATE', path: 'slug', value: formatedTitle })
     },
     [dispatchFields],
   )
@@ -77,15 +99,12 @@ export const FileUrlManager: React.FC = ({
   )
 
   const handlePaperFetch = useCallback(async () => {
-    console.log('fetch paper...')
+    console.log('📖 fetch paper...')
 
     try {
       setIsLoading(true)
       const paperResponse = await summarizePaperWithUrl(value)
       const { researchPaperDetail } = await paperResponse.json()
-
-      console.log('paperResponse', paperResponse)
-      console.log('researchPaperDetail', researchPaperDetail)
 
       researchPaperDetail.keyFindings.forEach((summary) => {
         handleSummaryAdd(summary)
@@ -100,6 +119,8 @@ export const FileUrlManager: React.FC = ({
       })
 
       handleTitleAdd(researchPaperDetail.title)
+      handleSlugAdd(researchPaperDetail.title)
+      handleJournalAdd(researchPaperDetail.journal)
     } catch (error: unknown) {
       console.error('Error fetching paper:', error)
       setIsFailed(true)
@@ -122,9 +143,10 @@ export const FileUrlManager: React.FC = ({
           placeholder='File Url'
         />
         <button
-          className='btn btn--style-primary btn--icon-style-without-border btn--size-small doi-fetch-button'
+          className='btn btn--style-primary btn--icon-style-without-border btn--size-small doi-fetch-button disabled:opacity-50 disabled:cursor-not-allowed'
           onClick={handlePaperFetch}
           type='button'
+          disabled={isLoading}
         >
           {isLoading ? (
             <span className='btn-loader'>Retrieving...</span>
@@ -134,8 +156,8 @@ export const FileUrlManager: React.FC = ({
         </button>
       </div>
       <div className='field-description'>
-        Url to the sci-hub paper location. Fetch paper details by entering link
-        to the paper. This will populate the title, authors, keywords, and
+        Url to paper source (e.g. sci-hub). Fetch paper details by entering link
+        to the paper. This will populate the title, authors, keywords, slug and
         Summary (key findings) fields.
       </div>
       <div>

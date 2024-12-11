@@ -169,8 +169,8 @@
   }
 }
 
-/* div[contenteditable=true] p:empty:before {
+.prose-placeholder[data-placeholder]:empty:before {
   content: attr(data-placeholder);
+  color: #888;
   pointer-events: none;
-  display: block;
-} */
+}

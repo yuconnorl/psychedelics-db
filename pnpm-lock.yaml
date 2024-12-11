@@ -143,6 +143,9 @@ importers:
       prosemirror-state:
         specifier: ^1.4.3
         version: 1.4.3
+      prosemirror-view:
+        specifier: ^1.37.0
+        version: 1.37.0
       qs:
         specifier: ^6.11.2
         version: 6.11.2

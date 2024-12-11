@@ -10,6 +10,7 @@ const ResearchPaperExtraction = z.object({
   abstract: z.string(),
   keywords: z.array(z.string()),
   keyFindings: z.array(z.string()),
+  journal: z.string(),
 })
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
@@ -72,6 +73,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
         abstract: '',
         keywords: ['keyword 1', 'keyword 2'],
         authors: ['author 1', 'author 2'],
+        journal: ''
       }
 
       Research Paper Data: ${jinaText}`
