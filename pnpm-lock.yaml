@@ -11,6 +11,12 @@ importers:
       '@ai-sdk/openai':
         specifier: ^1.0.7
         version: 1.0.7(zod@3.23.8)
+      '@google/generative-ai':
+        specifier: ^0.21.0
+        version: 0.21.0
+      '@lucide/lab':
+        specifier: ^0.1.2
+        version: 0.1.2
       '@nytimes/react-prosemirror':
         specifier: 1.0.0
         version: 1.0.0(prosemirror-model@1.24.0)(prosemirror-state@1.4.3)(prosemirror-view@1.37.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -117,8 +123,8 @@ importers:
         specifier: ^8.1.0
         version: 8.1.0
       lucide-react:
-        specifier: ^0.292.0
-        version: 0.292.0(react@18.2.0)
+        specifier: ^0.348.0
+        version: 0.348.0(react@18.2.0)
       next:
         specifier: ^14.0.2-canary.25
         version: 14.0.2-canary.25(@babel/core@7.25.9)(@opentelemetry/api@1.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.69.4)
@@ -1402,6 +1408,10 @@ packages:
   '@floating-ui/utils@0.1.6':
     resolution: {integrity: sha512-OfX7E2oUDYxtBvsuS4e/jSn4Q9Qb6DzgeYtsAdkPZ47znpoNsMgZw0+tVijiv3uGNR6dgNlty6r9rzIzHjtd/A==}
 
+  '@google/generative-ai@0.21.0':
+    resolution: {integrity: sha512-7XhUbtnlkSEZK15kN3t+tzIMxsbKm/dSkKBFalj+20NvPKe1kBY7mR2P7vuijEn+f06z5+A8bVGKO0v39cr6Wg==}
+    engines: {node: '>=18.0.0'}
+
   '@hapi/hoek@9.3.0':
     resolution: {integrity: sha512-/c6rf4UJlmHlC9b5BaNvzAcFv7HZ2QHaV0D4/HNlBdvFnvQq8RI4kYdhyPCl7Xj+oWvTWQ8ujhqS53LIgAe6KQ==}
 
@@ -1471,6 +1481,9 @@ packages:
 
   '@juggle/resize-observer@3.4.0':
     resolution: {integrity: sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==}
+
+  '@lucide/lab@0.1.2':
+    resolution: {integrity: sha512-VprF2BJa7ZuTGOhUd5cf8tHJXyL63wdxcGieAiVVoR9hO0YmPsnZO0AGqDiX2/br+/MC6n8BoJcmPilltOXIJA==}
 
   '@monaco-editor/loader@1.4.0':
     resolution: {integrity: sha512-00ioBig0x642hytVspPl7DbQyaSWRaolYie/UFNjoTdvoKPzo6xrXLhTk9ixgIKcLH5b5vDOjVNiGyY+uDCUlg==}
@@ -5344,8 +5357,8 @@ packages:
   lru-queue@0.1.0:
     resolution: {integrity: sha512-BpdYkt9EvGl8OfWHDQPISVpcl5xZthb+XPsbELj5AQXxIC8IriDZIQYjBJPEm5rS420sjZ0TLEzRcq5KdBhYrQ==}
 
-  lucide-react@0.292.0:
-    resolution: {integrity: sha512-rRgUkpEHWpa5VCT66YscInCQmQuPCB1RFRzkkxMxg4b+jaL0V12E3riWWR2Sh5OIiUhCwGW/ZExuEO4Az32E6Q==}
+  lucide-react@0.348.0:
+    resolution: {integrity: sha512-JbXVX7gu78feYaZ2cOivpfQEbJ9HrQxHJALiwDhNm6LalmHZshpMNuhD2Vn8ZC31f6hueDUwDnCPrPje01uW/Q==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
 
@@ -9669,6 +9682,8 @@ snapshots:
 
   '@floating-ui/utils@0.1.6': {}
 
+  '@google/generative-ai@0.21.0': {}
+
   '@hapi/hoek@9.3.0': {}
 
   '@hapi/topo@5.1.0':
@@ -9745,6 +9760,8 @@ snapshots:
   '@jsdevtools/ono@7.1.3': {}
 
   '@juggle/resize-observer@3.4.0': {}
+
+  '@lucide/lab@0.1.2': {}
 
   '@monaco-editor/loader@1.4.0(monaco-editor@0.38.0)':
     dependencies:
@@ -14163,7 +14180,7 @@ snapshots:
     dependencies:
       es5-ext: 0.10.62
 
-  lucide-react@0.292.0(react@18.2.0):
+  lucide-react@0.348.0(react@18.2.0):
     dependencies:
       react: 18.2.0
 

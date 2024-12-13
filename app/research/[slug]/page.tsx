@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Node } from 'slate'
 
+import RecommandSection from '../RecommendSectoin'
+
 import { getPapers } from '@/api/general'
 import CopyButton from '@/components/CopyButton'
 import {
@@ -14,6 +16,7 @@ import {
   LinkIcon,
 } from '@/components/Icons'
 import SerializeSlate from '@/components/SerializeSlate'
+import SubstanceBadge from '@/components/SubstanceBadge'
 import {
   Accordion,
   AccordionContent,
@@ -80,6 +83,13 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
     (paper: PaperData) => paper.slug === params.slug,
   )
 
+  const recommendPapers = papers
+    .filter((paper: PaperData) => paper.slug !== filterPaper.slug)
+    .filter((paper: PaperData) =>
+      paper.substance.some((sub) => sub === filterPaper.substance[0]),
+    )
+    .slice(0, 3)
+
   if (!filterPaper) {
     notFound()
   }
@@ -117,7 +127,7 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
           </h1>
           <section className='md:mb-10 mb-4 flex gap-1.5'>
             {substance.map((sub) => (
-              <Badge key={sub}>{substanceOptions[sub]}</Badge>
+              <SubstanceBadge key={sub} substance={sub} />
             ))}
           </section>
 
@@ -224,7 +234,9 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
               </>
             )}
           </section>
+          <RecommandSection recommendPapers={recommendPapers} />
         </div>
+        {/* Paper Detail for desktop */}
         <aside className='pl-4 xl:pl-6 pr-5 pt-28 md:flex flex-col hidden gap-5 top-1 md:sticky md:h-max'>
           <section>
             <h3 className='font-medium mb-3'>Journal</h3>

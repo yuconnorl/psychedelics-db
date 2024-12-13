@@ -1,6 +1,15 @@
 'use client'
 
 import { useEffect, useMemo, useRef } from 'react'
+import { babyPacifier, cactus, flowerLotus, frogFace } from '@lucide/lab'
+import {
+  createLucideIcon,
+  Leaf,
+  Mailbox,
+  MessageCircleHeart,
+  Soup,
+  Wheat,
+} from 'lucide-react'
 import Image from 'next/image'
 import { parseAsArrayOf, parseAsString, useQueryState } from 'nuqs'
 
@@ -9,7 +18,7 @@ import imgURSociopath from '../assets/u-r-sociopath.gif'
 import imgPsyBg1 from '@/assets/psy-bg-1.webp'
 import imgPsyBg2 from '@/assets/psy-bg-2.webp'
 import imgPsyBg3 from '@/assets/psy-bg-3.webp'
-import { DeselectAllIcon } from '@/components/Icons'
+import { CannabisIcon, DeselectAllIcon } from '@/components/Icons'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import VectorSearch from '@/components/VectorSearch'
@@ -22,6 +31,24 @@ const SubstancesButtonGroup = (): JSX.Element => {
     'substance',
     parseAsArrayOf(parseAsString),
   )
+
+  const FrogFace = createLucideIcon('frogFace', frogFace)
+  const FlowerLotus = createLucideIcon('flowerLotus', flowerLotus)
+  const Cactus = createLucideIcon('cactus', cactus)
+  const BabyPacifier = createLucideIcon('babyPacifier', babyPacifier)
+
+  const substancesIconMap = {
+    lsd: <Mailbox size={16} strokeWidth={1.5} />,
+    '5-meo-dmt': <FrogFace size={16} strokeWidth={1.5} />,
+    cannabis: <CannabisIcon />,
+    mdma: <MessageCircleHeart size={16} strokeWidth={1.5} />,
+    ayahuasca: <Soup size={16} strokeWidth={1.5} />,
+    peyote: <FlowerLotus size={16} strokeWidth={1.5} />,
+    mescaline: <Cactus size={16} strokeWidth={1.5} />,
+    ibogaine: <Leaf size={16} strokeWidth={1.5} />,
+    'lsd-analogs': <Wheat size={16} strokeWidth={1.5} />,
+    lsa: <BabyPacifier size={16} strokeWidth={1.5} />,
+  }
 
   const substancesGroupMap = {
     group1: [
@@ -126,7 +153,7 @@ const SubstancesButtonGroup = (): JSX.Element => {
 
   return (
     <div className='md:top-24 md:sticky h-max md:pr-4'>
-      <h3 className='mb-4 pl-2 font-semibold'>Substances</h3>
+      <h3 className='mb-4 pl-2 font-semibold'>Categories</h3>
       <VectorSearch />
       <div className='flex gap-2 flex-wrap items-start'>
         {Object.entries(substanceOptions).map(([value, substanceName]) => {
@@ -146,10 +173,13 @@ const SubstancesButtonGroup = (): JSX.Element => {
                 )}
                 onClick={(): void => onSubstanceBadgeClick(value)}
               >
-                <div className='flex flex-col px-3 md:px-4 py-1.5 space-y-0'>
-                  <h3 className='font-normal text-sm z-10 group-hover:opacity-50 transition-opacity'>
+                <div className='flex px-3 md:px-4 py-1.5 gap-1 items-center group-hover:opacity-50'>
+                  <span className='text-primary/80'>
+                    {substancesIconMap[value]}
+                  </span>
+                  <span className='font-normal text-sm z-10 group-hover:opacity-50 transition-opacity'>
                     {substanceName}
-                  </h3>
+                  </span>
                 </div>
               </button>
               <div className='absolute bg-foreground w-[calc(100%-5px)] h-[calc(100%-5px)] top-1 left-1 rounded-lg -z-10'>

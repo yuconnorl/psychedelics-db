@@ -18,7 +18,7 @@ import {
   BookOpenIcon,
   SlashIcon,
 } from '@/components/Icons'
-import { Badge } from '@/components/ui/badge'
+import SubstanceBadge from '@/components/SubstanceBadge'
 import {
   Select,
   SelectContent,
@@ -26,7 +26,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { substanceOptions } from '@/config/options'
 import { PAPER_ITEM_PER_PAGE } from '@/constants/constants'
 import type { PaperData } from '@/types'
 
@@ -147,18 +146,17 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
                     {title}
                   </h3>
                   <AuthorBadges authors={authors} />
-                  <div className='mt-2'>
+                  <div className='mt-2 flex gap-1'>
                     {substance.map((sub) => (
-                      <Badge
+                      <SubstanceBadge
                         onClick={(e): void => {
                           e.preventDefault()
                           onSubstanceBadgeClick(sub)
                         }}
                         key={sub}
-                        className='mr-1 cursor-pointer'
-                      >
-                        {substanceOptions[sub]}
-                      </Badge>
+                        substance={sub}
+                        className='cursor-pointer'
+                      />
                     ))}
                   </div>
                 </div>
