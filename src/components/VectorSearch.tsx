@@ -45,6 +45,7 @@ const VectorSearch = () => {
     localStorageHelper.remove('vector-search-result-cache')
     localStorageHelper.remove('completion-cache')
     setWholeLoading(true)
+
     const { embedding } = await getEmbedding(searchTerm)
     const { queryResults } = await queryVector(embedding)
 

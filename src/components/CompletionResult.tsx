@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 import { useCompletion } from 'ai/react'
 
-import { ChatGPTIcon } from '@/components/Icons'
 import MarkdownParser from '@/components/MarkdownParser'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -14,7 +13,7 @@ import { vectorResultFormatter } from '@/utilities/summary'
 const CompletionLoadingSkeleton = () => {
   return (
     <>
-      <div className='relative mb-2'>
+      <div className='relative my-2'>
         <span className='animate-spin'>🧠 </span>
         Analysing...
       </div>
@@ -99,7 +98,6 @@ const CompletionResult = ({
       )}
     >
       <Badge className='bg-muted text-primary/80 hover:bg-muted py-1.5'>
-        <ChatGPTIcon />
         <span className='ml-1'>Summarize</span>
       </Badge>
       {wholeLoading && !isCompletionLoading && <CompletionLoadingSkeleton />}

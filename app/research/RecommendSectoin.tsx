@@ -20,7 +20,7 @@ const RecommendCard = ({ paper }: { paper: PaperData }) => {
         'flex-1 px-4 py-4 group hover:bg-secondary/55 transition-colors rounded',
       )}
     >
-      <div className='flex gap-1'>
+      <div className='flex gap-1 flex-wrap'>
         {substance.map((sub) => (
           <SubstanceBadge
             substance={sub}
@@ -41,7 +41,7 @@ const RecommendCard = ({ paper }: { paper: PaperData }) => {
 const RecommandSection = ({ recommendPapers }: RecommandSectionProps) => {
   return (
     <div className='mt-8 md:mt-12 px-1'>
-      <h2 className='font-semibold text-lg mb-2 md:mb-3 pl-1'>
+      <h2 className='font-semibold text-lg mb-2 md:mb-3 pl-2'>
         Similar research
       </h2>
       <section className='flex flex-col md:flex-row md:divide-x'>

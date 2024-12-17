@@ -23,8 +23,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion'
-import { Badge } from '@/components/ui/badge'
-import { substanceOptions } from '@/config/options'
 import { SITE_NAME, SITE_URL } from '@/constants/constants'
 import { PaperData } from '@/types'
 

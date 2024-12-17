@@ -1,12 +1,16 @@
 'use client'
-
 import { useEffect, useMemo, useRef } from 'react'
 import { babyPacifier, cactus, flowerLotus, frogFace } from '@lucide/lab'
 import {
+  Atom,
+  Brain,
+  CircleDotDashed,
   createLucideIcon,
   Leaf,
+  LeafyGreen,
   Mailbox,
   MessageCircleHeart,
+  Snowflake,
   Soup,
   Wheat,
 } from 'lucide-react'
@@ -18,7 +22,12 @@ import imgURSociopath from '../assets/u-r-sociopath.gif'
 import imgPsyBg1 from '@/assets/psy-bg-1.webp'
 import imgPsyBg2 from '@/assets/psy-bg-2.webp'
 import imgPsyBg3 from '@/assets/psy-bg-3.webp'
-import { CannabisIcon, DeselectAllIcon } from '@/components/Icons'
+import {
+  AmanitaIcon,
+  CannabisIcon,
+  DeselectAllIcon,
+  MushroomIcon,
+} from '@/components/Icons'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import VectorSearch from '@/components/VectorSearch'
@@ -48,6 +57,13 @@ const SubstancesButtonGroup = (): JSX.Element => {
     ibogaine: <Leaf size={16} strokeWidth={1.5} />,
     'lsd-analogs': <Wheat size={16} strokeWidth={1.5} />,
     lsa: <BabyPacifier size={16} strokeWidth={1.5} />,
+    psilocybin: <MushroomIcon />,
+    'amanita-muscaria': <AmanitaIcon />,
+    unspecified: <Brain size={16} strokeWidth={1.6} />,
+    salvia: <LeafyGreen size={16} strokeWidth={1.5} />,
+    dmt: <Atom size={16} strokeWidth={1.5} />,
+    ketamine: <CircleDotDashed size={16} strokeWidth={1.8} />,
+    pcp: <Snowflake size={16} strokeWidth={1.5} />,
   }
 
   const substancesGroupMap = {

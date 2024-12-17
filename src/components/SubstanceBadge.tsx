@@ -1,14 +1,19 @@
 import { babyPacifier, cactus, flowerLotus, frogFace } from '@lucide/lab'
 import {
+  Atom,
+  Brain,
+  CircleDotDashed,
   createLucideIcon,
   Leaf,
+  LeafyGreen,
   Mailbox,
   MessageCircleHeart,
+  Snowflake,
   Soup,
   Wheat,
 } from 'lucide-react'
 
-import { CannabisIcon } from '@/components/Icons'
+import { AmanitaIcon, CannabisIcon, MushroomIcon } from '@/components/Icons'
 import { Badge } from '@/components/ui/badge'
 import { substanceOptions } from '@/config/options'
 import { cn } from '@/lib/utils'
@@ -40,6 +45,13 @@ const SubstanceBadge = ({
     ibogaine: <Leaf size={16} strokeWidth={1.5} />,
     'lsd-analogs': <Wheat size={16} strokeWidth={1.5} />,
     lsa: <BabyPacifier size={16} strokeWidth={1.5} />,
+    psilocybin: <MushroomIcon />,
+    'amanita-muscaria': <AmanitaIcon />,
+    unspecified: <Brain size={16} strokeWidth={1.6} />,
+    salvia: <LeafyGreen size={16} strokeWidth={1.5} />,
+    dmt: <Atom size={16} strokeWidth={1.5} />,
+    ketamine: <CircleDotDashed size={16} strokeWidth={1.8} />,
+    pcp: <Snowflake size={16} strokeWidth={1.5} />,
   }
 
   return (
