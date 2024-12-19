@@ -88,11 +88,16 @@ const UpdateSection = (): JSX.Element => {
         setResultMessage(
           `${resultMessageMap.updateAlgoliaSuccess}: taskID - ${response?.taskIDs}`,
         )
+        setIsUpdating(false)
+        setStatus(statusMap.success)
       } else {
         setResultMessage(`${resultMessageMap.updateAlgoliaFailure}`)
+        setIsUpdating(false)
+        setStatus(statusMap.failure)
       }
     } catch (error: unknown) {
       setResultMessage(`${resultMessageMap.updateAlgoliaFailure}: ${error}`)
+      setStatus(statusMap.failure)
     }
   }
 
@@ -123,11 +128,7 @@ const UpdateSection = (): JSX.Element => {
       setTimeout(() => {
         updateAlgoliaIndex(wholeData)
       }, 3000)
-
-      setStatus(statusMap.success)
     }
-
-    setIsUpdating(false)
   }
 
   const onButtonClick = async (): Promise<void> => {
@@ -282,14 +283,14 @@ const UpdateSection = (): JSX.Element => {
       <section className='grid md:grid-cols-2 gap-4'>
         <div className='flex flex-col gap-y-2 mb-4 border-gray-400 border-0 md:border-r border-l-0 border-t-0 border-b-0 border-solid'>
           <div className='flex gap-2'>
-            <button
+            {/* <button
               className='btn btn--style-primary my-0 px-4 py-3 font-semibold whitespace-nowrap transition-opacity disabled:opacity-50 disabled:cursor-not-allowed'
               type='button'
               onClick={onButtonClick}
               disabled={isUpdating}
             >
               Rebuild and Update
-            </button>
+            </button> */}
             <div className='max-w-xs'>
               Rebuild site and update Algolia indices
             </div>

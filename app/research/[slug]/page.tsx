@@ -226,7 +226,7 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
             <div className='font-medium mb-3'>Abstract</div>
             {abstract && (
               <>
-                <div className='text-primary prose max-w-full'>
+                <div className='text-primary prose prose-strong:text-primary max-w-full'>
                   <SerializeSlate value={abstract} />
                 </div>
               </>
