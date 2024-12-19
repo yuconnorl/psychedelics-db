@@ -136,13 +136,13 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
                 key={id}
                 href={link}
                 prefetch={false}
-                className='p-4 pb-5 rounded-sm transition-colors hover:bg-secondary/55 group'
+                className='p-3 pb-4 md:pb-5 md:p-4 rounded-sm transition-colors hover:bg-secondary/55 group md:max-w-3xl 2xl:max-w-full'
               >
                 <div className='flex flex-col gap-2'>
                   <time className='text-primary/70 text-sm'>
                     {dayjs(publishedAt).format('YYYY MMM')}
                   </time>
-                  <h3 className='text-2xl 2xl:text-3xl md:max-w-3xl 2xl:max-w-full font-medium font-garamond transition-opacity group-hover:opacity-80'>
+                  <h3 className='text-2xl 2xl:text-3xl font-medium font-garamond transition-opacity group-hover:opacity-80'>
                     {title}
                   </h3>
                   <AuthorBadges authors={authors} />

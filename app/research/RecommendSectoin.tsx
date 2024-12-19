@@ -23,6 +23,7 @@ const RecommendCard = ({ paper }: { paper: PaperData }) => {
       <div className='flex gap-1 flex-wrap'>
         {substance.map((sub) => (
           <SubstanceBadge
+            key={sub}
             substance={sub}
             className='hover:bg-secondary bg-secondary text-primary'
           />
