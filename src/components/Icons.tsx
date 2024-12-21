@@ -12,7 +12,7 @@ export const StacksIcon = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.5}
       stroke='currentColor'
-      className={cn('w-6 h-6', className)}
+      className={cn('h-6 w-6', className)}
     >
       <path
         strokeLinecap='round'
@@ -31,7 +31,7 @@ export const SquaresIcon = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.5}
       stroke='currentColor'
-      className={cn('w-6 h-6', className)}
+      className={cn('h-6 w-6', className)}
     >
       <path
         strokeLinecap='round'
@@ -50,7 +50,7 @@ export const HamburgerIcon = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.5}
       stroke='currentColor'
-      className={cn('w-6 h-6 hover:opacity-40 transition-opacity', className)}
+      className={cn('h-6 w-6 transition-opacity hover:opacity-40', className)}
     >
       <path
         strokeLinecap='round'
@@ -69,7 +69,7 @@ export const SearchIcon = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.5}
       stroke='currentColor'
-      className={cn('w-5 h-5', className)}
+      className={cn('h-5 w-5', className)}
     >
       <path
         strokeLinecap='round'
@@ -88,7 +88,7 @@ export const ChevronRightUpIcon = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.2}
       stroke='currentColor'
-      className={cn('w-4 h-4', className)}
+      className={cn('h-4 w-4', className)}
     >
       <path
         strokeLinecap='round'
@@ -107,7 +107,7 @@ export const WebsiteIcon = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.2}
       stroke='currentColor'
-      className={cn('w-5 h-5', className)}
+      className={cn('h-5 w-5', className)}
     >
       <path
         strokeLinecap='round'
@@ -126,7 +126,7 @@ export const ThesisIcon = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.2}
       stroke='currentColor'
-      className={cn('w-5 h-5', className)}
+      className={cn('h-5 w-5', className)}
     >
       <path
         strokeLinecap='round'
@@ -145,7 +145,7 @@ export const VideoIcon = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.2}
       stroke='currentColor'
-      className={cn('w-5 h-5', className)}
+      className={cn('h-5 w-5', className)}
     >
       <path
         strokeLinecap='round'
@@ -164,7 +164,7 @@ export const YoutubeIcon = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.2}
       stroke='currentColor'
-      className={cn('w-5 h-5', className)}
+      className={cn('h-5 w-5', className)}
     >
       <path
         strokeLinecap='round'
@@ -188,7 +188,7 @@ export const ArticleIcon = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.2}
       stroke='currentColor'
-      className={cn('w-5 h-5', className)}
+      className={cn('h-5 w-5', className)}
     >
       <path
         strokeLinecap='round'
@@ -207,7 +207,7 @@ export const PodcastIcon = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.2}
       stroke='currentColor'
-      className={cn('w-5 h-5', className)}
+      className={cn('h-5 w-5', className)}
     >
       <path
         strokeLinecap='round'
@@ -226,7 +226,7 @@ export const FacebookIcon = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.2}
       stroke='currentColor'
-      className={cn('w-5 h-5', className)}
+      className={cn('h-5 w-5', className)}
     >
       <path
         strokeLinecap='round'
@@ -245,7 +245,7 @@ export const TwitterIcon = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.2}
       stroke='currentColor'
-      className={cn('w-5 h-5', className)}
+      className={cn('h-5 w-5', className)}
     >
       <path
         strokeLinecap='round'
@@ -264,7 +264,7 @@ export const InstagramIcon = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.2}
       stroke='currentColor'
-      className={cn('w-5 h-5', className)}
+      className={cn('h-5 w-5', className)}
     >
       <path
         strokeLinecap='round'
@@ -283,7 +283,7 @@ export const InstagramIcon = ({ className }: Props): JSX.Element => {
 export const PsychedelicDBIcon = ({ className }: Props): JSX.Element => {
   return (
     <svg
-      className={cn('w-7 h-7', className)}
+      className={cn('h-7 w-7', className)}
       viewBox='0 0 127 127'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
@@ -315,7 +315,7 @@ export const CollaspeIcon = ({ className }: Props): JSX.Element => {
       viewBox='0 0 24 24'
       strokeWidth={1.2}
       stroke='currentColor'
-      className={cn('w-5 h-5', className)}
+      className={cn('h-5 w-5', className)}
     >
       <path strokeLinecap='round' strokeLinejoin='round' d='M18 12H6' />
     </svg>
@@ -326,7 +326,7 @@ export const TelegramIcon = ({ className }: Props): JSX.Element => {
   return (
     <svg
       viewBox='0 0 71 59'
-      className={cn('w-6 h-6', className)}
+      className={cn('h-6 w-6', className)}
       fill='currentColor'
       xmlns='http://www.w3.org/2000/svg'
     >
@@ -598,7 +598,7 @@ export const ChatGPTIcon = ({ className }: Props): JSX.Element => {
 export const AlgoliaLogoIcon = ({ className }: Props): JSX.Element => {
   return (
     <svg
-      className={cn('w-20 h-4.5', className)}
+      className={cn('h-4.5 w-20', className)}
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 2196.2 500'
     >
@@ -741,7 +741,7 @@ export const UpArrowIcon = ({ className }: Props): JSX.Element => {
       xmlns='http://www.w3.org/2000/svg'
       fill='none'
       viewBox='0 0 24 24'
-      strokeWidth={1.5}
+      strokeWidth={2}
       stroke='currentColor'
       className={cn('size-5', className)}
     >
@@ -758,7 +758,7 @@ export const CannabisIcon = ({ className }: Props): JSX.Element => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
-      className={cn('w-[18px] h-[18px]', className)}
+      className={cn('h-[18px] w-[18px]', className)}
       viewBox='0 0 24 24'
       fill='none'
       stroke='currentColor'
@@ -782,16 +782,16 @@ export const MushroomIcon = ({ className }: Props): JSX.Element => {
       strokeWidth='1.5'
       strokeLinecap='round'
       strokeLinejoin='round'
-      className={cn('w-4 h-4', className)}
+      className={cn('h-4 w-4', className)}
     >
       <path
         d='M10.2762 13C12 16 8.67845 17.3826 9.02566 19.2747C9.43204 21.4891 11.7394 22.6415 13.4795 21.6298C15.9467 20.1953 14.8948 14.8029 13.9117 13.0196'
-        stroke-width='1.5'
+        strokeWidth='1.5'
         stroke-linecap='round'
       ></path>
       <path
         d='M12.0153 2C7.3429 2 3.53836 4.64819 3.01988 9.03138C2.29466 15.1623 21.6547 13.4713 20.9829 8.81893C20.3684 4.56276 16.6118 2 12.0153 2Z'
-        stroke-width='1.5'
+        strokeWidth='1.5'
       ></path>
       <path d='M16 6C17 6 18 7 18 8'></path>
     </svg>
@@ -808,13 +808,26 @@ export const AmanitaIcon = ({ className }: Props): JSX.Element => {
       strokeWidth='1.5'
       strokeLinecap='round'
       strokeLinejoin='round'
-      className={cn('w-4 h-4', className)}
+      className={cn('h-4 w-4', className)}
     >
       <path d='M17 15C19.412 14.6082 21 13.9411 21 13.1839C21 11.9778 16.9706 11 12 11C7.02944 11 3 11.9778 3 13.1839C3 13.9411 4.58803 14.6082 7 15'></path>
       <path d='M21 13C21 6.92487 16.9706 2 12 2C7.02944 2 3 6.92487 3 13'></path>
       <path d='M18 5C17.5251 5.69889 16.6387 5.99999 15.6823 5.99999C14.2009 5.99999 13 4.88601 13 3.51186C13 3.14777 13.1274 2.70748 13.3015 2.34644'></path>
       <path d='M10 11.5C9.99527 14.9495 9.90043 20.1752 8 22M14 11.5C14.0047 14.9495 14.0996 20.1752 16 22'></path>
       <path d='M9.00801 7L8.99902 7'></path>
+    </svg>
+  )
+}
+
+export const GeminiIcon = ({ className }: Props): JSX.Element => {
+  return (
+    <svg
+      viewBox='0 0 24 24'
+      fill='currentColor'
+      xmlns='http://www.w3.org/2000/svg'
+      className={cn('h-5 w-5', className)}
+    >
+      <path d='M12 23C12 19.9601 13.0735 17.3669 15.2204 15.2204C17.3669 13.0735 19.9601 12 23 12C19.9601 12 17.3669 10.9265 15.2204 8.77961C13.0735 6.63306 12 4.03985 12 1C12 4.03985 10.9265 6.63306 8.77961 8.77961C6.63306 10.9265 4.03985 12 1 12C4.03985 12 6.63306 13.0735 8.77961 15.2204C10.9265 17.3669 12 19.9601 12 23Z' />
     </svg>
   )
 }

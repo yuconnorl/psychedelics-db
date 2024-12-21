@@ -93,7 +93,7 @@ const CompletionResult = ({
   return (
     <div
       className={cn(
-        'relative prose dark:prose-invert bg-muted-foreground/5 prose-strong:text-primary max-h-[50dvh] pt-4 pb-4 px-5 border-primary/10 rounded-xl overflow-y-scroll',
+        'flex-[1_1_0] md:max-h-[50dvh] relative prose dark:prose-invert bg-muted-foreground/5 prose-p:my-2 md:prose-p:my-4 prose-strong:text-primary pt-4 pb-4 px-4 md:px-5 border-primary/10 rounded-xl overflow-y-scroll',
         isCompletionLoading && 'overflow-y-hidden animate-pulse',
       )}
     >

@@ -54,7 +54,7 @@ const Breadcrumbs = ({ items }: Props): JSX.Element => {
                       pathname === url
                         ? 'text-foreground'
                         : 'text-muted-foreground',
-                      'truncate hover:opacity-50 transition-opacity block',
+                      'block truncate transition-opacity hover:opacity-50',
                     )}
                   >
                     {label}
@@ -62,7 +62,7 @@ const Breadcrumbs = ({ items }: Props): JSX.Element => {
                 </li>
               )}
               {index < items.length - 1 && (
-                <span className='mx-[0.05rem] md:mx-1.5 text-muted-foreground flex items-center'>
+                <span className='mx-[0.05rem] flex items-center text-muted-foreground md:mx-1.5'>
                   <CaretRightIcon className='h-4 w-4 md:h-5 md:w-5' />
                 </span>
               )}

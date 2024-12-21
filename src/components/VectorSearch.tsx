@@ -11,7 +11,12 @@ import { getEmbedding, queryVector } from '../utilities/paperDetail'
 import VectorSearchResult from './VectorSearchResult'
 
 import CompletionResult from '@/components/CompletionResult'
-import { CubeTransparentIcon, UpArrowIcon } from '@/components/Icons'
+import {
+  ChatGPTIcon,
+  CubeTransparentIcon,
+  GeminiIcon,
+  UpArrowIcon,
+} from '@/components/Icons'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -19,6 +24,13 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { cn } from '@/lib/utils'
 import { localStorageHelper } from '@/utilities/localStorage'
 
@@ -35,6 +47,7 @@ const VectorSearch = () => {
   const [open, setOpen] = useState(false)
   const [wholeLoading, setWholeLoading] = useState(false)
 
+  // FIXME: move local storage helper function into useEffect to prevent SSR error
   const vectorSearchResultCache = localStorageHelper.get(
     'vector-search-result-cache',
   )
@@ -104,26 +117,26 @@ const VectorSearch = () => {
   return (
     <>
       <Button className='mb-3' onClick={() => setOpen(true)}>
-        <CubeTransparentIcon className='mr-2 animate-spin animate-infinite animate-duration-[3000ms] animate-ease-in-out' />
+        <CubeTransparentIcon className='mr-2 animate-spin animate-duration-[3000ms] animate-infinite animate-ease-in-out' />
         Vector Search
       </Button>
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className='max-w-[90%] md:max-w-4xl xl:max-w-5xl px-5 py-[1.35rem] md:p-6'>
+        <DialogContent className='flex min-h-[95dvh] max-w-[95%] flex-col gap-1.5 px-2 pb-2 pt-4 md:min-h-fit md:max-w-4xl md:p-6 md:px-5 md:py-[1.35rem] xl:max-w-5xl'>
           <DialogHeader className='flex flex-col items-center'>
-            <DialogTitle className='flex relative font-garamond justify-center items-center mt-6 mb-3 text-2xl md:text-3xl'>
+            <DialogTitle className='relative mb-5 mt-6 flex items-center justify-center font-garamond text-2xl md:mb-3 md:text-3xl'>
               <CubeTransparentIcon
                 className={cn(
-                  'w-7 h-7 md:w-9 md:h-9 absolute',
+                  'absolute h-7 w-7 md:h-9 md:w-9',
                   wholeLoading
                     ? 'opacity-0'
-                    : 'opacity-100 animate-jumpyy animate-once animate-duration-[300ms]',
+                    : 'animate-jumpyy opacity-100 animate-duration-[300ms] animate-once',
                 )}
               />
               <div
                 className={cn(
-                  'transition-opacity duration-200 absolute',
+                  'absolute transition-opacity duration-200',
                   wholeLoading
-                    ? 'block opacity-100 animate-jumpyy animate-once animate-duration-[300ms]'
+                    ? 'block animate-jumpyy opacity-100 animate-duration-[300ms] animate-once'
                     : 'opacity-0',
                 )}
               >
@@ -133,10 +146,10 @@ const VectorSearch = () => {
             </DialogTitle>
           </DialogHeader>
           {/* Search input box */}
-          <div className='flex flex-col items-center mt-3 mb-4 md:mb-6'>
-            <div className='flex flex-col w-full mx-auto max-w-2xl bg-secondary text-primary pl-4 pt-2.5 pr-2.5 pb-2.5 sm:mx-0 rounded-2xl z-20'>
+          <div className='order-last flex flex-col items-center md:order-none md:mb-6 md:mt-3'>
+            <div className='z-20 mx-auto flex w-full max-w-2xl flex-col rounded-2xl bg-secondary pb-2.5 pl-3 pr-2.5 pt-2.5 text-primary sm:mx-0'>
               <div className='flex w-full justify-between'>
-                <div className='mt-1 max-h-96 flex-1 w-full overflow-y-auto break-words min-h-[4.5rem] mb-2 mr-3'>
+                <div className='mb-2 mr-3 mt-1 max-h-96 min-h-[3.5rem] w-full flex-1 overflow-y-auto break-words md:min-h-[4.5rem]'>
                   <ProseMirror
                     mount={mount}
                     state={editorState}
@@ -146,7 +159,7 @@ const VectorSearch = () => {
                   >
                     <div
                       data-placeholder='text'
-                      className='focus:outline-none relative'
+                      className='relative focus:outline-none'
                       ref={setMount}
                     />
                   </ProseMirror>
@@ -154,18 +167,44 @@ const VectorSearch = () => {
                 <Button
                   onClick={handleSearchButtonClick}
                   className={cn(
-                    'flex disabled:cursor-not-allowed text-secondary bg-primary transition-opacity duration-200',
+                    'flex bg-primary text-secondary transition-opacity duration-200 disabled:cursor-not-allowed',
                     !search
                       ? 'opacity-0'
-                      : 'opacity-100 animate-jumpyy animate-once animate-duration-[300ms]',
+                      : 'animate-jumpyy opacity-100 animate-duration-[300ms] animate-once',
                   )}
                   disabled={wholeLoading}
                   size='icon'
                 >
-                  <UpArrowIcon className='w-4 h-4 md:w-5 md:h-5' />
+                  <UpArrowIcon className='h-4 w-4 md:h-5 md:w-5' />
                 </Button>
               </div>
-              <div className='text-sm text-primary/70'>GPT-4o-mini</div>
+              <Select>
+                <SelectTrigger className='h-6 w-max gap-1 rounded-[0.5rem] border-none bg-secondary px-2.5 py-2 transition-colors hover:bg-primary-foreground'>
+                  <SelectValue placeholder='Model' />
+                </SelectTrigger>
+                <SelectContent className='text-sm text-primary/70'>
+                  <SelectItem
+                    value='gpt-4o-mini'
+                    className='transition-colors hover:bg-secondary'
+                  >
+                    <div className='grid grid-cols-[0.2fr_1fr] items-center gap-1'>
+                      <span className='px-0.5'>
+                        <ChatGPTIcon className='h-4 w-4' />
+                      </span>
+                      <span>GPT 4o mini</span>
+                    </div>
+                  </SelectItem>
+                  <SelectItem
+                    value='gemini-1.5-flash'
+                    className='transition-colors hover:bg-secondary'
+                  >
+                    <div className='grid grid-cols-[0.2fr_1fr] items-center gap-1'>
+                      <GeminiIcon />
+                      <span>Gemini 1.5 Flash</span>
+                    </div>
+                  </SelectItem>
+                </SelectContent>
+              </Select>
             </div>
             {/* <div className='max-w-2xl w-full pl-4 pr-2.5 pb-2.5 sm:mx-0 z-10'>
               <div className='pt-3.5 rounded-b-2xl bg-primary/70 -mt-1.5'>
@@ -173,24 +212,22 @@ const VectorSearch = () => {
               </div>
             </div> */}
             {error && (
-              <div className='text-red-400 font-semibold mt-0.5 text-sm pl-1.5'>
+              <div className='mt-0.5 pl-1.5 text-sm font-semibold text-red-400'>
                 Error performing search 😢 Please try again.
               </div>
             )}
           </div>
-          <div className='flex flex-col gap-2'>
-            <div className='grid grid-cols-[minmax(17rem,_0.3fr)_1fr] gap-2.5'>
-              <VectorSearchResult
-                searchResults={vectorSearchResult}
-                isLoading={isVectorSearchLoading}
-              />
-              <CompletionResult
-                wholeLoading={wholeLoading}
-                setWholeLoading={setWholeLoading}
-                search={search}
-                searchResults={results}
-              />
-            </div>
+          <div className='flex flex-1 flex-col gap-1.5 md:grid md:grid-cols-[minmax(17rem,_0.3fr)_1fr] md:gap-2.5'>
+            <VectorSearchResult
+              searchResults={vectorSearchResult}
+              isLoading={isVectorSearchLoading}
+            />
+            <CompletionResult
+              wholeLoading={wholeLoading}
+              setWholeLoading={setWholeLoading}
+              search={search}
+              searchResults={results}
+            />
           </div>
         </DialogContent>
       </Dialog>

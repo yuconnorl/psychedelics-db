@@ -76,7 +76,7 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
     [querySort, filteredPapers],
   )
 
-  const pagedPapers = sortedPapers.slice(
+  const pagedPapers = sortedPapers?.slice(
     (queryPage - 1) * PAPER_ITEM_PER_PAGE,
     queryPage * PAPER_ITEM_PER_PAGE,
   )
