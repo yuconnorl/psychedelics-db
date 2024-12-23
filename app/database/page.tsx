@@ -34,20 +34,20 @@ export async function generateMetadata(
 
 const CategoriesCard = ({ categoryTitle, category }): JSX.Element => {
   return (
-    <article className='relative group h-fit'>
+    <article className='group relative h-fit'>
       <Link href={`/database/${category}`}>
-        <Card className='break-inside sm:group-hover:-translate-x-2 sm:group-hover:-translate-y-2 transition-transform z-10'>
+        <Card className='break-inside z-10 transition-transform sm:group-hover:-translate-x-2 sm:group-hover:-translate-y-2'>
           <CardHeader className='p-4 md:p-6'>
-            <CardTitle className='font-normal text-base md:text-lg'>
+            <CardTitle className='text-base font-normal md:text-lg'>
               {categoryTitle}
             </CardTitle>
-            <div className='mt-0 text-xs sm:text-sm text-muted-foreground/80'>
+            <div className='mt-0 text-xs text-muted-foreground/80 sm:text-sm'>
               {category}
             </div>
           </CardHeader>
         </Card>
       </Link>
-      <div className='absolute bg-foreground w-[calc(100%-5px)] h-[calc(100%-5px)] top-1 left-1 rounded-lg -z-10' />
+      <div className='absolute left-1 top-1 -z-10 h-[calc(100%-5px)] w-[calc(100%-5px)] rounded-lg bg-foreground' />
     </article>
   )
 }
@@ -59,7 +59,7 @@ const DatabasePage = async (): Promise<JSX.Element> => {
   return (
     <div className=''>
       <AspectRatio
-        className='my-2 border-muted-foreground/10 border rounded-lg relative flex justify-center items-center overflow-hidden'
+        className='relative my-2 flex items-center justify-center overflow-hidden rounded-lg border border-muted-foreground/10'
         ratio={21 / 9}
       >
         <Image
@@ -71,11 +71,11 @@ const DatabasePage = async (): Promise<JSX.Element> => {
           sizes='(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 100vw'
           className='rounded-md object-cover object-center'
         />
-        <div className='noise w-full h-full absolute'></div>
+        <div className='noise absolute h-full w-full'></div>
       </AspectRatio>
-      <div className='text-4xl font-semibold text-primary my-6'>Intro</div>
+      <div className='my-6 text-4xl font-semibold text-primary'>Intro</div>
 
-      <div className='text-secondary-foreground text-base sm:text-lg'>
+      <div className='text-base text-secondary-foreground sm:text-lg'>
         <p>
           The psychedelics database aims to serve as the leading information hub
           around therapeutic and recreational usage of psychedelic compounds.
@@ -102,10 +102,10 @@ const DatabasePage = async (): Promise<JSX.Element> => {
         </div>
       </div>
       <>
-        <div className='text-4xl font-semibold text-primary mt-8 mb-6'>
+        <div className='mb-6 mt-8 text-4xl font-semibold text-primary'>
           Categories
         </div>
-        <div className='mb-6 text-secondary-foreground text-base sm:text-lg'>
+        <div className='mb-6 text-base text-secondary-foreground sm:text-lg'>
           The Psychedelics Database is organized into {categoriesNumber} main
           categories, including:
         </div>

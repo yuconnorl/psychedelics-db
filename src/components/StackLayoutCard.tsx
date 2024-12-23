@@ -29,10 +29,10 @@ const StackCard = async ({
 
   return (
     <Link href={`/database/${category}/${slug}`}>
-      <Card className='relative overflow-hidden grid grid-rows-[minmax(0,1fr)_200px] sm:grid-rows-none sm:grid-cols-[minmax(0,1fr)_240px] xl:grid-cols-[minmax(0,1fr)_320px] group-hover:-translate-x-2 group-hover:-translate-y-2 lg:group-hover:-translate-x-3 lg:group-hover:-translate-y-3 transition-transform z-10'>
+      <Card className='relative z-10 grid grid-rows-[minmax(0,1fr)_200px] overflow-hidden transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2 sm:grid-cols-[minmax(0,1fr)_240px] sm:grid-rows-none lg:group-hover:-translate-x-3 lg:group-hover:-translate-y-3 xl:grid-cols-[minmax(0,1fr)_320px]'>
         <div>
           <CardHeader>
-            <CardTitle className='leading-normal mb-2'>{title}</CardTitle>
+            <CardTitle className='mb-2 leading-normal'>{title}</CardTitle>
             <div className='flex gap-2'>
               <Badge className='w-fit' variant='secondary'>
                 {capitalizeFirstLetter(type)}
@@ -44,29 +44,29 @@ const StackCard = async ({
           </CardHeader>
           <CardContent className='gap-2'>
             {metaDescription ? (
-              <p className='line-clamp-2 text-muted-foreground text-base group-hover:text-foreground transition-colors'>
+              <p className='line-clamp-2 text-base text-muted-foreground transition-colors group-hover:text-foreground'>
                 {metaDescription}
               </p>
             ) : (
-              <p className='line-clamp-2 text-muted-foreground text-base group-hover:text-foreground transition-colors'>
+              <p className='line-clamp-2 text-base text-muted-foreground transition-colors group-hover:text-foreground'>
                 {meta.description}
               </p>
             )}
           </CardContent>
           <CardFooter>
-            <div className='relative flex gap-1.5 items-center text-muted-foreground truncate'>
+            <div className='relative flex items-center gap-1.5 truncate text-muted-foreground'>
               <Image
                 src={meta.iconUrl}
                 alt={`Icon of ${title}`}
                 width={16}
                 height={16}
-                className='object-contain w-4 h-4'
+                className='h-4 w-4 object-contain'
               />
-              <p className='text-sm break-all truncate'>{url}</p>
+              <p className='truncate break-all text-sm'>{url}</p>
             </div>
           </CardFooter>
         </div>
-        <div className='saturate-[0.15] group-hover:saturate-100 transition-[filter]'>
+        <div className='saturate-[0.15] transition-[filter] group-hover:saturate-100'>
           <Image
             src={meta.imgUrl}
             alt={`OG Image of ${url}`}
@@ -102,7 +102,7 @@ const StackLayoutCard = async ({
           language,
           metaDescription,
         }) => (
-          <div key={id} className='h-fit relative group'>
+          <div key={id} className='group relative h-fit'>
             <StackCard
               category={category}
               slug={slug}
@@ -112,7 +112,7 @@ const StackLayoutCard = async ({
               language={language}
               metaDescription={metaDescription}
             />
-            <div className='absolute bg-foreground w-[calc(100%-5px)] h-[calc(100%-5px)] top-1 left-1 rounded-lg -z-10' />
+            <div className='absolute left-1 top-1 -z-10 h-[calc(100%-5px)] w-[calc(100%-5px)] rounded-lg bg-foreground' />
           </div>
         ),
       )}

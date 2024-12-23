@@ -49,11 +49,11 @@ const SidebarItem = ({
 
   return (
     <AccordionItem className='border-0' value={category}>
-      <AccordionTrigger className='text-left py-0'>
+      <AccordionTrigger className='py-0 text-left'>
         <Link
           href={`/database/${category}?layout=${layout}`}
           className={cn(
-            'hover:opacity-40 transition-opacity',
+            'transition-opacity hover:opacity-40',
             currentCategory === category && 'underline underline-offset-[6px]',
           )}
         >
@@ -61,15 +61,15 @@ const SidebarItem = ({
         </Link>
       </AccordionTrigger>
       <AccordionContent className='pl-2'>
-        <ol className='mt-5 flex flex-col gap-3 xl:gap-4 border-l text-base text-muted-foreground'>
+        <ol className='mt-5 flex flex-col gap-3 border-l text-base text-muted-foreground xl:gap-4'>
           {records.map((item) => (
             <li key={item.id} onClick={onItemClicked}>
               <Link
                 href={`/database/${category}/${item.slug}`}
                 className={cn(
                   pathname === `/database/${category}/${item.slug}` &&
-                    'text-foreground border-l-[1.5px] border-foreground',
-                  'hover:opacity-40 pl-4 lg:pl-5 -ml-px block transition-opacity',
+                    'border-l-[1.5px] border-foreground text-foreground',
+                  '-ml-px block pl-4 transition-opacity hover:opacity-40 lg:pl-5',
                 )}
               >
                 {item.title}

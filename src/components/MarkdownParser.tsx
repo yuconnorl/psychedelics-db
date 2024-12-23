@@ -20,19 +20,19 @@ const MarkdownParser: React.FC<{ content: string }> = ({ content }) => {
       components={{
         // Custom component overrides
         h1: ({ node, ...props }) => (
-          <h1 className='text-3xl font-bold mb-4' {...props} />
+          <h1 className='mb-4 text-3xl font-bold' {...props} />
         ),
         h2: ({ node, ...props }) => (
-          <h2 className='text-2xl font-semibold mb-3' {...props} />
+          <h2 className='mb-3 text-2xl font-semibold' {...props} />
         ),
         strong: ({ node, ...props }) => (
           <strong className='font-bold text-gray-800' {...props} />
         ),
         ul: ({ node, ...props }) => (
-          <ul className='list-disc pl-5 mb-4' {...props} />
+          <ul className='mb-4 list-disc pl-5' {...props} />
         ),
         ol: ({ node, ...props }) => (
-          <ol className='list-decimal pl-5 mb-4' {...props} />
+          <ol className='mb-4 list-decimal pl-5' {...props} />
         ),
         li: ({ node, ...props }) => <li className='mb-2' {...props} />,
       }}

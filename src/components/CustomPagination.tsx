@@ -85,14 +85,14 @@ const CustomPagination = ({
     <nav
       role='navigation'
       aria-label='pagination'
-      className={cn('mx-auto gap-1 flex w-full justify-center mt-8')}
+      className={cn('mx-auto mt-8 flex w-full justify-center gap-1')}
     >
       <Button
         onClick={onPrevious}
         variant='ghost'
         size='icon'
         disabled={currentPage === 1}
-        className='disabled:opacity-50 px-1.5 md:px-3 w-8 md:w-10'
+        className='w-8 px-1.5 disabled:opacity-50 md:w-10 md:px-3'
       >
         <ChevronLeftIcon />
       </Button>
@@ -104,8 +104,8 @@ const CustomPagination = ({
           size='icon'
           className={cn(
             pageNumber === '...'
-              ? 'cursor-default hover:bg-transparent w-5'
-              : 'px-1.5 md:px-3 w-8 md:w-10',
+              ? 'w-5 cursor-default hover:bg-transparent'
+              : 'w-8 px-1.5 md:w-10 md:px-3',
           )}
         >
           {pageNumber}
@@ -116,7 +116,7 @@ const CustomPagination = ({
         variant='ghost'
         size='icon'
         disabled={currentPage === Math.ceil(totalElements / itemsPerPage)}
-        className='disabled:opacity-50 px-1.5 md:px-3 w-8 md:w-10'
+        className='w-8 px-1.5 disabled:opacity-50 md:w-10 md:px-3'
       >
         <ChevronRightIcon />
       </Button>

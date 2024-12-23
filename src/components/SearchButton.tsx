@@ -9,13 +9,13 @@ type Props = {
 
 const SearchButton = ({ onButtonClick, className }: Props): JSX.Element => {
   return (
-    <div className='md:block relative group'>
-      <div className='absolute search-button-bg -inset-0.5 rounded-lg blur group-hover:blur-md transition -z-10 opacity-60' />
+    <div className='group relative md:block'>
+      <div className='search-button-bg absolute -inset-0.5 -z-10 rounded-lg opacity-60 blur transition group-hover:blur-md' />
       <button
         type='button'
         className={cn(
-          'flex items-center ring-1 ring-muted/50 bg-input px-4 h-9 rounded-sm justify-between',
-          'search-button-bg bg-[length:200%_200%] animate-button-gradient',
+          'flex h-9 items-center justify-between rounded-sm bg-input px-4 ring-1 ring-muted/50',
+          'search-button-bg animate-button-gradient bg-[length:200%_200%]',
           'transition-shadow',
           className,
         )}
@@ -26,7 +26,7 @@ const SearchButton = ({ onButtonClick, className }: Props): JSX.Element => {
           <div className='text-sm'>Open the door...</div>
         </div>
         <kbd className='flex items-center gap-1 text-primary/70'>
-          <abbr className='no-underline text-lg'>⌘</abbr>
+          <abbr className='text-lg no-underline'>⌘</abbr>
           <span className='text-sm'>K</span>
         </kbd>
       </button>

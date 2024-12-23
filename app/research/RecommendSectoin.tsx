@@ -17,22 +17,22 @@ const RecommendCard = ({ paper }: { paper: PaperData }) => {
       href={`/research/${slug}`}
       prefetch={false}
       className={cn(
-        'flex-1 px-4 py-4 group hover:bg-secondary/55 transition-colors rounded',
+        'group flex-1 rounded px-4 py-4 transition-colors hover:bg-secondary/55',
       )}
     >
-      <div className='flex gap-1 flex-wrap'>
+      <div className='flex flex-wrap gap-1'>
         {substance.map((sub) => (
           <SubstanceBadge
             key={sub}
             substance={sub}
-            className='hover:bg-secondary bg-secondary text-primary'
+            className='bg-secondary text-primary hover:bg-secondary'
           />
         ))}
       </div>
-      <h3 className='group-hover:opacity-70 transition-opacity my-3 text-primary font-semibold'>
+      <h3 className='my-3 font-semibold text-primary transition-opacity group-hover:opacity-70'>
         {title}
       </h3>
-      <time className='text-primary/70 text-sm group-hover:opacity-70 transition-opacity'>
+      <time className='text-sm text-primary/70 transition-opacity group-hover:opacity-70'>
         {dayjs(publishedAt).format('YYYY MMM')}
       </time>
     </Link>
@@ -41,8 +41,8 @@ const RecommendCard = ({ paper }: { paper: PaperData }) => {
 
 const RecommandSection = ({ recommendPapers }: RecommandSectionProps) => {
   return (
-    <div className='mt-8 md:mt-12 px-1'>
-      <h2 className='font-semibold text-lg mb-2 md:mb-3 pl-2'>
+    <div className='mt-8 px-1 md:mt-12'>
+      <h2 className='mb-2 pl-2 text-lg font-semibold md:mb-3'>
         Similar research
       </h2>
       <section className='flex flex-col md:flex-row md:divide-x'>

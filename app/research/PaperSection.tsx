@@ -6,7 +6,7 @@ const PaperSection = async (): Promise<JSX.Element> => {
   const papers = await getPapers()
 
   return (
-    <section className='grid gap-3 md:px-6 md:grid-cols-[minmax(12rem,_0.3fr)_1fr] relative'>
+    <section className='relative grid gap-3 md:grid-cols-[minmax(12rem,_0.3fr)_1fr] md:px-6'>
       <SubstancesButtonGroup />
       <PapersTable papers={papers} />
     </section>

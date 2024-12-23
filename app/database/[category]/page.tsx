@@ -72,10 +72,10 @@ const CategoryPage = async ({
           },
         ]}
       />
-      <h2 className='text-3xl md:text-5xl font-semibold mb-6'>
+      <h2 className='mb-6 text-3xl font-semibold md:text-5xl'>
         {category.displayName}
       </h2>
-      <div className='flex flex-col gap-4 relative'>
+      <div className='relative flex flex-col gap-4'>
         <Suspense fallback={<div>Cardcontainer</div>}>
           <CardContainer>
             <Grid params={params} />

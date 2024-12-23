@@ -25,11 +25,11 @@ const HoverRevealImage = (): JSX.Element => {
         ref={parentRef}
         className='relative inline'
       >
-        <span className='italic font-garamond'>Psychedelics</span>
+        <span className='font-garamond italic'>Psychedelics</span>
         <Image
           src={imgHomerTrippy}
           alt='Homer on trip'
-          className='absolute left-4 top-4 w-36 ml-4 invisible inline group-hover:visible'
+          className='invisible absolute left-4 top-4 ml-4 inline w-36 group-hover:visible'
           quality={75}
           style={{ transform: `translate(${position.x}px, ${position.y}px)` }}
         />
@@ -37,7 +37,7 @@ const HoverRevealImage = (): JSX.Element => {
       <Image
         src={imgTrippyDrawing}
         alt='Trippy drawing'
-        className='absolute right-0 top-0 w-52 ml-4 invisible inline group-hover:visible'
+        className='invisible absolute right-0 top-0 ml-4 inline w-52 group-hover:visible'
         quality={75}
       />
     </div>

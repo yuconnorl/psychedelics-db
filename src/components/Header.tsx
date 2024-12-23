@@ -50,17 +50,17 @@ const Header = ({
   return (
     <header
       className={cn(
-        'pt-[1.85rem] pb-6 sticky top-0 w-full items-center bg-background/90 supports-[backdrop-filter]:bg-background/60 backdrop-blur z-50',
+        'sticky top-0 z-50 w-full items-center bg-background/90 pb-6 pt-[1.85rem] backdrop-blur supports-[backdrop-filter]:bg-background/60',
         !isRoot && 'border-b py-3 sm:py-6',
       )}
     >
-      <div className='container px-6 lg:pr-8 lg:pl-10 flex items-center gap-3 w-full justify-between'>
-        <div className='flex gap-2 items-center'>
+      <div className='container flex w-full items-center justify-between gap-3 px-6 lg:pl-10 lg:pr-8'>
+        <div className='flex items-center gap-2'>
           <Link
-            className='hover:opacity-40 transition-opacity flex gap-1 md:gap-1.5 items-center'
+            className='flex items-center gap-1 transition-opacity hover:opacity-40 md:gap-1.5'
             href={'/'}
           >
-            <PsychedelicDBIcon className='w-6 h-6 md:w-7 md:h-7' />
+            <PsychedelicDBIcon className='h-6 w-6 md:h-7 md:w-7' />
             <span className='font-garamond text-base sm:text-lg md:text-xl'>
               {SITE_NAME}
             </span>
@@ -70,14 +70,14 @@ const Header = ({
           {!isRoot && (
             <AlgoliaSearchComponent searchBarClassName='w-52 lg:w-60' />
           )}
-          <div className='hidden md:flex gap-3 md:gap-5 items-center justify-around'>
-            <div className='md:flex gap-3 md:gap-5 items-center text-foreground/70'>
+          <div className='hidden items-center justify-around gap-3 md:flex md:gap-5'>
+            <div className='items-center gap-3 text-foreground/70 md:flex md:gap-5'>
               <Link
                 href={'/database'}
                 className={cn(
                   currentCategory === 'database' &&
-                    'underline underline-offset-4 text-foreground',
-                  'hover:opacity-40 transition-opacity',
+                    'text-foreground underline underline-offset-4',
+                  'transition-opacity hover:opacity-40',
                 )}
               >
                 Database
@@ -86,8 +86,8 @@ const Header = ({
                 href={'/research'}
                 className={cn(
                   currentCategory === 'research' &&
-                    'underline underline-offset-4 text-foreground',
-                  'hover:opacity-40 transition-opacity',
+                    'text-foreground underline underline-offset-4',
+                  'transition-opacity hover:opacity-40',
                 )}
               >
                 Research
@@ -96,31 +96,31 @@ const Header = ({
                 href={'/about'}
                 className={cn(
                   currentCategory === 'about' &&
-                    'underline underline-offset-4 text-foreground',
-                  'hover:opacity-40 transition-opacity',
+                    'text-foreground underline underline-offset-4',
+                  'transition-opacity hover:opacity-40',
                 )}
               >
                 About
               </Link>
             </div>
             <Separator orientation='vertical' className='h-6 w-[1.6px]' />
-            <div className='flex gap-3 md:gap-5 items-center'>
+            <div className='flex items-center gap-3 md:gap-5'>
               <ThemeSwitch />
               <Link
                 href={'https://tinyurl.com/3fr2ddu7'}
                 target='_blank'
                 className='group block'
               >
-                <TelegramIcon className='text-primary group-hover:text-primary/50 transition-colors' />
+                <TelegramIcon className='text-primary transition-colors group-hover:text-primary/50' />
               </Link>
             </div>
           </div>
           <Link
             href={'https://tinyurl.com/3fr2ddu7'}
             target='_blank'
-            className='block mr-3 md:hidden'
+            className='mr-3 block md:hidden'
           >
-            <TelegramIcon className='text-primary w-5 h-5' />
+            <TelegramIcon className='h-5 w-5 text-primary' />
           </Link>
           <div className='flex md:hidden'>
             <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
@@ -128,15 +128,15 @@ const Header = ({
                 <HamburgerIcon />
               </SheetTrigger>
               <SheetPortal container={sheetPortalRef.current}>
-                <SheetContent className='w-[85%] sm:w-[540px] grid grid-rows-[calc(100dvh-6rem)_1fr]'>
+                <SheetContent className='grid w-[85%] grid-rows-[calc(100dvh-6rem)_1fr] sm:w-[540px]'>
                   <ScrollArea className='h-full'>
-                    <div className='text-muted-foreground mb-8'>
-                      <PsychedelicDBIcon className='w-9 h-9' />
+                    <div className='mb-8 text-muted-foreground'>
+                      <PsychedelicDBIcon className='h-9 w-9' />
                     </div>
-                    <div className='flex gap-3 sm:gap-3 flex-col text-base sm:text-lg mb-4 sm:mb-6'>
+                    <div className='mb-4 flex flex-col gap-3 text-base sm:mb-6 sm:gap-3 sm:text-lg'>
                       <Link
                         href={'/database'}
-                        className='hover:opacity-40 transition-opacity'
+                        className='transition-opacity hover:opacity-40'
                       >
                         <span
                           onClick={(): void => setSheetOpen(false)}
@@ -150,7 +150,7 @@ const Header = ({
                       </Link>
                       <Link
                         href={'/research'}
-                        className='hover:opacity-40 transition-opacity'
+                        className='transition-opacity hover:opacity-40'
                       >
                         <span
                           onClick={(): void => setSheetOpen(false)}
@@ -164,7 +164,7 @@ const Header = ({
                       </Link>
                       <Link
                         href={'/about'}
-                        className='hover:opacity-40 transition-opacity'
+                        className='transition-opacity hover:opacity-40'
                       >
                         <span
                           onClick={(): void => setSheetOpen(false)}
@@ -183,12 +183,12 @@ const Header = ({
                       categoriesMap={categoriesMap}
                       onCategoryClickedAndCloseSheet={() => setSheetOpen(false)}
                     />
-                    <div className='flex gap-4 my-4 items-center'>
+                    <div className='my-4 flex items-center gap-4'>
                       Switch Theme
                       <ThemeSwitch />
                     </div>
                   </ScrollArea>
-                  <div className='flex justify-center items-center text-muted-foreground font-garamond'>
+                  <div className='flex items-center justify-center font-garamond text-muted-foreground'>
                     Psychedelics Database
                   </div>
                 </SheetContent>

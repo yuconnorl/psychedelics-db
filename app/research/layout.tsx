@@ -3,8 +3,8 @@ import { ChildrenProps } from '@/types'
 
 const ResearchLayout = ({ children }: ChildrenProps): JSX.Element => {
   return (
-    <div className='flex flex-col justify-between flex-1'>
-      <main className='container pb-4 px-4 md:py-4 md:px-6 flex-1 items-start'>
+    <div className='flex flex-1 flex-col justify-between'>
+      <main className='container flex-1 items-start px-4 pb-4 md:px-6 md:py-4'>
         {children}
       </main>
       <Footer />
