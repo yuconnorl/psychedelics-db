@@ -1,5 +1,4 @@
 'use client'
-
 import { useCallback, useEffect, useState } from 'react'
 import { ProseMirror, react } from '@nytimes/react-prosemirror'
 import { schema } from 'prosemirror-schema-basic'
@@ -31,11 +30,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { MODEL_MAP } from '@/config/general'
 import { cn } from '@/lib/utils'
+import { type VectorSearchPoints } from '@/types/dataTypes'
+import { type Models } from '@/types/general'
 import { localStorageHelper } from '@/utilities/localStorage'
 
 const VectorSearch = () => {
   const [search, setSearch] = useState('')
+  const [model, setModel] = useState<Models>('gemini-1.5-flash')
   const [mount, setMount] = useState<HTMLElement | null>(null)
   const [editorState, setEditorState] = useState<EditorState | null>(
     EditorState.create({
@@ -46,11 +49,7 @@ const VectorSearch = () => {
   const [debouncedSearch, setDebouncedSearch] = useState('')
   const [open, setOpen] = useState(false)
   const [wholeLoading, setWholeLoading] = useState(false)
-
-  // FIXME: move local storage helper function into useEffect to prevent SSR error
-  const vectorSearchResultCache = localStorageHelper.get(
-    'vector-search-result-cache',
-  )
+  const [cachedResults, setCachedResults] = useState([])
 
   const searchFetcher = async (searchTerm: string) => {
     if (!searchTerm) return []
@@ -59,7 +58,7 @@ const VectorSearch = () => {
     localStorageHelper.remove('completion-cache')
     setWholeLoading(true)
 
-    const { embedding } = await getEmbedding(searchTerm)
+    const { embedding } = await getEmbedding(searchTerm, model)
     const { queryResults } = await queryVector(embedding)
 
     return queryResults?.points || []
@@ -87,8 +86,6 @@ const VectorSearch = () => {
     },
   )
 
-  const vectorSearchResult = results.length ? results : vectorSearchResultCache
-
   const handleSearchButtonClick = useCallback(() => {
     if (!search) {
       toast.warning('Please input prompt to search')
@@ -113,6 +110,27 @@ const VectorSearch = () => {
   useEffect(() => {
     setSearch(editorState.doc.toJSON()?.content?.[0]?.content?.[0]?.text)
   }, [editorState])
+
+  useEffect(() => {
+    // Load cached results on mount
+    const vectorSearchResultCache = localStorageHelper.get<
+      VectorSearchPoints[]
+    >('vector-search-result-cache')
+
+    if (vectorSearchResultCache) {
+      setCachedResults(vectorSearchResultCache)
+    }
+  }, [])
+
+  useEffect(() => {
+    // Update cache when results change
+    if (results.length) {
+      localStorageHelper.set('vector-search-result-cache', results)
+      setCachedResults(results)
+    }
+  }, [results])
+
+  const vectorSearchResult = results.length ? results : cachedResults
 
   return (
     <>
@@ -147,9 +165,9 @@ const VectorSearch = () => {
           </DialogHeader>
           {/* Search input box */}
           <div className='order-last flex flex-col items-center md:order-none md:mb-6 md:mt-3'>
-            <div className='z-20 mx-auto flex w-full max-w-2xl flex-col rounded-2xl bg-secondary pb-2.5 pl-3 pr-2.5 pt-2.5 text-primary sm:mx-0'>
+            <div className='z-20 mx-auto flex w-full max-w-2xl flex-col rounded-2xl bg-secondary pb-2.5 pl-2 pr-2.5 pt-2.5 text-primary sm:mx-0'>
               <div className='flex w-full justify-between'>
-                <div className='mb-2 mr-3 mt-1 max-h-96 min-h-[3.5rem] w-full flex-1 overflow-y-auto break-words md:min-h-[4.5rem]'>
+                <div className='mb-2 mr-3 mt-1 max-h-96 min-h-[3.5rem] w-full flex-1 overflow-y-auto break-words pl-3.5 md:min-h-[4.5rem]'>
                   <ProseMirror
                     mount={mount}
                     state={editorState}
@@ -178,20 +196,24 @@ const VectorSearch = () => {
                   <UpArrowIcon className='h-4 w-4 md:h-5 md:w-5' />
                 </Button>
               </div>
-              <Select>
-                <SelectTrigger className='h-6 w-max gap-1 rounded-[0.5rem] border-none bg-secondary px-2.5 py-2 transition-colors hover:bg-primary-foreground'>
+              <Select
+                defaultValue={model}
+                onValueChange={(model: Models) => setModel(model)}
+              >
+                <SelectTrigger className='h-6 w-max gap-1 rounded-[0.5rem] border-none bg-secondary px-1.5 py-2 text-primary/70 transition-colors hover:bg-primary-foreground'>
                   <SelectValue placeholder='Model' />
                 </SelectTrigger>
                 <SelectContent className='text-sm text-primary/70'>
                   <SelectItem
                     value='gpt-4o-mini'
-                    className='transition-colors hover:bg-secondary'
+                    className='transition-colors hover:bg-secondary disabled:cursor-not-allowed'
+                    disabled
                   >
-                    <div className='grid grid-cols-[0.2fr_1fr] items-center gap-1'>
+                    <div className='grid grid-cols-[1.25rem_1fr] items-center gap-1'>
                       <span className='px-0.5'>
                         <ChatGPTIcon className='h-4 w-4' />
                       </span>
-                      <span>GPT 4o mini</span>
+                      <span>{MODEL_MAP['gpt-4o-mini']} (soon)</span>
                     </div>
                   </SelectItem>
                   <SelectItem
@@ -200,17 +222,12 @@ const VectorSearch = () => {
                   >
                     <div className='grid grid-cols-[0.2fr_1fr] items-center gap-1'>
                       <GeminiIcon />
-                      <span>Gemini 1.5 Flash</span>
+                      <span>{MODEL_MAP['gemini-1.5-flash']}</span>
                     </div>
                   </SelectItem>
                 </SelectContent>
               </Select>
             </div>
-            {/* <div className='max-w-2xl w-full pl-4 pr-2.5 pb-2.5 sm:mx-0 z-10'>
-              <div className='pt-3.5 rounded-b-2xl bg-primary/70 -mt-1.5'>
-                Expand your consciousness
-              </div>
-            </div> */}
             {error && (
               <div className='mt-0.5 pl-1.5 text-sm font-semibold text-red-400'>
                 Error performing search 😢 Please try again.
@@ -227,6 +244,7 @@ const VectorSearch = () => {
               setWholeLoading={setWholeLoading}
               search={search}
               searchResults={results}
+              model={model}
             />
           </div>
         </DialogContent>

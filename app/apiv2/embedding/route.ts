@@ -1,4 +1,4 @@
-import { GoogleGenerativeAI, SchemaType } from '@google/generative-ai'
+import { GoogleGenerativeAI } from '@google/generative-ai'
 import { type NextRequest, NextResponse } from 'next/server'
 import OpenAI from 'openai'
 
@@ -15,6 +15,7 @@ export async function POST(request: NextRequest) {
     )
   }
 
+  // const { message, model } = await request.json()
   const { message } = await request.json()
 
   if (!message) {
@@ -22,27 +23,36 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
-    const openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
-    })
+    let embeddingData: number[] = []
 
-    const embedding = await openai.embeddings.create({
-      model: 'text-embedding-3-small',
-      input: message,
-      encoding_format: 'float',
-      dimensions: 768,
-    })
+    const model = 'gpt-4o-mini'
 
-    // const model = genAI.getGenerativeModel({
-    //   model: 'gemini-1.5-flash',
-    //   generationConfig: {
-    //     responseMimeType: 'application/json',
-    //     responseSchema: schema,
-    //   },
-    // })
+    switch (model) {
+      // case 'gemini-1.5-flash': {
+      //   const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
+      //   const gemini = genAI.getGenerativeModel({ model: 'text-embedding-004' })
+      //   const geminiResult = await gemini.embedContent(message)
+      //   embeddingData = geminiResult.embedding.values || []
+      //   break
+      // }
 
-    const embeddingData = embedding?.data[0]?.embedding || []
+      case 'gpt-4o-mini': {
+        const openai = new OpenAI({
+          apiKey: process.env.OPENAI_API_KEY,
+        })
+        const openaiResult = await openai.embeddings.create({
+          model: 'text-embedding-3-small',
+          input: message,
+          encoding_format: 'float',
+          dimensions: 768,
+        })
+        embeddingData = openaiResult?.data[0]?.embedding || []
+        break
+      }
+
+      default:
+        throw new Error('Error performing embedding, unsupported model')
+    }
 
     return NextResponse.json({ embedding: embeddingData, success: true })
   } catch (error: unknown) {

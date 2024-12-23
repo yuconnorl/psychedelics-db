@@ -52,7 +52,6 @@ const VectorSearchResult = ({ searchResults, isLoading = false }) => {
                     </div>
                     <div className='pl-0.5'>
                       <div className='line-clamp-3 w-full text-ellipsis px-1 pl-1 text-primary/85 md:pr-3'>
-                        {/* <div className='w-full   px-1 pl-1 text-primary/85 md:pr-3'> */}
                         {result.payload.title}
                       </div>
                       <div className='mt-2 flex flex-col gap-1 pl-1'>

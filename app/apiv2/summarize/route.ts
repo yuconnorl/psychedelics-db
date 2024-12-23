@@ -1,3 +1,4 @@
+import { google } from '@ai-sdk/google'
 import { openai } from '@ai-sdk/openai'
 import { streamText } from 'ai'
 import { type NextRequest, NextResponse } from 'next/server'
@@ -15,19 +16,38 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  const { prompt }: { prompt: string } = await request.json()
+  const { prompt, model }: { prompt: string; model: string } =
+    await request.json()
 
   // if (!prompt) {
   //   return NextResponse.json({ success: false, message: 'No prompt provided' })
   // }
 
   try {
-    const result = streamText({
-      model: openai('gpt-4o-mini'),
-      // system: `You are an expert in summarizing structured data from research papers. You will be provided with structured text data from five research papers related to the user's query. Your task is to summarize the key findings from these research papers, highlighting their relevance and similarity, and trying to use the information from five research papers to explain the user's query. Also, when refering to particular paper, add link to it with the URL field in paper detail, the format must follow: [paper title](link). Ensure that the summary is clear, concise, and informative.`,
-      system: `You are an expert in summarizing structured data from research papers. You will be provided with structured text data from five research papers related to the user's query. Your task is to use the information from five research papers to explain the user's query. Also, when refering to particular paper, add link to it with the URL field in paper detail, the format must follow: [paper title](link). Ensure that the summary is clear, concise, and informative.`,
-      prompt: `${prompt}`,
-    })
+    let result = null
+
+    switch (model) {
+      case 'gemini-1.5-flash': {
+        result = streamText({
+          model: google('gemini-1.5-flash'),
+          system: `You are an expert in summarizing structured data from research papers. You will be provided with structured text data from five research papers related to the query of user . Your task is to use the information from five research papers to explain the query of user. Also, when refering to particular paper, add link to it with the URL field in paper detail, the format must follow: [paper title](link). Ensure that the summary is clear, concise, and informative.`,
+          prompt: `${prompt}`,
+        })
+        break
+      }
+
+      case 'gpt-4o-mini': {
+        result = streamText({
+          model: openai('gpt-4o-mini'),
+          system: `You are an expert in summarizing structured data from research papers. You will be provided with structured text data from five research papers related to the query of user . Your task is to use the information from five research papers to explain the query of user. Also, when refering to particular paper, add link to it with the URL field in paper detail, the format must follow: [paper title](link). Ensure that the summary is clear, concise, and informative.`,
+          prompt: `${prompt}`,
+        })
+        break
+      }
+
+      default:
+        throw new Error('Error performing embedding, unsupported model')
+    }
 
     return result.toDataStreamResponse()
   } catch (error: unknown) {

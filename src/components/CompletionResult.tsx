@@ -48,6 +48,7 @@ type CompletionResultProps = {
   searchResults: any[]
   wholeLoading: boolean
   setWholeLoading: (value: boolean) => void
+  model: string
 }
 
 const CompletionResult = ({
@@ -55,6 +56,7 @@ const CompletionResult = ({
   searchResults,
   wholeLoading,
   setWholeLoading,
+  model,
 }: CompletionResultProps) => {
   const [completionCacheData, setCompletionCacheData] = useState('')
 
@@ -64,6 +66,9 @@ const CompletionResult = ({
     isLoading: isCompletionLoading,
   } = useCompletion({
     api: '/apiv2/summarize',
+    body: {
+      model: model,
+    },
   })
 
   useEffect(() => {
@@ -93,11 +98,11 @@ const CompletionResult = ({
   return (
     <div
       className={cn(
-        'flex-[1_1_0] md:max-h-[50dvh] relative prose dark:prose-invert bg-muted-foreground/5 prose-p:my-2 md:prose-p:my-4 prose-strong:text-primary pt-4 pb-4 px-4 md:px-5 border-primary/10 rounded-xl overflow-y-scroll',
-        isCompletionLoading && 'overflow-y-hidden animate-pulse',
+        'prose relative flex-[1_1_0] overflow-y-scroll rounded-xl border-primary/10 bg-muted-foreground/5 px-4 pb-4 pt-4 dark:prose-invert prose-p:my-2 prose-strong:text-primary md:max-h-[50dvh] md:px-5 md:prose-p:my-4',
+        isCompletionLoading && 'animate-pulse overflow-y-hidden',
       )}
     >
-      <Badge className='bg-muted text-primary/80 hover:bg-muted py-1.5'>
+      <Badge className='bg-muted py-1.5 text-primary/80 hover:bg-muted'>
         <span className='ml-1'>Summarize</span>
       </Badge>
       {wholeLoading && !isCompletionLoading && <CompletionLoadingSkeleton />}
