@@ -101,7 +101,6 @@ module.exports = {
   plugins: [
     require('tailwindcss-animate'),
     require('@tailwindcss/typography'),
-    require('@tailwindcss/line-clamp'),
     require('tailwindcss/plugin')(function ({ addBase }) {
       addBase({
         '[type="search"]::-webkit-search-decoration': { display: 'none' },

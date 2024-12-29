@@ -56,7 +56,7 @@ export const AuthorManager: React.FC = () => {
         To add multiple entries, seperate them with a comma, e.g. "apple,
         orange, banana", then press Enter or click 'Add Row' button.
       </div>
-      <div className='btn-wrapper'>
+      <div className='flex gap-2'>
         <button
           className='btn btn--style-primary btn--icon-style-without-border btn--size-small'
           onClick={handleMultiEntriesAdd}

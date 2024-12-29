@@ -114,14 +114,14 @@ export const UrlManager: React.FC = ({
         {label}
         {required && <span className='required'>*</span>}
       </label>
-      <div className='doi-input-wrapper'>
+      <div className='flex items-center gap-2'>
         <input
           type='text'
           value={value}
           onChange={handleInputChange}
           placeholder='URL'
         />
-        <button
+        {/* <button
           className='btn btn--style-primary btn--icon-style-without-border btn--size-small doi-fetch-button'
           onClick={handlePaperFetch}
           type='button'
@@ -131,7 +131,7 @@ export const UrlManager: React.FC = ({
           ) : (
             'Fetch Paper'
           )}
-        </button>
+        </button> */}
       </div>
       <div className='field-description'>
         Fetch paper details by entering link to the paper. This will populate

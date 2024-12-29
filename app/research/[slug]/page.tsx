@@ -112,7 +112,7 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
         className='group mb-10 flex w-fit items-center text-sm text-primary/80 transition-opacity hover:opacity-50'
       >
         <ArrowLeftIcon className='mr-1.5 transition-transform group-hover:-translate-x-1' />
-        <>All Researches</>
+        <span>All Researches</span>
       </Link>
       <article className='flex flex-col md:grid md:grid-cols-[1fr_0.5fr]'>
         <div className='md:border-r md:pl-3 md:pr-6'>

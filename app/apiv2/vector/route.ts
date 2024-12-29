@@ -2,7 +2,7 @@
 import { QdrantClient } from '@qdrant/js-client-rest'
 import { type NextRequest, NextResponse } from 'next/server'
 
-// update vector database
+/** Update vector database */
 export async function PUT(request: NextRequest) {
   const origin = request.headers.get('origin')
 

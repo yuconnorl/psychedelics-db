@@ -15,14 +15,25 @@ export const summarizePaperWithDoi = async (doi) => {
   }
 }
 
-// Deprecated because exceeding the chatGPT rate limit
-export const summarizePaperWithUrl = async (url) => {
+export const summarizePaperWithUrl = async (url: string) => {
   if (!url || url === '') {
     throw new Error('URL is empty')
   }
 
   try {
     const paperData = await fetch(`/api/paper?url=${url}`)
+    return paperData
+  } catch (error: unknown) {
+    console.log('Error fetching paper:', error)
+  }
+}
+
+export const summarizePaperWithPdfFile = async (pdfData: FormData) => {
+  try {
+    const paperData = await fetch(`/apiv2/research-papers/extract`, {
+      method: 'POST',
+      body: pdfData,
+    })
     return paperData
   } catch (error: unknown) {
     console.log('Error fetching paper:', error)
@@ -68,7 +79,7 @@ interface UpdateVectorResponse {
   message?: string
 }
 
-export const updateVector = async (message) => {
+export const updateVector = async (message: number[]) => {
   try {
     const response = await fetch('/apiv2/vector', {
       method: 'PUT',

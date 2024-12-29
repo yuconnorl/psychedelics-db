@@ -3,6 +3,8 @@ import { openai } from '@ai-sdk/openai'
 import { streamText } from 'ai'
 import { type NextRequest, NextResponse } from 'next/server'
 
+import type { MODEL_MAP } from '@/config/general'
+
 export async function POST(request: NextRequest) {
   const origin = request.headers.get('origin')
 
@@ -16,7 +18,7 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  const { prompt, model }: { prompt: string; model: string } =
+  const { prompt, model }: { prompt: string; model: keyof typeof MODEL_MAP } =
     await request.json()
 
   // if (!prompt) {
@@ -30,7 +32,7 @@ export async function POST(request: NextRequest) {
       case 'gemini-1.5-flash': {
         result = streamText({
           model: google('gemini-1.5-flash'),
-          system: `You are an expert in summarizing structured data from research papers. You will be provided with structured text data from five research papers related to the query of user . Your task is to use the information from five research papers to explain the query of user. Also, when refering to particular paper, add link to it with the URL field in paper detail, the format must follow: [paper title](link). Ensure that the summary is clear, concise, and informative.`,
+          system: `You are an expert in summarizing structured data from research papers. You will be provided with structured text data from five research papers related to the query of user . Your task is to use the information from five research papers to explain the query of user. Also, when refering to particular paper, add link to it with the URL field in paper detail, the format must follow: [paper order](link), e.g. [paper 1](link). Ensure that the summary is clear, concise, and informative.`,
           prompt: `${prompt}`,
         })
         break
@@ -39,7 +41,7 @@ export async function POST(request: NextRequest) {
       case 'gpt-4o-mini': {
         result = streamText({
           model: openai('gpt-4o-mini'),
-          system: `You are an expert in summarizing structured data from research papers. You will be provided with structured text data from five research papers related to the query of user . Your task is to use the information from five research papers to explain the query of user. Also, when refering to particular paper, add link to it with the URL field in paper detail, the format must follow: [paper title](link). Ensure that the summary is clear, concise, and informative.`,
+          system: `You are an expert in summarizing structured data from research papers. You will be provided with structured text data from five research papers related to the query of user . Your task is to use the information from five research papers to explain the query of user. Also, when refering to particular paper, add link to it with the URL field in paper detail, the format must follow: [paper order](link), e.g. [paper 1](link). Ensure that the summary is clear, concise, and informative.`,
           prompt: `${prompt}`,
         })
         break

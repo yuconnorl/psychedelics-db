@@ -80,6 +80,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
       Research Paper Data: ${jinaText}
       `
+
     const promptText = `Parse the string data into following format. Generate 3 to 5 key findings from the data provided. Keep the original title, abstract and keywords as it is. If there's no keywords provided, generate it. The return data should be in the following format:
 
       {
@@ -180,47 +181,4 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     console.error('Error fetching PDF:', error)
     return NextResponse.json({ success: false, message: 'Error fetching PDF' })
   }
-}
-
-const test = {
-  abstract:
-    'Recent studies have sparked renewed interest in the therapeutic potential of psychedelics for treating depression and other mental health conditions. Simultaneously, the novel psychoactive substances (NPS) phenomenon, with a huge number of NPS emerging constantly, has changed remarkably the illicit drug market, being their scientific evaluation an urgent need. Thus, this study aims to elucidate the impact of amino-terminal modifications to the 5-MeO-DMT molecule on its interactions with serotonin receptors and transporters, as well as its psychoactive and thermoregulatory properties.',
-  authors: [
-    'Pol Puigseslloses',
-    'Núria Nadal-Gratacós',
-    'Gabriel Ketsela',
-    'Nicola Weiss',
-    'Xavier Berzosa',
-    'Roger Estrada-Tejedor',
-    'Mohammad Nazmul Islam',
-    'Marion Holy',
-    'Marco Niello',
-    'David Pubill',
-    'Jordi Camarasa',
-    'Elena Escubedo',
-    'Harald H. Sitte',
-    'Raúl López-Arnau',
-  ],
-  journal: 'Molecular Psychiatry',
-  keyFindings: [
-    'All examined 5-MeO-tryptamines exhibited selectivity for 5-HT1AR over 5-HT2AR.',
-    '5-MeO-pyr-T was identified as the most potent partial 5-HT releaser among the tested compounds.',
-    'All tested tryptamines elicited the head twitch response (HTR) in mice, indicative of a potential hallucinogenic effect, primarily mediated by 5-HT2AR activation. However, 5-HT1AR activation was found to attenuate the HTR.',
-    'Tryptamines that produced a higher hypothermic response, mediated by 5-HT1AR, tended to exhibit a lower hallucinogenic effect.',
-    'Some 5-MeO-tryptamines elicited very low HTR but still acted as potent 5-HT2AR agonists, suggesting their potential as non-hallucinogenic therapeutic agents.',
-  ],
-  keywords: [
-    '5-MeO-DMT',
-    'psychedelics',
-    'serotonin receptors',
-    'hallucinogenic effects',
-    'thermoregulation',
-    'head twitch response',
-    '5-HT1AR',
-    '5-HT2AR',
-    'SERT',
-    'drug development',
-  ],
-  title:
-    'Structure-activity relationships of serotonergic 5-MeO-DMT derivatives: insights into psychoactive and thermoregulatory properties',
 }
