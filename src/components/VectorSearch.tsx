@@ -14,6 +14,7 @@ import {
   ChatGPTIcon,
   CubeTransparentIcon,
   GeminiIcon,
+  TheEye,
   UpArrowIcon,
 } from '@/components/Icons'
 import { Button } from '@/components/ui/button'
@@ -234,18 +235,34 @@ const VectorSearch = () => {
               </div>
             )}
           </div>
-          <div className='flex flex-1 flex-col gap-1.5 md:grid md:grid-cols-[minmax(17rem,_0.3fr)_1fr] md:gap-2.5'>
-            <VectorSearchResult
-              searchResults={vectorSearchResult}
-              isLoading={isVectorSearchLoading}
-            />
-            <CompletionResult
-              wholeLoading={wholeLoading}
-              setWholeLoading={setWholeLoading}
-              search={search}
-              searchResults={results}
-              model={model}
-            />
+          <div
+            className={cn(
+              'flex flex-1 flex-col gap-1.5 md:grid md:gap-2.5',
+              debouncedSearch
+                ? 'md:grid-cols-[minmax(17rem,_0.3fr)_1fr]'
+                : 'justify-center',
+            )}
+          >
+            {debouncedSearch ? (
+              <>
+                <VectorSearchResult
+                  searchResults={vectorSearchResult}
+                  isLoading={isVectorSearchLoading}
+                />
+                <CompletionResult
+                  wholeLoading={wholeLoading}
+                  setWholeLoading={setWholeLoading}
+                  search={search}
+                  searchResults={results}
+                  model={model}
+                />
+              </>
+            ) : (
+              <div className='flex flex-col items-center text-primary/60 md:pb-8'>
+                <TheEye className='h-10 w-10' />
+                <span>Expand your consciousness</span>
+              </div>
+            )}
           </div>
         </DialogContent>
       </Dialog>

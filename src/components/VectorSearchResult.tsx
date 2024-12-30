@@ -8,7 +8,7 @@ import { substanceOptions } from '@/config/options'
 
 const LoadingSkeleton = () => {
   return (
-    <div className='rounded-sm bg-muted-foreground/5 px-2 py-5 sm:px-3'>
+    <div className='min-w-32 overflow-hidden rounded-sm bg-muted-foreground/5 px-2 py-5 sm:px-3'>
       <div className='space-y-2'>
         <Skeleton className='h-4 w-[18%]' />
         <Skeleton className='h-4 w-[84%]' />

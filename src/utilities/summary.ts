@@ -1,23 +1,7 @@
-interface VectorSearchResult {
-  id: string
-  score?: number
-  payload?: {
-    title?: string
-    slug?: string
-    abstract?: Array<{ children: Array<{ text: string }> }>
-    authors?: string[]
-    publishedAt?: string
-    journal?: string
-    substance?: string[]
-    summary?: Array<{ summary: string; id: string }>
-    keywords?: string[]
-    doi?: string
-    url?: string
-  }
-}
+import { type VectorSearchPoints } from '@/types/dataTypes'
 
 export const vectorResultFormatter = (
-  results: VectorSearchResult[],
+  results: VectorSearchPoints[],
 ): string => {
   if (!results || results.length === 0) {
     return 'No relevant papers found.'
