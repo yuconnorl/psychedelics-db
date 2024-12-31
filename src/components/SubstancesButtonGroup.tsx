@@ -1,8 +1,16 @@
 'use client'
 import { useEffect, useMemo, useRef } from 'react'
-import { babyPacifier, cactus, flowerLotus, frogFace } from '@lucide/lab'
+import {
+  astronautHelmet,
+  avocado,
+  babyPacifier,
+  cactus,
+  flowerLotus,
+  frogFace,
+} from '@lucide/lab'
 import {
   Atom,
+  Blend,
   Brain,
   CircleDotDashed,
   createLucideIcon,
@@ -45,6 +53,8 @@ const SubstancesButtonGroup = (): JSX.Element => {
   const FlowerLotus = createLucideIcon('flowerLotus', flowerLotus)
   const Cactus = createLucideIcon('cactus', cactus)
   const BabyPacifier = createLucideIcon('babyPacifier', babyPacifier)
+  const Avocado = createLucideIcon('avocado', avocado)
+  const AstronautHelmet = createLucideIcon('astronautHelmet', astronautHelmet)
 
   const substancesIconMap = {
     lsd: <Mailbox size={16} strokeWidth={1.5} />,
@@ -64,6 +74,9 @@ const SubstancesButtonGroup = (): JSX.Element => {
     dmt: <Atom size={16} strokeWidth={1.5} />,
     ketamine: <CircleDotDashed size={16} strokeWidth={1.8} />,
     pcp: <Snowflake size={16} strokeWidth={1.5} />,
+    '2c-b': <Avocado size={16} strokeWidth={1.5} />,
+    ghb: <AstronautHelmet size={16} strokeWidth={1.5} />,
+    doi: <Blend size={16} strokeWidth={1.5} />,
   }
 
   const substancesGroupMap = {
@@ -193,7 +206,7 @@ const SubstancesButtonGroup = (): JSX.Element => {
                   <span className='text-primary/80'>
                     {substancesIconMap[value]}
                   </span>
-                  <span className='z-10 text-sm font-normal transition-opacity group-hover:opacity-50'>
+                  <span className='z-10 text-xs font-normal transition-opacity group-hover:opacity-50'>
                     {substanceName}
                   </span>
                 </div>

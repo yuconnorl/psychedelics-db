@@ -124,7 +124,7 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
           </SelectContent>
         </Select>
       </div>
-      <div className='flex flex-col gap-3 px-1 md:gap-4 md:pr-3'>
+      <div className='flex flex-col gap-1 px-1 md:gap-2 md:pr-3'>
         {pagedPapers.map(
           ({ id, title, authors, publishedAt, substance, slug }) => {
             const link = querySubstance?.length

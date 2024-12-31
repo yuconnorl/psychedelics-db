@@ -5,6 +5,7 @@ import { NextRequest } from 'next/server'
 // Route segment config
 export const runtime = 'edge'
 
+/** Generate OG image */
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)

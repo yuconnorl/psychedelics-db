@@ -1,6 +1,14 @@
-import { babyPacifier, cactus, flowerLotus, frogFace } from '@lucide/lab'
+import {
+  astronautHelmet,
+  avocado,
+  babyPacifier,
+  cactus,
+  flowerLotus,
+  frogFace,
+} from '@lucide/lab'
 import {
   Atom,
+  Blend,
   Brain,
   CircleDotDashed,
   createLucideIcon,
@@ -33,6 +41,8 @@ const SubstanceBadge = ({
   const FlowerLotus = createLucideIcon('flowerLotus', flowerLotus)
   const Cactus = createLucideIcon('cactus', cactus)
   const BabyPacifier = createLucideIcon('babyPacifier', babyPacifier)
+  const Avocado = createLucideIcon('avocado', avocado)
+  const AstronautHelmet = createLucideIcon('astronautHelmet', astronautHelmet)
 
   const substancesIconMap = {
     lsd: <Mailbox size={16} strokeWidth={1.5} />,
@@ -52,6 +62,9 @@ const SubstanceBadge = ({
     dmt: <Atom size={16} strokeWidth={1.5} />,
     ketamine: <CircleDotDashed size={16} strokeWidth={1.8} />,
     pcp: <Snowflake size={16} strokeWidth={1.5} />,
+    '2c-b': <Avocado size={16} strokeWidth={1.5} />,
+    ghb: <AstronautHelmet size={16} strokeWidth={1.5} />,
+    doi: <Blend size={16} strokeWidth={1.5} />,
   }
 
   return (

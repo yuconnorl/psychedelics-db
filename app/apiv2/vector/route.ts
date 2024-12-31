@@ -76,7 +76,7 @@ export async function POST(request: NextRequest) {
 
     const queryResults = await qdrantClient.query('papers', {
       query: message,
-      limit: 5,
+      limit: 7,
       with_payload: true,
     })
 

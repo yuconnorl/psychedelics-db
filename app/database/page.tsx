@@ -71,7 +71,7 @@ const DatabasePage = async (): Promise<JSX.Element> => {
           sizes='(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 100vw'
           className='rounded-md object-cover object-center'
         />
-        <div className='noise absolute h-full w-full'></div>
+        {/* <div className='noise absolute h-full w-full'></div> */}
       </AspectRatio>
       <div className='my-6 text-4xl font-semibold text-primary'>Intro</div>
 
