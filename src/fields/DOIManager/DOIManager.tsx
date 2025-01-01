@@ -109,9 +109,6 @@ export const DOIManager: React.FC = ({
       const paperResponse = await summarizePaperWithDoi(value)
       const { researchPaperDetail } = await paperResponse.json()
 
-      // console.log('paperResponse', paperResponse)
-      // console.log('researchPaperDetail', researchPaperDetail)
-
       if (!researchPaperDetail) {
         setIsFailed(true)
         return
@@ -144,7 +141,7 @@ export const DOIManager: React.FC = ({
         {label}
         {required && <span className='required'>*</span>}
       </label>
-      <div className='doi-input-wrapper'>
+      <div className='flex items-center gap-2'>
         <input
           type='text'
           value={value}
@@ -152,7 +149,7 @@ export const DOIManager: React.FC = ({
           placeholder='DOI'
         />
         <button
-          className='btn btn--style-primary btn--icon-style-without-border btn--size-small doi-fetch-button'
+          className='btn btn--style-primary btn--icon-style-without-border btn--size-small my-0 whitespace-nowrap py-3'
           onClick={handlePaperFetch}
           type='button'
         >
@@ -163,7 +160,7 @@ export const DOIManager: React.FC = ({
           )}
         </button>
         <button
-          className='btn btn--style-primary btn--icon-style-without-border btn--size-small doi-fetch-button'
+          className='btn btn--style-primary btn--icon-style-without-border btn--size-small my-0 whitespace-nowrap py-3'
           onClick={handleDOICheck}
           type='button'
         >
@@ -181,9 +178,7 @@ export const DOIManager: React.FC = ({
             the paper may not be available on sci-hub.
           </div>
         )}
-        {doiCheckResult && (
-          <div className='field-success'>{doiCheckResult}</div>
-        )}
+        {doiCheckResult && <div className=' font-bold'>{doiCheckResult}</div>}
       </div>
     </div>
   )

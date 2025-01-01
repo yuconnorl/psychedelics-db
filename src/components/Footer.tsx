@@ -1,7 +1,7 @@
 const Footer = (): JSX.Element => {
   return (
-    <footer className='relative my-4 py-3 sm:py-6 w-full flex justify-center text-sm border-t'>
-      <div className='text-muted-foreground flex gap-1 items-center'>
+    <footer className='relative my-4 flex w-full justify-center border-t py-3 text-sm sm:py-6'>
+      <div className='flex items-center gap-1 text-muted-foreground'>
         <p>2024</p>
         <p>©</p>
         <p className='font-garamond text-sm sm:text-base'>

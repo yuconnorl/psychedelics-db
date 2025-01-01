@@ -33,3 +33,10 @@ export type CardParamsProps = {
     category: CategoryOptionsType
   }
 }
+
+export type VectorSearchPoints = {
+  id: string
+  payload: PaperData
+  score: number
+  version: number
+}

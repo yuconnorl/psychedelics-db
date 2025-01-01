@@ -88,11 +88,16 @@ const UpdateSection = (): JSX.Element => {
         setResultMessage(
           `${resultMessageMap.updateAlgoliaSuccess}: taskID - ${response?.taskIDs}`,
         )
+        setIsUpdating(false)
+        setStatus(statusMap.success)
       } else {
         setResultMessage(`${resultMessageMap.updateAlgoliaFailure}`)
+        setIsUpdating(false)
+        setStatus(statusMap.failure)
       }
     } catch (error: unknown) {
       setResultMessage(`${resultMessageMap.updateAlgoliaFailure}: ${error}`)
+      setStatus(statusMap.failure)
     }
   }
 
@@ -123,11 +128,7 @@ const UpdateSection = (): JSX.Element => {
       setTimeout(() => {
         updateAlgoliaIndex(wholeData)
       }, 3000)
-
-      setStatus(statusMap.success)
     }
-
-    setIsUpdating(false)
   }
 
   const onButtonClick = async (): Promise<void> => {
@@ -178,7 +179,7 @@ const UpdateSection = (): JSX.Element => {
 
   const MY_NAMESPACE = process.env.PAYLOAD_PUBLIC_NAME_SPACE
 
-  const generateDeterministicUUID = (id: String) => {
+  const generateDeterministicUUID = (id: string) => {
     return uuidv5(String(id), MY_NAMESPACE)
   }
 
@@ -279,24 +280,24 @@ const UpdateSection = (): JSX.Element => {
       <h2 className='mb-10'>
         Utilities for rebuild, Algolia and vector indices update
       </h2>
-      <section className='grid md:grid-cols-2 gap-4'>
-        <div className='flex flex-col gap-y-2 mb-4 border-gray-400 border-0 md:border-r border-l-0 border-t-0 border-b-0 border-solid'>
+      <section className='grid gap-4 md:grid-cols-2'>
+        <div className='mb-4 flex flex-col gap-y-2 border-0 border-b-0 border-l-0 border-t-0 border-solid border-gray-400 md:border-r'>
           <div className='flex gap-2'>
-            <button
+            {/* <button
               className='btn btn--style-primary my-0 px-4 py-3 font-semibold whitespace-nowrap transition-opacity disabled:opacity-50 disabled:cursor-not-allowed'
               type='button'
               onClick={onButtonClick}
               disabled={isUpdating}
             >
               Rebuild and Update
-            </button>
+            </button> */}
             <div className='max-w-xs'>
               Rebuild site and update Algolia indices
             </div>
           </div>
           <div className='flex gap-2'>
             <button
-              className='btn btn--style-primary my-0 px-4 py-3 font-semibold whitespace-nowrap transition-opacity disabled:opacity-50 disabled:cursor-not-allowed'
+              className='btn btn--style-primary my-0 whitespace-nowrap px-4 py-3 font-semibold transition-opacity disabled:cursor-not-allowed disabled:opacity-50'
               type='button'
               onClick={onUpdateIndicesBtnClick}
               disabled={isUpdating}
@@ -310,7 +311,7 @@ const UpdateSection = (): JSX.Element => {
           </div>
           <div className='flex gap-2'>
             <button
-              className='btn btn--style-primary my-0 px-4 py-3 font-semibold whitespace-nowrap transition-opacity disabled:opacity-50 disabled:cursor-not-allowed'
+              className='btn btn--style-primary my-0 whitespace-nowrap px-4 py-3 font-semibold transition-opacity disabled:cursor-not-allowed disabled:opacity-50'
               type='button'
               onClick={generateFlattenPaperData}
               disabled={isUpdating}
@@ -324,12 +325,12 @@ const UpdateSection = (): JSX.Element => {
           </div>
         </div>
         <div className='pl-2'>
-          <div className='mb-4 font-semibold text-xl flex items-center'>
+          <div className='mb-4 flex items-center text-xl font-semibold'>
             <span className='mr-2'>Status</span>
             {isUpdating && (
               <svg
                 aria-hidden='true'
-                className='w-6 h-6 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600'
+                className='h-6 w-6 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600'
                 viewBox='0 0 100 101'
                 fill='none'
                 xmlns='http://www.w3.org/2000/svg'
@@ -350,13 +351,13 @@ const UpdateSection = (): JSX.Element => {
             <span className='relative flex h-5 w-5'>
               <span
                 className={clsx(
-                  'animate-ping absolute inline-flex h-full w-full rounded-full opacity-75',
+                  'absolute inline-flex h-full w-full animate-ping rounded-full opacity-75',
                   statusStyle[status],
                 )}
               />
               <span
                 className={clsx(
-                  'relative inline-flex rounded-full h-5 w-5',
+                  'relative inline-flex h-5 w-5 rounded-full',
                   statusStyle[status],
                 )}
               />

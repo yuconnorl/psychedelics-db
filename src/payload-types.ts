@@ -93,6 +93,9 @@ export interface Paper {
     | 'salvia'
     | 'unspecified'
   )[];
+  abstract: {
+    [k: string]: unknown;
+  }[];
   authorsField?:
     | {
         author?: string | null;
@@ -105,9 +108,12 @@ export interface Paper {
         id?: string | null;
       }[]
     | null;
-  abstract: {
-    [k: string]: unknown;
-  }[];
+  summaryZhTwField?:
+    | {
+        summaryHant?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   slug: string;
   keywordsField?:
     | {
@@ -115,7 +121,7 @@ export interface Paper {
         id?: string | null;
       }[]
     | null;
-  isVectorized: boolean;
+  isVectorized?: boolean | null;
   viewCount: number;
   updatedAt: string;
   createdAt: string;

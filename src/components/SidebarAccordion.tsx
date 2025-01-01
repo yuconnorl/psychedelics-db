@@ -40,11 +40,11 @@ const SidebarAccordion = ({
     if (!openedItems.includes(currentCategory) && currentCategory !== '') {
       setOpenedItems([...openedItems, currentCategory])
     }
-  }, [pathname])
+  }, [pathname, openedItems])
 
   return (
     <Accordion
-      className='relative overflow-hidden h-full py-6 lg:pl-4 pr-4 lg:py-8 flex flex-col gap-3 xl:gap-4'
+      className='relative flex h-full flex-col gap-3 overflow-hidden py-6 pr-4 lg:py-8 lg:pl-4 xl:gap-4'
       type='multiple'
       defaultValue={openedItems}
       value={openedItems}
@@ -52,11 +52,11 @@ const SidebarAccordion = ({
     >
       <div
         role='button'
-        className='text-muted-foreground hover:text-muted-foreground/50 mb-2 items-center transition-colors flex self-start'
+        className='mb-2 flex items-center self-start text-muted-foreground transition-colors hover:text-muted-foreground/50'
         onClick={() => setOpenedItems([])}
       >
         <CollaspeIcon />
-        <span className='text-xs ml-1'>Collapse all</span>
+        <span className='ml-1 text-xs'>Collapse all</span>
         <span className='sr-only'>Collapse all</span>
       </div>
       {Object.keys(recordsMapZh).map((category: CategoryOptionsType) => (

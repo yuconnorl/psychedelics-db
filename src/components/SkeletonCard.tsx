@@ -11,25 +11,25 @@ type SkeletonCardProps = {
 
 const GridSkeletonCard = (): JSX.Element => {
   return (
-    <Card className='relative break-inside mb-4 z-10'>
+    <Card className='break-inside relative z-10 mb-4'>
       <CardHeader>
-        <div className='flex gap-4 flex-col'>
-          <Skeleton className='w-[230px] h-5 rounded-full' />
-          <Skeleton className='w-[150px] h-5 rounded-full' />
+        <div className='flex flex-col gap-4'>
+          <Skeleton className='h-5 w-[230px] rounded-full' />
+          <Skeleton className='h-5 w-[150px] rounded-full' />
         </div>
       </CardHeader>
       <CardContent className='flex flex-col gap-4'>
         <div className='relative saturate-[0.15] transition-[filter]'>
           <AspectRatio ratio={21 / 9}>
-            <Skeleton className='w-full h-full rounded-md' />
+            <Skeleton className='h-full w-full rounded-md' />
           </AspectRatio>
         </div>
-        <Skeleton className='w-[250px] h-5 rounded-full' />
+        <Skeleton className='h-5 w-[250px] rounded-full' />
       </CardContent>
       <CardFooter>
-        <div className='relative flex gap-1.5 items-center text-muted-foreground'>
+        <div className='relative flex items-center gap-1.5 text-muted-foreground'>
           <Skeleton className='h-6 w-6 rounded-full' />
-          <Skeleton className='w-[100px] h-5 rounded-full' />
+          <Skeleton className='h-5 w-[100px] rounded-full' />
         </div>
       </CardFooter>
     </Card>
@@ -38,27 +38,27 @@ const GridSkeletonCard = (): JSX.Element => {
 
 const StackSkeletonCard = (): JSX.Element => {
   return (
-    <Card className='relative overflow-hidden grid grid-rows-[minmax(0,1fr)_200px] sm:grid-rows-none sm:grid-cols-[minmax(0,1fr)_240px] xl:grid-cols-[minmax(0,1fr)_320px] z-10'>
+    <Card className='relative z-10 grid grid-rows-[minmax(0,1fr)_200px] overflow-hidden sm:grid-cols-[minmax(0,1fr)_240px] sm:grid-rows-none xl:grid-cols-[minmax(0,1fr)_320px]'>
       <div>
         <CardHeader>
-          <div className='flex gap-4 flex-col'>
-            <Skeleton className='w-[230px] h-5 rounded-full' />
-            <Skeleton className='w-[150px] h-5 rounded-full' />
+          <div className='flex flex-col gap-4'>
+            <Skeleton className='h-5 w-[230px] rounded-full' />
+            <Skeleton className='h-5 w-[150px] rounded-full' />
           </div>
         </CardHeader>
         <CardContent className='flex flex-col gap-4'>
           <div className='relative'></div>
-          <Skeleton className='w-[250px] h-5 rounded-full' />
+          <Skeleton className='h-5 w-[250px] rounded-full' />
         </CardContent>
         <CardFooter>
-          <div className='relative flex gap-1.5 items-center text-muted-foreground'>
+          <div className='relative flex items-center gap-1.5 text-muted-foreground'>
             <Skeleton className='h-6 w-6 rounded-full' />
-            <Skeleton className='w-[100px] h-5 rounded-full' />
+            <Skeleton className='h-5 w-[100px] rounded-full' />
           </div>
         </CardFooter>
       </div>
       <div className=''>
-        <Skeleton className='w-full h-full rounded-md' />
+        <Skeleton className='h-full w-full rounded-md' />
       </div>
     </Card>
   )

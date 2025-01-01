@@ -1,6 +1,27 @@
 'use client'
-
 import { useEffect, useMemo, useRef } from 'react'
+import {
+  astronautHelmet,
+  avocado,
+  babyPacifier,
+  cactus,
+  flowerLotus,
+  frogFace,
+} from '@lucide/lab'
+import {
+  Atom,
+  Blend,
+  Brain,
+  CircleDotDashed,
+  createLucideIcon,
+  Leaf,
+  LeafyGreen,
+  Mailbox,
+  MessageCircleHeart,
+  Snowflake,
+  Soup,
+  Wheat,
+} from 'lucide-react'
 import Image from 'next/image'
 import { parseAsArrayOf, parseAsString, useQueryState } from 'nuqs'
 
@@ -9,7 +30,12 @@ import imgURSociopath from '../assets/u-r-sociopath.gif'
 import imgPsyBg1 from '@/assets/psy-bg-1.webp'
 import imgPsyBg2 from '@/assets/psy-bg-2.webp'
 import imgPsyBg3 from '@/assets/psy-bg-3.webp'
-import { DeselectAllIcon } from '@/components/Icons'
+import {
+  AmanitaIcon,
+  CannabisIcon,
+  DeselectAllIcon,
+  MushroomIcon,
+} from '@/components/Icons'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import VectorSearch from '@/components/VectorSearch'
@@ -22,6 +48,36 @@ const SubstancesButtonGroup = (): JSX.Element => {
     'substance',
     parseAsArrayOf(parseAsString),
   )
+
+  const FrogFace = createLucideIcon('frogFace', frogFace)
+  const FlowerLotus = createLucideIcon('flowerLotus', flowerLotus)
+  const Cactus = createLucideIcon('cactus', cactus)
+  const BabyPacifier = createLucideIcon('babyPacifier', babyPacifier)
+  const Avocado = createLucideIcon('avocado', avocado)
+  const AstronautHelmet = createLucideIcon('astronautHelmet', astronautHelmet)
+
+  const substancesIconMap = {
+    lsd: <Mailbox size={16} strokeWidth={1.5} />,
+    '5-meo-dmt': <FrogFace size={16} strokeWidth={1.5} />,
+    cannabis: <CannabisIcon />,
+    mdma: <MessageCircleHeart size={16} strokeWidth={1.5} />,
+    ayahuasca: <Soup size={16} strokeWidth={1.5} />,
+    peyote: <FlowerLotus size={16} strokeWidth={1.5} />,
+    mescaline: <Cactus size={16} strokeWidth={1.5} />,
+    ibogaine: <Leaf size={16} strokeWidth={1.5} />,
+    'lsd-analogs': <Wheat size={16} strokeWidth={1.5} />,
+    lsa: <BabyPacifier size={16} strokeWidth={1.5} />,
+    psilocybin: <MushroomIcon />,
+    'amanita-muscaria': <AmanitaIcon />,
+    unspecified: <Brain size={16} strokeWidth={1.6} />,
+    salvia: <LeafyGreen size={16} strokeWidth={1.5} />,
+    dmt: <Atom size={16} strokeWidth={1.5} />,
+    ketamine: <CircleDotDashed size={16} strokeWidth={1.8} />,
+    pcp: <Snowflake size={16} strokeWidth={1.5} />,
+    '2c-b': <Avocado size={16} strokeWidth={1.5} />,
+    ghb: <AstronautHelmet size={16} strokeWidth={1.5} />,
+    doi: <Blend size={16} strokeWidth={1.5} />,
+  }
 
   const substancesGroupMap = {
     group1: [
@@ -125,39 +181,42 @@ const SubstancesButtonGroup = (): JSX.Element => {
   }, [])
 
   return (
-    <div className='md:top-24 md:sticky h-max md:pr-4'>
-      <h3 className='mb-4 pl-2 font-semibold'>Substances</h3>
+    <div className='h-max md:sticky md:top-24 md:pr-4'>
+      <h3 className='mb-4 pl-2 font-semibold'>Categories</h3>
       <VectorSearch />
-      <div className='flex gap-2 flex-wrap items-start'>
+      <div className='flex flex-wrap items-start gap-2'>
         {Object.entries(substanceOptions).map(([value, substanceName]) => {
           const isActive = querySubstance?.includes(value)
           const imgUrl = getImageForSubstance(value)
 
           return (
             <div
-              className='relative group h-fit'
+              className='group relative h-fit'
               onClick={handleScrollToSection}
               key={value}
             >
               <button
                 className={cn(
                   isActive && '-translate-x-2 -translate-y-2 border-foreground',
-                  'relative rounded-md border bg-card text-card-foreground shadow-sm break-inside active:translate-y-1 active:translate-x-1 transition-all will-change-transform z-20',
+                  'break-inside relative z-20 rounded-md border bg-card text-card-foreground shadow-sm transition-all will-change-transform active:translate-x-1 active:translate-y-1',
                 )}
                 onClick={(): void => onSubstanceBadgeClick(value)}
               >
-                <div className='flex flex-col px-3 md:px-4 py-1.5 space-y-0'>
-                  <h3 className='font-normal text-sm z-10 group-hover:opacity-50 transition-opacity'>
+                <div className='flex items-center gap-1 px-3 py-1.5 group-hover:opacity-50 md:px-4'>
+                  <span className='text-primary/80'>
+                    {substancesIconMap[value]}
+                  </span>
+                  <span className='z-10 text-xs font-normal transition-opacity group-hover:opacity-50'>
                     {substanceName}
-                  </h3>
+                  </span>
                 </div>
               </button>
-              <div className='absolute bg-foreground w-[calc(100%-5px)] h-[calc(100%-5px)] top-1 left-1 rounded-lg -z-10'>
-                <div className='relative w-full h-full overflow-hidden rounded-lg border border-foreground'>
+              <div className='absolute left-1 top-1 -z-10 h-[calc(100%-5px)] w-[calc(100%-5px)] rounded-lg bg-foreground'>
+                <div className='relative h-full w-full overflow-hidden rounded-lg border border-foreground'>
                   <Image
                     src={imgUrl}
                     alt='Psychedelic-ish background'
-                    className='w-full left-0 top-0 opacity-75'
+                    className='left-0 top-0 w-full opacity-75'
                     unoptimized
                   />
                 </div>
@@ -171,7 +230,7 @@ const SubstancesButtonGroup = (): JSX.Element => {
         <Button
           onClick={onDeselectAllClick}
           variant='outline'
-          className='text-xs mb-2 md:mb-4'
+          className='mb-2 text-xs md:mb-4'
         >
           <DeselectAllIcon className='mr-1 size-4' />
           Deselect
@@ -179,7 +238,7 @@ const SubstancesButtonGroup = (): JSX.Element => {
         <Image
           src={imgURSociopath}
           alt='Hoo. You are a sociopath.'
-          className={cn('w-full md:w-5/6 hidden', isSociopathShow && 'block')}
+          className={cn('hidden w-full md:w-5/6', isSociopathShow && 'block')}
           quality={50}
         />
       </div>

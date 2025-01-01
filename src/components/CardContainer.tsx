@@ -27,7 +27,7 @@ const CardContainer = ({ children }: ChildrenProps): JSX.Element => {
 
   return (
     <>
-      <div className='hidden sm:flex gap-2 mb-4'>
+      <div className='mb-4 hidden gap-2 sm:flex'>
         <TooltipProvider>
           <TooltipButton content={'Grid Layout'}>
             <Button

@@ -1,3 +1,4 @@
+import { GoogleGenerativeAI, SchemaType } from '@google/generative-ai'
 import * as cheerio from 'cheerio'
 import { type NextRequest, NextResponse } from 'next/server'
 import OpenAI from 'openai'
@@ -10,6 +11,7 @@ const ResearchPaperExtraction = z.object({
   abstract: z.string(),
   keywords: z.array(z.string()),
   keyFindings: z.array(z.string()),
+  journal: z.string(),
 })
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
@@ -63,6 +65,21 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     }
 
     const jinaText = await jinaResponse.text()
+    const geminiPrompt = `You are an expert at structured data extraction. You will be given unstructured text from a research paper and should convert and summarize it into the given structure,
+    
+    Parse the string data into following format. Generate 3 to 5 key findings from the data provided. Keep the original title, abstract and keywords as it is. If there's no keywords provided, generate it. The return data should be in the following format:
+
+      {
+        keyFindings: ['key finding 1', 'key finding 2'],
+        title: '',
+        abstract: '',
+        keywords: ['keyword 1', 'keyword 2'],
+        authors: ['author 1', 'author 2'],
+        journal: ''
+      }
+
+      Research Paper Data: ${jinaText}
+      `
 
     const promptText = `Parse the string data into following format. Generate 3 to 5 key findings from the data provided. Keep the original title, abstract and keywords as it is. If there's no keywords provided, generate it. The return data should be in the following format:
 
@@ -72,16 +89,72 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
         abstract: '',
         keywords: ['keyword 1', 'keyword 2'],
         authors: ['author 1', 'author 2'],
+        journal: ''
       }
 
       Research Paper Data: ${jinaText}`
+
+    // const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
+
+    const schema = {
+      description: 'Detail of research paper',
+      type: SchemaType.OBJECT,
+      properties: {
+        keyFindings: {
+          type: SchemaType.ARRAY,
+          items: {
+            type: SchemaType.STRING,
+          },
+        },
+        title: {
+          type: SchemaType.STRING,
+        },
+        abstract: {
+          type: SchemaType.STRING,
+        },
+        keywords: {
+          type: SchemaType.ARRAY,
+          items: {
+            type: SchemaType.STRING,
+          },
+        },
+        authors: {
+          type: SchemaType.ARRAY,
+          items: {
+            type: SchemaType.STRING,
+          },
+        },
+        journal: {
+          type: SchemaType.STRING,
+        },
+      },
+      required: [
+        'keyFindings',
+        'title',
+        'abstract',
+        'keywords',
+        'authors',
+        'journal',
+      ],
+    }
+
+    // const model = genAI.getGenerativeModel({
+    //   model: 'gemini-1.5-pro',
+    //   generationConfig: {
+    //     responseMimeType: 'application/json',
+    //     responseSchema: schema,
+    //   },
+    // })
+
+    // const result = await model.generateContent(geminiPrompt)
+    // const resultJson = JSON.parse(result.response.text())
 
     const openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY,
     })
 
     const completion = await openai.beta.chat.completions.parse({
-      model: 'gpt-4o-2024-08-06',
+      model: 'gpt-4o-mini',
       messages: [
         {
           role: 'system',
@@ -102,7 +175,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     return NextResponse.json({
       success: true,
       src: jinaFetchUrl,
-      researchPaperDetail,
+      researchPaperDetail: researchPaperDetail,
     })
   } catch (error: unknown) {
     console.error('Error fetching PDF:', error)

@@ -27,7 +27,7 @@ const CopyButton = ({ text, className = '' }: Props): JSX.Element => {
           <button
             onClick={copyToClipboard}
             className={cn(
-              'text-sm hover:opacity-50 transition-opacity ml-1 inline-flex',
+              'ml-1 inline-flex text-sm transition-opacity hover:opacity-50',
               className,
             )}
           >

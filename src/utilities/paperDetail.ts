@@ -1,4 +1,6 @@
 /* eslint-disable no-console */
+import { type VectorSearchPoints } from '@/types/dataTypes'
+import type { Models } from '@/types/general'
 
 export const summarizePaperWithDoi = async (doi) => {
   if (!doi || doi === '') {
@@ -13,8 +15,7 @@ export const summarizePaperWithDoi = async (doi) => {
   }
 }
 
-// Deprecated because exceeding the chatGPT rate limit
-export const summarizePaperWithUrl = async (url) => {
+export const summarizePaperWithUrl = async (url: string) => {
   if (!url || url === '') {
     throw new Error('URL is empty')
   }
@@ -27,20 +28,45 @@ export const summarizePaperWithUrl = async (url) => {
   }
 }
 
-interface EmbeddingResponse {
-  // Define the expected properties of the response here
-  embedding: number[]
-  // Add other properties as needed
+export const summarizePaperWithPdfFile = async (pdfData: FormData) => {
+  try {
+    const paperData = await fetch(`/apiv2/research-papers/extract`, {
+      method: 'POST',
+      body: pdfData,
+    })
+    return paperData
+  } catch (error: unknown) {
+    console.log('Error fetching paper:', error)
+  }
 }
 
-export const getEmbedding = async (message) => {
+export const translateSummaries = async (summaries: string[]) => {
+  try {
+    const paperData = await fetch(`/apiv2/research-papers/translate`, {
+      method: 'POST',
+      body: JSON.stringify({ summaries }),
+    })
+    return paperData
+  } catch (error: unknown) {
+    console.log('Error fetching paper:', error)
+  }
+}
+
+interface EmbeddingResponse {
+  embedding: number[]
+}
+
+export const getEmbedding = async (
+  message: string,
+  model: Models | null = 'gemini-1.5-flash',
+) => {
   try {
     const response = await fetch('/apiv2/embedding', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ message }),
+      body: JSON.stringify({ message, model }),
     })
 
     if (!response.ok) {
@@ -86,7 +112,16 @@ export const updateVector = async (message) => {
   }
 }
 
-export const queryVector = async (message: number[]) => {
+interface VectorQueryResponse {
+  queryResults: {
+    points: VectorSearchPoints[]
+  }
+  success: boolean
+}
+
+export const queryVector = async (
+  message: number[],
+): Promise<VectorQueryResponse> => {
   try {
     const response = await fetch('/apiv2/vector', {
       method: 'POST',

@@ -9,3 +9,9 @@ This project is built using a variety of modern technologies:
 - **Payload CMS (Express.js)**: Payload CMS is used for managing and delivering data. It's built on top of Express.js and MongoDB, providing a seamless way to manage and deliver data.
 - **Next.js**: The frontend of the application is handled by Next.js, a popular React framework known for its features like server-side rendering and generating static websites.
 - **MongoDB**: MongoDB, a popular NoSQL database, is used for its scalability and flexibility when dealing with data in a variety of formats.
+
+## Todo
+
+- [ ] Other people's question 
+- [ ] cache result
+- [ ] dedicated vector search page?

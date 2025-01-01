@@ -4,8 +4,8 @@ import { ChildrenProps } from '@/types'
 
 const DatabaseLayout = ({ children }: ChildrenProps): JSX.Element => {
   return (
-    <div className='flex flex-col justify-between flex-1'>
-      <div className='container pb-4 md:py-4 px-6 flex-1 items-start md:grid md:grid-cols-[280px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-10'>
+    <div className='flex flex-1 flex-col justify-between'>
+      <div className='container flex-1 items-start px-6 pb-4 md:grid md:grid-cols-[280px_minmax(0,1fr)] md:gap-6 md:py-4 lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-10'>
         <Sidebar />
         <main className='py-6 mdp:pr-6'>{children}</main>
       </div>

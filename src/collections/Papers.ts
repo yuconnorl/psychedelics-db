@@ -31,15 +31,6 @@ const Papers: CollectionConfig = {
     CustomDOIField,
     CustomURLField,
     CustomFileURLField,
-    // {
-    //   name: 'url',
-    //   label: 'URL',
-    //   type: 'text',
-    //   required: true,
-    //   admin: {
-    //     description: 'URL to the paper',
-    //   },
-    // },
     {
       name: 'title',
       label: 'Title',
@@ -76,6 +67,12 @@ const Papers: CollectionConfig = {
         isSortable: true,
       },
       options: PAYLOAD_SUBSTANCE_OPTIONS,
+    },
+    {
+      name: 'abstract',
+      type: 'richText',
+      label: 'Abstract',
+      required: true,
     },
     {
       type: 'ui',
@@ -115,10 +112,18 @@ const Papers: CollectionConfig = {
       ],
     },
     {
-      name: 'abstract',
-      type: 'richText',
-      label: 'Abstract',
-      required: true,
+      name: 'summaryZhTwField',
+      type: 'array',
+      label: 'Summary Zh-TW',
+      admin: {
+        initCollapsed: true,
+      },
+      fields: [
+        {
+          name: 'summaryHant',
+          type: 'text',
+        },
+      ],
     },
     {
       name: 'slug',
@@ -164,7 +169,7 @@ const Papers: CollectionConfig = {
       label: 'Vectorized',
       defaultValue: false,
       admin: {
-        readOnly: true,
+        // readOnly: true,
       },
     },
     {

@@ -37,7 +37,7 @@ const ThemeSwitch = (): JSX.Element => {
         role='switch'
         data-state={isChecked ? 'checked' : 'unchecked'}
         onClick={onThemeSwitch}
-        className='relative peer dark-before dark-after inline-flex h-7 w-12 cursor-pointer items-center rounded-full border border-muted-foreground/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-input data-[state=unchecked]:bg-foreground'
+        className='dark-before dark-after peer relative inline-flex h-7 w-12 cursor-pointer items-center rounded-full border border-muted-foreground/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-input data-[state=unchecked]:bg-foreground'
       />
     </>
   )

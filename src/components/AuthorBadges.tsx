@@ -36,7 +36,7 @@ const AuthorBadge = ({
         <TooltipTrigger>
           <Avatar
             className={cn(
-              'h-7 w-7 mr-2',
+              'mr-2 h-7 w-7',
               index < maxAuthors || isAuthorsExpanded
                 ? 'inline-flex'
                 : 'hidden',
@@ -49,7 +49,7 @@ const AuthorBadge = ({
         </TooltipTrigger>
         <TooltipContent>
           <div className='flex items-center'>
-            <UserCircleIcon className='inline mr-1 size-4' />
+            <UserCircleIcon className='mr-1 inline size-4' />
             <span className='pr-0.5'>{author}</span>
           </div>
         </TooltipContent>

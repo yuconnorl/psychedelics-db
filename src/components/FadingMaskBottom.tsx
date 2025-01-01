@@ -1,5 +1,5 @@
 const FadingMaskBottom = () => (
-  <div className='h-5 md:h-7 w-full sticky -bottom-[2px] bg-gradient-to-b from-background/0 to-background' />
+  <div className='sticky -bottom-[2px] hidden h-5 w-full bg-gradient-to-b from-background/0 to-background md:block md:h-7' />
 )
 
 export default FadingMaskBottom

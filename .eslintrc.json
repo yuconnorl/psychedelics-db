@@ -1,6 +1,6 @@
 {
   "root": true,
-  "extends": ["plugin:@next/next/recommended", "@payloadcms"],
+  "extends": ["plugin:@next/next/recommended", "@payloadcms", "plugin:@typescript-eslint/recommended"],
   "ignorePatterns": ["**/payload-types.ts", "src/components/ui"],
   "plugins": ["simple-import-sort"],
   "rules": {

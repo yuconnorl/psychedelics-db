@@ -18,7 +18,7 @@ import {
   BookOpenIcon,
   SlashIcon,
 } from '@/components/Icons'
-import { Badge } from '@/components/ui/badge'
+import SubstanceBadge from '@/components/SubstanceBadge'
 import {
   Select,
   SelectContent,
@@ -26,7 +26,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { substanceOptions } from '@/config/options'
 import { PAPER_ITEM_PER_PAGE } from '@/constants/constants'
 import type { PaperData } from '@/types'
 
@@ -66,18 +65,18 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
       !querySort
         ? filteredPapers
         : querySort === 'ascending'
-        ? filteredPapers.sort(
-            (a, b) =>
-              dayjs(a.publishedAt).valueOf() - dayjs(b.publishedAt).valueOf(),
-          )
-        : filteredPapers.sort(
-            (a, b) =>
-              dayjs(b.publishedAt).valueOf() - dayjs(a.publishedAt).valueOf(),
-          ),
+          ? filteredPapers.sort(
+              (a, b) =>
+                dayjs(a.publishedAt).valueOf() - dayjs(b.publishedAt).valueOf(),
+            )
+          : filteredPapers.sort(
+              (a, b) =>
+                dayjs(b.publishedAt).valueOf() - dayjs(a.publishedAt).valueOf(),
+            ),
     [querySort, filteredPapers],
   )
 
-  const pagedPapers = sortedPapers.slice(
+  const pagedPapers = sortedPapers?.slice(
     (queryPage - 1) * PAPER_ITEM_PER_PAGE,
     queryPage * PAPER_ITEM_PER_PAGE,
   )
@@ -102,9 +101,9 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
 
   return (
     <div className='flex flex-col gap-5'>
-      <div className='flex items-center justify-between mb-6'>
-        <div className='flex items-center text-primary/70 pl-2'>
-          <BookOpenIcon className='inline mr-1.5 h-[1.125rem] w-[1.125rem]' />
+      <div className='mb-6 flex items-center justify-between'>
+        <div className='flex items-center pl-2 text-primary/70'>
+          <BookOpenIcon className='mr-1.5 inline h-[1.125rem] w-[1.125rem]' />
           <span>{sortedPapers.length}</span>
           <SlashIcon className='size-4' />
           <span>{totalPaperNumber}</span>
@@ -115,17 +114,17 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value='desending'>
-              <BarArrowDownIcon className='inline mr-1 size-4' />
+              <BarArrowDownIcon className='mr-1 inline size-4' />
               <span>Newest First</span>
             </SelectItem>
             <SelectItem value='ascending'>
-              <BarArrowUpIcon className='inline mr-1 size-4' />
+              <BarArrowUpIcon className='mr-1 inline size-4' />
               <span>Oldest First</span>
             </SelectItem>
           </SelectContent>
         </Select>
       </div>
-      <div className='flex flex-col gap-3 md:gap-4 px-1 md:pr-3'>
+      <div className='flex flex-col gap-1 px-1 md:gap-2 md:pr-3'>
         {pagedPapers.map(
           ({ id, title, authors, publishedAt, substance, slug }) => {
             const link = querySubstance?.length
@@ -137,28 +136,27 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
                 key={id}
                 href={link}
                 prefetch={false}
-                className='p-4 pb-5 rounded-sm transition-colors hover:bg-secondary/55 group'
+                className='group rounded-sm p-3 pb-4 transition-colors hover:bg-secondary/55 md:max-w-3xl md:p-4 md:pb-5 2xl:max-w-full'
               >
                 <div className='flex flex-col gap-2'>
-                  <time className='text-primary/70 text-sm'>
+                  <time className='text-sm text-primary/70'>
                     {dayjs(publishedAt).format('YYYY MMM')}
                   </time>
-                  <h3 className='text-2xl 2xl:text-3xl md:max-w-3xl 2xl:max-w-full font-medium font-garamond transition-opacity group-hover:opacity-80'>
+                  <h3 className='font-garamond text-2xl font-medium transition-opacity group-hover:opacity-80 2xl:text-3xl'>
                     {title}
                   </h3>
                   <AuthorBadges authors={authors} />
-                  <div className='mt-2'>
+                  <div className='mt-2 flex gap-1'>
                     {substance.map((sub) => (
-                      <Badge
+                      <SubstanceBadge
                         onClick={(e): void => {
                           e.preventDefault()
                           onSubstanceBadgeClick(sub)
                         }}
                         key={sub}
-                        className='mr-1 cursor-pointer'
-                      >
-                        {substanceOptions[sub]}
-                      </Badge>
+                        substance={sub}
+                        className='cursor-pointer'
+                      />
                     ))}
                   </div>
                 </div>

@@ -106,10 +106,10 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
         />
       </Suspense>
       <div>
-        <h2 className='text-3xl sm:text-4xl xl:text-5xl font-semibold mb-2 leading-tight sm:leading-tight xl:leading-tight md:mb-4'>
+        <h2 className='mb-2 text-3xl font-semibold leading-tight sm:text-4xl sm:leading-tight md:mb-4 xl:text-5xl xl:leading-tight'>
           {title}
         </h2>
-        <section className='flex gap-2 my-4'>
+        <section className='my-4 flex gap-2'>
           <Badge className='w-fit' variant='secondary'>
             {capitalizeFirstLetter(type)}
           </Badge>
@@ -120,7 +120,7 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
       </div>
       <div className='flex flex-col gap-2'>
         <AspectRatio
-          className='my-2 border-muted-foreground/10 border rounded-lg'
+          className='my-2 rounded-lg border border-muted-foreground/10'
           ratio={21 / 9}
         >
           <Image
@@ -131,10 +131,10 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
             placeholder='blur'
             alt={`OG Image of ${title}`}
             sizes='(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 100vw'
-            className='rounded-md object-cover object-center w-auto h-auto'
+            className='h-auto w-auto rounded-md object-cover object-center'
           />
         </AspectRatio>
-        <div className='px-2 md:px-3 leading-relaxed text-primary/70'>
+        <div className='px-2 leading-relaxed text-primary/70 md:px-3'>
           {metaDescription ? (
             <span>{metaDescription}</span>
           ) : (
@@ -143,14 +143,14 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
         </div>
         {richText && (
           <>
-            <Separator className=' mt-2 mb-4 md:mt-5 md:mb-7' />
+            <Separator className=' mb-4 mt-2 md:mb-7 md:mt-5' />
             <div className='px-2 md:px-3'>
               <SerializeSlate value={richText} />
             </div>
           </>
         )}
         <Button
-          className='mt-12 md:w-52 md:mt-16 h-11'
+          className='mt-12 h-11 md:mt-16 md:w-52'
           asChild
           variant='secondary'
         >

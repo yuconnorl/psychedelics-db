@@ -36,10 +36,10 @@ const ResearchPage = (): JSX.Element => {
   return (
     <div className='mt-16'>
       <section className='relative'>
-        <h2 className='text-5xl md:text-6xl mb-12 md:mb-32 md:leading-tight'>
+        <h2 className='mb-12 text-5xl md:mb-32 md:text-6xl md:leading-tight'>
           Researches across all <br /> aspects of <HoverRevealImage />
         </h2>
-        <div className='text-secondary-foreground text-base sm:text-lg md:ml-auto md:w-[45%]'>
+        <div className='text-base text-secondary-foreground sm:text-lg md:ml-auto md:w-[45%]'>
           <p>
             The psychedelics database's research page offers a comprehensive,
             curated collection of peer-reviewed studies on psychedelics. It

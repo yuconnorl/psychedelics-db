@@ -8,24 +8,24 @@ const headOrTailEyes = (): JSX.Element => {
   return (
     <section
       id='five-eyes-image-section'
-      className='w-full my-8 md:my-16 h-64 md:h-80 bg-white dark:bg-black rounded-lg group'
+      className='group my-8 h-64 w-full rounded-lg bg-white md:my-16 md:h-80 dark:bg-black'
     >
-      <div className='relative w-full h-full flex justify-center items-center overflow-hidden'>
+      <div className='relative flex h-full w-full items-center justify-center overflow-hidden'>
         {headOrTail === 'head' ? (
           <>
-            <TheEye className='absolute animate-fade animate-ease-out animate-delay-500 animate-duration-1000 w-20 md:w-32 lg:w-40 translate-x-32 md:translate-x-56 lg:translate-x-64 text-primary/15' />
-            <TheEye className='absolute animate-fade animate-ease-out animate-delay-300 animate-duration-1000 w-20 md:w-32 lg:w-40 translate-x-16 md:translate-x-28 lg:translate-x-32 text-primary/50' />
-            <TheEye className='absolute animate-fade animate-ease-out w-20 md:w-32 lg:w-40 z-20' />
-            <TheEye className='absolute animate-fade animate-ease-out animate-delay-300 animate-duration-1000 w-20 md:w-32 lg:w-40 -translate-x-16 md:-translate-x-28 lg:-translate-x-32 text-primary/50' />
-            <TheEye className='absolute animate-fade animate-ease-out animate-delay-500 animate-duration-1000 w-20 md:w-32 lg:w-40 -translate-x-32 md:-translate-x-56 lg:-translate-x-64 text-primary/15' />
+            <TheEye className='absolute w-20 translate-x-32 animate-fade text-primary/15 animate-delay-500 animate-duration-1000 animate-ease-out md:w-32 md:translate-x-56 lg:w-40 lg:translate-x-64' />
+            <TheEye className='absolute w-20 translate-x-16 animate-fade text-primary/50 animate-delay-300 animate-duration-1000 animate-ease-out md:w-32 md:translate-x-28 lg:w-40 lg:translate-x-32' />
+            <TheEye className='absolute z-20 w-20 animate-fade animate-ease-out md:w-32 lg:w-40' />
+            <TheEye className='absolute w-20 -translate-x-16 animate-fade text-primary/50 animate-delay-300 animate-duration-1000 animate-ease-out md:w-32 md:-translate-x-28 lg:w-40 lg:-translate-x-32' />
+            <TheEye className='absolute w-20 -translate-x-32 animate-fade text-primary/15 animate-delay-500 animate-duration-1000 animate-ease-out md:w-32 md:-translate-x-56 lg:w-40 lg:-translate-x-64' />
           </>
         ) : (
           <>
-            <TheEye className='absolute animate-fade animate-ease-out animate-delay-500 animate-duration-1000 w-28 md:w-32 lg:w-40 translate-y-20 lg:translate-y-24 text-primary/15' />
-            <TheEye className='absolute animate-fade animate-ease-out animate-delay-300 animate-duration-1000 w-28 md:w-32 lg:w-40 translate-y-10 text-primary/50' />
-            <TheEye className='absolute animate-fade animate-ease-out w-28 md:w-32 lg:w-40 z-20' />
-            <TheEye className='absolute animate-fade animate-ease-out animate-delay-300 animate-duration-1000 w-28 md:w-32 lg:w-40 -translate-y-10 text-primary/50' />
-            <TheEye className='absolute animate-fade animate-ease-out animate-delay-500 animate-duration-1000 w-28 md:w-32 lg:w-40 -translate-y-20 lg:-translate-y-24 text-primary/15' />
+            <TheEye className='absolute w-28 translate-y-20 animate-fade text-primary/15 animate-delay-500 animate-duration-1000 animate-ease-out md:w-32 lg:w-40 lg:translate-y-24' />
+            <TheEye className='absolute w-28 translate-y-10 animate-fade text-primary/50 animate-delay-300 animate-duration-1000 animate-ease-out md:w-32 lg:w-40' />
+            <TheEye className='absolute z-20 w-28 animate-fade animate-ease-out md:w-32 lg:w-40' />
+            <TheEye className='absolute w-28 -translate-y-10 animate-fade text-primary/50 animate-delay-300 animate-duration-1000 animate-ease-out md:w-32 lg:w-40' />
+            <TheEye className='absolute w-28 -translate-y-20 animate-fade text-primary/15 animate-delay-500 animate-duration-1000 animate-ease-out md:w-32 lg:w-40 lg:-translate-y-24' />
           </>
         )}
       </div>

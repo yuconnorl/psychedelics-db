@@ -31,9 +31,9 @@ const GridCard = async ({
 
   return (
     <Link href={`/database/${category}/${slug}`}>
-      <Card className='relative break-inside sm:group-hover:-translate-x-2 sm:group-hover:-translate-y-2 lg:group-hover:-translate-x-3 lg:group-hover:-translate-y-3 transition-transform z-10'>
+      <Card className='break-inside relative z-10 transition-transform sm:group-hover:-translate-x-2 sm:group-hover:-translate-y-2 lg:group-hover:-translate-x-3 lg:group-hover:-translate-y-3'>
         <CardHeader>
-          <CardTitle className='leading-normal mb-2'>{title}</CardTitle>
+          <CardTitle className='mb-2 leading-normal'>{title}</CardTitle>
           <div className='flex gap-2'>
             <Badge className='w-fit' variant='secondary'>
               {capitalizeFirstLetter(type)}
@@ -44,7 +44,7 @@ const GridCard = async ({
           </div>
         </CardHeader>
         <CardContent className='flex flex-col gap-2'>
-          <div className='relative saturate-[0.15] group-hover:saturate-100 transition-[filter]'>
+          <div className='relative saturate-[0.15] transition-[filter] group-hover:saturate-100'>
             <AspectRatio ratio={21 / 9}>
               <Image
                 src={meta.imgUrl}
@@ -58,25 +58,25 @@ const GridCard = async ({
             </AspectRatio>
           </div>
           {metaDescription ? (
-            <p className='line-clamp-2 text-muted-foreground text-base group-hover:text-foreground transition-colors'>
+            <p className='line-clamp-2 text-base text-muted-foreground transition-colors group-hover:text-foreground'>
               {metaDescription}
             </p>
           ) : (
-            <p className='line-clamp-2 text-muted-foreground text-base group-hover:text-foreground transition-colors'>
+            <p className='line-clamp-2 text-base text-muted-foreground transition-colors group-hover:text-foreground'>
               {meta.description}
             </p>
           )}
         </CardContent>
         <CardFooter>
-          <div className='relative flex gap-1.5 items-center text-muted-foreground truncate'>
+          <div className='relative flex items-center gap-1.5 truncate text-muted-foreground'>
             <Image
               src={meta.iconUrl}
               alt={`Icon of ${title}`}
               width={16}
               height={16}
-              className='object-contain w-4 h-4'
+              className='h-4 w-4 object-contain'
             />
-            <p className='text-sm break-all truncate w-full'>{url}</p>
+            <p className='w-full truncate break-all text-sm'>{url}</p>
           </div>
         </CardFooter>
       </Card>
@@ -107,7 +107,7 @@ const GridLayoutCard = async ({
           language,
           metaDescription,
         }) => (
-          <article key={id} className='relative group h-fit mb-2 sm:mb-4'>
+          <article key={id} className='group relative mb-2 h-fit sm:mb-4'>
             <GridCard
               category={category}
               slug={slug}
@@ -117,7 +117,7 @@ const GridLayoutCard = async ({
               language={language}
               metaDescription={metaDescription}
             />
-            <div className='absolute bg-foreground w-[calc(100%-5px)] h-[calc(100%-5px)] top-1 left-1 rounded-lg -z-10' />
+            <div className='absolute left-1 top-1 -z-10 h-[calc(100%-5px)] w-[calc(100%-5px)] rounded-lg bg-foreground' />
           </article>
         ),
       )}
