@@ -67,12 +67,12 @@ const AlgoliaSearchComponent = ({
               <CustomHits onHitClick={setOpen} />
             </NoResultsBoundary>
           </InstantSearchNext>
-          <div className='border-t items-center px-6 py-4 flex justify-end'>
+          <div className='flex items-center justify-end border-t px-6 py-4'>
             <Link
               href={'https://www.algolia.com/ref/docsearch'}
               className='flex items-center text-primary/50'
             >
-              <p className='text-muted-foreground text-xs mr-3 opacity-50'>
+              <p className='mr-3 text-xs text-muted-foreground opacity-50'>
                 Search by
               </p>
               <AlgoliaLogoIcon />
