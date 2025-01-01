@@ -179,7 +179,7 @@ const UpdateSection = (): JSX.Element => {
 
   const MY_NAMESPACE = process.env.PAYLOAD_PUBLIC_NAME_SPACE
 
-  const generateDeterministicUUID = (id: String) => {
+  const generateDeterministicUUID = (id: string) => {
     return uuidv5(String(id), MY_NAMESPACE)
   }
 

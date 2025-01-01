@@ -40,6 +40,18 @@ export const summarizePaperWithPdfFile = async (pdfData: FormData) => {
   }
 }
 
+export const translateSummaries = async (summaries: string[]) => {
+  try {
+    const paperData = await fetch(`/apiv2/research-papers/translate`, {
+      method: 'POST',
+      body: JSON.stringify({ summaries }),
+    })
+    return paperData
+  } catch (error: unknown) {
+    console.log('Error fetching paper:', error)
+  }
+}
+
 interface EmbeddingResponse {
   embedding: number[]
 }
@@ -79,7 +91,7 @@ interface UpdateVectorResponse {
   message?: string
 }
 
-export const updateVector = async (message: number[]) => {
+export const updateVector = async (message) => {
   try {
     const response = await fetch('/apiv2/vector', {
       method: 'PUT',

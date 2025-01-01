@@ -1,9 +1,16 @@
 import React, { useCallback, useState } from 'react'
-import { useField, useForm } from 'payload/components/forms'
+import {
+  reduceFieldsToValues,
+  useAllFormFields,
+  useField,
+  useForm,
+  useFormFields,
+} from 'payload/components/forms'
 
 import {
   summarizePaperWithPdfFile,
   summarizePaperWithUrl,
+  translateSummaries,
 } from '../../utilities/paperDetail'
 
 type Props = {
@@ -26,6 +33,8 @@ export const FileUrlManager: React.FC = ({
   const [pdfData, setPdfData] = useState(null)
   const [pdfDisplayValue, setPdfDisplayValue] = useState('')
   const { addFieldRow, dispatchFields } = useForm()
+  const [allFields, dispatchAllFields] = useAllFormFields()
+  const formData = reduceFieldsToValues(allFields, true)
 
   const handleSummaryAdd = useCallback(
     (summary) => {
@@ -34,6 +43,19 @@ export const FileUrlManager: React.FC = ({
         rowIndex: 0,
         data: {
           summary: summary,
+        },
+      })
+    },
+    [addFieldRow],
+  )
+
+  const handleSummaryHantAdd = useCallback(
+    (summary) => {
+      addFieldRow({
+        path: 'summaryZhTwField',
+        rowIndex: 0,
+        data: {
+          summaryHant: summary,
         },
       })
     },
@@ -134,6 +156,10 @@ export const FileUrlManager: React.FC = ({
         handleSummaryAdd(summary)
       })
 
+      researchPaperDetail.keyFindingsZhTw.forEach((summary) => {
+        handleSummaryHantAdd(summary)
+      })
+
       researchPaperDetail.authors.forEach((author) => {
         handleAuthorsAdd(author)
       })
@@ -156,11 +182,49 @@ export const FileUrlManager: React.FC = ({
     handleAuthorsAdd,
     handleKeywordsAdd,
     handleJournalAdd,
+    handleSummaryHantAdd,
     handleSlugAdd,
     handleSummaryAdd,
     handleTitleAdd,
     pdfData,
   ])
+
+  // translate summaries
+  const handleSummaryTranslate = useCallback(async () => {
+    // eslint-disable-next-line no-console
+    console.log('📖 Translating...')
+
+    console.log('formData', formData)
+
+    const summariesArray = formData.summaryField.map(
+      (summary) => summary.summary,
+    )
+
+    console.log('summariesString -------', summariesArray)
+
+    try {
+      setIsLoading(true)
+      const translateResponse = await translateSummaries(summariesArray)
+
+      // const { researchPaperDetail } = await paperResponse.json()
+
+      // console.log('researchPaperDetail', researchPaperDetail)
+
+      // researchPaperDetail.keyFindings.forEach((summary) => {
+      //   handleSummaryAdd(summary)
+      // })
+
+      // researchPaperDetail.keyFindingsZhTw.forEach((summary) => {
+      //   handleSummaryHantAdd(summary)
+      // })
+    } catch (error: unknown) {
+      // eslint-disable-next-line no-console
+      console.error('Error fetching paper:', error)
+      setIsFailed(true)
+    } finally {
+      setIsLoading(false)
+    }
+  }, [handleSummaryHantAdd, formData])
 
   const handlePaperFetch = useCallback(async () => {
     // eslint-disable-next-line no-console
@@ -240,6 +304,18 @@ export const FileUrlManager: React.FC = ({
               <span className='btn-loader'>Retrieving...</span>
             ) : (
               'Retrieve PDF Info'
+            )}
+          </button>
+          <button
+            className='btn btn--style-primary btn--icon-style-without-border btn--size-small my-0 whitespace-nowrap py-3 disabled:cursor-not-allowed disabled:opacity-50'
+            onClick={handleSummaryTranslate}
+            type='button'
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <span className='btn-loader'>Retrieving...</span>
+            ) : (
+              'Translate'
             )}
           </button>
         </div>

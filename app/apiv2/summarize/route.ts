@@ -22,9 +22,9 @@ export async function POST(request: NextRequest) {
     model = 'gemini-1.5-flash',
   }: { prompt: string; model: keyof typeof MODEL_MAP } = await request.json()
 
-  // if (!prompt) {
-  //   return NextResponse.json({ success: false, message: 'No prompt provided' })
-  // }
+  if (!prompt || typeof prompt !== 'string') {
+    return NextResponse.json({ success: false, message: 'No prompt provided' })
+  }
 
   try {
     let result = null
