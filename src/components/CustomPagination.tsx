@@ -42,15 +42,15 @@ const CustomPagination = ({
     const lastPageIndex = totalPageCount
 
     if (!shouldShowLeftDots && shouldShowRightDots) {
-      let leftItemCount = 3 + 2 * siblingCount
-      let leftRange = range(1, leftItemCount)
+      const leftItemCount = 3 + 2 * siblingCount
+      const leftRange = range(1, leftItemCount)
 
       return [...leftRange, '...', totalPageCount]
     }
 
     if (shouldShowLeftDots && !shouldShowRightDots) {
-      let rightItemCount = 3 + 2 * siblingCount
-      let rightRange = range(
+      const rightItemCount = 3 + 2 * siblingCount
+      const rightRange = range(
         totalPageCount - rightItemCount + 1,
         totalPageCount,
       )
@@ -58,7 +58,7 @@ const CustomPagination = ({
     }
 
     if (shouldShowLeftDots && shouldShowRightDots) {
-      let middleRange = range(leftSiblingIndex, rightSiblingIndex)
+      const middleRange = range(leftSiblingIndex, rightSiblingIndex)
       return [firstPageIndex, '...', ...middleRange, '...', lastPageIndex]
     }
   }, [totalElements, itemsPerPage, siblingCount, currentPage])
@@ -126,7 +126,7 @@ const CustomPagination = ({
 
 // Utility function to create a range of numbers
 const range = (start: number, end: number): Array<number> => {
-  let length = end - start + 1
+  const length = end - start + 1
   return Array.from({ length }, (_, idx) => idx + start)
 }
 

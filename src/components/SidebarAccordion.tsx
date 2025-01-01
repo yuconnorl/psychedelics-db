@@ -15,7 +15,7 @@ type RecordMap = Record<CategoryOptionsType, RecordType[]>
 type Props = {
   recordsMapZh: RecordMap
   recordsMapEn: RecordMap
-  categoriesMap: Object
+  categoriesMap: any
   onCategoryClickedAndCloseSheet?: () => void
 }
 
@@ -23,7 +23,7 @@ const SidebarAccordion = ({
   recordsMapZh,
   recordsMapEn,
   categoriesMap,
-  onCategoryClickedAndCloseSheet = () => {},
+  onCategoryClickedAndCloseSheet,
 }: Props): JSX.Element => {
   const [openedItems, setOpenedItems] = useState(['ngo-foundation'])
   const pathname = usePathname()

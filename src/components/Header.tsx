@@ -23,10 +23,11 @@ import { CategoryOptionsType, RecordType } from '@/types'
 
 type RecordMap = Record<CategoryOptionsType, RecordType[]>
 
+// FIXME: categoriesMap type
 type Props = {
   recordsMapZh: RecordMap
   recordsMapEn: RecordMap
-  categoriesMap: Object
+  categoriesMap: any
 }
 
 const Header = ({

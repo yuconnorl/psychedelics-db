@@ -28,7 +28,7 @@ const CustomSearchBox = (props: UseSearchBoxProps): JSX.Element => {
   }, [clear])
 
   return (
-    <div className='flex items-center gap-1 sm:gap-3 p-4 sm:p-6 border-b relative'>
+    <div className='relative flex items-center gap-1 border-b p-4 sm:gap-3 sm:p-6'>
       <SearchIcon className='text-muted-foreground' />
       <form
         className='flex-1'
@@ -54,7 +54,7 @@ const CustomSearchBox = (props: UseSearchBoxProps): JSX.Element => {
         }}
       >
         <input
-          className='w-full ml-1.5 border-none outline-none bg-transparent placeholder:text-muted-foreground'
+          className='ml-1.5 w-full border-none bg-transparent outline-none placeholder:text-muted-foreground'
           ref={inputRef}
           autoComplete='off'
           autoCorrect='off'

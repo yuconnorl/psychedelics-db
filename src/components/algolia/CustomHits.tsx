@@ -51,10 +51,10 @@ const HitItem = ({ hits, onHitClick }): JSX.Element => {
         return (
           <div key={hit.objectID} onClick={() => onHitClick(false)}>
             <Link
-              className='group my-2 sm:my-3 flex items-center px-2 sm:px-3 py-3 rounded-sm bg-muted-foreground/5 hover:bg-muted-foreground/30 transition-colors'
+              className='group my-2 flex items-center rounded-sm bg-muted-foreground/5 px-2 py-3 transition-colors hover:bg-muted-foreground/30 sm:my-3 sm:px-3'
               href={linkHerf}
             >
-              <div className='p-1 flex items-center justify-center mr-1 sm:mr-2 text-primary/80'>
+              <div className='mr-1 flex items-center justify-center p-1 text-primary/80 sm:mr-2'>
                 {icon}
               </div>
               <Highlight
@@ -67,7 +67,7 @@ const HitItem = ({ hits, onHitClick }): JSX.Element => {
                   root: 'text-sm',
                 }}
               />
-              <ChevronRightUpIcon className='opacity-0 group-hover:opacity-100 transition-opacity' />
+              <ChevronRightUpIcon className='opacity-0 transition-opacity group-hover:opacity-100' />
             </Link>
           </div>
         )
@@ -96,10 +96,10 @@ const CustomHits = (props: HitProps): JSX.Element => {
   })
 
   return (
-    <div className='overflow-scroll flex-1 px-6 py-4 basis-60'>
+    <div className='flex-1 basis-60 overflow-scroll px-6 py-4'>
       {Object.keys(hitMap).map((type) => (
         <section key={type}>
-          <div className='pt-4 mb-3 font-semibold'>
+          <div className='mb-3 pt-4 font-semibold'>
             {capitalizeFirstLetter(type)}
           </div>
           <HitItem hits={hitMap[type]} onHitClick={props.onHitClick} />

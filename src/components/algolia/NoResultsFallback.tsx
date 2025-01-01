@@ -50,9 +50,9 @@ const RandomSubstance = (): JSX.Element => {
   const description = randomSubstance.description
 
   return (
-    <div className='absolute opacity-20 flex flex-col items-center pointer-events-none'>
+    <div className='pointer-events-none absolute flex flex-col items-center opacity-20'>
       <Formula className='opacity-[0.5]' />
-      <span className='mt-2 sm:mt-4 font-semibold font-garamond font-sm sm:font-base'>
+      <span className='font-sm sm:font-base mt-2 font-garamond font-semibold sm:mt-4'>
         {description}
       </span>
     </div>
@@ -63,18 +63,18 @@ const NoResultsFallback = (): JSX.Element => {
   const { indexUiState, status } = useInstantSearch()
 
   return (
-    <div className='flex items-center justify-center relative px-2'>
+    <div className='relative flex items-center justify-center px-2'>
       {indexUiState.query && status !== 'loading' && (
-        <div className='text-muted-foreground pointer-events-none max-w-xs text-center'>
+        <div className='pointer-events-none max-w-xs text-center text-muted-foreground'>
           You are more than welcome to contribute the entry for
-          <span className='mx-1.5 text-primary font-medium'>
+          <span className='mx-1.5 font-medium text-primary'>
             "{indexUiState.query}"
           </span>
           to our database
         </div>
       )}
       {status === 'loading' && (
-        <div className='text-muted-foreground pointer-events-none max-w-xs text-center'>
+        <div className='pointer-events-none max-w-xs text-center text-muted-foreground'>
           Searching...
         </div>
       )}

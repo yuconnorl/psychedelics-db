@@ -25,7 +25,7 @@ type SidebarItemProps = {
 const SidebarItem = ({
   category,
   records,
-  onItemClicked = (): void => {},
+  onItemClicked,
   onCategoryClicked,
   openedItems,
   categoryTitle,
@@ -38,7 +38,7 @@ const SidebarItem = ({
     if (openedItems.includes(category)) {
       if (pathname === `/database/${category}`) {
         // close items
-        let newItems = openedItems.filter((item) => item !== category)
+        const newItems = openedItems.filter((item) => item !== category)
         onCategoryClicked(newItems)
       }
     } else {
