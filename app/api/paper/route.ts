@@ -32,8 +32,6 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     const scihubUrl = 'https://sci-hub.se'
     const fetchUrl = `${scihubUrl}/${doi}`
 
-    console.log('fetchUrl', fetchUrl)
-
     const response = await fetch(fetchUrl)
 
     if (!response.ok) {

@@ -1,4 +1,4 @@
-import { google } from '@ai-sdk/google'
+import { createGoogleGenerativeAI } from '@ai-sdk/google'
 import { streamText } from 'ai'
 import { type NextRequest, NextResponse } from 'next/server'
 
@@ -31,6 +31,10 @@ export async function POST(request: NextRequest) {
 
     switch (model) {
       case 'gemini-1.5-flash': {
+        const google = createGoogleGenerativeAI({
+          apiKey: process.env.GEMINI_API_KEY,
+        })
+
         result = streamText({
           model: google('gemini-1.5-flash'),
           system: `You are an expert in summarizing structured data from research papers. You will be provided with structured text data from seven research papers related to the query of user. Your task is to use the information from research papers provided to explain the query from user. Also, when refering to particular paper, add link to it with the URL field in paper detail and must follow markdown format: [#order](link), e.g. [1](https://link-to-the-paper). Ensure that the summary is clear, concise, and informative.`,
