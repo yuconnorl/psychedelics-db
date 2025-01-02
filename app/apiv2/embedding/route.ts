@@ -63,6 +63,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ embedding: embeddingData, success: true })
   } catch (error: unknown) {
     console.error('Error performing embedding', error)
-    return NextResponse.json({ success: false, message: 'Error fetching PDF' })
+    return NextResponse.json({
+      success: false,
+      message: 'Generate embedding error',
+    })
   }
 }

@@ -85,7 +85,9 @@ const CustomPagination = ({
     <nav
       role='navigation'
       aria-label='pagination'
-      className={cn('mx-auto mt-8 flex w-full justify-center gap-1')}
+      className={cn(
+        'mt-8 flex w-full justify-center gap-1 md:max-w-3xl 2xl:max-w-full',
+      )}
     >
       <Button
         onClick={onPrevious}
