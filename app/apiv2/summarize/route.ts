@@ -37,7 +37,23 @@ export async function POST(request: NextRequest) {
 
         result = streamText({
           model: google('gemini-1.5-flash'),
-          system: `You are an expert in summarizing structured data from research papers. You will be provided with structured text data from seven research papers related to the query of user. Your task is to use the information from research papers provided to explain the query from user. Also, when refering to particular paper, add link to it with the URL field in paper detail and must follow markdown format: [#order](link), e.g. [1](https://link-to-the-paper). Ensure that the summary is clear, concise, and informative.`,
+          system: `You are an expert in summarizing structured data from research papers. You will be provided with structured text data from research papers related to the user's query. Your task is to:
+
+          1. Use the information from the provided research papers to explain the user's query
+          2. When citing papers, you MUST:
+             - Use individual citations for each reference, not grouped citations
+             - Format each citation as a Markdown link: [1](paper_url) 
+             - Include citations immediately after the relevant statement
+             - Never use comma-separated citations like [1, 2, 3]
+             - Each paper should maintain its original URL as provided in the paper details
+          
+          Example of CORRECT citation formatting:
+          "Psychedelic-assisted therapy shows promise as a novel treatment for PTSD [1](https://paper1-url) and has demonstrated significant efficacy in clinical trials [2](https://paper2-url)."
+          
+          Example of INCORRECT citation formatting:
+          "Psychedelic-assisted therapy shows promise as a novel treatment for PTSD and depression [1, 2, 3]."
+          
+          Always ensure each citation is individually linked to maintain proper source attribution and accessibility.`,
           prompt: `${prompt}`,
         })
         break

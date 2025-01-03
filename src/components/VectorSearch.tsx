@@ -1,6 +1,9 @@
 'use client'
+
 import { useCallback, useEffect, useState } from 'react'
 import { ProseMirror, react } from '@nytimes/react-prosemirror'
+import { history, redo, undo } from 'prosemirror-history'
+import { keymap } from 'prosemirror-keymap'
 import { schema } from 'prosemirror-schema-basic'
 import { EditorState } from 'prosemirror-state'
 import { toast } from 'sonner'
@@ -32,6 +35,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { MODEL_MAP } from '@/config/general'
+import { placeholderPlugin } from '@/lib/prosePlaceholder'
 import { cn } from '@/lib/utils'
 import { type VectorSearchPoints } from '@/types/dataTypes'
 import { type Models } from '@/types/general'
@@ -44,7 +48,12 @@ const VectorSearch = () => {
   const [editorState, setEditorState] = useState<EditorState | null>(
     EditorState.create({
       schema,
-      plugins: [react()],
+      plugins: [
+        react(),
+        history(),
+        keymap({ 'Mod-z': undo, 'Mod-y': redo }),
+        placeholderPlugin(),
+      ],
     }),
   )
   const [debouncedSearch, setDebouncedSearch] = useState('')
@@ -137,7 +146,7 @@ const VectorSearch = () => {
     <>
       <Button className='mb-3' onClick={() => setOpen(true)}>
         <CubeTransparentIcon className='mr-2 animate-spin animate-duration-[3000ms] animate-infinite animate-ease-in-out' />
-        Vector Search
+        PsycheLens
       </Button>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className='flex min-h-[95dvh] max-w-[95%] flex-col gap-1.5 px-2 pb-2 pt-4 md:min-h-fit md:max-w-4xl md:p-6 md:px-5 md:py-[1.35rem] xl:max-w-5xl'>
@@ -166,7 +175,7 @@ const VectorSearch = () => {
           </DialogHeader>
           {/* Search input box */}
           <div className='order-last flex flex-col items-center md:order-none md:mb-6 md:mt-3'>
-            <div className='z-20 mx-auto flex w-full max-w-2xl flex-col rounded-2xl bg-secondary pb-2.5 pl-2 pr-2.5 pt-2.5 text-primary sm:mx-0'>
+            <div className='z-20 mx-auto flex w-full max-w-2xl flex-col rounded-2xl border border-muted-foreground/10 bg-secondary pb-2.5 pl-2 pr-2.5 pt-2.5 text-primary transition-colors focus-within:border-muted-foreground/60 sm:mx-0'>
               <div className='flex w-full justify-between'>
                 <div className='mb-2 mr-3 mt-1 max-h-96 min-h-[3.5rem] w-full flex-1 overflow-y-auto break-words pl-3.5 md:min-h-[4.5rem]'>
                   <ProseMirror
@@ -188,7 +197,7 @@ const VectorSearch = () => {
                   className={cn(
                     'flex bg-primary text-secondary transition-opacity duration-200 disabled:cursor-not-allowed',
                     !search
-                      ? 'opacity-0'
+                      ? 'cursor-default select-none opacity-0'
                       : 'animate-jumpyy opacity-100 animate-duration-[300ms] animate-once',
                   )}
                   disabled={wholeLoading}
@@ -201,7 +210,7 @@ const VectorSearch = () => {
                 defaultValue={model}
                 onValueChange={(model: Models) => setModel(model)}
               >
-                <SelectTrigger className='h-6 w-max gap-1 rounded-[0.5rem] border-none bg-secondary px-1.5 py-2 text-primary/70 transition-colors hover:bg-primary-foreground'>
+                <SelectTrigger className='h-7 w-max gap-1 rounded-[0.5rem] border-none bg-secondary px-1.5 py-3 text-primary/70 transition-colors hover:bg-primary-foreground'>
                   <SelectValue placeholder='Model' />
                 </SelectTrigger>
                 <SelectContent className='text-sm text-primary/70'>

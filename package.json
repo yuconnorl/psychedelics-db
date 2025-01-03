@@ -83,6 +83,8 @@
     "nuqs": "^2.0.4",
     "openai": "^4.68.0",
     "payload": "^2.0.4",
+    "prosemirror-history": "^1.4.1",
+    "prosemirror-keymap": "^1.2.2",
     "prosemirror-schema-basic": "^1.2.3",
     "prosemirror-state": "^1.4.3",
     "prosemirror-view": "^1.37.0",
