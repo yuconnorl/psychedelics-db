@@ -35,6 +35,12 @@ const MarkdownParser: React.FC<{ content: string }> = ({ content }) => {
           <ol className='mb-4 list-decimal pl-5' {...props} />
         ),
         li: ({ node, ...props }) => <li className='mb-2' {...props} />,
+        a: ({ node, ...props }) => (
+          <a
+            className='font-semibold text-secondary-foreground underline transition-opacity hover:opacity-50'
+            {...props}
+          />
+        ),
       }}
     >
       {content}

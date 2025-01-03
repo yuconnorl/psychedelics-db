@@ -246,13 +246,13 @@ const VectorSearch = () => {
           </div>
           <div
             className={cn(
-              'flex flex-1 flex-col gap-1.5 md:grid md:gap-2.5',
-              debouncedSearch
+              'flex flex-1 flex-col gap-1.5 md:grid',
+              debouncedSearch || cachedResults.length
                 ? 'md:grid-cols-[minmax(17rem,_0.3fr)_1fr]'
                 : 'justify-center',
             )}
           >
-            {debouncedSearch ? (
+            {debouncedSearch || cachedResults.length ? (
               <>
                 <VectorSearchResult
                   searchResults={vectorSearchResult}
