@@ -124,7 +124,7 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
           </SelectContent>
         </Select>
       </div>
-      <div className='flex flex-col gap-1 px-1 md:gap-2 md:pr-3'>
+      <div className='flex flex-col gap-1 md:gap-2 md:px-1 md:pr-3'>
         {pagedPapers.map(
           ({ id, title, authors, publishedAt, substance, slug }) => {
             const link = querySubstance?.length
@@ -136,7 +136,7 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
                 key={id}
                 href={link}
                 prefetch={false}
-                className='group rounded-sm p-3 pb-4 transition-colors hover:bg-secondary/55 md:max-w-3xl md:p-4 md:pb-5 2xl:max-w-full'
+                className='group rounded-sm pb-3 pl-3 pr-1.5 pt-2 transition-colors hover:bg-secondary/55 md:max-w-3xl md:p-4 md:pb-5 2xl:max-w-full'
               >
                 <div className='flex flex-col gap-2'>
                   <time className='text-sm text-primary/70'>
