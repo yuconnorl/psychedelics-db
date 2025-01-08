@@ -2,7 +2,7 @@
 
 <div align="center">
 
-  ![banner](./readme-banner.png)
+  ![banner](./public/readme-banner.png)
 
 </div>
 
