@@ -28,11 +28,7 @@ const AboutPage = (): JSX.Element => {
   return (
     <div className='flex w-full flex-1 flex-col justify-between'>
       <main className='relative flex flex-1 flex-col flex-wrap items-center justify-center gap-2 px-4 font-garamond text-lg sm:text-2xl md:gap-3'>
-        <span className='z-10'>Nothing good, nothing bad.</span>
-        <span className='z-10'>Nothing left, and nothing right.</span>
-        <span className='z-10 text-center'>
-          Surrender, enbrace the serenity of Ultimate Reality.
-        </span>
+        <span className='z-10 text-center'>Ultimate Reality</span>
         <PsychedelicDBIcon className='absolute z-0 h-36 w-36 opacity-[5%] md:h-52 md:w-52' />
       </main>
       <Footer />

@@ -24,10 +24,12 @@ export async function generateMetadata(
       title: 'Research',
       siteName: SITE_NAME,
       url: `${SITE_URL}/research`,
+      description: 'Scientific researches across all aspects of Psychedelics',
     },
     twitter: {
       card: 'summary_large_image',
       title: 'Research',
+      description: 'Scientific researches across all aspects of Psychedelics',
     },
   }
 }

@@ -19,7 +19,7 @@ export async function generateMetadata(
   return {
     title: 'Database',
     description:
-      'Psychedelics Database is the leading information hub around therapeutic and recreational usage of psychedelic compounds, managed by the Taiwan Psychedelic Collective',
+      'Educational materials to enhance understanding of therapeutic usage of psychedelics',
     openGraph: {
       title: 'Database',
       siteName: SITE_NAME,
@@ -28,6 +28,8 @@ export async function generateMetadata(
     twitter: {
       card: 'summary_large_image',
       title: 'Database',
+      description:
+        'Educational materials to enhance understanding of therapeutic usage of psychedelics',
     },
   }
 }

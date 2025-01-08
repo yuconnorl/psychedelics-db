@@ -12,18 +12,18 @@ import { SITE_NAME, SITE_URL } from '@/constants/constants'
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} – The leading information hub around therapeutic and recreational usage of psychedelic compounds`,
+    default: `${SITE_NAME} – The leading hub for for psychedelic therapy research, education, and clinical insights`,
     template: `%s – ${SITE_NAME}`,
   },
   description:
-    'Psychedelics database is the leading information hub around therapeutic and recreational usage of psychedelic compounds, managed by members of Taiwan Psychedelic Collective',
+    'Psychedelics Database is the leading resource for information on the therapeutic applications of psychedelic substances, managed by the Taiwan Psychedelics Collective. It offers a rich collection of research papers, in-depth insights, and comprehensive educational materials. Serving as a bridge between science and society, it fosters a deeper understanding of the profound impact psychedelics can have on mental health, personal growth, and well-being',
   openGraph: {
     title: {
-      default: `${SITE_NAME} – The leading information hub around therapeutic and recreational usage of psychedelic compounds`,
+      default: `${SITE_NAME} – The leading hub for for psychedelic therapy research, education, and clinical insights`,
       template: `%s – ${SITE_NAME}`,
     },
     description:
-      'The leading information hub around therapeutic and recreational usage of psychedelic compounds',
+      'Psychedelics Database is the leading resource for information on the therapeutic applications of psychedelic substances, managed by the Taiwan Psychedelics Collective. It offers a rich collection of research papers, in-depth insights, and comprehensive educational materials. Serving as a bridge between science and society, it fosters a deeper understanding of the profound impact psychedelics can have on mental health, personal growth, and well-being',
     url: SITE_URL,
     siteName: SITE_NAME,
     locale: 'zh_TW',
@@ -32,11 +32,11 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: {
-      default: `${SITE_NAME} – The leading information hub around therapeutic and recreational usage of psychedelic compounds`,
+      default: `${SITE_NAME} – The leading hub for for psychedelic therapy research, education, and clinical insights`,
       template: `%s – ${SITE_NAME}`,
     },
     description:
-      'The leading information hub around therapeutic and recreational usage of psychedelic compounds',
+      'Psychedelics Database is the leading resource for information on the therapeutic applications of psychedelic substances, managed by the Taiwan Psychedelics Collective. It offers a rich collection of research papers, in-depth insights, and comprehensive educational materials. Serving as a bridge between science and society, it fosters a deeper understanding of the profound impact psychedelics can have on mental health, personal growth, and well-being',
   },
 }
 
