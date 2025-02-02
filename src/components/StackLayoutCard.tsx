@@ -28,7 +28,7 @@ const StackCard = async ({
   const meta = await resolveMetaTag(url, slug, title)
 
   return (
-    <Link href={`/database/${category}/${slug}`}>
+    <Link href={`/database/${category}/${slug}`} prefetch={false}>
       <Card className='relative z-10 grid grid-rows-[minmax(0,1fr)_200px] overflow-hidden transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2 sm:grid-cols-[minmax(0,1fr)_240px] sm:grid-rows-none lg:group-hover:-translate-x-3 lg:group-hover:-translate-y-3 xl:grid-cols-[minmax(0,1fr)_320px]'>
         <div>
           <CardHeader>

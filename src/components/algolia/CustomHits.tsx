@@ -53,6 +53,7 @@ const HitItem = ({ hits, onHitClick }): JSX.Element => {
             <Link
               className='group my-2 flex items-center rounded-sm bg-muted-foreground/5 px-2 py-3 transition-colors hover:bg-muted-foreground/30 sm:my-3 sm:px-3'
               href={linkHerf}
+              prefetch={false}
             >
               <div className='mr-1 flex items-center justify-center p-1 text-primary/80 sm:mr-2'>
                 {icon}

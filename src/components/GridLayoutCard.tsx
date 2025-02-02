@@ -30,7 +30,7 @@ const GridCard = async ({
   const meta = await resolveMetaTag(url, slug, title)
 
   return (
-    <Link href={`/database/${category}/${slug}`}>
+    <Link href={`/database/${category}/${slug}`} prefetch={false}>
       <Card className='break-inside relative z-10 transition-transform sm:group-hover:-translate-x-2 sm:group-hover:-translate-y-2 lg:group-hover:-translate-x-3 lg:group-hover:-translate-y-3'>
         <CardHeader>
           <CardTitle className='mb-2 leading-normal'>{title}</CardTitle>

@@ -95,6 +95,7 @@ const Header = ({
               </Link>
               <Link
                 href={'/about'}
+                prefetch={false}
                 className={cn(
                   currentCategory === 'about' &&
                     'text-foreground underline underline-offset-4',
@@ -111,6 +112,7 @@ const Header = ({
                 href={'https://tinyurl.com/3fr2ddu7'}
                 target='_blank'
                 className='group block'
+                prefetch={false}
               >
                 <TelegramIcon className='text-primary transition-colors group-hover:text-primary/50' />
               </Link>
@@ -120,6 +122,7 @@ const Header = ({
             href={'https://tinyurl.com/3fr2ddu7'}
             target='_blank'
             className='mr-3 block md:hidden'
+            prefetch={false}
           >
             <TelegramIcon className='h-5 w-5 text-primary' />
           </Link>
@@ -166,6 +169,7 @@ const Header = ({
                       <Link
                         href={'/about'}
                         className='transition-opacity hover:opacity-40'
+                        prefetch={false}
                       >
                         <span
                           onClick={(): void => setSheetOpen(false)}

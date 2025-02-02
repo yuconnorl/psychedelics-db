@@ -71,6 +71,7 @@ const AlgoliaSearchComponent = ({
             <Link
               href={'https://www.algolia.com/ref/docsearch'}
               className='flex items-center text-primary/50'
+              prefetch={false}
             >
               <p className='mr-3 text-xs text-muted-foreground opacity-50'>
                 Search by

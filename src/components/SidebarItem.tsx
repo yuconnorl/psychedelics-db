@@ -51,6 +51,7 @@ const SidebarItem = ({
     <AccordionItem className='border-0' value={category}>
       <AccordionTrigger className='py-0 text-left'>
         <Link
+          prefetch={false}
           href={`/database/${category}?layout=${layout}`}
           className={cn(
             'transition-opacity hover:opacity-40',
@@ -65,6 +66,7 @@ const SidebarItem = ({
           {records.map((item) => (
             <li key={item.id} onClick={onItemClicked}>
               <Link
+                prefetch={false}
                 href={`/database/${category}/${item.slug}`}
                 className={cn(
                   pathname === `/database/${category}/${item.slug}` &&

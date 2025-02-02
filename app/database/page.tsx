@@ -37,7 +37,7 @@ export async function generateMetadata(
 const CategoriesCard = ({ categoryTitle, category }): JSX.Element => {
   return (
     <article className='group relative h-fit'>
-      <Link href={`/database/${category}`}>
+      <Link href={`/database/${category}`} prefetch={false}>
         <Card className='break-inside z-10 transition-transform sm:group-hover:-translate-x-2 sm:group-hover:-translate-y-2'>
           <CardHeader className='p-4 md:p-6'>
             <CardTitle className='text-base font-normal md:text-lg'>

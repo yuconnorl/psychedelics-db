@@ -154,7 +154,12 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
           asChild
           variant='secondary'
         >
-          <Link href={url} className='flex gap-2' target='_blank'>
+          <Link
+            href={url}
+            className='flex gap-2'
+            target='_blank'
+            prefetch={false}
+          >
             <span className='mr-1'>Visit resource</span>
             <Image
               src={meta.iconUrl}

@@ -56,6 +56,7 @@ const Breadcrumbs = ({ items }: Props): JSX.Element => {
                         : 'text-muted-foreground',
                       'block truncate transition-opacity hover:opacity-50',
                     )}
+                    prefetch={false}
                   >
                     {label}
                   </Link>
