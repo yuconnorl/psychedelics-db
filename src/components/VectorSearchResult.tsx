@@ -39,7 +39,7 @@ const VectorSearchResult = ({ searchResults, isLoading = false }) => {
                     key={result.id}
                     className='flex max-w-[12.5rem] flex-[1_0_13rem] flex-col rounded-sm bg-muted-foreground/5 px-2 py-3.5 text-xs transition-colors hover:bg-muted-foreground/30 sm:px-3 md:max-w-full md:flex-[1_0_0] md:text-sm'
                   >
-                    <div className='mb-2 flex gap-x-1 pl-0.5'>
+                    <div className='mb-2 flex flex-wrap gap-x-1 gap-y-1 pl-0.5'>
                       {result.payload.substance.map((sub) => (
                         <Badge
                           className='border-primary/30 px-2 py-0 text-[10px] text-primary/80'
