@@ -102,8 +102,6 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
     summaryZhTw,
   } = filterPaper
 
-  console.log('summaryZhTw', summaryZhTw)
-
   return (
     <div className='py-6'>
       <Link

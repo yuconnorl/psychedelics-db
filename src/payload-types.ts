@@ -65,7 +65,7 @@ export interface Type {
 }
 export interface Paper {
   id: string;
-  doi: string;
+  doi?: string | null;
   url: string;
   fileUrl?: string | null;
   title: string;
@@ -110,7 +110,7 @@ export interface Paper {
     | null;
   summaryZhTwField?:
     | {
-        summaryHant?: string | null;
+        summary?: string | null;
         id?: string | null;
       }[]
     | null;

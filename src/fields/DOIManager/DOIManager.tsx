@@ -34,7 +34,7 @@ export const DOIManager: React.FC = ({
     const paperData = await getPapers()
 
     const isDuplicate = paperData.some(
-      (paper: { doi: string }) => paper.doi === value,
+      (paper: { doi?: string }) => paper.doi === value,
     )
 
     setTimeout(() => {

@@ -16,6 +16,7 @@ export type PaperData = Omit<
   authors: string[]
   keywords: string[]
   summary: PaperType['summaryField']
+  summaryZhTw: PaperType['summaryZhTwField']
 }
 
 export type InfoCard = {
