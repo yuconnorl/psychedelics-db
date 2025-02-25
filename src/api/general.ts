@@ -138,6 +138,7 @@ export const getPapers = async (limit = 300): Promise<PaperData[]> => {
         publishedAt: paper.publishedAt,
         viewCount: paper.viewCount,
         summary: paper.summaryField,
+        summaryZhTw: paper.summaryZhTwField ?? [],
         isVectorized: paper.isVectorized,
       }
     })

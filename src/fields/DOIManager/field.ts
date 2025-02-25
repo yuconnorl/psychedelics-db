@@ -11,5 +11,4 @@ export const CustomDOIField: Field = {
       Field: DOIManager,
     },
   },
-  required: true,
 }

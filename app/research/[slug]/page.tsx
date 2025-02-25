@@ -6,15 +6,11 @@ import { notFound } from 'next/navigation'
 import { Node } from 'slate'
 
 import RecommandSection from '../RecommendSectoin'
+import Summary from './Summary'
 
 import { getPapers } from '@/api/general'
 import CopyButton from '@/components/CopyButton'
-import {
-  ArrowLeftIcon,
-  ChatGPTIcon,
-  KeyIcon,
-  LinkIcon,
-} from '@/components/Icons'
+import { ArrowLeftIcon, LinkIcon } from '@/components/Icons'
 import SerializeSlate from '@/components/SerializeSlate'
 import SubstanceBadge from '@/components/SubstanceBadge'
 import {
@@ -103,7 +99,10 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
     substance,
     publishedAt,
     summary,
+    summaryZhTw,
   } = filterPaper
+
+  console.log('summaryZhTw', summaryZhTw)
 
   return (
     <div className='py-6'>
@@ -128,7 +127,6 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
               <SubstanceBadge key={sub} substance={sub} />
             ))}
           </section>
-
           {/* Paper Detail Accordion for mobile */}
           <Accordion type='single' className='mb-5 md:hidden' collapsible>
             <AccordionItem value='paper-detail'>
@@ -169,13 +167,15 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
                       ))}
                     </div>
                   </section>
-                  <section>
-                    <h3 className='mb-1 font-medium'>DOI</h3>
-                    <div className='flex items-center text-primary/80'>
-                      {doi}
-                      <CopyButton text={doi} />
-                    </div>
-                  </section>
+                  {doi && (
+                    <section>
+                      <h3 className='mb-1 font-medium'>DOI</h3>
+                      <div className='flex items-center text-primary/80'>
+                        {doi}
+                        <CopyButton text={doi} />
+                      </div>
+                    </section>
+                  )}
                   <section>
                     <h3 className='mb-1 font-medium'>Link</h3>
                     <Link
@@ -200,7 +200,8 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-          {summary.length > 0 && (
+          <Summary summary={summary} summaryZhTw={summaryZhTw} />
+          {/* {summary.length > 0 && (
             <section className='relative mb-5 flex flex-col rounded-sm bg-primary-foreground p-4 pb-4 md:p-5'>
               <h3 className='mb-4 flex items-center font-medium'>
                 <KeyIcon className='mr-2 inline' />
@@ -216,12 +217,8 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
                   </li>
                 ))}
               </ul>
-              <div className='ml-auto mt-2 flex items-center text-xs text-muted-foreground opacity-80'>
-                <span className='mr-1.5'>Compile with</span>
-                <ChatGPTIcon className='inline' />
-              </div>
             </section>
-          )}
+          )} */}
           <section className='pl-2'>
             <div className='mb-3 font-medium'>Abstract</div>
             {abstract && (
@@ -270,13 +267,15 @@ const PaperPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
                 : keywords[0]}
             </div>
           </section>
-          <section>
-            <h3 className='mb-3 font-medium'>DOI</h3>
-            <div className='flex items-center text-primary/80'>
-              {doi}
-              <CopyButton text={doi} />
-            </div>
-          </section>
+          {doi && (
+            <section>
+              <h3 className='mb-3 font-medium'>DOI</h3>
+              <div className='flex items-center text-primary/80'>
+                {doi}
+                <CopyButton text={doi} />
+              </div>
+            </section>
+          )}
           <section>
             <h3 className='mb-3 font-medium'>Link</h3>
             <Link

@@ -148,7 +148,7 @@ export const DOIManager: React.FC = ({
           onChange={handleInputChange}
           placeholder='DOI'
         />
-        <button
+        {/* <button
           className='btn btn--style-primary btn--icon-style-without-border btn--size-small my-0 whitespace-nowrap py-3'
           onClick={handlePaperFetch}
           type='button'
@@ -158,7 +158,7 @@ export const DOIManager: React.FC = ({
           ) : (
             'Fetch Paper'
           )}
-        </button>
+        </button> */}
         <button
           className='btn btn--style-primary btn--icon-style-without-border btn--size-small my-0 whitespace-nowrap py-3'
           onClick={handleDOICheck}
@@ -166,10 +166,6 @@ export const DOIManager: React.FC = ({
         >
           Check DOI
         </button>
-      </div>
-      <div className='field-description'>
-        Fetch paper details by entering a DOI. This will populate the title,
-        authors, keywords, and Summary (key findings) fields.
       </div>
       <div>
         {isFailed && (

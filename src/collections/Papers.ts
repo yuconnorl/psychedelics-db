@@ -120,7 +120,7 @@ const Papers: CollectionConfig = {
       },
       fields: [
         {
-          name: 'summaryHant',
+          name: 'summary',
           type: 'text',
         },
       ],
