@@ -18,17 +18,17 @@ export async function generateMetadata(
   // const previousImages = (await parent).openGraph?.images || []
 
   return {
-    title: 'Research',
+    title: '研究論文',
     description: 'Scientific researches across all aspects of Psychedelics',
     openGraph: {
-      title: 'Research',
+      title: '研究論文',
       siteName: SITE_NAME,
       url: `${SITE_URL}/research`,
       description: 'Scientific researches across all aspects of Psychedelics',
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Research',
+      title: '研究論文',
       description: 'Scientific researches across all aspects of Psychedelics',
     },
   }

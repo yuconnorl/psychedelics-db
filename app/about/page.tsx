@@ -12,13 +12,13 @@ export async function generateMetadata(
   const parentTwitter = parentData.twitter
 
   return {
-    title: 'About',
+    title: '關於',
     openGraph: {
-      title: 'About',
+      title: '關於',
       images: parentOpenGraph.images,
     },
     twitter: {
-      title: 'About',
+      title: '關於',
       images: parentTwitter.images,
     },
   }
@@ -28,7 +28,9 @@ const AboutPage = (): JSX.Element => {
   return (
     <div className='flex w-full flex-1 flex-col justify-between'>
       <main className='relative flex flex-1 flex-col flex-wrap items-center justify-center gap-2 px-4 font-garamond text-lg sm:text-2xl md:gap-3'>
-        <span className='z-10 text-center'>Ultimate Reality</span>
+        <span className='z-10 text-center text-lg sm:text-2xl'>
+          Ultimate Reality
+        </span>
         <PsychedelicDBIcon className='absolute z-0 h-36 w-36 opacity-[5%] md:h-52 md:w-52' />
       </main>
       <Footer />

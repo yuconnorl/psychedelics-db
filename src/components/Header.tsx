@@ -81,7 +81,7 @@ const Header = ({
                   'transition-opacity hover:opacity-40',
                 )}
               >
-                Database
+                資料庫
               </Link>
               <Link
                 href={'/research'}
@@ -91,7 +91,7 @@ const Header = ({
                   'transition-opacity hover:opacity-40',
                 )}
               >
-                Research
+                研究論文
               </Link>
               <Link
                 href={'/about'}
@@ -102,7 +102,7 @@ const Header = ({
                   'transition-opacity hover:opacity-40',
                 )}
               >
-                About
+                關於
               </Link>
             </div>
             <Separator orientation='vertical' className='h-6 w-[1.6px]' />
@@ -149,7 +149,7 @@ const Header = ({
                               'underline underline-offset-4',
                           )}
                         >
-                          Database
+                          資料庫
                         </span>
                       </Link>
                       <Link
@@ -163,7 +163,7 @@ const Header = ({
                               'underline underline-offset-4',
                           )}
                         >
-                          Research
+                          研究論文
                         </span>
                       </Link>
                       <Link
@@ -178,7 +178,7 @@ const Header = ({
                               'underline underline-offset-4',
                           )}
                         >
-                          About
+                          關於
                         </span>
                       </Link>
                     </div>

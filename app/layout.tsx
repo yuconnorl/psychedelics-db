@@ -7,23 +7,23 @@ import './globals.css'
 import CategoriedHeader from '@/components/CategoriedHeader'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import { Toaster } from '@/components/ui/sonner'
-import { SITE_NAME, SITE_URL } from '@/constants/constants'
+import { SITE_NAME, SITE_NAME_ZH, SITE_URL } from '@/constants/constants'
+
+const siteDescription = `${SITE_NAME_ZH} ${SITE_NAME} 致力於推廣啟靈物質的研究、治療與應用。平台收錄研究論文、教育資源與專業見解，旨在推動大眾深入理解啟靈藥物對心理健康、個人成長與社會福祉的正向影響。本資料庫由台灣啟靈意識研究學會維護與管理。`
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} – The leading hub for for psychedelic therapy research, education, and clinical insights`,
+    default: `${SITE_NAME_ZH} ${SITE_NAME}`,
     template: `%s – ${SITE_NAME}`,
   },
-  description:
-    'PsycheVault is the leading resource for information on the therapeutic applications of psychedelic substances, managed by the Taiwan Psychedelic Association. It offers a rich collection of research papers, in-depth insights, and comprehensive educational materials. Serving as a bridge between science and society, it fosters a deeper understanding of the profound impact psychedelics can have on mental health, personal growth, and well-being',
+  description: siteDescription,
   openGraph: {
     title: {
-      default: `${SITE_NAME} – The leading hub for for psychedelic therapy research, education, and clinical insights`,
+      default: `${SITE_NAME_ZH} ${SITE_NAME} – The leading hub for for psychedelic therapy research, education, and clinical insights`,
       template: `%s – ${SITE_NAME}`,
     },
-    description:
-      'PsycheVault is the leading resource for information on the therapeutic applications of psychedelic substances, managed by the Taiwan Psychedelic Association. It offers a rich collection of research papers, in-depth insights, and comprehensive educational materials. Serving as a bridge between science and society, it fosters a deeper understanding of the profound impact psychedelics can have on mental health, personal growth, and well-being',
+    description: siteDescription,
     url: SITE_URL,
     siteName: SITE_NAME,
     locale: 'zh_TW',
@@ -35,8 +35,7 @@ export const metadata: Metadata = {
       default: `${SITE_NAME} – The leading hub for for psychedelic therapy research, education, and clinical insights`,
       template: `%s – ${SITE_NAME}`,
     },
-    description:
-      'PsycheVault is the leading resource for information on the therapeutic applications of psychedelic substances, managed by the Taiwan Psychedelic Association. It offers a rich collection of research papers, in-depth insights, and comprehensive educational materials. Serving as a bridge between science and society, it fosters a deeper understanding of the profound impact psychedelics can have on mental health, personal growth, and well-being',
+    description: siteDescription,
   },
 }
 

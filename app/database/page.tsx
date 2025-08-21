@@ -17,17 +17,17 @@ export async function generateMetadata(
   const parentTwitter = parentData.twitter
 
   return {
-    title: 'Database',
+    title: '資料庫',
     description:
       'Educational materials to enhance understanding of therapeutic usage of psychedelics',
     openGraph: {
-      title: 'Database',
+      title: '資料庫',
       siteName: SITE_NAME,
       url: `${SITE_URL}/database`,
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Database',
+      title: '資料庫',
       description:
         'Educational materials to enhance understanding of therapeutic usage of psychedelics',
     },
