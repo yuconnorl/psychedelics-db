@@ -16,14 +16,14 @@ export const metadata: Metadata = {
     template: `%s – ${SITE_NAME}`,
   },
   description:
-    'Psychedelics Database is the leading resource for information on the therapeutic applications of psychedelic substances, managed by the Taiwan Psychedelic Collective. It offers a rich collection of research papers, in-depth insights, and comprehensive educational materials. Serving as a bridge between science and society, it fosters a deeper understanding of the profound impact psychedelics can have on mental health, personal growth, and well-being',
+    'PsycheVault is the leading resource for information on the therapeutic applications of psychedelic substances, managed by the Taiwan Psychedelic Association. It offers a rich collection of research papers, in-depth insights, and comprehensive educational materials. Serving as a bridge between science and society, it fosters a deeper understanding of the profound impact psychedelics can have on mental health, personal growth, and well-being',
   openGraph: {
     title: {
       default: `${SITE_NAME} – The leading hub for for psychedelic therapy research, education, and clinical insights`,
       template: `%s – ${SITE_NAME}`,
     },
     description:
-      'Psychedelics Database is the leading resource for information on the therapeutic applications of psychedelic substances, managed by the Taiwan Psychedelic Collective. It offers a rich collection of research papers, in-depth insights, and comprehensive educational materials. Serving as a bridge between science and society, it fosters a deeper understanding of the profound impact psychedelics can have on mental health, personal growth, and well-being',
+      'PsycheVault is the leading resource for information on the therapeutic applications of psychedelic substances, managed by the Taiwan Psychedelic Association. It offers a rich collection of research papers, in-depth insights, and comprehensive educational materials. Serving as a bridge between science and society, it fosters a deeper understanding of the profound impact psychedelics can have on mental health, personal growth, and well-being',
     url: SITE_URL,
     siteName: SITE_NAME,
     locale: 'zh_TW',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
       template: `%s – ${SITE_NAME}`,
     },
     description:
-      'Psychedelics Database is the leading resource for information on the therapeutic applications of psychedelic substances, managed by the Taiwan Psychedelic Collective. It offers a rich collection of research papers, in-depth insights, and comprehensive educational materials. Serving as a bridge between science and society, it fosters a deeper understanding of the profound impact psychedelics can have on mental health, personal growth, and well-being',
+      'PsycheVault is the leading resource for information on the therapeutic applications of psychedelic substances, managed by the Taiwan Psychedelic Association. It offers a rich collection of research papers, in-depth insights, and comprehensive educational materials. Serving as a bridge between science and society, it fosters a deeper understanding of the profound impact psychedelics can have on mental health, personal growth, and well-being',
   },
 }
 

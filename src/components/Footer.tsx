@@ -5,7 +5,7 @@ const Footer = (): JSX.Element => {
         <p>2025</p>
         <p>©</p>
         <p className='font-garamond text-sm sm:text-base'>
-          Taiwan Psychedelic Collective
+          Taiwan Psychedelic Association
         </p>
       </div>
     </footer>

@@ -55,7 +55,7 @@ export const FileUrlManager: React.FC = ({
         path: 'summaryZhTwField',
         rowIndex: 0,
         data: {
-          summaryHant: summary,
+          summary: summary,
         },
       })
     },

@@ -194,7 +194,7 @@ const Header = ({
                     </div>
                   </ScrollArea>
                   <div className='flex items-center justify-center font-garamond text-muted-foreground'>
-                    Psychedelics Database
+                    PsycheVault
                   </div>
                 </SheetContent>
               </SheetPortal>

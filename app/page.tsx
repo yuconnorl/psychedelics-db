@@ -18,8 +18,8 @@ const Home = async (): Promise<JSX.Element> => {
               </span>
             </h1>
             <p className='max-w-80 text-muted-foreground sm:text-xl'>
-              Welcome to Psychedelics Database, a comprehensive resource for all
-              things about psychedelics.
+              Welcome to PsycheVault, a comprehensive resource for all things
+              about psychedelics.
             </p>
           </div>
           <div className='fixed bottom-8 left-0 -z-10 h-full w-full'>

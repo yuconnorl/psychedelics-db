@@ -43,16 +43,16 @@ const ResearchPage = (): JSX.Element => {
         </h2>
         <div className='text-base text-secondary-foreground sm:text-lg md:ml-auto md:w-[45%]'>
           <p>
-            The psychedelics database's research page offers a comprehensive,
-            curated collection of peer-reviewed studies on psychedelics. It
-            covers pharmacology, therapeutic applications, neuroscience,
-            psychology, and cultural significance of substances like psilocybin,
-            LSD, MDMA, and DMT. Exploring their effects on mental health,
-            consciousness, and potential medical treatments, this organized
-            platform serves researchers, clinicians, and enthusiasts seeking
-            in-depth psychedelics research. Users can easily navigate studies on
-            various compounds, their applications, and broader implications in
-            an accessible.
+            The PsycheVault's research page offers a comprehensive, curated
+            collection of peer-reviewed studies on psychedelics. It covers
+            pharmacology, therapeutic applications, neuroscience, psychology,
+            and cultural significance of substances like psilocybin, LSD, MDMA,
+            and DMT. Exploring their effects on mental health, consciousness,
+            and potential medical treatments, this organized platform serves
+            researchers, clinicians, and enthusiasts seeking in-depth
+            psychedelics research. Users can easily navigate studies on various
+            compounds, their applications, and broader implications in an
+            accessible.
           </p>
         </div>
       </section>

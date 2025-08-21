@@ -67,7 +67,7 @@ const DatabasePage = async (): Promise<JSX.Element> => {
         <Image
           fill
           src={imgPsychedelicDatabaseIntro}
-          alt='Psychedelic database'
+          alt='PsycheVault'
           priority
           placeholder='blur'
           sizes='(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 100vw'
@@ -79,8 +79,8 @@ const DatabasePage = async (): Promise<JSX.Element> => {
 
       <div className='text-base text-secondary-foreground sm:text-lg'>
         <p>
-          The psychedelics database aims to serve as the leading information hub
-          around therapeutic and recreational usage of psychedelic compounds.
+          The PsycheVault aims to serve as the leading information hub around
+          therapeutic and recreational usage of psychedelic compounds.
           Containing data on over 100 psychedelic substances, it details
           quantitative information on dosing, effects, safety as well as
           qualitative trip reports and user perspectives. Researchers can
@@ -108,8 +108,8 @@ const DatabasePage = async (): Promise<JSX.Element> => {
           Categories
         </div>
         <div className='mb-6 text-base text-secondary-foreground sm:text-lg'>
-          The Psychedelics Database is organized into {categoriesNumber} main
-          categories, including:
+          The PsycheVault is organized into {categoriesNumber} main categories,
+          including:
         </div>
         <div className='grid grid-cols-[1fr_1fr] gap-3'>
           {categories.map(({ displayName, value }) => (

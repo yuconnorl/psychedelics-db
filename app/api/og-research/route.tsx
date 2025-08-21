@@ -79,7 +79,7 @@ export async function GET(request: NextRequest) {
               {title}
             </div>
             <div tw='leading-tight text-lg' style={{ fontFamily: 'Roboto' }}>
-              Research / Psychedelics Database
+              Research / PsycheVault
             </div>
           </div>
         </div>
