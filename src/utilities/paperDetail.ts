@@ -81,6 +81,30 @@ export const getEmbedding = async (
   }
 }
 
+export const getEmbeddingNew = async (
+  message: string,
+) => {
+  try {
+    const response = await fetch('/apiv2/embedding-new', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message }),
+    })
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok')
+    }
+
+    const data: EmbeddingResponse = await response.json()
+    return data
+  } catch (error: unknown) {
+    console.log('Error fetching paper:', error)
+    return undefined
+  }
+}
+
 interface UpdateVectorResponse {
   time: number
   success: boolean
