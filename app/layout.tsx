@@ -7,21 +7,27 @@ import './globals.css'
 import CategoriedHeader from '@/components/CategoriedHeader'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import { Toaster } from '@/components/ui/sonner'
-import { SITE_NAME, SITE_NAME_ZH, SITE_URL } from '@/constants/constants'
+import {
+  SITE_META_KEYWORDS,
+  SITE_NAME,
+  SITE_NAME_ZH,
+  SITE_URL,
+} from '@/constants/constants'
 
 const siteDescription = `${SITE_NAME_ZH} ${SITE_NAME} 致力於推廣啟靈物質的研究、治療與應用。平台收錄研究論文、教育資源與專業見解，旨在推動大眾深入理解啟靈藥物對心理健康、個人成長與社會福祉的正向影響。本資料庫由台灣啟靈意識研究學會維護與管理。`
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  keywords: SITE_META_KEYWORDS,
   title: {
     default: `${SITE_NAME_ZH} ${SITE_NAME}`,
-    template: `%s – ${SITE_NAME}`,
+    template: `%s – ${SITE_NAME_ZH} ${SITE_NAME}`,
   },
   description: siteDescription,
   openGraph: {
     title: {
-      default: `${SITE_NAME_ZH} ${SITE_NAME} – The leading hub for for psychedelic therapy research, education, and clinical insights`,
-      template: `%s – ${SITE_NAME}`,
+      default: `${SITE_NAME_ZH} ${SITE_NAME} – 通往啟靈研究與知識的大門`,
+      template: `%s – ${SITE_NAME_ZH} ${SITE_NAME}`,
     },
     description: siteDescription,
     url: SITE_URL,
@@ -32,8 +38,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: {
-      default: `${SITE_NAME} – The leading hub for for psychedelic therapy research, education, and clinical insights`,
-      template: `%s – ${SITE_NAME}`,
+      default: `${SITE_NAME_ZH} ${SITE_NAME} – 通往啟靈研究與知識的大門`,
+      template: `%s – ${SITE_NAME_ZH} ${SITE_NAME}`,
     },
     description: siteDescription,
   },
