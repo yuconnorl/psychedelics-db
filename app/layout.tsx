@@ -5,6 +5,7 @@ import { NuqsAdapter } from 'nuqs/adapters/next/app'
 
 import './globals.css'
 import CategoriedHeader from '@/components/CategoriedHeader'
+import { PostHogProvider } from '@/components/PostHogProvider'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import { Toaster } from '@/components/ui/sonner'
 import {
@@ -82,18 +83,20 @@ export default function RootLayout({
       className={clsx(garamond.variable)}
     >
       <body className='relative flex min-h-[100dvh] flex-col font-noto antialiased'>
-        <ThemeProvider
-          attribute='class'
-          defaultTheme='light'
-          disableTransitionOnChange
-        >
-          <CategoriedHeader />
-          <NuqsAdapter>{children}</NuqsAdapter>
-          <Toaster />
-          <div id='sheet-portal-container'>
-            <div></div>
-          </div>
-        </ThemeProvider>
+        <PostHogProvider>
+          <ThemeProvider
+            attribute='class'
+            defaultTheme='light'
+            disableTransitionOnChange
+          >
+            <CategoriedHeader />
+            <NuqsAdapter>{children}</NuqsAdapter>
+            <Toaster />
+            <div id='sheet-portal-container'>
+              <div></div>
+            </div>
+          </ThemeProvider>
+        </PostHogProvider>
       </body>
     </html>
   )

@@ -85,6 +85,7 @@
     "nuqs": "^2.0.4",
     "openai": "^4.68.0",
     "payload": "^2.0.4",
+    "posthog-js": "^1.261.0",
     "prosemirror-history": "^1.4.1",
     "prosemirror-keymap": "^1.2.2",
     "prosemirror-schema-basic": "^1.2.3",
