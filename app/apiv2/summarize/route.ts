@@ -53,7 +53,8 @@ export async function POST(request: NextRequest) {
           Example of INCORRECT citation formatting:
           "Psychedelic-assisted therapy shows promise as a novel treatment for PTSD and depression [1, 2, 3]."
           
-          Always ensure each citation is individually linked to maintain proper source attribution and accessibility.`,
+          Always ensure each citation is individually linked to maintain proper source attribution and accessibility.
+          Finally, reply with traditional Chinese (TW)`,
           prompt: `${prompt}`,
         })
         break

@@ -3,7 +3,28 @@ export const IMAGE_PLACEHOLDER =
 
 export const SITE_NAME = 'PsycheVault'
 export const SITE_NAME_ZH = '臺灣啟靈資料庫'
+export const SITE_META_KEYWORDS = [
+  '台灣',
+  '臺灣',
+  '啟靈藥',
+  '啟靈藥物',
+  '啟靈',
+  '啟靈研究',
+  '台灣啟靈資料庫',
+  '臺灣啟靈資料庫',
+  '啟靈藥輔助心理治療',
+  'psychedelics database',
+  'PsycheVault',
+  'psychedelics',
+  'psychedelic',
+  'psychedelic therapy',
+  'psychedelic therapy research',
+  'psychedelic therapy education',
+]
 
 export const SITE_URL = 'https://psychevault.space'
 
 export const PAPER_ITEM_PER_PAGE = 10 as const
+
+export const GOOGLE_FORM_URL =
+  'https://docs.google.com/forms/u/2/d/1x4zIfbDfiTCgWAUWno_lSKkp9D8YB0zgdsuPptVP4Hw'

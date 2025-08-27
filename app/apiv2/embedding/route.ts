@@ -1,6 +1,6 @@
+import { GoogleGenAI } from '@google/genai'
 import { GoogleGenerativeAI } from '@google/generative-ai'
 import { type NextRequest, NextResponse } from 'next/server'
-import OpenAI from 'openai'
 
 import type { MODEL_MAP } from '@/config/general'
 
@@ -18,7 +18,6 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  // const { message }: { message: string } = await request.json()
   const {
     message,
     model = 'gemini-1.5-flash',
@@ -29,32 +28,19 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    let embeddingData: number[] = []
-
-    // const model = 'gemini-1.5-flash'
+    const embeddingData: number[] = []
 
     switch (model) {
       case 'gemini-1.5-flash': {
+        const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY })
+
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
         const gemini = genAI.getGenerativeModel({ model: 'text-embedding-004' })
         const geminiResult = await gemini.embedContent(message)
-        embeddingData = geminiResult.embedding.values || []
+
+        // embeddingData = response.embedding.values || []
         break
       }
-
-      // case 'gpt-4o-mini': {
-      //   const openai = new OpenAI({
-      //     apiKey: process.env.OPENAI_API_KEY,
-      //   })
-      //   const openaiResult = await openai.embeddings.create({
-      //     model: 'text-embedding-3-small',
-      //     input: message,
-      //     encoding_format: 'float',
-      //     dimensions: 768,
-      //   })
-      //   embeddingData = openaiResult?.data[0]?.embedding || []
-      //   break
-      // }
 
       default:
         throw new Error('Error performing embedding, unsupported model')

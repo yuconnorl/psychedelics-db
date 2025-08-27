@@ -8,6 +8,6 @@ export const LANGUAGE_MAP = {
 }
 
 export const MODEL_MAP = {
-  'gpt-4o-mini': 'GPT 4o mini',
-  'gemini-1.5-flash': 'Gemini 1.5 Flash',
+  // 'gpt-4o-mini': 'GPT 4o mini',
+  'gemini-2.5-flash': 'Gemini 2.5 Flash',
 }

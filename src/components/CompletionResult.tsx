@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useCompletion } from 'ai/react'
+import { useCompletion } from '@ai-sdk/react'
 
 import MarkdownParser from '@/components/MarkdownParser'
 import { Badge } from '@/components/ui/badge'
@@ -66,7 +66,7 @@ const CompletionResult = ({
     complete,
     isLoading: isCompletionLoading,
   } = useCompletion({
-    api: '/apiv2/summarize',
+    api: '/apiv2/summarize-new',
     body: {
       model: model,
     },
