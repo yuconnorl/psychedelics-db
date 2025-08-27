@@ -17,7 +17,7 @@ import {
   SheetPortal,
   SheetTrigger,
 } from '@/components/ui/sheet'
-import { SITE_NAME } from '@/constants/constants'
+import { GOOGLE_FORM_URL, SITE_NAME } from '@/constants/constants'
 import { cn } from '@/lib/utils'
 import { CategoryOptionsType, RecordType } from '@/types'
 
@@ -109,7 +109,7 @@ const Header = ({
             <div className='flex items-center gap-3 md:gap-5'>
               <ThemeSwitch />
               <Link
-                href={'https://tinyurl.com/3fr2ddu7'}
+                href={GOOGLE_FORM_URL}
                 target='_blank'
                 className='group block'
                 prefetch={false}
@@ -119,7 +119,7 @@ const Header = ({
             </div>
           </div>
           <Link
-            href={'https://tinyurl.com/3fr2ddu7'}
+            href={GOOGLE_FORM_URL}
             target='_blank'
             className='mr-3 block md:hidden'
             prefetch={false}

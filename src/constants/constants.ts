@@ -25,3 +25,6 @@ export const SITE_META_KEYWORDS = [
 export const SITE_URL = 'https://psychevault.space'
 
 export const PAPER_ITEM_PER_PAGE = 10 as const
+
+export const GOOGLE_FORM_URL =
+  'https://docs.google.com/forms/u/2/d/1x4zIfbDfiTCgWAUWno_lSKkp9D8YB0zgdsuPptVP4Hw'

@@ -7,7 +7,8 @@ import { notFound } from 'next/navigation'
 import { getAllRecords, getCategories } from '@/api/general'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { ChevronRightUpIcon } from '@/components/Icons'
-import SerializeSlate from '@/components/SerializeSlate'
+// import SerializeSlate from '@/components/SerializeSlate'
+import SerializeSlateNew from '@/components/SerializeSlateNew'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -145,7 +146,7 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
           <>
             <Separator className=' mb-4 mt-2 md:mb-7 md:mt-5' />
             <div className='px-2 md:px-3'>
-              <SerializeSlate value={richText} />
+              <SerializeSlateNew value={richText} />
             </div>
           </>
         )}
