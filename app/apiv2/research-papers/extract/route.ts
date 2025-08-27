@@ -20,9 +20,8 @@ export async function POST(request: NextRequest) {
   const pdfData = await request.arrayBuffer()
 
   try {
-    const model = google('gemini-1.5-flash', {
-      structuredOutputs: true,
-    })
+    // const model = google('gemini-1.5-flash', { structuredOutputs: true })
+    const model = google('gemini-2.5-flash')
 
     // const prompt = `You are an expert at structured data extraction. You will be given pdf file from a research paper and should convert and summarize it into the given structure.
     // Parse the pdf data into following format. Generate 3 to 7 key findings from the data provided, make sure to cover all key findings in the research. Also convert the keyfindings you compiled into traditional chinese, make sure to add extra space between English words and Chinese words. Keep the original title, abstract and keywords as it is. If there's no keywords provided, generate it. The return data should be in the following format:
@@ -73,7 +72,7 @@ Correct: "在被診斷患有精神疾病的使用者中，大多數人在使用 
             { type: 'text', text: prompt },
             {
               type: 'file',
-              mimeType: 'application/pdf',
+              mediaType: 'application/pdf',
               data: new Uint8Array(pdfData),
             },
           ],

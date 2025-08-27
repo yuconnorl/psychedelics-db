@@ -9,11 +9,7 @@ import { EditorState } from 'prosemirror-state'
 import { toast } from 'sonner'
 import useSWR from 'swr'
 
-import {
-  getEmbedding,
-  getEmbeddingNew,
-  queryVector,
-} from '../utilities/paperDetail'
+import { getEmbedding, queryVector } from '../utilities/paperDetail'
 import VectorSearchResult from './VectorSearchResult'
 
 import CompletionResult from '@/components/CompletionResult'
@@ -72,7 +68,7 @@ const VectorSearch = () => {
     localStorageHelper.remove('completion-cache')
     setWholeLoading(true)
 
-    const { embedding } = await getEmbeddingNew(searchTerm)
+    const { embedding } = await getEmbedding(searchTerm)
     const { queryResults } = await queryVector(embedding)
 
     return queryResults?.points || []

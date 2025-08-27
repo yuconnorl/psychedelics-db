@@ -1,7 +1,8 @@
 import dotenv from 'dotenv'
 import express from 'express'
 import next from 'next'
-import nextBuild from 'next/dist/build'
+// import nextBuild from 'next/dist/build'
+import { build as nextBuild } from 'next/dist/build'
 import path from 'path'
 
 import { getPayloadClient } from './getPayload'

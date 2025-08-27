@@ -20,9 +20,7 @@ export async function POST(request: NextRequest) {
   const { summaries: summaryData } = await request.json()
 
   try {
-    const model = google('gemini-1.5-flash', {
-      structuredOutputs: true,
-    })
+    const model = google('gemini-2.5-flash')
 
     const prompt = `You are an expert in sentence translation. You will receive a string data from research paper summary in English, which contain 5 to 10 summary sentences, and must translate it into Traditional Chinese. For each text field, ensure proper spacing between Chinese and English/numeric content by:
 1. Adding a space between Chinese characters and English letters/numbers

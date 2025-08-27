@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
 
   const {
     prompt,
-    model = 'gemini-1.5-flash',
+    model = 'gemini-2.5-flash',
   }: { prompt: string; model: keyof typeof MODEL_MAP } = await request.json()
 
   if (!prompt || typeof prompt !== 'string') {
@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
     let result = null
 
     switch (model) {
-      case 'gemini-1.5-flash': {
+      case 'gemini-2.5-flash': {
         const google = createGoogleGenerativeAI({
           apiKey: process.env.GEMINI_API_KEY,
         })

@@ -10,7 +10,7 @@ import {
   getPapers,
   updatePaperVectorizeState,
 } from '../api/general'
-import { getEmbedding, getEmbeddingNew, updateVector } from '../utilities/paperDetail'
+import { getEmbedding, updateVector } from '../utilities/paperDetail'
 
 import type { PaperData } from '@/types'
 
@@ -210,7 +210,7 @@ const UpdateSection = (): JSX.Element => {
 
     const operationInfo = (await Promise.allSettled(
       transformedPapers.map(async (paper) => {
-        const { embedding } = await getEmbeddingNew(paper.flattenString)
+        const { embedding } = await getEmbedding(paper.flattenString)
 
         return {
           id: generateDeterministicUUID(paper.payload.objectID),

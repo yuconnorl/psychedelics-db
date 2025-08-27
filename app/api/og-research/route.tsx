@@ -3,7 +3,7 @@ import { ImageResponse } from 'next/og'
 import { NextRequest } from 'next/server'
 
 // Route segment config
-export const runtime = 'edge'
+export const runtime = 'nodejs'
 
 /** Generate OG image */
 export async function GET(request: NextRequest) {
@@ -13,13 +13,12 @@ export async function GET(request: NextRequest) {
     const hasTitle = searchParams.has('title')
     const title = hasTitle ? searchParams.get('title') : 'Research'
 
-    const roboto = await fetch(
-      new URL('public/fonts/roboto-light.ttf', import.meta.url),
-    )
+    // Get the base URL from the request
+    const baseUrl = new URL(request.url).origin
 
-    const latoRegular = await fetch(
-      new URL('public/fonts/lato-regular.ttf', import.meta.url),
-    )
+    const roboto = await fetch(`${baseUrl}/fonts/roboto-light.ttf`)
+
+    const latoRegular = await fetch(`${baseUrl}/fonts/lato-regular.ttf`)
 
     if (!roboto.ok || !latoRegular.ok) {
       throw new Error('Failed to fetch the font file for og image')

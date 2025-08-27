@@ -56,34 +56,9 @@ interface EmbeddingResponse {
   embedding: number[]
 }
 
-export const getEmbedding = async (
-  message: string,
-  model: Models | null = 'gemini-2.5-flash',
-) => {
+export const getEmbedding = async (message: string) => {
   try {
     const response = await fetch('/apiv2/embedding', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ message, model }),
-    })
-
-    if (!response.ok) {
-      throw new Error('Network response was not ok')
-    }
-
-    const data: EmbeddingResponse = await response.json()
-    return data
-  } catch (error: unknown) {
-    console.log('Error generating embedding:', error)
-    return undefined
-  }
-}
-
-export const getEmbeddingNew = async (message: string) => {
-  try {
-    const response = await fetch('/apiv2/embedding-new', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
