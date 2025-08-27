@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import type { Metadata, ResolvingMetadata } from 'next'
 
 import HeadOrTailEyes from './HeadOrTailEyes'
@@ -11,12 +12,7 @@ type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
-  // const previousImages = (await parent).openGraph?.images || []
-
+export async function generateMetadata(): Promise<Metadata> {
   return {
     title: '研究論文',
     description: 'Scientific researches across all aspects of Psychedelics',
@@ -57,7 +53,9 @@ const ResearchPage = (): JSX.Element => {
         </div>
       </section>
       <HeadOrTailEyes />
-      <PaperSection />
+      <Suspense fallback={<div>Loading research papers...</div>}>
+        <PaperSection />
+      </Suspense>
     </div>
   )
 }
