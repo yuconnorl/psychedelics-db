@@ -1,6 +1,6 @@
+import { GoogleGenAI } from '@google/genai'
 import { GoogleGenerativeAI } from '@google/generative-ai'
 import { type NextRequest, NextResponse } from 'next/server'
-import { GoogleGenAI } from "@google/genai";
 
 import type { MODEL_MAP } from '@/config/general'
 
@@ -28,11 +28,11 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    let embeddingData: number[] = []
+    const embeddingData: number[] = []
 
     switch (model) {
       case 'gemini-1.5-flash': {
-        const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+        const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY })
 
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
         const gemini = genAI.getGenerativeModel({ model: 'text-embedding-004' })

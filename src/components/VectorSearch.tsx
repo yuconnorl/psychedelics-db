@@ -47,7 +47,7 @@ import { localStorageHelper } from '@/utilities/localStorage'
 
 const VectorSearch = () => {
   const [search, setSearch] = useState('')
-  const [model, setModel] = useState<Models>('gemini-1.5-flash')
+  const [model, setModel] = useState<Models>('gemini-2.5-flash')
   const [mount, setMount] = useState<HTMLElement | null>(null)
   const [editorState, setEditorState] = useState<EditorState | null>(
     EditorState.create({
@@ -111,7 +111,7 @@ const VectorSearch = () => {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Enter') {
+      if (e.key === 'Enter' && !e.isComposing) {
         handleSearchButtonClick()
       }
     }
@@ -214,11 +214,14 @@ const VectorSearch = () => {
                 defaultValue={model}
                 onValueChange={(model: Models) => setModel(model)}
               >
-                <SelectTrigger className='h-7 w-max gap-1 rounded-[0.5rem] border-none bg-secondary px-1.5 py-3 text-primary/70 transition-colors hover:bg-primary-foreground'>
+                <SelectTrigger
+                  disabled
+                  className='h-7 w-max gap-1 rounded-[0.5rem] border-none bg-secondary px-1.5 py-3 text-primary/70 transition-colors hover:bg-primary-foreground'
+                >
                   <SelectValue placeholder='Model' />
                 </SelectTrigger>
                 <SelectContent className='text-sm text-primary/70'>
-                  <SelectItem
+                  {/* <SelectItem
                     value='gpt-4o-mini'
                     className='transition-colors hover:bg-secondary disabled:cursor-not-allowed'
                     disabled
@@ -229,14 +232,14 @@ const VectorSearch = () => {
                       </span>
                       <span>{MODEL_MAP['gpt-4o-mini']} (soon)</span>
                     </div>
-                  </SelectItem>
+                  </SelectItem> */}
                   <SelectItem
-                    value='gemini-1.5-flash'
+                    value='gemini-2.5-flash'
                     className='transition-colors hover:bg-secondary'
                   >
                     <div className='grid grid-cols-[0.2fr_1fr] items-center gap-1'>
                       <GeminiIcon />
-                      <span>{MODEL_MAP['gemini-1.5-flash']}</span>
+                      <span>{MODEL_MAP['gemini-2.5-flash']}</span>
                     </div>
                   </SelectItem>
                 </SelectContent>
