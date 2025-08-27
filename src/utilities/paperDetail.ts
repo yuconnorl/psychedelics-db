@@ -58,7 +58,7 @@ interface EmbeddingResponse {
 
 export const getEmbedding = async (
   message: string,
-  model: Models | null = 'gemini-1.5-flash',
+  model: Models | null = 'gemini-2.5-flash',
 ) => {
   try {
     const response = await fetch('/apiv2/embedding', {
@@ -76,14 +76,12 @@ export const getEmbedding = async (
     const data: EmbeddingResponse = await response.json()
     return data
   } catch (error: unknown) {
-    console.log('Error fetching paper:', error)
+    console.log('Error generating embedding:', error)
     return undefined
   }
 }
 
-export const getEmbeddingNew = async (
-  message: string,
-) => {
+export const getEmbeddingNew = async (message: string) => {
   try {
     const response = await fetch('/apiv2/embedding-new', {
       method: 'POST',
@@ -100,7 +98,7 @@ export const getEmbeddingNew = async (
     const data: EmbeddingResponse = await response.json()
     return data
   } catch (error: unknown) {
-    console.log('Error fetching paper:', error)
+    console.log('Error generating new embedding:', error)
     return undefined
   }
 }
@@ -132,7 +130,7 @@ export const updateVector = async (message) => {
     const data: UpdateVectorResponse = await response.json()
     return data
   } catch (error: unknown) {
-    console.log('Error fetching paper:', error)
+    console.log('Error updating vector:', error)
   }
 }
 
@@ -162,6 +160,6 @@ export const queryVector = async (
     const data = await response.json()
     return data
   } catch (error: unknown) {
-    console.log('Error fetching paper:', error)
+    console.log('Error querying vector:', error)
   }
 }

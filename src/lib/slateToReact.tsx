@@ -152,8 +152,8 @@ export const SlateToReact = ({
               key={key}
               src={node.url}
               alt={node.alt || ''}
-              width={node.width || 0}
-              height={node.height || 0}
+              width={node.width || 400}
+              height={node.height || 300}
             />
           )
 
