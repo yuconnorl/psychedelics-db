@@ -1,11 +1,5 @@
 import { google } from '@ai-sdk/google'
-import {
-  convertToModelMessages,
-  generateText,
-  smoothStream,
-  streamText,
-  UIMessage,
-} from 'ai'
+import { convertToModelMessages, smoothStream, streamText } from 'ai'
 import { type NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
@@ -33,13 +27,13 @@ export async function POST(request: NextRequest) {
       1. Use the information from the provided research papers to explain the user's query
       2. When citing papers, you MUST:
          - Use individual citations for each reference, not grouped citations
-         - Format each citation as a Markdown link: [1](https://paper1-url), [2](https://paper2-url), etc.
+         - Format each citation as a Markdown link: [1](paper_url_1), [2](paper_url_2), etc.
          - Include citations immediately after the relevant statement
          - Never use comma-separated citations like [1, 2, 3]
          - Each paper citation should maintain its original URL as provided in the paper details
 
       Example of CORRECT citation:
-      "Psychedelic-assisted therapy shows promise as a novel treatment for PTSD [1](https://paper1-url) and has demonstrated significant efficacy in clinical trials [2](https://paper2-url)."
+      "Psychedelic-assisted therapy shows promise as a novel treatment for PTSD [1](paper_url_1) and has demonstrated significant efficacy in clinical trials [2](paper_url_2)."
 
       Example of INCORRECT citation:
       "Psychedelic-assisted therapy shows promise as a novel treatment for PTSD and depression [1, 2]."

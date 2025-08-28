@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
         })
 
         result = streamText({
-          model: google('gemini-1.5-flash'),
+          model: google('gemini-2.5-flash'),
           system: `You are an expert in summarizing structured data from research papers. You will be provided with structured text data from research papers related to the user's query. Your task is to:
 
           1. Use the information from the provided research papers to explain the user's query
@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
              - Each paper should maintain its original URL as provided in the paper details
           
           Example of CORRECT citation formatting:
-          "Psychedelic-assisted therapy shows promise as a novel treatment for PTSD [1](https://paper1-url) and has demonstrated significant efficacy in clinical trials [2](https://paper2-url)."
+          "Psychedelic-assisted therapy shows promise as a novel treatment for PTSD [1](paper_url_1) and has demonstrated significant efficacy in clinical trials [2](paper_url_2)."
           
           Example of INCORRECT citation formatting:
           "Psychedelic-assisted therapy shows promise as a novel treatment for PTSD and depression [1, 2, 3]."

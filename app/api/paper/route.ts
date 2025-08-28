@@ -92,8 +92,6 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
       Research Paper Data: ${jinaText}`
 
-    // const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
-
     const schema = {
       description: 'Detail of research paper',
       type: SchemaType.OBJECT,

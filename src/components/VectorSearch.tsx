@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import { ProseMirror, react } from '@nytimes/react-prosemirror'
+import posthog from 'posthog-js'
 import { history, redo, undo } from 'prosemirror-history'
 import { keymap } from 'prosemirror-keymap'
 import { schema } from 'prosemirror-schema-basic'
@@ -87,6 +88,9 @@ const VectorSearch = () => {
       dedupingInterval: 5000,
       onSuccess: (data) => {
         localStorageHelper.set('vector-search-result-cache', data)
+        posthog.capture('vector_search', {
+          search_term: debouncedSearch,
+        })
       },
       onError: (err) => {
         // eslint-disable-next-line no-console
