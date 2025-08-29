@@ -42,8 +42,10 @@ export async function POST(request: NextRequest) {
          - "Psychedelics" → "啟靈藥"
          - "Psilocybin" → "裸蓋菇鹼"
          - "Ibogaine" → "伊波加因"
+         - "Ketamine" → "K他命"
+         - "Empathy" → "同理心"
          - "Schizophrenia" → "思覺失調症"
-      4. For each special term, provide both Traditional Chinese and the English term in brackets, e.g., "裸蓋菇鹼 (Psilocybin)".
+      4. For each special term, provide both Traditional Chinese (TW) and the English term in brackets, e.g., "裸蓋菇鹼 (Psilocybin)".
 
       Always ensure each citation is individually linked to maintain proper source attribution and accessibility.`
 

@@ -136,6 +136,7 @@ export const getPapers = async (limit = 300): Promise<PaperData[]> => {
         url: paper.url,
         substance: paper.substance,
         publishedAt: paper.publishedAt,
+        updatedAt: paper.updatedAt,
         viewCount: paper.viewCount,
         summary: paper.summaryField,
         summaryZhTw: paper.summaryZhTwField ?? [],

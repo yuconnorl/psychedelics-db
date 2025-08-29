@@ -11,7 +11,7 @@ export type PaperType = Paper
 
 export type PaperData = Omit<
   PaperType,
-  'authorsField' | 'keywordsField' | 'updatedAt' | 'createdAt'
+  'authorsField' | 'keywordsField' | 'createdAt'
 > & {
   authors: string[]
   keywords: string[]

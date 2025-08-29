@@ -146,7 +146,7 @@ const PapersTable = ({ papers }: PapersTableProps): JSX.Element => {
                     {title}
                   </h3>
                   <AuthorBadges authors={authors} />
-                  <div className='mt-2 flex gap-1'>
+                  <div className='mt-2 flex flex-wrap gap-1'>
                     {substance.map((sub) => (
                       <SubstanceBadge
                         onClick={(e): void => {
