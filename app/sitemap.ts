@@ -46,7 +46,7 @@ export default async function generateSitemap(): Promise<MetadataRoute.Sitemap> 
   return [
     {
       url: `${SITE_URL}`,
-      lastModified: new Date(),
+      lastModified: dayjs().utc().format('YYYY-MM-DDTHH:mm:ssZ'),
       priority: 1,
     },
     ...routesSiteMap,
