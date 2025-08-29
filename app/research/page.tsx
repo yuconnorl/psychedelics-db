@@ -15,17 +15,17 @@ type Props = {
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: '研究論文',
-    description: 'Scientific researches across all aspects of Psychedelics',
+    description: '涵蓋所有面向的啟靈藥科學研究',
     openGraph: {
       title: '研究論文',
       siteName: SITE_NAME,
       url: `${SITE_URL}/research`,
-      description: 'Scientific researches across all aspects of Psychedelics',
+      description: '涵蓋所有面向的啟靈藥科學研究',
     },
     twitter: {
       card: 'summary_large_image',
       title: '研究論文',
-      description: 'Scientific researches across all aspects of Psychedelics',
+      description: '涵蓋所有面向的啟靈藥科學研究',
     },
   }
 }

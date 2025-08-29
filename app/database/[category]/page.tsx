@@ -7,6 +7,7 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import CardContainer from '@/components/CardContainer'
 import Grid from '@/components/GridLayoutCard'
 import Stack from '@/components/StackLayoutCard'
+import { SITE_URL } from '@/constants/constants'
 import { CardParamsProps, RecordType } from '@/types'
 
 export async function generateStaticParams() {
@@ -32,6 +33,9 @@ export async function generateMetadata(
 
   return {
     title: category.displayName,
+    alternates: {
+      canonical: `${SITE_URL}/database/${params.category}`,
+    },
     openGraph: {
       title: category.displayName,
       images: parentOpenGraph.images,

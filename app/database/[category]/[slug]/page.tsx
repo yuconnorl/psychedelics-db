@@ -14,7 +14,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { LANGUAGE_MAP } from '@/config/general'
-import { IMAGE_PLACEHOLDER } from '@/constants/constants'
+import { IMAGE_PLACEHOLDER, SITE_URL } from '@/constants/constants'
 import { capitalizeFirstLetter } from '@/lib/utils'
 import { RecordType } from '@/types'
 import { resolveMetaTag } from '@/utilities/metaTag'
@@ -50,6 +50,9 @@ export async function generateMetadata(
 
   return {
     title: record.title,
+    alternates: {
+      canonical: `${SITE_URL}/database/${params.category}/${params.slug}`,
+    },
     openGraph: {
       title: record.title,
       images: parentOpenGraph.images,

@@ -55,6 +55,9 @@ export async function generateMetadata({
   return {
     title: filterPaper?.title,
     description: abstractString,
+    alternates: {
+      canonical: `${SITE_URL}/research/${filterPaper?.slug}`,
+    },
     openGraph: {
       title: filterPaper?.title,
       url: `${SITE_URL}/research/${filterPaper?.slug}`,
