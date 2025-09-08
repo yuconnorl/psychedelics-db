@@ -51,7 +51,7 @@ const RandomSubstance = (): JSX.Element => {
 
   return (
     <div className='pointer-events-none absolute flex flex-col items-center opacity-20'>
-      <Formula className='opacity-[0.5]' />
+      <Formula className='opacity-[0.4]' />
       <span className='font-sm sm:font-base mt-2 font-garamond font-semibold sm:mt-4'>
         {description}
       </span>
@@ -60,24 +60,29 @@ const RandomSubstance = (): JSX.Element => {
 }
 
 const NoResultsFallback = (): JSX.Element => {
-  const { indexUiState, status } = useInstantSearch()
+  const { indexUiState, status, results } = useInstantSearch()
 
   return (
     <div className='relative flex items-center justify-center px-2'>
-      {indexUiState.query && status !== 'loading' && (
-        <div className='pointer-events-none max-w-xs text-center text-muted-foreground'>
-          You are more than welcome to contribute the entry for
-          <span className='mx-1.5 font-medium text-primary'>
-            "{indexUiState.query}"
-          </span>
-          to our database
-        </div>
-      )}
-      {status === 'loading' && (
-        <div className='pointer-events-none max-w-xs text-center text-muted-foreground'>
-          Searching...
-        </div>
-      )}
+      {indexUiState.query &&
+        status !== 'loading' &&
+        status !== 'stalled' &&
+        !results.__isArtificial &&
+        results.nbHits === 0 && (
+          <div className='pointer-events-none max-w-xs text-center text-muted-foreground'>
+            You are more than welcome to contribute the entry for
+            <span className='mx-1.5 font-medium text-primary'>
+              "{indexUiState.query}"
+            </span>
+            to our database
+          </div>
+        )}
+      {status === 'loading' ||
+        (status === 'stalled' && (
+          <div className='pointer-events-none max-w-xs text-center text-muted-foreground'>
+            Searching...
+          </div>
+        ))}
       <RandomSubstance />
     </div>
   )

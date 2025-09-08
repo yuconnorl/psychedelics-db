@@ -50,17 +50,20 @@ export async function generateMetadata(
 
   return {
     title: record.title,
+    description: record.metaDescription || parentData.description,
     alternates: {
       canonical: `${SITE_URL}/database/${params.category}/${params.slug}`,
     },
     openGraph: {
       title: record.title,
       images: parentOpenGraph.images,
+      description: record.metaDescription || parentData.description,
     },
     twitter: {
       card: 'summary_large_image',
       title: record.title,
       images: parentTwitter.images,
+      description: record.metaDescription || parentData.description,
     },
   }
 }

@@ -23,7 +23,7 @@ const SearchButton = ({ onButtonClick, className }: Props): JSX.Element => {
       >
         <div className='flex items-center text-primary/70'>
           <SearchIcon className='mr-2' />
-          <span className='text-sm'>Open the door...</span>
+          <span className='text-sm'>Open the door</span>
         </div>
         <kbd className='flex items-center gap-1 text-primary/70'>
           <abbr className='text-lg no-underline'>⌘</abbr>

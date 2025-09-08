@@ -69,6 +69,8 @@ const AlgoliaSearchComponent = ({
           </InstantSearchNext>
           <div className='flex items-center justify-end border-t px-6 py-4'>
             <Link
+              target='_blank'
+              rel='noopener noreferrer'
               href={'https://www.algolia.com/ref/docsearch'}
               className='flex items-center text-primary/50'
               prefetch={false}
