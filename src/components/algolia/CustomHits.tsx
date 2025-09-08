@@ -59,18 +59,18 @@ const HitItem = ({ hits, onHitClick }): JSX.Element => {
               <div className='ml-1 mr-2 flex items-center justify-center p-1 text-primary/60 sm:mr-2.5'>
                 {icon}
               </div>
-              <div className='flex flex-col gap-1'>
+              <div className='flex flex-[1_1_0] flex-col gap-1'>
                 <Highlight
                   hit={hit}
                   attribute='title'
-                  className='Hit-label block flex-[1_1_0]'
+                  className='Hit-label block'
                   classNames={{
                     highlighted: 'bg-transparent text-primary font-semibold',
                     nonHighlighted: 'text-muted-foreground',
                     root: 'text-sm',
                   }}
                 />
-                <span className='line-clamp-2 pl-0.5 text-xs text-muted-foreground/80'>
+                <span className='line-clamp-2 pl-[1px] text-xs text-muted-foreground/80'>
                   {hit?.metaDescription}
                 </span>
               </div>
