@@ -50,20 +50,26 @@ export async function generateMetadata(
 
   return {
     title: record.title,
-    description: record.metaDescription || parentData.description,
+    description:
+      record.metaDescription ||
+      '從啟靈藥物的基本知識到減害資訊，涵蓋研究、安全性、作用效果等各方面專業知識的資料庫',
     alternates: {
       canonical: `${SITE_URL}/database/${params.category}/${params.slug}`,
     },
     openGraph: {
       title: record.title,
       images: parentOpenGraph.images,
-      description: record.metaDescription || parentData.description,
+      description:
+        record.metaDescription ||
+        '從啟靈藥物的基本知識到減害資訊，涵蓋研究、安全性、作用效果等各方面專業知識的資料庫',
     },
     twitter: {
       card: 'summary_large_image',
       title: record.title,
       images: parentTwitter.images,
-      description: record.metaDescription || parentData.description,
+      description:
+        record.metaDescription ||
+        '從啟靈藥物的基本知識到減害資訊，涵蓋研究、安全性、作用效果等各方面專業知識的資料庫',
     },
   }
 }
@@ -136,16 +142,16 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
             blurDataURL={IMAGE_PLACEHOLDER}
             priority
             placeholder='blur'
-            alt={`OG Image of ${title}`}
+            alt={`Image ${title}`}
             sizes='(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 100vw'
             className='h-auto w-auto rounded-md object-cover object-center'
           />
         </AspectRatio>
         <div className='px-2 leading-relaxed text-primary/70 md:px-3'>
           {metaDescription ? (
-            <span>{metaDescription}</span>
+            <span className='whitespace-break-spaces'>{metaDescription}</span>
           ) : (
-            <span>{meta.description}</span>
+            <span className='whitespace-break-spaces'>{meta.description}</span>
           )}
         </div>
         {richText && (
@@ -170,7 +176,7 @@ const RecordPage = async ({ params }: ParamsType): Promise<JSX.Element> => {
             <span className='mr-1'>Visit resource</span>
             <Image
               src={meta.iconUrl}
-              alt={`Icon of ${title}`}
+              alt='icon'
               width={20}
               height={20}
               className='object-contain'
