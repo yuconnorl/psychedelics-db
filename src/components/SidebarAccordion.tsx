@@ -25,7 +25,7 @@ const SidebarAccordion = ({
   categoriesMap,
   onCategoryClickedAndCloseSheet,
 }: Props): JSX.Element => {
-  const [openedItems, setOpenedItems] = useState(['ngo-foundation'])
+  const [openedItems, setOpenedItems] = useState(['psychedelics-fundamentals'])
   const pathname = usePathname()
 
   useEffect(() => {

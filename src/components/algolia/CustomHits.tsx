@@ -52,7 +52,7 @@ const HitItem = ({ hits, onHitClick }): JSX.Element => {
         return (
           <div key={hit.objectID} onClick={() => onHitClick(false)}>
             <Link
-              className='group my-2 flex items-center rounded-sm bg-muted-foreground/5 px-2 py-3 transition-colors hover:bg-muted-foreground/30 sm:my-3 sm:px-3'
+              className='group my-1.5 flex items-center rounded-sm bg-muted-foreground/5 px-2 py-3 transition-colors hover:bg-muted-foreground/30 sm:my-3 sm:px-3'
               href={linkHerf}
               prefetch={false}
             >

@@ -52,7 +52,7 @@ const RandomSubstance = (): JSX.Element => {
   return (
     <div className='pointer-events-none absolute flex flex-col items-center opacity-20'>
       <Formula className='opacity-[0.4]' />
-      <span className='font-sm sm:font-base mt-2 font-garamond font-semibold sm:mt-4'>
+      <span className='font-sm sm:font-base mt-2 select-none font-garamond font-semibold sm:mt-4'>
         {description}
       </span>
     </div>

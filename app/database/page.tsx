@@ -19,17 +19,19 @@ export async function generateMetadata(
   return {
     title: '資料庫',
     description:
-      'Educational materials to enhance understanding of therapeutic usage of psychedelics',
+      '從啟靈藥物的基本知識到減害資訊，涵蓋研究、安全性、作用效果等各方面專業知識的資料庫',
     openGraph: {
       title: '資料庫',
       siteName: SITE_NAME,
       url: `${SITE_URL}/database`,
+      description:
+        '從啟靈藥物的基本知識到減害資訊，涵蓋研究、安全性、作用效果等各方面專業知識的資料庫',
     },
     twitter: {
       card: 'summary_large_image',
       title: '資料庫',
       description:
-        'Educational materials to enhance understanding of therapeutic usage of psychedelics',
+        '從啟靈藥物的基本知識到減害資訊，涵蓋研究、安全性、作用效果等各方面專業知識的資料庫',
     },
   }
 }
